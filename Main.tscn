@@ -15,7 +15,7 @@ z_as_relative = false
 y_sort_enabled = true
 
 [node name="Player" parent="GameContainer" instance=ExtResource("2_redi8")]
-position = Vector2(235, 205)
+position = Vector2(265, 196)
 
 [node name="SicilianHouse" parent="GameContainer" instance=ExtResource("3_ie86o")]
 position = Vector2(165, 173)
