@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bihv5yjq7muuh"]
+
+[ext_resource type="Texture2D" uid="uid://dr1ltarda45jq" path="res://Scenes/Static/italian-house-1.png" id="1_gbhtw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rt44d"]
+size = Vector2(160, 53)
+
+[node name="SicilianHouse" type="StaticBody2D"]
+z_as_relative = false
+y_sort_enabled = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_gbhtw")
+offset = Vector2(0, -91)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2, -26.5)
+shape = SubResource("RectangleShape2D_rt44d")
