@@ -1,11 +1,32 @@
-[gd_scene load_steps=8 format=3 uid="uid://c5pejd2ocjitd"]
+[gd_scene load_steps=14 format=3 uid="uid://c5pejd2ocjitd"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.cs" id="1_xtjtk"]
 [ext_resource type="Texture2D" uid="uid://qg1wluq8wfit" path="res://Scenes/Player/idle.png" id="2_5f01c"]
+[ext_resource type="Texture2D" uid="uid://bwby1mqg3fnq1" path="res://Scenes/Player/attack-Sheet.png" id="2_o8ess"]
 [ext_resource type="Texture2D" uid="uid://hjl8poh5y4as" path="res://Scenes/Player/walk-Sheet.png" id="3_ymnhe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_we0ol"]
 size = Vector2(14.87, 7.44669)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wsopa"]
+atlas = ExtResource("2_o8ess")
+region = Rect2(0, 0, 15, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j0sku"]
+atlas = ExtResource("2_o8ess")
+region = Rect2(15, 0, 15, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_408ec"]
+atlas = ExtResource("2_o8ess")
+region = Rect2(30, 0, 15, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_de2cy"]
+atlas = ExtResource("2_o8ess")
+region = Rect2(45, 0, 15, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_73edu"]
+atlas = ExtResource("2_o8ess")
+region = Rect2(60, 0, 15, 36)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7a6ra"]
 atlas = ExtResource("3_ymnhe")
@@ -17,6 +38,26 @@ region = Rect2(18, 0, 18, 36)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_5q57h"]
 animations = [{
+"frames": [{
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_wsopa")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_j0sku")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_408ec")
+}, {
+"duration": 1.5,
+"texture": SubResource("AtlasTexture_de2cy")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_73edu")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_5f01c")
@@ -59,5 +100,11 @@ one_way_collision_margin = 0.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_5q57h")
-animation = &"walk"
+animation = &"attack"
+frame_progress = 0.260356
 offset = Vector2(0, -18)
+
+[node name="AttackTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="AttackTimer" to="." method="OnAttackTimerTimeout"]
