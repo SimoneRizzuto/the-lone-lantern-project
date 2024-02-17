@@ -143,7 +143,6 @@ offset = Vector2(18, -20)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_5q57h")
 animation = &"attack"
-frame_progress = 0.457925
 offset = Vector2(0, -18)
 
 [node name="AttackTimer" type="Timer" parent="."]

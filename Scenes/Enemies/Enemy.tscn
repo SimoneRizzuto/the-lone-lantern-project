@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://oe1ffghf4nah"]
+
+[ext_resource type="Script" path="res://Scenes/Enemies/Enemy.cs" id="1_1uu0k"]
+[ext_resource type="Texture2D" uid="uid://cwto5tbv5no2g" path="res://icon.svg" id="2_76t1e"]
+[ext_resource type="Texture2D" uid="uid://dyft4tca38n2q" path="res://Scenes/Enemies/death.png" id="3_p0if3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8u7jq"]
+size = Vector2(16, 14)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qsoga"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_p0if3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_p0if3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_p0if3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_p0if3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_p0if3")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}]
+
+[node name="Enemy" type="CharacterBody2D" groups=["enemies"]]
+script = ExtResource("1_1uu0k")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.125, 0.116)
+texture = ExtResource("2_76t1e")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_8u7jq")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.03, 0.03)
+sprite_frames = SubResource("SpriteFrames_qsoga")
+animation = &"death"
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="OnAnimatedSprite2DAnimationFinished"]
