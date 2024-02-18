@@ -25,7 +25,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("3_p0if3")
 }],
-"loop": true,
+"loop": false,
 "name": &"death",
 "speed": 5.0
 }]
@@ -42,7 +42,7 @@ texture = ExtResource("2_76t1e")
 shape = SubResource("RectangleShape2D_8u7jq")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.03, 0.03)
+scale = Vector2(0.0273438, 0.0289256)
 sprite_frames = SubResource("SpriteFrames_qsoga")
 animation = &"death"
 
