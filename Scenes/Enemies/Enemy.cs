@@ -17,6 +17,8 @@ public partial class Enemy : CharacterBody2D
         velocity.X = velocity.X * Speed * (float)delta;
         velocity.Y = velocity.Y * Speed * (float)delta;
 
+        Velocity = velocity;
+
         MoveAndSlide();
         for (int i =0; i < GetSlideCollisionCount(); i++)
         {
