@@ -136,6 +136,7 @@ shape = SubResource("CapsuleShape2D_5e708")
 disabled = true
 
 [node name="AttackAnimation" type="AnimatedSprite2D" parent="."]
+visible = false
 sprite_frames = SubResource("SpriteFrames_5os6t")
 frame_progress = 0.133655
 offset = Vector2(18, -20)
@@ -143,6 +144,7 @@ offset = Vector2(18, -20)
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_5q57h")
 animation = &"attack"
+frame_progress = 0.457925
 offset = Vector2(0, -18)
 
 [node name="AttackTimer" type="Timer" parent="."]

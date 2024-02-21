@@ -13,21 +13,23 @@ public partial class Player : CharacterBody2D
     public Direction Direction = Direction.Right;
     public PlayerState State = PlayerState.Idle;
 
-    private AnimatedSprite2D _sprite = new();
-    private CollisionShape2D _collisionShape = new();
-    private CollisionShape2D _attackShape = new();
-    private Timer _attackTimer = new();
+    private Vector2 vectorForMovement = Vector2.Zero;
 
-    private AnimatedSprite2D _attackAnimation = new();
+    private AnimatedSprite2D sprite = new();
+    private CollisionShape2D collisionShape = new();
+    private CollisionShape2D attackShape = new();
+    private Timer attackTimer = new();
+
+    private AnimatedSprite2D attackAnimation = new();
 
     public override void _Ready()
     {
-        _sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
-        _collisionShape = GetNode<CollisionShape2D>("CollisionShape2D");
-        _attackTimer = GetNode<Timer>("AttackTimer");
-        
-        _attackShape = GetNode<CollisionShape2D>("AttackShape2D");
-        _attackAnimation = GetNode<AnimatedSprite2D>("AttackAnimation");
+        sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+        collisionShape = GetNode<CollisionShape2D>("CollisionShape2D");
+        attackTimer = GetNode<Timer>("AttackTimer");
+
+        attackShape = GetNode<CollisionShape2D>("AttackShape2D");
+        attackAnimation = GetNode<AnimatedSprite2D>("AttackAnimation");
     }
 
     public override void _Process(double delta)
@@ -39,20 +41,29 @@ public partial class Player : CharacterBody2D
     }
     public override void _PhysicsProcess(double delta)
     {
-        if (State == PlayerState.Attack) return;
-        
-        var vector = Input.GetVector(InputMapAction.Left, InputMapAction.Right, InputMapAction.Up, InputMapAction.Down);
-        var position = vector * Speed * (float)delta;
-        
-        Velocity = position;
+        var tween = CreateTween().SetEase(Tween.EaseType.Out);
 
-        if (vector != Vector2.Zero)
+        if (State == PlayerState.Attack)
         {
-            State = PlayerState.Walk;
+            tween.TweenProperty(this, "velocity", vectorForMovement * Speed * (float)delta, 0.1f);
         }
         else
         {
-            State = PlayerState.Idle;
+            tween.Stop();
+
+            vectorForMovement = Input.GetVector(InputMapAction.Left, InputMapAction.Right, InputMapAction.Up, InputMapAction.Down);
+            var position = vectorForMovement * Speed * (float)delta;
+
+            Velocity = position;
+
+            if (vectorForMovement != Vector2.Zero)
+            {
+                State = PlayerState.Walk;
+            }
+            else
+            {
+                State = PlayerState.Idle;
+            }
         }
         
         MoveAndSlide();
@@ -75,7 +86,7 @@ public partial class Player : CharacterBody2D
         if (Input.IsActionPressed(InputMapAction.Attack))
         {
             State = PlayerState.Attack;
-            _attackTimer.Start();
+            attackTimer.Start();
         }
     }
 
@@ -85,28 +96,28 @@ public partial class Player : CharacterBody2D
         
         if (Direction == Direction.Left)
         {
-            var wasFacingRight = !_sprite.FlipH;
+            var wasFacingRight = !sprite.FlipH;
 
-            _sprite.FlipH = true;
-            _attackAnimation.FlipH = true;
+            sprite.FlipH = true;
+            attackAnimation.FlipH = true;
 
             if (wasFacingRight)
             {
-                _attackShape.Position = _attackShape.Position.Reflect(Vector2.Up);
-                _attackAnimation.Offset = _attackAnimation.Offset.Reflect(Vector2.Up);
+                attackShape.Position = attackShape.Position.Reflect(Vector2.Up);
+                attackAnimation.Offset = attackAnimation.Offset.Reflect(Vector2.Up);
             }
         }
         else if (Direction == Direction.Right)
         {
-            var wasFacingLeft = _sprite.FlipH;
+            var wasFacingLeft = sprite.FlipH;
 
-            _sprite.FlipH = false;
-            _attackAnimation.FlipH = false;
+            sprite.FlipH = false;
+            attackAnimation.FlipH = false;
 
             if (wasFacingLeft)
             {
-                _attackShape.Position = _attackShape.Position.Reflect(Vector2.Up);
-                _attackAnimation.Offset = _attackAnimation.Offset.Reflect(Vector2.Up);
+                attackShape.Position = attackShape.Position.Reflect(Vector2.Up);
+                attackAnimation.Offset = attackAnimation.Offset.Reflect(Vector2.Up);
             }
         }
     }
@@ -115,34 +126,33 @@ public partial class Player : CharacterBody2D
     {
         if (State == PlayerState.Idle)
         {
-            _sprite.Animation = "idle";
+            sprite.Animation = "idle";
         }
         else if (State == PlayerState.Walk)
         {
-            _sprite.Animation = "walk";
-            _sprite.Play();
+            sprite.Animation = "walk";
+            sprite.Play();
         }
         else if (State == PlayerState.Attack)
         {
-            _sprite.Animation = "attack";
-            _sprite.Play();
+            sprite.Animation = "attack";
+            sprite.Play();
             
-            if (_sprite.Frame == 1)
+            if (sprite.Frame == 1)
             {
-                _attackShape.Disabled = false;
-                _attackAnimation.Visible = true;
-                _attackAnimation.Play();
+                attackShape.Disabled = false;
+                attackAnimation.Visible = true;
+                attackAnimation.Play();
             }
 
-            if (_sprite.Frame == 3)
+            if (sprite.Frame == 3)
             {
-                _attackShape.Disabled = true;
-                _attackAnimation.Visible = false;
-                _attackAnimation.Stop();
+                attackShape.Disabled = true;
+                attackAnimation.Visible = false;
+                attackAnimation.Stop();
             }
         }
     }
-
     
     // Signal Events
     public void OnAttackTimerTimeout()
