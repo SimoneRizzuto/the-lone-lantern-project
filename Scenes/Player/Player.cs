@@ -8,6 +8,8 @@ using Vector2 = Godot.Vector2;
 
 public partial class Player : CharacterBody2D
 {
+    [Signal] public delegate void AttackEventHandler();
+
     [Export] public int Speed = 5000;
 
     public Direction Direction = Direction.Right;
@@ -30,6 +32,7 @@ public partial class Player : CharacterBody2D
 
         attackShape = GetNode<CollisionShape2D>("AttackShape2D");
         attackAnimation = GetNode<AnimatedSprite2D>("AttackAnimation");
+        //staminaHealthBar = GetNode<StaminaHealthBar>("StaminaHealthBar");
     }
 
     public override void _Process(double delta)
@@ -83,10 +86,12 @@ public partial class Player : CharacterBody2D
 
     private void SetPlayerState()
     {
-        if (Input.IsActionPressed(InputMapAction.Attack))
+        if (Input.IsActionJustPressed(InputMapAction.Attack))
         {
             State = PlayerState.Attack;
             attackTimer.Start();
+
+            EmitSignal(SignalName.Attack);
         }
     }
 

@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://xnsxf4vyq0vt"]
+
+[ext_resource type="Script" path="res://Scenes/UI/StaminaHealthBar.cs" id="1_bylq6"]
+[ext_resource type="Texture2D" uid="uid://c7hx7pewjsco1" path="res://Assets/white-sprite.png" id="1_pweax"]
+
+[node name="StaminaHealthBar" type="CanvasLayer"]
+script = ExtResource("1_bylq6")
+
+[node name="RegenBuffer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Container" type="HBoxContainer" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -220.0
+offset_top = 17.0
+offset_right = -195.0
+offset_bottom = 42.0
+grow_horizontal = 2
+scale = Vector2(18.1726, 2.24383)
+alignment = 1
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Container"]
+layout_mode = 2
+value = 100.0
+texture_progress = ExtResource("1_pweax")
+
+[connection signal="timeout" from="RegenBuffer" to="." method="OnRegenBufferTimeout"]
