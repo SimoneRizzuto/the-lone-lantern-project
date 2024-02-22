@@ -120,7 +120,7 @@ platform_on_leave = 2
 script = ExtResource("1_xtjtk")
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="PlayerShape" type="CollisionShape2D" parent="."]
 z_index = 1
 position = Vector2(2.98023e-07, -4)
 rotation = 1.57079
@@ -128,7 +128,10 @@ scale = Vector2(0.501, 1.5)
 shape = SubResource("RectangleShape2D_we0ol")
 one_way_collision_margin = 0.0
 
-[node name="AttackShape2D" type="CollisionShape2D" parent="."]
+[node name="AttackShape" type="Area2D" parent="."]
+collision_layer = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackShape"]
 show_behind_parent = true
 position = Vector2(14, -20)
 rotation = 1.5708

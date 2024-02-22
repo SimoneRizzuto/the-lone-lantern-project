@@ -30,7 +30,7 @@ public partial class Player : CharacterBody2D
         collisionShape = GetNode<CollisionShape2D>("CollisionShape2D");
         attackTimer = GetNode<Timer>("AttackTimer");
 
-        attackShape = GetNode<CollisionShape2D>("AttackShape2D");
+        attackShape = GetNode<CollisionShape2D>("AttackShape/CollisionShape2D");
         attackAnimation = GetNode<AnimatedSprite2D>("AttackAnimation");
         //staminaHealthBar = GetNode<StaminaHealthBar>("StaminaHealthBar");
     }
