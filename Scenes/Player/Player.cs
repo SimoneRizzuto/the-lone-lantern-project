@@ -14,6 +14,7 @@ public partial class Player : CharacterBody2D
 
     private double health = 100;
     private double maxHealth = 100;
+    private double regenSpeed = 0.35;
     private StaminaHealthState healthState;
     private Timer healthRegenBuffer;
 
@@ -176,7 +177,7 @@ public partial class Player : CharacterBody2D
         
         if (health < maxHealth)
         {
-            health++;
+            health += regenSpeed;
             EmitSignal(SignalName.HealthChanged, health);
         }
         else
