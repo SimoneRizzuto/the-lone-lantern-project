@@ -8,9 +8,14 @@ using Vector2 = Godot.Vector2;
 
 public partial class Player : CharacterBody2D
 {
-    [Signal] public delegate void AttackEventHandler();
+    [Signal] public delegate void HealthChangedEventHandler(double newHealth);
 
     [Export] public int Speed = 5000;
+
+    private double health = 100;
+    private double maxHealth = 100;
+    private StaminaHealthState healthState;
+    private Timer healthRegenBuffer;
 
     public Direction Direction = Direction.Right;
     public PlayerState State = PlayerState.Idle;
@@ -18,7 +23,7 @@ public partial class Player : CharacterBody2D
     private Vector2 vectorForMovement = Vector2.Zero;
 
     private AnimatedSprite2D sprite = new();
-    private CollisionShape2D collisionShape = new();
+    private CollisionShape2D playerShape = new();
     private CollisionShape2D attackShape = new();
     private Timer attackTimer = new();
 
@@ -27,12 +32,13 @@ public partial class Player : CharacterBody2D
     public override void _Ready()
     {
         sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
-        collisionShape = GetNode<CollisionShape2D>("CollisionShape2D");
-        attackTimer = GetNode<Timer>("AttackTimer");
-
-        attackShape = GetNode<CollisionShape2D>("AttackShape/CollisionShape2D");
         attackAnimation = GetNode<AnimatedSprite2D>("AttackAnimation");
-        //staminaHealthBar = GetNode<StaminaHealthBar>("StaminaHealthBar");
+
+        playerShape = GetNode<CollisionShape2D>("PlayerShape");
+        attackShape = GetNode<CollisionShape2D>("AttackShape/CollisionShape2D");
+
+        attackTimer = GetNode<Timer>("Timers/AttackTimer");
+        healthRegenBuffer = GetNode<Timer>("Timers/HealthRegenBuffer");
     }
 
     public override void _Process(double delta)
@@ -41,6 +47,8 @@ public partial class Player : CharacterBody2D
         SetPlayerState();
         SetFlipH();
         SetAnimation();
+
+        RegenerateHealth();
     }
     public override void _PhysicsProcess(double delta)
     {
@@ -91,7 +99,10 @@ public partial class Player : CharacterBody2D
             State = PlayerState.Attack;
             attackTimer.Start();
 
-            EmitSignal(SignalName.Attack);
+            health -= 20;
+            healthRegenBuffer.Start();
+            healthState = StaminaHealthState.Pause;
+            EmitSignal(SignalName.HealthChanged, health);
         }
     }
 
@@ -158,10 +169,30 @@ public partial class Player : CharacterBody2D
             }
         }
     }
-    
+
+    private void RegenerateHealth()
+    {
+        if (healthState != StaminaHealthState.Regen) return;
+        
+        if (health < maxHealth)
+        {
+            health++;
+            EmitSignal(SignalName.HealthChanged, health);
+        }
+        else
+        {
+            healthState = StaminaHealthState.Max;
+        }
+    }
+
     // Signal Events
     public void OnAttackTimerTimeout()
     {
         State = PlayerState.Idle;
+    }
+
+    public void OnHealthRegenBufferTimeout()
+    {
+        healthState = StaminaHealthState.Regen;
     }
 }

@@ -6,9 +6,6 @@
 [node name="StaminaHealthBar" type="CanvasLayer"]
 script = ExtResource("1_bylq6")
 
-[node name="RegenBuffer" type="Timer" parent="."]
-one_shot = true
-
 [node name="Container" type="HBoxContainer" parent="."]
 anchors_preset = 5
 anchor_left = 0.5
@@ -25,5 +22,3 @@ alignment = 1
 layout_mode = 2
 value = 100.0
 texture_progress = ExtResource("1_pweax")
-
-[connection signal="timeout" from="RegenBuffer" to="." method="OnRegenBufferTimeout"]

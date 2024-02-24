@@ -13,3 +13,10 @@ public enum PlayerState
     Hurt,
     Disabled
 }
+
+public enum StaminaHealthState
+{
+    Max = 0,
+    Pause = 1,
+    Regen = 2
+}

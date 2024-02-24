@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://h2iu1fkuw61u"]
+
+[ext_resource type="PackedScene" uid="uid://xnsxf4vyq0vt" path="res://Scenes/UI/StaminaHealthBar.tscn" id="1_ajbvv"]
+[ext_resource type="PackedScene" uid="uid://c5pejd2ocjitd" path="res://Scenes/Player/Player.tscn" id="2_vtclj"]
+
+[node name="PlayerController" type="Node2D"]
+
+[node name="StaminaHealthBar" parent="." instance=ExtResource("1_ajbvv")]
+
+[node name="Player" parent="." instance=ExtResource("2_vtclj")]
+position = Vector2(-2, -1)
+
+[connection signal="HealthChanged" from="Player" to="StaminaHealthBar" method="OnPlayerHealthChanged"]

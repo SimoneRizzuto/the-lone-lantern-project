@@ -150,7 +150,13 @@ animation = &"attack"
 frame_progress = 0.457925
 offset = Vector2(0, -18)
 
-[node name="AttackTimer" type="Timer" parent="."]
+[node name="Timers" type="Node" parent="."]
+
+[node name="AttackTimer" type="Timer" parent="Timers"]
 one_shot = true
 
-[connection signal="timeout" from="AttackTimer" to="." method="OnAttackTimerTimeout"]
+[node name="HealthRegenBuffer" type="Timer" parent="Timers"]
+one_shot = true
+
+[connection signal="timeout" from="Timers/AttackTimer" to="." method="OnAttackTimerTimeout"]
+[connection signal="timeout" from="Timers/HealthRegenBuffer" to="." method="OnHealthRegenBufferTimeout"]
