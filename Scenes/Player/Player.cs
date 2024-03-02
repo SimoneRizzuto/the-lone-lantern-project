@@ -23,7 +23,7 @@ public partial class Player : CharacterBody2D
 
     private Vector2 vectorForMovement = Vector2.Zero;
 
-    private AnimatedSprite2D sprite = new();
+    private AnimatedSprite2D mainSprite = new();
     private CollisionShape2D playerShape = new();
     private CollisionShape2D attackShape = new();
     private Timer attackTimer = new();
@@ -32,7 +32,7 @@ public partial class Player : CharacterBody2D
 
     public override void _Ready()
     {
-        sprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+        mainSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
         attackAnimation = GetNode<AnimatedSprite2D>("AttackAnimation");
 
         playerShape = GetNode<CollisionShape2D>("PlayerShape");
@@ -53,20 +53,28 @@ public partial class Player : CharacterBody2D
     }
     public override void _PhysicsProcess(double delta)
     {
+        if (State != PlayerState.Attack)
+        {
+            vectorForMovement = Input.GetVector(InputMapAction.Left, InputMapAction.Right, InputMapAction.Up, InputMapAction.Down);
+
+            State = vectorForMovement != Vector2.Zero ? PlayerState.Walk : PlayerState.Idle;
+        }
+        Velocity = vectorForMovement * Speed * (float)delta;
+
+        
+        /*
         var tween = CreateTween().SetEase(Tween.EaseType.Out);
 
         if (State == PlayerState.Attack)
         {
-            tween.TweenProperty(this, "velocity", vectorForMovement * Speed * (float)delta, 0.1f);
+            tween.TweenProperty(this, "velocity", vectorForMovement * Speed * (float)delta, 0.2f);
         }
         else
         {
             tween.Stop();
 
             vectorForMovement = Input.GetVector(InputMapAction.Left, InputMapAction.Right, InputMapAction.Up, InputMapAction.Down);
-            var position = vectorForMovement * Speed * (float)delta;
-
-            Velocity = position;
+            Velocity = vectorForMovement * Speed * (float)delta;
 
             if (vectorForMovement != Vector2.Zero)
             {
@@ -77,6 +85,7 @@ public partial class Player : CharacterBody2D
                 State = PlayerState.Idle;
             }
         }
+        */
         
         MoveAndSlide();
     }
@@ -95,15 +104,18 @@ public partial class Player : CharacterBody2D
 
     private void SetPlayerState()
     {
-        if (Input.IsActionJustPressed(InputMapAction.Attack))
+        if (Input.IsActionJustPressed(InputMapAction.Attack) && State != PlayerState.Disabled)
         {
-            State = PlayerState.Attack;
-            attackTimer.Start();
+            if (State != PlayerState.Attack && health > 0)
+            {
+                State = PlayerState.Attack;
+                attackTimer.Start();
 
-            health -= 20;
-            healthRegenBuffer.Start();
-            healthState = StaminaHealthState.Pause;
-            EmitSignal(SignalName.HealthChanged, health);
+                health -= 20;
+                healthRegenBuffer.Start();
+                healthState = StaminaHealthState.Pause;
+                EmitSignal(SignalName.HealthChanged, health);
+            }
         }
     }
 
@@ -113,9 +125,9 @@ public partial class Player : CharacterBody2D
         
         if (Direction == Direction.Left)
         {
-            var wasFacingRight = !sprite.FlipH;
+            var wasFacingRight = !mainSprite.FlipH;
 
-            sprite.FlipH = true;
+            mainSprite.FlipH = true;
             attackAnimation.FlipH = true;
 
             if (wasFacingRight)
@@ -126,9 +138,9 @@ public partial class Player : CharacterBody2D
         }
         else if (Direction == Direction.Right)
         {
-            var wasFacingLeft = sprite.FlipH;
+            var wasFacingLeft = mainSprite.FlipH;
 
-            sprite.FlipH = false;
+            mainSprite.FlipH = false;
             attackAnimation.FlipH = false;
 
             if (wasFacingLeft)
@@ -143,30 +155,31 @@ public partial class Player : CharacterBody2D
     {
         if (State == PlayerState.Idle)
         {
-            sprite.Animation = "idle";
+            mainSprite.Animation = "idle";
         }
         else if (State == PlayerState.Walk)
         {
-            sprite.Animation = "walk";
-            sprite.Play();
+            mainSprite.Animation = "walk";
+            mainSprite.Play();
         }
         else if (State == PlayerState.Attack)
         {
-            sprite.Animation = "attack";
-            sprite.Play();
+            mainSprite.Animation = "attack";
+            mainSprite.Play();
             
-            if (sprite.Frame == 1)
+            if (mainSprite.Frame == 1)
             {
                 attackShape.Disabled = false;
                 attackAnimation.Visible = true;
                 attackAnimation.Play();
             }
 
-            if (sprite.Frame == 3)
+            if (mainSprite.Frame == 3)
             {
                 attackShape.Disabled = true;
                 attackAnimation.Visible = false;
                 attackAnimation.Stop();
+                State = PlayerState.Walk;
             }
         }
     }
