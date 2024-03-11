@@ -14,10 +14,8 @@ public partial class Main : Node
     {
         Enemy enemy = EnemyScene.Instantiate<Enemy>();
         AddChild(enemy);
-        Enemy enemy2 = EnemyScene.Instantiate<Enemy>();
-        AddChild(enemy2);
-        Enemy enemy3 = EnemyScene.Instantiate<Enemy>();
-        AddChild(enemy3);
-        GetNode<Timer>("./EnemyTimer").Start(GD.RandRange(5, 10));
+        GetNode<Timer>("./EnemyTimer").Start(GD.RandRange(20, 30));
     }
+
+
 }

@@ -4,25 +4,18 @@ public partial class Enemy : Area2D
 {
     [Export]
     public int Speed = 50;
+
+    public int health = 2;
     
     public PathFollow2D follow = new PathFollow2D();
-    public PathFollow2D follow2 = new PathFollow2D();
-    public PathFollow2D follow3 = new PathFollow2D();
-    public RigidBody2D target = new RigidBody2D();
 
     public override void _Ready()
     {
         // Add enemy on all loops at once
-        var path = GetNode<Path2D>("./EnemyPaths/Path2D");
+        var path = GetNode<Node>("./EnemyPaths").GetChildren()[(int)(GD.Randi() % GetNode<Node>("./EnemyPaths").GetChildCount())];
+        GD.Print(path.GetPath());
         path.AddChild(follow);
         follow.Loop = false;
-        var path2 = GetNode<Path2D>("./EnemyPaths/Path2D2");
-        path2.AddChild(follow2);
-        follow2.Loop = false;
-        var path3 = GetNode<Path2D>("./EnemyPaths/Path2D3");
-        path3.AddChild(follow3);
-        follow3.Loop = false;
-
     }
 
     public override void _PhysicsProcess(double delta)
@@ -33,38 +26,50 @@ public partial class Enemy : Area2D
         {
             QueueFree();
         }
-        follow2.Progress += Speed * (float)delta;
-        Position = follow2.Position;
-        if (follow2.ProgressRatio >= 1)
-        {
-            QueueFree();
-        }
-        follow3.Progress += Speed * (float)delta;
-        Position = follow3.Position;
-        if (follow3.ProgressRatio >= 1)
-        {
-            QueueFree();
-        }
 
     }
 
-    public void TakeDamage()
+    public void TakeDamage(int amount)
     {
+        health -= amount;
+        if (health <= 0)
+        {
+            DieEnemy();
+        }
         // When have a death animation uncomment this
-        var DeathAnimation = GetNode<AnimatedSprite2D>("./AnimatedSprite2D");
-        DeathAnimation.Play("death");
-        var DeathCollision = GetNode<CollisionShape2D>("./CollisionShape2D");
-        DeathCollision.SetDeferred("disabled", true);
-        SetPhysicsProcess(false);
+        //var DeathAnimation = GetNode<AnimatedSprite2D>("./AnimatedSprite2D");
+        //DeathAnimation.Play("death");
+        //var DeathCollision = GetNode<CollisionShape2D>("./CollisionShape2D");
+        //DeathCollision.SetDeferred("disabled", true);
+        //SetPhysicsProcess(false);
     }
 
-    public void OnAnimatedSprite2DAnimationFinished(string AnimationName)
+    public void DieEnemy()
     {
-        if (AnimationName == "death")
+        Speed = 0;
+        GetNode<CollisionShape2D>("./CollisionShape2D").SetDeferred("disabled", true);
+        GetNode<Sprite2D>("./Sprite2D").Hide();
+        QueueFree();
+    }
+
+    public void OnAreaEntered(Node2D area)
+    {
+        GD.Print("Area Entered: Enemy");
+        GD.Print(area.GetGroups());
+        if (area.IsInGroup("attack"))
         {
-            QueueFree();
+            Enemy enemy = (Enemy)area;
+            enemy.TakeDamage(1);
         }
     }
+
+    //public void OnAnimatedSprite2DAnimationFinished(string AnimationName)
+    //{
+    //    if (AnimationName == "death")
+    //    {
+    //        QueueFree();
+    //    }
+    //}
 
 
     //public int FacingX = 1;
