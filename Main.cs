@@ -15,6 +15,7 @@ public partial class Main : Node
         Enemy enemy = EnemyScene.Instantiate<Enemy>();
         AddChild(enemy);
         GetNode<Timer>("./EnemyTimer").Start(GD.RandRange(20, 30));
+        enemy.target = GetNode<CharacterBody2D>("./GameContainer/PlayerController/Player");
     }
 
 

@@ -19,6 +19,8 @@ z_as_relative = false
 y_sort_enabled = true
 
 [node name="PlayerController" parent="GameContainer" instance=ExtResource("1_bcck4")]
+z_as_relative = false
+y_sort_enabled = true
 position = Vector2(279, 221)
 
 [node name="SicilianHouse" parent="GameContainer" instance=ExtResource("3_ie86o")]

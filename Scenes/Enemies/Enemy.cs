@@ -1,4 +1,5 @@
 using Godot;
+using System;
 
 public partial class Enemy : Area2D
 {
@@ -7,25 +8,63 @@ public partial class Enemy : Area2D
 
     public int health = 2;
     
+    // Create Path object
     public PathFollow2D follow = new PathFollow2D();
+
+    // Create the player as a taregt
+    public CharacterBody2D target = new CharacterBody2D();
 
     public override void _Ready()
     {
         // Add enemy on all loops at once
         var path = GetNode<Node>("./EnemyPaths").GetChildren()[(int)(GD.Randi() % GetNode<Node>("./EnemyPaths").GetChildCount())];
-        GD.Print(path.GetPath());
+        //GD.Print(path.GetPath());
         path.AddChild(follow);
         follow.Loop = false;
     }
 
+    public void RemoveEnemyFromPath()
+    {
+        var paths = GetNode<Node>("./EnemyPaths"); // Hard code for testing
+        if (paths.GetChildCount() > 0 )
+        {
+            paths.RemoveChild(GetNode<Path2D>("./EnemyPaths/Path1"));
+        }
+        
+        
+        
+
+    }
+
     public override void _PhysicsProcess(double delta)
     {
-        follow.Progress += Speed * (float)delta;
-        Position = follow.Position;
-        if (follow.ProgressRatio >= 1)
+        // Calculate the direction and distance to the player
+        var distance = GlobalPosition.DistanceTo(target.GlobalPosition);
+        var direction = GlobalPosition.DirectionTo(target.GlobalPosition);
+
+        if (distance < 100)
         {
-            QueueFree();
+            // Break path and head directly for the player
+            // Add in move and slide if collide with building
+            GD.Print("In range. Break path. Attack Player.");
+            RemoveEnemyFromPath();
+            Position += direction * Speed * (float)delta;
+            
         }
+        else
+        {
+            follow.Progress += Speed * (float)delta;
+            Position = follow.Position;
+            if (follow.ProgressRatio >= 1)
+            {
+                QueueFree();
+            }
+        }
+
+
+        
+        
+
 
     }
 
