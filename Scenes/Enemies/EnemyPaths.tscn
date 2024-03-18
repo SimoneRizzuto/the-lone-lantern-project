@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbsrj0deoego7"]
+
+[sub_resource type="Curve2D" id="Curve2D_8tcyp"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 42, -72, -23.5969, -28.3162, 23.5969, 28.3162, 51, 57, -154.795, 0.943874, 154.795, -0.943874, 407, 63, -87.7803, -1.88775, 87.7803, 1.88775, 672, 73, -93.4436, 0.943874, 93.4436, -0.943874, 782, 72, 8.49487, -55.6886, -8.49487, 55.6886, 801, 266, 47.1937, -38.6988, -47.1937, 38.6988, 790, 351, 0, 0, 0, 0, -114, 332)
+}
+point_count = 8
+
+[node name="EnemyPaths" type="Node"]
+
+[node name="Path1" type="Path2D" parent="."]
+curve = SubResource("Curve2D_8tcyp")

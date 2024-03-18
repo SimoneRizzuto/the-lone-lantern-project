@@ -152,7 +152,7 @@ one_way_collision_margin = 0.0
 [node name="AttackShape" type="Area2D" parent="."]
 collision_layer = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackShape"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackShape" groups=["attack"]]
 show_behind_parent = true
 position = Vector2(14, -20)
 rotation = 1.5708
@@ -161,3 +161,4 @@ disabled = true
 
 [connection signal="timeout" from="Timers/AttackTimer" to="." method="OnAttackTimerTimeout"]
 [connection signal="timeout" from="Timers/HealthRegenBuffer" to="." method="OnHealthRegenBufferTimeout"]
+[connection signal="area_entered" from="AttackShape" to="." method="OnAttackShapeAreaEntered"]
