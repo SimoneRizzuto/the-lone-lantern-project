@@ -1,13 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://bihv5yjq7muuh"]
+[gd_scene load_steps=5 format=3 uid="uid://bihv5yjq7muuh"]
 
+[ext_resource type="Script" path="res://Scenes/Static/SicilianHouse.cs" id="1_e6mjb"]
 [ext_resource type="Texture2D" uid="uid://dr1ltarda45jq" path="res://Scenes/Static/italian-house-1.png" id="1_gbhtw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rt44d"]
 size = Vector2(160, 53)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_nx3ek"]
+radius = 33.6006
+
 [node name="SicilianHouse" type="StaticBody2D"]
 z_as_relative = false
 y_sort_enabled = true
+script = ExtResource("1_e6mjb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_gbhtw")
@@ -16,3 +21,12 @@ offset = Vector2(0, -91)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(2, -26.5)
 shape = SubResource("RectangleShape2D_rt44d")
+
+[node name="SicilianHouseTransition" type="Area2D" parent="."]
+
+[node name="SicilianDoor" type="CollisionShape2D" parent="SicilianHouseTransition"]
+position = Vector2(34, -13)
+shape = SubResource("CircleShape2D_nx3ek")
+
+[connection signal="body_entered" from="SicilianHouseTransition" to="." method="OnSicilianHouseTransitionBodyEntered"]
+[connection signal="body_exited" from="SicilianHouseTransition" to="." method="OnSicilianHouseTransitionBodyExited"]
