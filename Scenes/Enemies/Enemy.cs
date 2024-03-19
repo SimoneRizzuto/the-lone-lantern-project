@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Linq;
 using TheLoneLanternProject;
 
 public partial class Enemy : Area2D, IEnemy
@@ -10,17 +11,27 @@ public partial class Enemy : Area2D, IEnemy
     public int Health = 2;
     
     // Create Path object
-    public PathFollow2D Follow = new ();
+    public PathFollow2D Follow = new();
 
     // Create the player as a target
-    public CharacterBody2D PlayerTarget = new ();
+    public CharacterBody2D PlayerTarget = new();
 
     public override void _Ready()
     {
         // Add enemy on all loops at once
-        var path = GetNode<Node>("./EnemyPaths").GetChildren()[(int)(GD.Randi() % GetNode<Node>("./EnemyPaths").GetChildCount())];
-        path.AddChild(Follow);
+        var enemyPath = GetNode<Node>("./EnemyPaths");
+        var pathChildren = enemyPath.GetChildren();
+
+        var pathToFollow = pathChildren.FirstOrDefault();
+        if (pathToFollow != null)
+        {
+            pathToFollow.AddChild(Follow);
+        }
+
         Follow.Loop = false;
+
+        var test = GetParent<Node>();
+        //PlayerTarget = GetParent<CharacterBody2D>();
     }
 
     public void RemoveEnemyFromPath()
@@ -42,6 +53,8 @@ public partial class Enemy : Area2D, IEnemy
         // Calculate the direction and distance to the player
         var distance = GlobalPosition.DistanceTo(target.GlobalPosition);
         var direction = GlobalPosition.DirectionTo(target.GlobalPosition);
+
+        if (distance < 25) return;
 
         if (distance < 100)
         {
