@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Linq;
 using TheLoneLanternProject;
+using TheLoneLanternProject.Constants;
 
 public partial class Enemy : Area2D, IEnemy
 {
@@ -30,8 +31,11 @@ public partial class Enemy : Area2D, IEnemy
 
         Follow.Loop = false;
 
-        var test = GetParent<Node>();
-        //PlayerTarget = GetParent<CharacterBody2D>();
+        var playerNode = GetTree().GetNodesInGroup(NodeGroup.Player).FirstOrDefault();
+        if (playerNode is CharacterBody2D characterBody2D)
+        {
+            PlayerTarget = characterBody2D;
+        }
     }
 
     public void RemoveEnemyFromPath()
