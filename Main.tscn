@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://be3yurhibr6t0"]
+[gd_scene load_steps=7 format=3 uid="uid://be3yurhibr6t0"]
 
 [ext_resource type="PackedScene" uid="uid://h2iu1fkuw61u" path="res://Scenes/PlayerController/PlayerController.tscn" id="1_bcck4"]
 [ext_resource type="Script" path="res://TestForSpawningEnemy.cs" id="1_i1bxj"]
 [ext_resource type="PackedScene" uid="uid://oe1ffghf4nah" path="res://Scenes/Enemies/Enemy.tscn" id="2_56tu2"]
 [ext_resource type="PackedScene" uid="uid://ubc5cusrcpq7" path="res://Scenes/Static/Couch.tscn" id="3_fnfmp"]
 [ext_resource type="PackedScene" uid="uid://bihv5yjq7muuh" path="res://Scenes/Static/SicilianHouse.tscn" id="3_ie86o"]
+[ext_resource type="PackedScene" uid="uid://cfe0an0x3l5ce" path="res://enemytesty.tscn" id="6_s2f21"]
 
 [node name="Main" type="Node"]
 
@@ -31,5 +32,8 @@ position = Vector2(144, 242)
 
 [node name="EnemyTimer" type="Timer" parent="GameContainer"]
 one_shot = true
+
+[node name="EnemyTest" parent="GameContainer" instance=ExtResource("6_s2f21")]
+position = Vector2(385, 192)
 
 [connection signal="timeout" from="GameContainer/EnemyTimer" to="GameContainer" method="OnEnemyTimerTimeout"]

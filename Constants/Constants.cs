@@ -11,4 +11,5 @@ public static class InputMapAction
 public static class NodeGroup
 {
     public const string Player = "player";
+    public const string Attack = "attack";
 }
