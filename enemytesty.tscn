@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfe0an0x3l5ce"]
+
+[ext_resource type="Script" path="res://Scenes/Enemies/Enemy.cs" id="1_p3d34"]
+[ext_resource type="Texture2D" uid="uid://qg1wluq8wfit" path="res://Scenes/Player/idle.png" id="2_fxm5f"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ukirx"]
+
+[node name="Node2D" type="Area2D" node_paths=PackedStringArray("PathToFollow") groups=["enemies"]]
+script = ExtResource("1_p3d34")
+PathToFollow = NodePath("")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_fxm5f")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ukirx")
+
+[connection signal="area_entered" from="." to="." method="OnAreaEntered"]
