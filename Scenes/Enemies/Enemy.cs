@@ -5,14 +5,7 @@ using TheLoneLanternProject;
 using TheLoneLanternProject.Constants;
 using TheLoneLanternProject.Scenes.Enemies;
 
-public partial class Enemy : EnemyCore
+public partial class Enemy : EnemyBase
 {
-    // SIGNALS
-    public void OnAreaEntered(Node2D area)
-    {
-        if (area.IsInGroup(NodeGroup.Attack))
-        {
-            TakeDamage(1);
-        }
-    }
+    
 }

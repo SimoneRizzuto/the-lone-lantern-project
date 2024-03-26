@@ -10,10 +10,10 @@ public interface IEnemy
     void TakeDamage(int damage);
 }
 
-public abstract partial class EnemyCore : Area2D, IEnemy
+public abstract partial class EnemyBase : Area2D, IEnemy
 {
     [Export] public int Speed = 50;
-    [Export] public int Health = 2;
+    [Export] public int Health = 1;
     [Export] public PathFollow2D PathToFollow = new();
 
     private CharacterBody2D playerTarget = new();
@@ -21,20 +21,12 @@ public abstract partial class EnemyCore : Area2D, IEnemy
     public override void _Ready()
     {
         // Add enemy on all loops at once
-        
-        var enemyPath = GetNodeOrNull("./EnemyPaths");
+        var enemyPath = GetNodeOrNull<PathFollow2D>("TestPath/PathFollow");
         if (enemyPath != null)
         {
-            var pathChildren = enemyPath.GetChildren();
-
-            var pathToFollow = pathChildren.FirstOrDefault();
-            if (pathToFollow != null)
-            {
-                pathToFollow.AddChild(PathToFollow);
-            }
+            PathToFollow = enemyPath;
+            PathToFollow.Loop = false;
         }
-
-        PathToFollow.Loop = false;
 
         var playerNode = GetTree().GetNodesInGroup(NodeGroup.Player).FirstOrDefault();
         if (playerNode is CharacterBody2D characterBody2D)
@@ -47,46 +39,31 @@ public abstract partial class EnemyCore : Area2D, IEnemy
         FollowTarget(delta, playerTarget);
     }
 
-    public void RemoveEnemyFromPath()
-    {
-        var paths = GetNodeOrNull("./EnemyPaths"); // Hard code for testing
-        if (paths?.GetChildCount() > 0)
-        {
-            var path1 = GetNodeOrNull<Path2D>("./EnemyPaths/Path1");
-            if (path1 != null)
-            {
-                paths.RemoveChild(path1);
-            }
-        }
-    }
-
     public virtual bool FollowTarget(double delta, PhysicsBody2D target)
     {
         // Calculate the direction and distance to the player
-        var distance = GlobalPosition.DistanceTo(target.GlobalPosition);
-        var direction = GlobalPosition.DirectionTo(target.GlobalPosition);
+        var targetDistance = GlobalPosition.DistanceTo(target.GlobalPosition);
+        var targetDirection = GlobalPosition.DirectionTo(target.GlobalPosition);
 
-        if (distance < 25) return false;
+        if (targetDistance < 25) return false;
 
-        if (distance < 100)
+        if (targetDistance < 100)
         {
             // Break path and head directly for the player
             // Add in move and slide if collide with building
-            RemoveEnemyFromPath();
-            Position += direction * Speed * (float)delta;
+            Position += targetDirection * Speed * (float)delta;
 
             return true;
         }
 
-        PathToFollow.Progress += Speed * (float)delta;
         if (PathToFollow != null)
         {
+            PathToFollow.Progress += Speed * (float)delta;
             Position = PathToFollow.Position;
-        }
-
-        if (PathToFollow.ProgressRatio >= 1)
-        {
-            QueueFree();
+            if (PathToFollow.ProgressRatio >= 1)
+            {
+                QueueFree();
+            }
         }
 
         return false;
@@ -111,5 +88,19 @@ public abstract partial class EnemyCore : Area2D, IEnemy
         */
 
         QueueFree();
+    }
+    
+    // SIGNALS
+
+    /// <summary>
+    /// Called when Area enters an Area2D.
+    /// </summary>
+    /// <param name="area"></param>
+    public virtual void OnAreaEntered(Node2D area)
+    {
+        if (area.IsInGroup(NodeGroup.Attack))
+        {
+            TakeDamage(1);
+        }
     }
 }
