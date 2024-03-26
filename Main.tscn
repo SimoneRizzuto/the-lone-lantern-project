@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://oe1ffghf4nah" path="res://Scenes/Enemies/Enemy.tscn" id="2_56tu2"]
 [ext_resource type="PackedScene" uid="uid://ubc5cusrcpq7" path="res://Scenes/Static/Couch.tscn" id="3_fnfmp"]
 [ext_resource type="PackedScene" uid="uid://bihv5yjq7muuh" path="res://Scenes/Static/SicilianHouse.tscn" id="3_ie86o"]
-[ext_resource type="PackedScene" uid="uid://cfe0an0x3l5ce" path="res://enemytesty.tscn" id="6_s2f21"]
+[ext_resource type="PackedScene" uid="uid://cfe0an0x3l5ce" path="res://enemytesty.tscn" id="6_aqcfn"]
 
 [node name="Main" type="Node"]
 
@@ -33,7 +33,7 @@ position = Vector2(144, 242)
 [node name="EnemyTimer" type="Timer" parent="GameContainer"]
 one_shot = true
 
-[node name="EnemyTest" parent="GameContainer" instance=ExtResource("6_s2f21")]
-position = Vector2(385, 192)
+[node name="Node2D" parent="GameContainer" instance=ExtResource("6_aqcfn")]
+position = Vector2(352, 194)
 
 [connection signal="timeout" from="GameContainer/EnemyTimer" to="GameContainer" method="OnEnemyTimerTimeout"]

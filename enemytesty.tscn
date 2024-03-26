@@ -5,9 +5,8 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ukirx"]
 
-[node name="Node2D" type="Area2D" node_paths=PackedStringArray("PathToFollow") groups=["enemies"]]
+[node name="Node2D" type="Area2D" groups=["enemies"]]
 script = ExtResource("1_p3d34")
-PathToFollow = NodePath("")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_fxm5f")

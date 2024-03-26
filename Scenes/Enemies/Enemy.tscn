@@ -2,10 +2,15 @@
 
 [ext_resource type="Script" path="res://Scenes/Enemies/Enemy.cs" id="1_1uu0k"]
 [ext_resource type="Texture2D" uid="uid://cwto5tbv5no2g" path="res://icon.svg" id="2_76t1e"]
-[ext_resource type="PackedScene" uid="uid://bbsrj0deoego7" path="res://Scenes/Enemies/EnemyPaths.tscn" id="4_vphbh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8u7jq"]
 size = Vector2(16, 14)
+
+[sub_resource type="Curve2D" id="Curve2D_jnpyj"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 42, -72, -23.5969, -28.3162, 23.5969, 28.3162, 51, 57, -154.795, 0.943874, 154.795, -0.943874, 407, 63, -87.7803, -1.88775, 87.7803, 1.88775, 672, 73, -93.4436, 0.943874, 93.4436, -0.943874, 782, 72, 8.49487, -55.6886, -8.49487, 55.6886, 801, 266, 47.1937, -38.6988, -47.1937, 38.6988, 790, 351, 0, 0, 0, 0, -114, 332)
+}
+point_count = 8
 
 [node name="Enemy" type="Area2D" groups=["enemies"]]
 z_as_relative = false
@@ -20,6 +25,12 @@ texture = ExtResource("2_76t1e")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_8u7jq")
 
-[node name="EnemyPaths" parent="." instance=ExtResource("4_vphbh")]
+[node name="TestPath" type="Path2D" parent="."]
+position = Vector2(-14, 75)
+curve = SubResource("Curve2D_jnpyj")
+
+[node name="PathFollow" type="PathFollow2D" parent="TestPath"]
+position = Vector2(42, -72)
+rotation = 1.50114
 
 [connection signal="area_entered" from="." to="." method="OnAreaEntered"]
