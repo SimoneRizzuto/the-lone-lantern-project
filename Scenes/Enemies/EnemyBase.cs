@@ -80,13 +80,6 @@ public abstract partial class EnemyBase : Area2D, IEnemy
 
     public virtual void Die()
     {
-        // Keeping the code here for now, but I am not convinces that the commented code is needed, since the node will de-spawn anyway
-        /*
-        Speed = 0;
-        GetNode<CollisionShape2D>("./CollisionShape2D").SetDeferred("disabled", true);
-        GetNode<Sprite2D>("./Sprite2D").Hide();
-        */
-
         QueueFree();
     }
     
