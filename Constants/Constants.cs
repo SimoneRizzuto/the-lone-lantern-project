@@ -7,3 +7,9 @@ public static class InputMapAction
     public const string Right = "Move Right";
     public const string Attack = "Attack";
 }
+
+public static class NodeGroup
+{
+    public const string Player = "player";
+    public const string Attack = "attack";
+}

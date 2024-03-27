@@ -108,7 +108,7 @@ size = Vector2(14.87, 7.44669)
 radius = 9.5
 height = 36.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 z_as_relative = false
 y_sort_enabled = true
 motion_mode = 1

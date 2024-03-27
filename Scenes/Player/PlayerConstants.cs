@@ -8,9 +8,9 @@ public enum Direction
 public enum PlayerState
 {
     Idle,
-    Walk,
-    Attack,
-    Hurt,
+    Walking,
+    Attacking,
+    Hurting,
     Disabled
 }
 
