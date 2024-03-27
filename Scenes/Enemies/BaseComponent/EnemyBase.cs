@@ -1,8 +1,8 @@
-using Godot;
 using System.Linq;
+using Godot;
 using TheLoneLanternProject.Constants;
 
-namespace TheLoneLanternProject.Scenes.Enemies;
+namespace TheLoneLanternProject.Scenes.Enemies.BaseComponent;
 public interface IEnemy
 {
     bool FollowTarget(double delta, PhysicsBody2D target);
@@ -12,11 +12,16 @@ public interface IEnemy
 
 public abstract partial class EnemyBase : Area2D, IEnemy
 {
-    [Export] public int Speed = 50;
     [Export] public int Health = 1;
+    [Export] public int MoveSpeed = 50;
+    [Export] public int AttackRange = 50;
+
     [Export] public PathFollow2D PathToFollow = new();
+    [Export] public bool LoopInPath = true;
 
     private CharacterBody2D playerTarget = new();
+
+    private EnemyState state = EnemyState.Default;
     
     public override void _Ready()
     {
@@ -25,7 +30,7 @@ public abstract partial class EnemyBase : Area2D, IEnemy
         if (enemyPath != null)
         {
             PathToFollow = enemyPath;
-            PathToFollow.Loop = false;
+            PathToFollow.Loop = LoopInPath;
         }
 
         var playerNode = GetTree().GetNodesInGroup(NodeGroup.Player).FirstOrDefault();
@@ -42,23 +47,23 @@ public abstract partial class EnemyBase : Area2D, IEnemy
     public virtual bool FollowTarget(double delta, PhysicsBody2D target)
     {
         // Calculate the direction and distance to the player
-        var targetDistance = GlobalPosition.DistanceTo(target.GlobalPosition);
+        var targetRange = GlobalPosition.DistanceTo(target.GlobalPosition);
         var targetDirection = GlobalPosition.DirectionTo(target.GlobalPosition);
 
-        if (targetDistance < 25) return false;
+        if (targetRange < AttackRange) return false;
 
-        if (targetDistance < 100)
+        if (targetRange < 100)
         {
             // Break path and head directly for the player
             // Add in move and slide if collide with building
-            Position += targetDirection * Speed * (float)delta;
+            Position += targetDirection * MoveSpeed * (float)delta;
 
             return true;
         }
 
         if (PathToFollow != null)
         {
-            PathToFollow.Progress += Speed * (float)delta;
+            PathToFollow.Progress += MoveSpeed * (float)delta;
             Position = PathToFollow.Position;
             if (PathToFollow.ProgressRatio >= 1)
             {
@@ -67,6 +72,13 @@ public abstract partial class EnemyBase : Area2D, IEnemy
         }
 
         return false;
+    }
+
+    public virtual void Attack()
+    {
+        if (state == EnemyState.Attacking) return;
+        
+        
     }
 
     public virtual void TakeDamage(int damage)
@@ -88,7 +100,6 @@ public abstract partial class EnemyBase : Area2D, IEnemy
     /// <summary>
     /// Called when Area enters an Area2D.
     /// </summary>
-    /// <param name="area"></param>
     public virtual void OnAreaEntered(Node2D area)
     {
         if (area.IsInGroup(NodeGroup.Attack))
@@ -96,4 +107,13 @@ public abstract partial class EnemyBase : Area2D, IEnemy
             TakeDamage(1);
         }
     }
+}
+
+public enum EnemyState
+{
+    Default,
+    Following,
+    Attacking,
+    Hurting,
+    Disabled
 }

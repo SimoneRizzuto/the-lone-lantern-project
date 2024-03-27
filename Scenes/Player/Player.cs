@@ -53,11 +53,11 @@ public partial class Player : CharacterBody2D
     }
     public override void _PhysicsProcess(double delta)
     {
-        if (State != PlayerState.Attack)
+        if (State != PlayerState.Attacking)
         {
             vectorForMovement = Input.GetVector(InputMapAction.Left, InputMapAction.Right, InputMapAction.Up, InputMapAction.Down);
 
-            State = vectorForMovement != Vector2.Zero ? PlayerState.Walk : PlayerState.Idle;
+            State = vectorForMovement != Vector2.Zero ? PlayerState.Walking : PlayerState.Idle;
         }
         Velocity = vectorForMovement * Speed * (float)delta;
 
@@ -106,9 +106,9 @@ public partial class Player : CharacterBody2D
     {
         if (Input.IsActionJustPressed(InputMapAction.Attack) && State != PlayerState.Disabled)
         {
-            if (State != PlayerState.Attack && health > 0)
+            if (State != PlayerState.Attacking && health > 0)
             {
-                State = PlayerState.Attack;
+                State = PlayerState.Attacking;
                 attackTimer.Start();
 
                 health -= 20;
@@ -121,7 +121,7 @@ public partial class Player : CharacterBody2D
 
     private void SetFlipH()
     {
-        if (State == PlayerState.Attack) return;
+        if (State == PlayerState.Attacking) return;
         
         if (Direction == Direction.Left)
         {
@@ -157,12 +157,12 @@ public partial class Player : CharacterBody2D
         {
             mainSprite.Animation = "idle";
         }
-        else if (State == PlayerState.Walk)
+        else if (State == PlayerState.Walking)
         {
             mainSprite.Animation = "walk";
             mainSprite.Play();
         }
-        else if (State == PlayerState.Attack)
+        else if (State == PlayerState.Attacking)
         {
             mainSprite.Animation = "attack";
             mainSprite.Play();
@@ -179,7 +179,7 @@ public partial class Player : CharacterBody2D
                 attackShape.Disabled = true;
                 attackAnimation.Visible = false;
                 attackAnimation.Stop();
-                State = PlayerState.Walk;
+                State = PlayerState.Walking;
             }
         }
     }
@@ -214,7 +214,7 @@ public partial class Player : CharacterBody2D
         GD.Print("Area Entered: Attack");
         if (area.IsInGroup("enemies"))
         {
-            var enemy = (TheLoneLanternProject.Scenes.Enemies.Enemy)area;
+            var enemy = (TheLoneLanternProject.Scenes.Enemies.TestEnemy)area;
             enemy.TakeDamage(1);
         }
 
