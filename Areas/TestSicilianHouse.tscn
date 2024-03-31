@@ -21,6 +21,9 @@ position = Vector2(279, 221)
 [node name="Couch" parent="GameContainer" instance=ExtResource("5_jou2a")]
 position = Vector2(315, 152)
 
+[node name="StartPosition" type="Marker2D" parent="GameContainer"]
+position = Vector2(447, 307)
+
 [node name="EnemyTimer" type="Timer" parent="."]
 one_shot = true
 

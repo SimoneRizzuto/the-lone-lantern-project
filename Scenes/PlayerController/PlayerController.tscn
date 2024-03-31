@@ -7,7 +7,7 @@
 
 [node name="StaminaHealthBar" parent="." instance=ExtResource("1_ajbvv")]
 
-[node name="Player" parent="." instance=ExtResource("2_vtclj")]
+[node name="Player" parent="." groups=["player"] instance=ExtResource("2_vtclj")]
 position = Vector2(-2, -1)
 
 [connection signal="HealthChanged" from="Player" to="StaminaHealthBar" method="OnPlayerHealthChanged"]
