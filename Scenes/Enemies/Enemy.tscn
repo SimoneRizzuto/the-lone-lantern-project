@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://oe1ffghf4nah"]
 
-[ext_resource type="Script" path="res://Scenes/Enemies/TestEnemy.cs" id="1_vwt7c"]
+[ext_resource type="Script" path="res://Scenes/Enemies/BaseNode/EnemyBase.cs" id="1_86lfj"]
 [ext_resource type="Texture2D" uid="uid://cwto5tbv5no2g" path="res://icon.svg" id="2_76t1e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8u7jq"]
@@ -12,10 +12,11 @@ _data = {
 }
 point_count = 19
 
-[node name="Enemy" type="Area2D" groups=["enemies"]]
+[node name="Enemy" type="Area2D" node_paths=PackedStringArray("PathToFollow") groups=["enemy"]]
 z_as_relative = false
 y_sort_enabled = true
-script = ExtResource("1_vwt7c")
+script = ExtResource("1_86lfj")
+PathToFollow = NodePath("")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

@@ -1,8 +1,8 @@
-using Godot;
 using System.Linq;
+using Godot;
 using TheLoneLanternProject.Constants;
 
-namespace TheLoneLanternProject.Scenes.Enemies.BaseComponent;
+namespace TheLoneLanternProject.Scenes.Enemies.BaseNode;
 public interface IEnemy
 {
     bool FollowTarget(double delta, PhysicsBody2D target);

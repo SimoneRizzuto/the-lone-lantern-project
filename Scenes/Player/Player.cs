@@ -3,8 +3,8 @@ using System;
 using System.Numerics;
 using System.Text.Encodings.Web;
 using TheLoneLanternProject.Constants;
-using TheLoneLanternProject.Scenes.Enemies.BaseComponent;
 using TheLoneLanternProject.Scenes.Player;
+using TheLoneLanternProject.Scenes.Enemies.BaseNode;
 using Vector2 = Godot.Vector2;
 
 public partial class Player : CharacterBody2D
