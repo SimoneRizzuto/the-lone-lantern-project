@@ -213,7 +213,7 @@ public partial class Player : CharacterBody2D
     public void OnAttackShapeAreaEntered(Node2D area)
     {
         GD.Print("Area Entered: Attack");
-        if (area.IsInGroup("enemies"))
+        if (area.IsInGroup(NodeGroup.Enemy))
         {
             var enemy = (EnemyBase)area;
             enemy.TakeDamage(1);

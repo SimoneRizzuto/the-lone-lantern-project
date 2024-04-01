@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cppmh7t0ck1p4"]
+
+[ext_resource type="PackedScene" uid="uid://dwdhndmeqo37" path="res://Scenes/Enemies/BaseComponent/EnemyBase.tscn" id="1_36e7a"]
+
+[sub_resource type="CSharpScript" id="CSharpScript_fwbhd"]
+script/source = "using Godot;
+using System;
+using TheLoneLanternProject.Scenes.Enemies.BaseComponent;
+
+public partial class TemplateInstance1 : EnemyBase
+{
+    
+}
+"
+
+[node name="TemplateInstance1" instance=ExtResource("1_36e7a")]
+script = SubResource("CSharpScript_fwbhd")
+PathToFollow = Object(PathFollow2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"progress":0.0,"h_offset":0.0,"v_offset":0.0,"rotates":true,"cubic_interp":true,"loop":true,"script":null)
+

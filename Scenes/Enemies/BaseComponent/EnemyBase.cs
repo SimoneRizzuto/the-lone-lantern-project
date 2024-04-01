@@ -1,5 +1,5 @@
-using System.Linq;
 using Godot;
+using System.Linq;
 using TheLoneLanternProject.Constants;
 
 namespace TheLoneLanternProject.Scenes.Enemies.BaseComponent;
@@ -10,7 +10,7 @@ public interface IEnemy
     void TakeDamage(int damage);
 }
 
-public abstract partial class EnemyBase : Area2D, IEnemy
+public partial class EnemyBase : Area2D, IEnemy
 {
     [Export] public int Health = 1;
     [Export] public int MoveSpeed = 50;
@@ -57,7 +57,6 @@ public abstract partial class EnemyBase : Area2D, IEnemy
             // Break path and head directly for the player
             // Add in move and slide if collide with building
             Position += targetDirection * MoveSpeed * (float)delta;
-
             return true;
         }
 
@@ -89,7 +88,7 @@ public abstract partial class EnemyBase : Area2D, IEnemy
             Die();
         }
     }
-
+    
     public virtual void Die()
     {
         QueueFree();

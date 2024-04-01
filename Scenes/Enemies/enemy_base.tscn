@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjaotp4p003a8"]
+
+[ext_resource type="PackedScene" uid="uid://dwdhndmeqo37" path="res://Scenes/Enemies/BaseComponent/EnemyBase.tscn" id="1_1ue5i"]
+
+[node name="EnemyBase" instance=ExtResource("1_1ue5i")]
+Health = 2
