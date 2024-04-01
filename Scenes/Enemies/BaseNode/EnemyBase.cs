@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using Godot;
 using TheLoneLanternProject.Constants;
@@ -22,7 +23,10 @@ public partial class EnemyBase : Area2D, IEnemy
     private CharacterBody2D playerTarget = new();
 
     private EnemyState state = EnemyState.Default;
-    
+    private Direction direction = Direction.Right;
+
+    private AnimatedSprite2D characterSprite = new();
+
     public override void _Ready()
     {
         // Add enemy on all loops at once
@@ -38,10 +42,21 @@ public partial class EnemyBase : Area2D, IEnemy
         {
             playerTarget = characterBody2D;
         }
+
+        var spriteToFetch = GetNodeOrNull("AnimatedSprite2D");
+        if (spriteToFetch is AnimatedSprite2D animatedSprite2D)
+        {
+            characterSprite = animatedSprite2D;
+        }
     }
     public override void _PhysicsProcess(double delta)
     {
         FollowTarget(delta, playerTarget);
+
+        if (state == EnemyState.Attacking)
+        {
+            ProcessAttack();
+        }
     }
 
     public virtual bool FollowTarget(double delta, PhysicsBody2D target)
@@ -50,7 +65,13 @@ public partial class EnemyBase : Area2D, IEnemy
         var targetRange = GlobalPosition.DistanceTo(target.GlobalPosition);
         var targetDirection = GlobalPosition.DirectionTo(target.GlobalPosition);
 
-        if (targetRange < AttackRange) return false;
+        CalculateDirection(targetDirection);
+        
+        if (targetRange < AttackRange)
+        {
+            state = EnemyState.Attacking;
+            return false;
+        }
 
         if (targetRange < 100)
         {
@@ -73,11 +94,22 @@ public partial class EnemyBase : Area2D, IEnemy
         return false;
     }
 
-    public virtual void Attack()
+    private void ProcessAttack()
     {
-        if (state == EnemyState.Attacking) return;
         
-        
+    }
+    private void CalculateDirection(Vector2 targetDirection)
+    {
+        if (targetDirection.X > 0)
+        {
+            direction = Direction.Right;
+            characterSprite.FlipH = false;
+        }
+        else if (targetDirection.X < 0)
+        {
+            direction = Direction.Left;
+            characterSprite.FlipH = true;
+        }
     }
 
     public virtual void TakeDamage(int damage)

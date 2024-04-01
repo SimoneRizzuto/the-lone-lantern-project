@@ -1,4 +1,13 @@
 namespace TheLoneLanternProject.Constants;
+
+public enum Direction
+{
+    Left,
+    Right,
+    Up,
+    Down
+}
+
 public static class InputMapAction
 {
     public const string Up = "Move Up";
