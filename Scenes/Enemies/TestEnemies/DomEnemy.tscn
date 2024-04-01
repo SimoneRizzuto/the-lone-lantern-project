@@ -12,10 +12,11 @@ _data = {
 }
 point_count = 19
 
-[node name="DomEnemy" type="Area2D" groups=["enemy"]]
+[node name="DomEnemy" type="Area2D" node_paths=PackedStringArray("PathToFollow") groups=["enemy"]]
 z_as_relative = false
 y_sort_enabled = true
 script = ExtResource("1_8bofc")
+PathToFollow = NodePath("")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

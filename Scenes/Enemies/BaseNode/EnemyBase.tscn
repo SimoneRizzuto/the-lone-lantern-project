@@ -28,9 +28,10 @@ animations = [{
 resource_local_to_scene = true
 size = Vector2(22.5, 22.5)
 
-[node name="EnemyBase" type="Area2D" groups=["enemy"]]
+[node name="EnemyBase" type="Area2D" node_paths=PackedStringArray("PathToFollow") groups=["enemy"]]
 scale = Vector2(0.25, 0.25)
 script = ExtResource("1_jqb75")
+PathToFollow = NodePath("")
 
 [node name="CollisionBox" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_q54yo")

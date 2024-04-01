@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://ubc5cusrcpq7" path="res://Scenes/Static/Couch.tscn" id="3_fnfmp"]
 [ext_resource type="PackedScene" uid="uid://bihv5yjq7muuh" path="res://Scenes/Static/SicilianHouse.tscn" id="3_ie86o"]
 [ext_resource type="PackedScene" uid="uid://dwdhndmeqo37" path="res://Scenes/Enemies/BaseNode/EnemyBase.tscn" id="4_62xft"]
-[ext_resource type="PackedScene" uid="uid://cfe0an0x3l5ce" path="res://Scenes/Enemies/enemytesty.tscn" id="4_ratag"]
-[ext_resource type="PackedScene" uid="uid://oe1ffghf4nah" path="res://Scenes/Enemies/DomEnemy.tscn" id="5_yvg15"]
+[ext_resource type="PackedScene" uid="uid://cfe0an0x3l5ce" path="res://Scenes/Enemies/TestEnemies/enemytesty.tscn" id="4_ratag"]
+[ext_resource type="PackedScene" uid="uid://oe1ffghf4nah" path="res://Scenes/Enemies/TestEnemies/DomEnemy.tscn" id="5_yvg15"]
 
 [node name="Main" type="Node"]
 
