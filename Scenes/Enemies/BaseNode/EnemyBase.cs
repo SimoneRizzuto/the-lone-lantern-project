@@ -96,16 +96,6 @@ public partial class EnemyBase : Area2D, IEnemy
     
     // SIGNALS
 
-    /// <summary>
-    /// Called when Area enters an Area2D.
-    /// </summary>
-    public virtual void OnAreaEntered(Node2D area)
-    {
-        if (area.IsInGroup(NodeGroup.Attack))
-        {
-            TakeDamage(1);
-        }
-    }
 }
 
 public enum EnemyState

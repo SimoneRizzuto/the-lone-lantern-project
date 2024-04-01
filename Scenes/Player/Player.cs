@@ -218,6 +218,5 @@ public partial class Player : CharacterBody2D
             var enemy = (EnemyBase)area;
             enemy.TakeDamage(1);
         }
-
     }
 }

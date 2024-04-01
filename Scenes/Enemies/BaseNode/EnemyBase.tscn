@@ -43,5 +43,3 @@ sprite_frames = SubResource("SpriteFrames_2tn42")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(0, -92)
 shape = SubResource("RectangleShape2D_c1xke")
-
-[connection signal="area_entered" from="." to="." method="OnAreaEntered"]
