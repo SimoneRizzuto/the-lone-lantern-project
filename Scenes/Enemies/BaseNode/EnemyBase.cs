@@ -16,6 +16,7 @@ public partial class EnemyBase : Area2D, IEnemy
     [Export] public int Health = 1;
     [Export] public int MoveSpeed = 50;
     [Export] public int AttackRange = 50;
+    [Export] public int MovementRange = 150;
 
     [Export] public PathFollow2D PathToFollow = new();
     [Export] public bool LoopInPath = true;
@@ -29,6 +30,8 @@ public partial class EnemyBase : Area2D, IEnemy
     private Direction direction = Direction.Right;
 
     private AnimatedSprite2D characterSprite = new();
+
+    private Vector2 attackTargetDirection = Vector2.Zero;
 
     public override void _Ready()
     {
@@ -59,7 +62,7 @@ public partial class EnemyBase : Area2D, IEnemy
             case EnemyState.Following:
                 break;
             case EnemyState.Attacking:
-                ProcessAttack();
+                ProcessAttack(delta);
                 return;
             case EnemyState.Hurting:
                 break;
@@ -67,6 +70,7 @@ public partial class EnemyBase : Area2D, IEnemy
                 break;
             case EnemyState.Default:
                 AnimatedSprite2D.Animation = "default";
+                attackTargetDirection = Vector2.Zero;
                 break;
         }
         
@@ -87,10 +91,8 @@ public partial class EnemyBase : Area2D, IEnemy
             HitBox.Disabled = false;
             return false;
         }
-        state = EnemyState.Default;
 
-        //state = EnemyState.;
-        if (targetRange < 100)
+        if (targetRange < MovementRange)
         {
             // Break path and head directly for the player
             // Add in move and slide if collide with building
@@ -111,10 +113,23 @@ public partial class EnemyBase : Area2D, IEnemy
         return false;
     }
 
-    public virtual void ProcessAttack()
+    public virtual void ProcessAttack(double delta)
     {
         AnimatedSprite2D.Animation = "attack";
-        AnimatedSprite2D.Play();
+        if (!AnimatedSprite2D.IsPlaying())
+        {
+            AnimatedSprite2D.Play();
+        }
+
+        if (AnimatedSprite2D.Frame > 1)
+        {
+            if (attackTargetDirection == Vector2.Zero)
+            {
+                attackTargetDirection = GlobalPosition.DirectionTo(playerTarget.GlobalPosition);
+            }
+            
+            Position += attackTargetDirection * 100 * (float)delta;
+        }
     }
 
     private void CalculateDirection(Vector2 targetDirection)
