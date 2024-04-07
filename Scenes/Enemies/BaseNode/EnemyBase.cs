@@ -31,7 +31,7 @@ public partial class EnemyBase : Area2D, IEnemy
 
     private AnimatedSprite2D characterSprite = new();
 
-    private Vector2 attackTargetDirection = Vector2.Zero;
+    private Vector2 attackTargetLastDirection = Vector2.Zero;
 
     public override void _Ready()
     {
@@ -70,7 +70,7 @@ public partial class EnemyBase : Area2D, IEnemy
                 break;
             case EnemyState.Default:
                 AnimatedSprite2D.Animation = "default";
-                attackTargetDirection = Vector2.Zero;
+                attackTargetLastDirection = Vector2.Zero;
                 break;
         }
         
@@ -123,12 +123,12 @@ public partial class EnemyBase : Area2D, IEnemy
 
         if (AnimatedSprite2D.Frame > 1)
         {
-            if (attackTargetDirection == Vector2.Zero)
+            if (attackTargetLastDirection == Vector2.Zero)
             {
-                attackTargetDirection = GlobalPosition.DirectionTo(playerTarget.GlobalPosition);
+                attackTargetLastDirection = GlobalPosition.DirectionTo(playerTarget.GlobalPosition);
             }
             
-            Position += attackTargetDirection * 100 * (float)delta;
+            Position += attackTargetLastDirection * 100 * (float)delta;
         }
     }
 
