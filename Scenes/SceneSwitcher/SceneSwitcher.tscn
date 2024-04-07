@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://ci6v0ni6pk1ry"]
+[gd_scene load_steps=3 format=3 uid="uid://ci6v0ni6pk1ry"]
 
 [ext_resource type="Script" path="res://Scenes/SceneSwitcher/SceneSwitcher.cs" id="1_2myfy"]
+[ext_resource type="PackedScene" uid="uid://jayyio27ybj4" path="res://Areas/TestOutsideArea.tscn" id="2_nt0n7"]
 
 [node name="SceneSwitcher" type="Node"]
 script = ExtResource("1_2myfy")
+
+[node name="TestOutsideArea" parent="." instance=ExtResource("2_nt0n7")]
+
+[connection signal="SignalSceneSwitch" from="TestOutsideArea" to="." method="HandleSceneSwitch"]

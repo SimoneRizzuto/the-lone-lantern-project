@@ -5,7 +5,7 @@ public partial class DoorwayArea : Area2D
 {
     private bool bodyEntered = false;
 
-    [Export] private string levelName = "level";
+    [Export] public PackedScene NewScene { get; set; }
 
     [Signal] public delegate void SceneSwitchEventHandler(string levelName);
 
@@ -14,7 +14,6 @@ public partial class DoorwayArea : Area2D
         if (body.IsInGroup("player"))
         {
             bodyEntered = true;
-            GD.Print(levelName + "entered");
         }
         
     }
@@ -24,7 +23,6 @@ public partial class DoorwayArea : Area2D
         if (body.IsInGroup("player"))
         {
             bodyEntered = false;
-            GD.Print(levelName + "exited");
         }
     }
 
@@ -34,8 +32,8 @@ public partial class DoorwayArea : Area2D
         {
             if (Input.IsActionJustPressed(InputMapAction.Enter))
             {
-                GD.Print("Emit Signal");
-                EmitSignal(SignalName.SceneSwitch, levelName);
+
+                EmitSignal(SignalName.SceneSwitch, NewScene);
             }
         }
 

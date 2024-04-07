@@ -22,7 +22,7 @@ position = Vector2(359, 123)
 position = Vector2(61, 79)
 
 [node name="StartPosition" type="Marker2D" parent="GameContainer"]
-position = Vector2(447, 307)
+position = Vector2(137, 270)
 
 [node name="EnemyTimer" type="Timer" parent="."]
 one_shot = true
