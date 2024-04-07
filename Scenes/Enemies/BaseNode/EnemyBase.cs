@@ -20,6 +20,9 @@ public partial class EnemyBase : Area2D, IEnemy
     [Export] public PathFollow2D PathToFollow = new();
     [Export] public bool LoopInPath = true;
 
+    [Export] public CollisionShape2D HitBox = new();
+    [Export] public AnimatedSprite2D AnimatedSprite2D = new();
+
     private CharacterBody2D playerTarget = new();
 
     private EnemyState state = EnemyState.Default;
@@ -46,17 +49,28 @@ public partial class EnemyBase : Area2D, IEnemy
         var spriteToFetch = GetNodeOrNull("AnimatedSprite2D");
         if (spriteToFetch is AnimatedSprite2D animatedSprite2D)
         {
-            characterSprite = animatedSprite2D;
+            AnimatedSprite2D = animatedSprite2D;
         }
     }
     public override void _PhysicsProcess(double delta)
     {
-        FollowTarget(delta, playerTarget);
-
-        if (state == EnemyState.Attacking)
+        switch (state)
         {
-            ProcessAttack();
+            case EnemyState.Following:
+                break;
+            case EnemyState.Attacking:
+                ProcessAttack();
+                return;
+            case EnemyState.Hurting:
+                break;
+            case EnemyState.Disabled:
+                break;
+            case EnemyState.Default:
+                AnimatedSprite2D.Animation = "default";
+                break;
         }
+        
+        FollowTarget(delta, playerTarget);
     }
 
     public virtual bool FollowTarget(double delta, PhysicsBody2D target)
@@ -70,9 +84,12 @@ public partial class EnemyBase : Area2D, IEnemy
         if (targetRange < AttackRange)
         {
             state = EnemyState.Attacking;
+            HitBox.Disabled = false;
             return false;
         }
+        state = EnemyState.Default;
 
+        //state = EnemyState.;
         if (targetRange < 100)
         {
             // Break path and head directly for the player
@@ -94,21 +111,23 @@ public partial class EnemyBase : Area2D, IEnemy
         return false;
     }
 
-    private void ProcessAttack()
+    public virtual void ProcessAttack()
     {
-        
+        AnimatedSprite2D.Animation = "attack";
+        AnimatedSprite2D.Play();
     }
+
     private void CalculateDirection(Vector2 targetDirection)
     {
         if (targetDirection.X > 0)
         {
             direction = Direction.Right;
-            characterSprite.FlipH = false;
+            AnimatedSprite2D.FlipH = false;
         }
         else if (targetDirection.X < 0)
         {
             direction = Direction.Left;
-            characterSprite.FlipH = true;
+            AnimatedSprite2D.FlipH = true;
         }
     }
 
@@ -127,7 +146,13 @@ public partial class EnemyBase : Area2D, IEnemy
     }
     
     // SIGNALS
-
+    public virtual void OnAnimatedSprite2dAnimationFinished()
+    {
+        if (state == EnemyState.Attacking)
+        {
+            state = EnemyState.Default;
+        }
+    }
 }
 
 public enum EnemyState

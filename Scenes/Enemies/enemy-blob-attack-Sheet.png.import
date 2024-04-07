@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5y4stipnygct"
-path="res://.godot/imported/enemy-blob-Sheet.png-9f16377ef051644579073949a4ebf395.ctex"
+uid="uid://e0eq1h13m5ha"
+path="res://.godot/imported/enemy-blob-attack-Sheet.png-f1cb84899d30770913e1d0ecebd92729.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/Enemies/enemy-blob-Sheet.png"
-dest_files=["res://.godot/imported/enemy-blob-Sheet.png-9f16377ef051644579073949a4ebf395.ctex"]
+source_file="res://Scenes/Enemies/enemy-blob-attack-Sheet.png"
+dest_files=["res://.godot/imported/enemy-blob-attack-Sheet.png-f1cb84899d30770913e1d0ecebd92729.ctex"]
 
 [params]
 
