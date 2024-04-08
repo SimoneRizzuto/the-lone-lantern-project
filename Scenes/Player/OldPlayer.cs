@@ -1,11 +1,13 @@
 using Godot;
+using System;
+using System.Numerics;
+using System.Text.Encodings.Web;
 using TheLoneLanternProject.Constants;
+using TheLoneLanternProject.Scenes.Player;
 using TheLoneLanternProject.Scenes.Enemies.BaseNode;
 using Vector2 = Godot.Vector2;
 
-namespace TheLoneLanternProject.Scenes.Player;
-
-public partial class Player : CharacterBody2D
+public partial class OldPlayer : CharacterBody2D
 {
     [Signal] public delegate void HealthChangedEventHandler(double newHealth);
 
@@ -62,29 +64,29 @@ public partial class Player : CharacterBody2D
 
         
         /*
-    var tween = CreateTween().SetEase(Tween.EaseType.Out);
+        var tween = CreateTween().SetEase(Tween.EaseType.Out);
 
-    if (State == PlayerState.Attack)
-    {
-        tween.TweenProperty(this, "velocity", vectorForMovement * Speed * (float)delta, 0.2f);
-    }
-    else
-    {
-        tween.Stop();
-
-        vectorForMovement = Input.GetVector(InputMapAction.Left, InputMapAction.Right, InputMapAction.Up, InputMapAction.Down);
-        Velocity = vectorForMovement * Speed * (float)delta;
-
-        if (vectorForMovement != Vector2.Zero)
+        if (State == PlayerState.Attack)
         {
-            State = PlayerState.Walk;
+            tween.TweenProperty(this, "velocity", vectorForMovement * Speed * (float)delta, 0.2f);
         }
         else
         {
-            State = PlayerState.Idle;
+            tween.Stop();
+
+            vectorForMovement = Input.GetVector(InputMapAction.Left, InputMapAction.Right, InputMapAction.Up, InputMapAction.Down);
+            Velocity = vectorForMovement * Speed * (float)delta;
+
+            if (vectorForMovement != Vector2.Zero)
+            {
+                State = PlayerState.Walk;
+            }
+            else
+            {
+                State = PlayerState.Idle;
+            }
         }
-    }
-    */
+        */
         
         MoveAndSlide();
     }
