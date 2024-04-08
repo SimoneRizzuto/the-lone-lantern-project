@@ -105,7 +105,7 @@ public partial class EnemyBase : Area2D, IEnemy
             PathToFollow.Progress += MoveSpeed * (float)delta;
             Position = PathToFollow.Position;
             if (PathToFollow.ProgressRatio >= 1)
-            {
+            {   
                 QueueFree();
             }
         }
@@ -121,14 +121,14 @@ public partial class EnemyBase : Area2D, IEnemy
             AnimatedSprite2D.Play();
         }
 
-        if (AnimatedSprite2D.Frame > 1)
+        if (AnimatedSprite2D.Frame == 2)
         {
             if (attackTargetLastDirection == Vector2.Zero)
             {
                 attackTargetLastDirection = GlobalPosition.DirectionTo(playerTarget.GlobalPosition);
             }
             
-            Position += attackTargetLastDirection * 100 * (float)delta;
+            Position += attackTargetLastDirection * 300 * (float)delta;
         }
     }
 
