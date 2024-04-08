@@ -27,12 +27,9 @@ public partial class Player : CharacterBody2D
     private CollisionShape2D attackShape = new();
     private Timer attackTimer = new();
 
-    private AnimatedSprite2D attackAnimation = new();
-
     public override void _Ready()
     {
         mainSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
-        attackAnimation = GetNode<AnimatedSprite2D>("AttackAnimation");
 
         playerShape = GetNode<CollisionShape2D>("PlayerShape");
         attackShape = GetNode<CollisionShape2D>("AttackShape/CollisionShape2D");
@@ -59,32 +56,31 @@ public partial class Player : CharacterBody2D
             State = vectorForMovement != Vector2.Zero ? PlayerState.Walking : PlayerState.Idle;
         }
         Velocity = vectorForMovement * Speed * (float)delta;
-
         
         /*
-    var tween = CreateTween().SetEase(Tween.EaseType.Out);
+        var tween = CreateTween().SetEase(Tween.EaseType.Out);
 
-    if (State == PlayerState.Attack)
-    {
-        tween.TweenProperty(this, "velocity", vectorForMovement * Speed * (float)delta, 0.2f);
-    }
-    else
-    {
-        tween.Stop();
-
-        vectorForMovement = Input.GetVector(InputMapAction.Left, InputMapAction.Right, InputMapAction.Up, InputMapAction.Down);
-        Velocity = vectorForMovement * Speed * (float)delta;
-
-        if (vectorForMovement != Vector2.Zero)
+        if (State == PlayerState.Attack)
         {
-            State = PlayerState.Walk;
+            tween.TweenProperty(this, "velocity", vectorForMovement * Speed * (float)delta, 0.2f);
         }
         else
         {
-            State = PlayerState.Idle;
+            tween.Stop();
+
+            vectorForMovement = Input.GetVector(InputMapAction.Left, InputMapAction.Right, InputMapAction.Up, InputMapAction.Down);
+            Velocity = vectorForMovement * Speed * (float)delta;
+
+            if (vectorForMovement != Vector2.Zero)
+            {
+                State = PlayerState.Walk;
+            }
+            else
+            {
+                State = PlayerState.Idle;
+            }
         }
-    }
-    */
+        */
         
         MoveAndSlide();
     }
@@ -98,6 +94,14 @@ public partial class Player : CharacterBody2D
         else if (Input.IsActionPressed(InputMapAction.Right))
         {
             Direction = Direction.Right;
+        }
+        else if (Input.IsActionPressed(InputMapAction.Up))
+        {
+            Direction = Direction.Up;
+        }
+        else if (Input.IsActionPressed(InputMapAction.Down))
+        {
+            Direction = Direction.Down;
         }
     }
 
@@ -121,31 +125,34 @@ public partial class Player : CharacterBody2D
     private void SetFlipH()
     {
         if (State == PlayerState.Attacking) return;
-        
-        if (Direction == Direction.Left)
+
+        switch (Direction)
         {
-            var wasFacingRight = !mainSprite.FlipH;
-
-            mainSprite.FlipH = true;
-            attackAnimation.FlipH = true;
-
-            if (wasFacingRight)
+            case Direction.Left:
             {
-                attackShape.Position = attackShape.Position.Reflect(Vector2.Up);
-                attackAnimation.Offset = attackAnimation.Offset.Reflect(Vector2.Up);
+                var wasFacingRight = !mainSprite.FlipH;
+
+                mainSprite.FlipH = true;
+
+                if (wasFacingRight)
+                {
+                    attackShape.Position = attackShape.Position.Reflect(Vector2.Up);
+                }
+
+                break;
             }
-        }
-        else if (Direction == Direction.Right)
-        {
-            var wasFacingLeft = mainSprite.FlipH;
-
-            mainSprite.FlipH = false;
-            attackAnimation.FlipH = false;
-
-            if (wasFacingLeft)
+            case Direction.Right:
             {
-                attackShape.Position = attackShape.Position.Reflect(Vector2.Up);
-                attackAnimation.Offset = attackAnimation.Offset.Reflect(Vector2.Up);
+                var wasFacingLeft = mainSprite.FlipH;
+
+                mainSprite.FlipH = false;
+
+                if (wasFacingLeft)
+                {
+                    attackShape.Position = attackShape.Position.Reflect(Vector2.Up);
+                }
+
+                break;
             }
         }
     }
@@ -158,7 +165,34 @@ public partial class Player : CharacterBody2D
         }
         else if (State == PlayerState.Walking)
         {
-            mainSprite.Animation = "walk";
+            switch (Direction)
+            {
+                case Direction.Left:
+                {
+                    mainSprite.Animation = "walk side";
+                    
+                    break;
+                }
+                case Direction.Right:
+                {
+                    mainSprite.Animation = "walk side";
+                    
+                    break;
+                }
+                case Direction.Down:
+                {
+                    mainSprite.Animation = "walk down";
+                    
+                    break;
+                }
+                case Direction.Up:
+                {
+                    mainSprite.Animation = "walk up";
+                    
+                    break;
+                }
+            }
+            
             mainSprite.Play();
         }
         else if (State == PlayerState.Attacking)
@@ -166,6 +200,8 @@ public partial class Player : CharacterBody2D
             mainSprite.Animation = "attack";
             mainSprite.Play();
             
+            
+            /*
             if (mainSprite.Frame == 1)
             {
                 attackShape.Disabled = false;
@@ -180,6 +216,7 @@ public partial class Player : CharacterBody2D
                 attackAnimation.Stop();
                 State = PlayerState.Walking;
             }
+            */
         }
     }
 
