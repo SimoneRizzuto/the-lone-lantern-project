@@ -159,47 +159,28 @@ public partial class Player : CharacterBody2D
 
     private void SetAnimation()
     {
+        var animationDirection = "";
+        switch (Direction)
+        {
+            case Direction.Left:  animationDirection = "side"; break;
+            case Direction.Right: animationDirection = "side"; break;
+            case Direction.Down:  animationDirection = "down"; break;
+            case Direction.Up:    animationDirection = "up";   break;
+        }
+        
         if (State == PlayerState.Idle)
         {
-            mainSprite.Animation = "idle";
+            mainSprite.Animation = $"idle {animationDirection}";
         }
         else if (State == PlayerState.Walking)
         {
-            switch (Direction)
-            {
-                case Direction.Left:
-                {
-                    mainSprite.Animation = "walk side";
-                    
-                    break;
-                }
-                case Direction.Right:
-                {
-                    mainSprite.Animation = "walk side";
-                    
-                    break;
-                }
-                case Direction.Down:
-                {
-                    mainSprite.Animation = "walk down";
-                    
-                    break;
-                }
-                case Direction.Up:
-                {
-                    mainSprite.Animation = "walk up";
-                    
-                    break;
-                }
-            }
-            
+            mainSprite.Animation = $"walk {animationDirection}";
             mainSprite.Play();
         }
         else if (State == PlayerState.Attacking)
         {
-            mainSprite.Animation = "attack";
+            mainSprite.Animation = $"attack {animationDirection}";
             mainSprite.Play();
-            
             
             /*
             if (mainSprite.Frame == 1)
