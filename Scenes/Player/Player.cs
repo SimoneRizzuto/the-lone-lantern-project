@@ -1,3 +1,4 @@
+using System;
 using Godot;
 using TheLoneLanternProject.Constants;
 using TheLoneLanternProject.Scenes.Enemies.BaseNode;
@@ -89,8 +90,16 @@ public partial class Player : CharacterBody2D
     {
         if (Input.IsActionJustPressed(InputMapAction.Attack) && State != PlayerState.Disabled)
         {
-            if (State != PlayerState.Attacking && health > 0)
+            if (health > 0 && !disableAttackingInput)
             {
+                if (internalAttackCounter == 1)
+                {
+                    internalAttackCounter++;
+                }
+                else
+                {
+                    internalAttackCounter--;
+                }
                 State = PlayerState.Attacking;
                 attackTimer.Start();
 
@@ -102,6 +111,8 @@ public partial class Player : CharacterBody2D
         }
     }
 
+
+    private bool disableAttackingInput;
     private void SetFlipH()
     {
         if (State == PlayerState.Attacking) return;
@@ -117,7 +128,7 @@ public partial class Player : CharacterBody2D
                 if (wasFacingRight)
                 {
                     attackShape.Scale = new Vector2(-1, 1);
-                    ////attackShape.Position = attackShape.Position.Reflect(Vector2.Up);
+                    //attackShape.Position = attackShape.Position.Reflect(Vector2.Up);
                 }
 
                 break;
@@ -139,6 +150,8 @@ public partial class Player : CharacterBody2D
         }
     }
 
+    private int internalAttackCounter = 2;
+    
     private void SetAnimation()
     {
         var animationDirection = "";
@@ -161,9 +174,11 @@ public partial class Player : CharacterBody2D
         }
         else if (State == PlayerState.Attacking)
         {
-            mainSprite.Animation = $"attack {animationDirection} 2";
+            mainSprite.Animation = $"attack {animationDirection} {internalAttackCounter}";
             mainSprite.Play();
 
+            disableAttackingInput = true;
+            
             if (mainSprite.Frame == 0)
             {
                 attackShape.Disabled = false;
@@ -177,25 +192,8 @@ public partial class Player : CharacterBody2D
             {
                 attackMoveSpeed = 0;
                 attackShape.Disabled = true;
+                disableAttackingInput = false;
             }
-
-            //attackShape.Disabled = true;
-            /*
-            if (mainSprite.Frame == 1)
-            {
-                attackShape.Disabled = false;
-                attackAnimation.Visible = true;
-                attackAnimation.Play();
-            }
-
-            if (mainSprite.Frame == 3)
-            {
-                attackShape.Disabled = true;
-                attackAnimation.Visible = false;
-                attackAnimation.Stop();
-                State = PlayerState.Walking;
-            }
-            */
         }
     }
 
@@ -225,6 +223,7 @@ public partial class Player : CharacterBody2D
         if (mainSprite.Animation.ToString().Contains("attack"))
         {
             State = PlayerState.Idle;
+            internalAttackCounter = 2;
         }
     }
 
