@@ -161,7 +161,7 @@ public partial class Player : CharacterBody2D
         }
         else if (State == PlayerState.Attacking)
         {
-            mainSprite.Animation = $"attack {animationDirection}";
+            mainSprite.Animation = $"attack {animationDirection} 2";
             mainSprite.Play();
 
             if (mainSprite.Frame == 0)

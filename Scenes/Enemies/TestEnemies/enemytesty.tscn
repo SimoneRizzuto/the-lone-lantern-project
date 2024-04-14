@@ -17,10 +17,9 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_ukirx"]
 radius = 7.2111
 
-[node name="Node2D" type="Area2D" node_paths=PackedStringArray("HitBox", "AnimatedSprite2D") groups=["enemy"]]
+[node name="Node2D" type="Area2D" node_paths=PackedStringArray("PathToFollow") groups=["enemy"]]
 script = ExtResource("1_p3d34")
-HitBox = NodePath("")
-AnimatedSprite2D = NodePath("")
+PathToFollow = NodePath("")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -18)

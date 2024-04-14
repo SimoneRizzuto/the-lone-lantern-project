@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgfkhln6usvy3"
-path="res://.godot/imported/luce attack side 2-Sheet.png-0be71dfeba34099af428bc1b2e1c45a1.ctex"
+uid="uid://81xf13qpggkw"
+path="res://.godot/imported/luce attack side 1-Sheet.png-857d0de84edcd2aa78c5fa4bc3c2ebd4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/Player/luce attack side 2-Sheet.png"
-dest_files=["res://.godot/imported/luce attack side 2-Sheet.png-0be71dfeba34099af428bc1b2e1c45a1.ctex"]
+source_file="res://Scenes/Player/luce attack side 1-Sheet.png"
+dest_files=["res://.godot/imported/luce attack side 1-Sheet.png-857d0de84edcd2aa78c5fa4bc3c2ebd4.ctex"]
 
 [params]
 
