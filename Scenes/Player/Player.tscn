@@ -1,31 +1,26 @@
-[gd_scene load_steps=36 format=3 uid="uid://1q0v7as1ovpm"]
+[gd_scene load_steps=33 format=3 uid="uid://1q0v7as1ovpm"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.cs" id="1_j363g"]
-[ext_resource type="Texture2D" uid="uid://bwby1mqg3fnq1" path="res://Scenes/Player/attack-Sheet.png" id="3_a101u"]
+[ext_resource type="Texture2D" uid="uid://tkhgwjsydtru" path="res://Scenes/Player/luce attack side 2-Sheet.png" id="2_poesy"]
 [ext_resource type="Texture2D" uid="uid://k1mh05ukxll4" path="res://Scenes/Player/luce-stand-Sheet.png" id="3_y1wbj"]
 [ext_resource type="Texture2D" uid="uid://cfdqvyf0rvh8u" path="res://Scenes/Player/luce_walking_down-Sheet.png" id="4_nqpie"]
 [ext_resource type="Texture2D" uid="uid://vvefpri732dh" path="res://Scenes/Player/luce_walking_right-Sheet.png" id="4_rxvcw"]
 [ext_resource type="Texture2D" uid="uid://crhnqx5rq8fj6" path="res://Scenes/Player/luce_walking_up-Sheet.png" id="6_2axde"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_wsopa"]
-atlas = ExtResource("3_a101u")
-region = Rect2(0, 0, 15, 36)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_we0ol"]
+size = Vector2(14.87, 7.44669)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_j0sku"]
-atlas = ExtResource("3_a101u")
-region = Rect2(15, 0, 15, 36)
+[sub_resource type="AtlasTexture" id="AtlasTexture_yydl1"]
+atlas = ExtResource("2_poesy")
+region = Rect2(96, 0, 96, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_408ec"]
-atlas = ExtResource("3_a101u")
-region = Rect2(30, 0, 15, 36)
+[sub_resource type="AtlasTexture" id="AtlasTexture_6pit3"]
+atlas = ExtResource("2_poesy")
+region = Rect2(192, 0, 96, 96)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_de2cy"]
-atlas = ExtResource("3_a101u")
-region = Rect2(45, 0, 15, 36)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_73edu"]
-atlas = ExtResource("3_a101u")
-region = Rect2(60, 0, 15, 36)
+[sub_resource type="AtlasTexture" id="AtlasTexture_adk10"]
+atlas = ExtResource("2_poesy")
+region = Rect2(288, 0, 96, 96)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_38s21"]
 atlas = ExtResource("3_y1wbj")
@@ -114,34 +109,28 @@ region = Rect2(65, 0, 13, 37)
 [sub_resource type="SpriteFrames" id="SpriteFrames_5q57h"]
 animations = [{
 "frames": [],
-"loop": true,
+"loop": false,
 "name": &"attack down",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
-"duration": 0.5,
-"texture": SubResource("AtlasTexture_wsopa")
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yydl1")
 }, {
-"duration": 0.5,
-"texture": SubResource("AtlasTexture_j0sku")
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6pit3")
 }, {
-"duration": 0.5,
-"texture": SubResource("AtlasTexture_408ec")
-}, {
-"duration": 0.5,
-"texture": SubResource("AtlasTexture_de2cy")
-}, {
-"duration": 0.5,
-"texture": SubResource("AtlasTexture_73edu")
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_adk10")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack side",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [],
-"loop": true,
+"loop": false,
 "name": &"attack up",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -237,13 +226,6 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_we0ol"]
-size = Vector2(14.87, 7.44669)
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5e708"]
-radius = 9.5
-height = 36.0
-
 [node name="Player" type="CharacterBody2D" groups=["player"]]
 z_as_relative = false
 y_sort_enabled = true
@@ -256,20 +238,6 @@ platform_on_leave = 2
 script = ExtResource("1_j363g")
 metadata/_edit_group_ = true
 
-[node name="Timers" type="Node" parent="."]
-
-[node name="AttackTimer" type="Timer" parent="Timers"]
-one_shot = true
-
-[node name="HealthRegenBuffer" type="Timer" parent="Timers"]
-wait_time = 1.25
-one_shot = true
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_5q57h")
-animation = &"idle down"
-offset = Vector2(0, -18)
-
 [node name="PlayerShape" type="CollisionShape2D" parent="."]
 z_index = 1
 position = Vector2(2.98023e-07, -4)
@@ -278,16 +246,29 @@ scale = Vector2(0.501, 1.5)
 shape = SubResource("RectangleShape2D_we0ol")
 one_way_collision_margin = 0.0
 
-[node name="AttackShape" type="Area2D" parent="."]
+[node name="Timers" type="Node" parent="."]
+
+[node name="AttackTimer" type="Timer" parent="Timers"]
+wait_time = 0.25
+one_shot = true
+
+[node name="HealthRegenBuffer" type="Timer" parent="Timers"]
+wait_time = 1.25
+one_shot = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_5q57h")
+animation = &"attack side"
+offset = Vector2(0, -18)
+
+[node name="HitBox" type="Area2D" parent="."]
 collision_layer = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackShape" groups=["attack"]]
-show_behind_parent = true
-position = Vector2(14, -20)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_5e708")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HitBox"]
+polygon = PackedVector2Array(-9, -34, 0, -34, 11, -32, 17, -30, 21, -28, 30, -19, 30, -10, 21, -1, 11, 3, 0, 5, -10, 5)
 disabled = true
 
 [connection signal="timeout" from="Timers/AttackTimer" to="." method="OnAttackTimerTimeout"]
 [connection signal="timeout" from="Timers/HealthRegenBuffer" to="." method="OnHealthRegenBufferTimeout"]
-[connection signal="area_entered" from="AttackShape" to="." method="OnAttackShapeAreaEntered"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="OnAnimationFinished"]
+[connection signal="area_entered" from="HitBox" to="." method="OnAttackShapeAreaEntered"]

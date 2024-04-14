@@ -11,6 +11,8 @@ public partial class Player : CharacterBody2D
 
     [Export] public int Speed = 5000;
 
+    private int attackMoveSpeed = 8000;
+
     private double health = 100;
     private double maxHealth = 100;
     private double regenSpeed = 0.35;
@@ -24,7 +26,7 @@ public partial class Player : CharacterBody2D
 
     private AnimatedSprite2D mainSprite = new();
     private CollisionShape2D playerShape = new();
-    private CollisionShape2D attackShape = new();
+    private CollisionPolygon2D attackShape = new();
     private Timer attackTimer = new();
 
     public override void _Ready()
@@ -32,7 +34,7 @@ public partial class Player : CharacterBody2D
         mainSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 
         playerShape = GetNode<CollisionShape2D>("PlayerShape");
-        attackShape = GetNode<CollisionShape2D>("AttackShape/CollisionShape2D");
+        attackShape = GetNode<CollisionPolygon2D>("HitBox/CollisionPolygon2D");
 
         attackTimer = GetNode<Timer>("Timers/AttackTimer");
         healthRegenBuffer = GetNode<Timer>("Timers/HealthRegenBuffer");
@@ -55,32 +57,10 @@ public partial class Player : CharacterBody2D
 
             State = vectorForMovement != Vector2.Zero ? PlayerState.Walking : PlayerState.Idle;
         }
-        Velocity = vectorForMovement * Speed * (float)delta;
+
+        Speed = State == PlayerState.Attacking ? attackMoveSpeed : 5000;
         
-        /*
-        var tween = CreateTween().SetEase(Tween.EaseType.Out);
-
-        if (State == PlayerState.Attack)
-        {
-            tween.TweenProperty(this, "velocity", vectorForMovement * Speed * (float)delta, 0.2f);
-        }
-        else
-        {
-            tween.Stop();
-
-            vectorForMovement = Input.GetVector(InputMapAction.Left, InputMapAction.Right, InputMapAction.Up, InputMapAction.Down);
-            Velocity = vectorForMovement * Speed * (float)delta;
-
-            if (vectorForMovement != Vector2.Zero)
-            {
-                State = PlayerState.Walk;
-            }
-            else
-            {
-                State = PlayerState.Idle;
-            }
-        }
-        */
+        Velocity = vectorForMovement * Speed * (float)delta;
         
         MoveAndSlide();
     }
@@ -136,7 +116,8 @@ public partial class Player : CharacterBody2D
 
                 if (wasFacingRight)
                 {
-                    attackShape.Position = attackShape.Position.Reflect(Vector2.Up);
+                    attackShape.Scale = new Vector2(-1, 1);
+                    ////attackShape.Position = attackShape.Position.Reflect(Vector2.Up);
                 }
 
                 break;
@@ -149,7 +130,8 @@ public partial class Player : CharacterBody2D
 
                 if (wasFacingLeft)
                 {
-                    attackShape.Position = attackShape.Position.Reflect(Vector2.Up);
+                    attackShape.Scale = new Vector2(1, 1);
+                    //attackShape.Position = attackShape.Position.Reflect(Vector2.Up);
                 }
 
                 break;
@@ -181,7 +163,23 @@ public partial class Player : CharacterBody2D
         {
             mainSprite.Animation = $"attack {animationDirection}";
             mainSprite.Play();
-            
+
+            if (mainSprite.Frame == 0)
+            {
+                attackShape.Disabled = false;
+                attackMoveSpeed = 4000;
+            }
+            else if (mainSprite.Frame == 1)
+            {
+                attackMoveSpeed = 1250;
+            }
+            else
+            {
+                attackMoveSpeed = 0;
+                attackShape.Disabled = true;
+            }
+
+            //attackShape.Disabled = true;
             /*
             if (mainSprite.Frame == 1)
             {
@@ -219,7 +217,15 @@ public partial class Player : CharacterBody2D
     // Signal Events
     public void OnAttackTimerTimeout()
     {
-        State = PlayerState.Idle;
+        //State = PlayerState.Idle;
+    }
+
+    private void OnAnimationFinished()
+    {
+        if (mainSprite.Animation.ToString().Contains("attack"))
+        {
+            State = PlayerState.Idle;
+        }
     }
 
     public void OnHealthRegenBufferTimeout()

@@ -8,3 +8,5 @@
 [node name="StaminaHealthBar" parent="." instance=ExtResource("1_ajbvv")]
 
 [node name="Player" parent="." instance=ExtResource("2_gx71h")]
+
+[connection signal="HealthChanged" from="Player" to="StaminaHealthBar" method="OnPlayerHealthChanged"]
