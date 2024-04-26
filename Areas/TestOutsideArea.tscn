@@ -38,6 +38,7 @@ one_shot = true
 z_index = 1
 position = Vector2(201, 152)
 NewScene = ExtResource("3_lyvqd")
+DoorName = "HouseDoor"
 
 [node name="CouchArea" parent="." instance=ExtResource("2_gbbas")]
 z_index = 1
@@ -47,10 +48,12 @@ NewScene = ExtResource("4_r0lws")
 [node name="LargeAreaRight" parent="." instance=ExtResource("2_gbbas")]
 position = Vector2(576, 177)
 NewScene = ExtResource("8_vn54o")
+DoorName = "RightDoor"
 
 [node name="LargeAreaLeft" parent="." instance=ExtResource("2_gbbas")]
 position = Vector2(2, 168)
 NewScene = ExtResource("8_vn54o")
+DoorName = "LeftDoor"
 
 [connection signal="timeout" from="EnemyTimer" to="." method="OnEnemyTimerTimeout"]
 [connection signal="SceneSwitch" from="SicilianHouseArea" to="." method="TriggerSceneSwitch"]

@@ -7,6 +7,8 @@ public partial class DoorwayArea : Area2D
 
     [Export] public PackedScene NewScene { get; set; }
 
+    [Export] public string DoorName;
+
     [Signal] public delegate void SceneSwitchEventHandler(string levelName);
 
     private void OnBodyEntered(PhysicsBody2D body)
@@ -33,7 +35,7 @@ public partial class DoorwayArea : Area2D
             if (Input.IsActionJustPressed(InputMapAction.Enter))
             {
 
-                EmitSignal(SignalName.SceneSwitch, NewScene);
+                EmitSignal(SignalName.SceneSwitch, NewScene, DoorName);
             }
         }
 
