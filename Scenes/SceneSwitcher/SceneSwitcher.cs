@@ -11,9 +11,16 @@ public partial class SceneSwitcher : Node
         {"HouseDoor", "StartPosition"}
     };
 
-    
+    //Listen for emitted signal
+    private CustomSignals customSignals = new CustomSignals();
 
-    public void HandleSceneSwitch(PackedScene NewScene, string DoorName)
+    public override void _Ready()
+    {
+        customSignals = GetNode<CustomSignals>("/root/CustomSignals");
+        customSignals.SceneSwitch += HandleSceneSwitch;
+    }
+
+    private void HandleSceneSwitch(PackedScene NewScene, string DoorName)
     {
 
         // Get the starting position based on the doorname

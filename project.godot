@@ -15,6 +15,10 @@ run/main_scene="res://Main.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+CustomSignals="*res://Constants/CustomSignals.cs"
+
 [display]
 
 window/stretch/mode="viewport"

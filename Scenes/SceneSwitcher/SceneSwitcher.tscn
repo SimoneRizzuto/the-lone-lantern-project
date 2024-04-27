@@ -7,5 +7,3 @@
 script = ExtResource("1_2myfy")
 
 [node name="TestOutsideArea" parent="." instance=ExtResource("2_nt0n7")]
-
-[connection signal="SignalSceneSwitch" from="TestOutsideArea" to="." method="HandleSceneSwitch"]

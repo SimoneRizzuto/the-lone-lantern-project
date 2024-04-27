@@ -9,7 +9,13 @@ public partial class DoorwayArea : Area2D
 
     [Export] public string DoorName;
 
-    [Signal] public delegate void SceneSwitchEventHandler(string levelName);
+    private CustomSignals customSignals;
+
+    public override void _Ready()
+    {
+        customSignals = GetNode<CustomSignals>("/root/CustomSignals");
+        
+    }
 
     private void OnBodyEntered(PhysicsBody2D body)
     {
@@ -34,8 +40,7 @@ public partial class DoorwayArea : Area2D
         {
             if (Input.IsActionJustPressed(InputMapAction.Enter))
             {
-
-                EmitSignal(SignalName.SceneSwitch, NewScene, DoorName);
+                customSignals.EmitSignal(nameof(CustomSignals.SceneSwitch), NewScene, DoorName);
             }
         }
 
