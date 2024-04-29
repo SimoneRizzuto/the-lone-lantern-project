@@ -4,7 +4,6 @@ using TheLoneLanternProject.Constants;
 public partial class DoorwayArea : Area2D
 {
     [Export] public PackedScene NewScene { get; set; }
-
     [Export] public string DoorName;
 
     private CustomSignals customSignals;
@@ -13,24 +12,17 @@ public partial class DoorwayArea : Area2D
     public override void _Ready()
     {
         customSignals = GetNode<CustomSignals>("/root/CustomSignals");
-        
     }
 
     public override void _Process(double delta)
     {
         TriggerTransition();
     }
-
-    
-
     private void TriggerTransition()
     {
-        if (bodyEntered)
+        if (bodyEntered && Input.IsActionJustPressed(InputMapAction.Enter))
         {
-            if (Input.IsActionJustPressed(InputMapAction.Enter))
-            {
-                customSignals.EmitSignal(nameof(CustomSignals.SceneSwitch), NewScene, DoorName);
-            }
+            customSignals.EmitSignal(nameof(CustomSignals.SceneSwitch), NewScene, DoorName);
         }
     }
 
@@ -41,7 +33,6 @@ public partial class DoorwayArea : Area2D
         {
             bodyEntered = true;
         }
-
     }
 
     private void OnBodyExited(PhysicsBody2D body)

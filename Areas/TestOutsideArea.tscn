@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://jayyio27ybj4"]
 
-[ext_resource type="PackedScene" uid="uid://weapjmpebmov" path="res://Scenes/SceneSwitcher/DoorwayArea.tscn" id="2_gbbas"]
 [ext_resource type="PackedScene" uid="uid://c2g70y5vbb02x" path="res://Areas/TestSicilianHouse.tscn" id="3_lyvqd"]
 [ext_resource type="PackedScene" uid="uid://h2iu1fkuw61u" path="res://Scenes/PlayerController/PlayerController.tscn" id="3_rgc1w"]
 [ext_resource type="PackedScene" uid="uid://bihv5yjq7muuh" path="res://Scenes/Static/SicilianHouse.tscn" id="4_3s01v"]
+[ext_resource type="PackedScene" uid="uid://weapjmpebmov" path="res://Scenes/SceneSwitcher/Door2D.tscn" id="4_fm4os"]
 [ext_resource type="PackedScene" uid="uid://bti04pth8d4ia" path="res://Areas/Couch.tscn" id="4_r0lws"]
 [ext_resource type="PackedScene" uid="uid://ubc5cusrcpq7" path="res://Scenes/Static/Couch.tscn" id="5_ogtkf"]
 [ext_resource type="PackedScene" uid="uid://c2wvbv8lf861a" path="res://Areas/MultipleEntrance.tscn" id="8_vn54o"]
@@ -32,23 +32,24 @@ zoom = Vector2(2, 2)
 [node name="EnemyTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="SicilianHouseArea" parent="." instance=ExtResource("2_gbbas")]
+[node name="SicilianHouseDoor" parent="." instance=ExtResource("4_fm4os")]
 z_index = 1
 position = Vector2(201, 152)
 NewScene = ExtResource("3_lyvqd")
 DoorName = "HouseDoor"
 
-[node name="CouchArea" parent="." instance=ExtResource("2_gbbas")]
+[node name="CouchArea" parent="." instance=ExtResource("4_fm4os")]
 z_index = 1
 position = Vector2(144, 238)
 NewScene = ExtResource("4_r0lws")
+DoorName = null
 
-[node name="LargeAreaRight" parent="." instance=ExtResource("2_gbbas")]
+[node name="LargeAreaRight" parent="." instance=ExtResource("4_fm4os")]
 position = Vector2(576, 177)
 NewScene = ExtResource("8_vn54o")
 DoorName = "RightDoor"
 
-[node name="LargeAreaLeft" parent="." instance=ExtResource("2_gbbas")]
+[node name="LargeAreaLeft" parent="." instance=ExtResource("4_fm4os")]
 position = Vector2(2, 168)
 NewScene = ExtResource("8_vn54o")
 DoorName = "LeftDoor"

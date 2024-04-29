@@ -1,12 +1,14 @@
+using System;
 using Godot;
 using Godot.Collections;
-using System;
+using Microsoft.VisualBasic;
+using TheLoneLanternProject.Constants;
 
 public partial class SceneSwitcher : Node
 {
-    private CustomSignals customSignals = new CustomSignals(); 
+    private CustomSignals customSignals = new();
     
-    private Dictionary doorDictionary = new Godot.Collections.Dictionary
+    private Dictionary doorDictionary = new()
     {
         {"RightDoor", "StartPositionLeft"},
         {"LeftDoor", "StartPositionRight"},
@@ -19,34 +21,32 @@ public partial class SceneSwitcher : Node
         customSignals.SceneSwitch += HandleSceneSwitch;
     }
 
-    private void HandleSceneSwitch(PackedScene NewScene, string DoorName)
+    private void HandleSceneSwitch(PackedScene newScene, string doorName)
     {
-
         // Get the starting position based on the doorname
-        var startPositionNodeString = doorDictionary[DoorName];
-        if (startPositionNodeString.AsStringName() == "")
+        var marker2DName = doorDictionary[doorName];
+        if (marker2DName.AsStringName() == "")
         {
             GD.PrintErr("DoorName from DoorwayArea does not match any corresponding key in doorDictionary.");
+            return;
         }
-        else
+        
+        var currentSceneName = GetChild(0);
+        var nextSceneName = newScene.Instantiate();
+        RemoveChild(currentSceneName);
+        AddChild(nextSceneName);
+        
+        var player = GetNode<Node2D>("./" + nextSceneName.Name + "/GameContainer/PlayerController");
+        try
         {
-            var currentSceneName = GetChild(0);
-            var nextSceneName = NewScene.Instantiate();
-            RemoveChild(currentSceneName);
-            AddChild(nextSceneName);
+            var allDoors = GetTree().GetNodesInGroup(NodeGroup.Door);
             
-            var player = GetNode<Node2D>("./" + nextSceneName.Name + "/GameContainer/PlayerController");
-            try
-            {
-                var newStartPosition = GetNode<Node2D>("./" + nextSceneName.Name + "/GameContainer/" + startPositionNodeString);
-                player.Position = newStartPosition.Position;
-            }
-            catch
-            {
-
-            }
+            var newStartPosition = GetNode<Node2D>("./" + nextSceneName.Name + "/GameContainer/" + marker2DName);
+            player.Position = newStartPosition.Position;
         }
-
+        catch (Exception ex)
+        {
+            // ignored
+        }
     }
-
 }
