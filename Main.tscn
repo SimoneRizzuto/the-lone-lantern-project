@@ -1,14 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://be3yurhibr6t0"]
+[gd_scene load_steps=7 format=3 uid="uid://be3yurhibr6t0"]
 
 [ext_resource type="PackedScene" uid="uid://h2iu1fkuw61u" path="res://Scenes/PlayerController/PlayerController.tscn" id="1_bcck4"]
-[ext_resource type="Script" path="res://Main.cs" id="1_lj5n1"]
 [ext_resource type="PackedScene" uid="uid://oe1ffghf4nah" path="res://Scenes/Enemies/Enemy.tscn" id="2_56tu2"]
 [ext_resource type="PackedScene" uid="uid://ubc5cusrcpq7" path="res://Scenes/Static/Couch.tscn" id="3_fnfmp"]
 [ext_resource type="PackedScene" uid="uid://bihv5yjq7muuh" path="res://Scenes/Static/SicilianHouse.tscn" id="3_ie86o"]
+[ext_resource type="PackedScene" uid="uid://cfe0an0x3l5ce" path="res://enemytesty.tscn" id="6_aqcfn"]
+[ext_resource type="Script" path="res://Scenes/Enemies/TestEnemy.cs" id="7_tb1ny"]
 
 [node name="Main" type="Node"]
-script = ExtResource("1_lj5n1")
-EnemyScene = ExtResource("2_56tu2")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(288, 164)
@@ -29,7 +28,12 @@ position = Vector2(165, 173)
 [node name="Couch" parent="GameContainer" instance=ExtResource("3_fnfmp")]
 position = Vector2(144, 242)
 
-[node name="EnemyTimer" type="Timer" parent="."]
-one_shot = true
+[node name="EnemyTesty" parent="GameContainer" node_paths=PackedStringArray("PathToFollow") instance=ExtResource("6_aqcfn")]
+position = Vector2(352, 194)
+script = ExtResource("7_tb1ny")
+PathToFollow = NodePath("")
 
-[connection signal="timeout" from="EnemyTimer" to="." method="OnEnemyTimerTimeout"]
+[node name="Enemy" parent="GameContainer" node_paths=PackedStringArray("PathToFollow") instance=ExtResource("2_56tu2")]
+scale = Vector2(1.00675, 0.999354)
+script = ExtResource("7_tb1ny")
+PathToFollow = NodePath("")
