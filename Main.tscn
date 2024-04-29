@@ -19,7 +19,7 @@ y_sort_enabled = true
 [node name="PlayerController" parent="GameContainer" instance=ExtResource("1_bcck4")]
 z_as_relative = false
 y_sort_enabled = true
-position = Vector2(210, 217)
+position = Vector2(204, 234)
 
 [node name="SicilianHouse" parent="GameContainer" instance=ExtResource("3_ie86o")]
 position = Vector2(165, 173)
@@ -27,11 +27,13 @@ position = Vector2(165, 173)
 [node name="Couch" parent="GameContainer" instance=ExtResource("3_fnfmp")]
 position = Vector2(144, 242)
 
-[node name="enemytesty" parent="GameContainer" node_paths=PackedStringArray("PathToFollow") instance=ExtResource("4_ratag")]
+[node name="enemytesty" parent="GameContainer" node_paths=PackedStringArray("HitBox", "AnimatedSprite2D") instance=ExtResource("4_ratag")]
 position = Vector2(507, 294)
-PathToFollow = NodePath("")
+HitBox = NodePath("")
+AnimatedSprite2D = NodePath("")
 
-[node name="EnemyBlob" parent="GameContainer" instance=ExtResource("5_58cfn")]
+[node name="EnemyBlob" parent="GameContainer" node_paths=PackedStringArray("PathToFollow") instance=ExtResource("5_58cfn")]
 z_as_relative = true
 y_sort_enabled = false
 position = Vector2(363, 198)
+PathToFollow = NodePath("")
