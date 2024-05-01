@@ -24,6 +24,12 @@ public partial class SceneSwitcher : Node
         var uid = ResourceUid.TextToId(newSceneUid);
         var path = ResourceUid.GetIdPath(uid);
         var nextScenePackedScene = (PackedScene)ResourceLoader.Load(path);
+        if (nextScenePackedScene == null)
+        {
+            GD.PrintErr($"Scene cannot be found. UID: {newSceneUid} - DoorName: {doorName}");
+            return;
+        }
+        
         var sceneToAdd = nextScenePackedScene.Instantiate();
         AddChild(sceneToAdd);
         
