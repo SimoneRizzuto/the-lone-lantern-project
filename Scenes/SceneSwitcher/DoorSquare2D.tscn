@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://barc3o7fkbn44"]
+
+[ext_resource type="Script" path="res://Scenes/SceneSwitcher/Door2D.cs" id="1_t1pjf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lr57w"]
+
+[node name="DoorSquare2D" type="Area2D" groups=["door"]]
+script = ExtResource("1_t1pjf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(2, 2)
+shape = SubResource("RectangleShape2D_lr57w")
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]
+[connection signal="body_exited" from="." to="." method="OnBodyExited"]

@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://h2iu1fkuw61u" path="res://Scenes/PlayerController/PlayerController.tscn" id="3_rgc1w"]
 [ext_resource type="PackedScene" uid="uid://bihv5yjq7muuh" path="res://Scenes/Static/SicilianHouse.tscn" id="4_3s01v"]
-[ext_resource type="PackedScene" uid="uid://weapjmpebmov" path="res://Scenes/SceneSwitcher/Door2D.tscn" id="4_fm4os"]
+[ext_resource type="PackedScene" uid="uid://weapjmpebmov" path="res://Scenes/SceneSwitcher/DoorCircle2D.tscn" id="4_fm4os"]
 [ext_resource type="PackedScene" uid="uid://ubc5cusrcpq7" path="res://Scenes/Static/Couch.tscn" id="5_ogtkf"]
 
 [node name="TestOutsideArea" type="Node"]

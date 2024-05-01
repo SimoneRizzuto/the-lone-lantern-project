@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ufxr1ob3fycm"]
 
-[ext_resource type="PackedScene" uid="uid://weapjmpebmov" path="res://Scenes/SceneSwitcher/Door2D.tscn" id="1_7eqmb"]
+[ext_resource type="PackedScene" uid="uid://weapjmpebmov" path="res://Scenes/SceneSwitcher/DoorCircle2D.tscn" id="1_7eqmb"]
 
 [node name="UidSceneTest" type="Node2D"]
 

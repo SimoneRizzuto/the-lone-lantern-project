@@ -1,12 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://weapjmpebmov"]
 
-[ext_resource type="Script" path="res://Scenes/SceneSwitcher/Door2D.cs" id="1_gjld8"]
+[ext_resource type="Script" path="res://Scenes/SceneSwitcher/Door2D.cs" id="1_sjqqd"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_04nkk"]
 radius = 35.0
 
-[node name="Door2D" type="Area2D" groups=["door"]]
-script = ExtResource("1_gjld8")
+[node name="DoorCircle2D" type="Area2D" groups=["door"]]
+script = ExtResource("1_sjqqd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_04nkk")
