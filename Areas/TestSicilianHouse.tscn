@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://c2g70y5vbb02x"]
+[gd_scene load_steps=6 format=3 uid="uid://c2g70y5vbb02x"]
 
 [ext_resource type="Script" path="res://Scenes/SceneSwitcher/Door2D.cs" id="3_6t27h"]
 [ext_resource type="PackedScene" uid="uid://h2iu1fkuw61u" path="res://Scenes/PlayerController/PlayerController.tscn" id="3_7e3n5"]
 [ext_resource type="Texture2D" uid="uid://dpqtbxftvbrc6" path="res://Assets/InsideArea.png" id="3_asfui"]
-[ext_resource type="PackedScene" uid="uid://jayyio27ybj4" path="res://Areas/TestOutsideArea.tscn" id="4_hu01w"]
 [ext_resource type="PackedScene" uid="uid://ubc5cusrcpq7" path="res://Scenes/Static/Couch.tscn" id="5_jou2a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jdkhh"]
@@ -30,7 +29,6 @@ position = Vector2(301, 152)
 [node name="StartPosition" type="Area2D" parent="GameContainer"]
 position = Vector2(298, 257)
 script = ExtResource("3_6t27h")
-NewScene = ExtResource("4_hu01w")
 DoorName = "HouseDoor"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GameContainer/StartPosition"]

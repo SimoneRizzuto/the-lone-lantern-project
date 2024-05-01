@@ -1,9 +1,9 @@
 using Godot;
 using TheLoneLanternProject.Constants;
 
-public partial class DoorwayArea : Area2D
+public partial class Door2D : Area2D
 {
-    [Export] public PackedScene NewScene { get; set; }
+    [Export] public PackedScene NewScene;
     [Export] public string DoorName;
 
     private CustomSignals customSignals;
