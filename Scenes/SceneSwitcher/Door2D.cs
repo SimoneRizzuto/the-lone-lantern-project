@@ -3,7 +3,7 @@ using TheLoneLanternProject.Constants;
 
 public partial class Door2D : Area2D
 {
-    [Export] public PackedScene NewScene;
+    [Export] public string SceneUID;
     [Export] public string DoorName;
 
     private CustomSignals customSignals;
@@ -22,14 +22,14 @@ public partial class Door2D : Area2D
     {
         if (bodyEntered && Input.IsActionJustPressed(InputMapAction.Enter))
         {
-            customSignals.EmitSignal(nameof(CustomSignals.SceneSwitch), NewScene, DoorName);
+            customSignals.EmitSignal(nameof(CustomSignals.SceneSwitch), SceneUID, DoorName);
         }
     }
 
     // Signal Events
     private void OnBodyEntered(PhysicsBody2D body)
     {
-        if (body.IsInGroup("player"))
+        if (body.IsInGroup(NodeGroup.Player))
         {
             bodyEntered = true;
         }
@@ -37,7 +37,7 @@ public partial class Door2D : Area2D
 
     private void OnBodyExited(PhysicsBody2D body)
     {
-        if (body.IsInGroup("player"))
+        if (body.IsInGroup(NodeGroup.Player))
         {
             bodyEntered = false;
         }

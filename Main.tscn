@@ -28,10 +28,9 @@ position = Vector2(165, 173)
 [node name="Couch" parent="GameContainer" instance=ExtResource("3_fnfmp")]
 position = Vector2(144, 242)
 
-[node name="EnemyTesty" parent="GameContainer" node_paths=PackedStringArray("PathToFollow") instance=ExtResource("6_aqcfn")]
+[node name="EnemyTesty" parent="GameContainer" instance=ExtResource("6_aqcfn")]
 position = Vector2(352, 194)
 script = ExtResource("7_tb1ny")
-PathToFollow = NodePath("")
 
 [node name="Enemy" parent="GameContainer" instance=ExtResource("2_56tu2")]
 scale = Vector2(1.00675, 0.999354)

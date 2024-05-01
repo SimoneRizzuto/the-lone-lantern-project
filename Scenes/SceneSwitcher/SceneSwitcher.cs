@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Godot;
 using Godot.Collections;
 using Microsoft.VisualBasic;
@@ -7,13 +9,6 @@ using TheLoneLanternProject.Constants;
 public partial class SceneSwitcher : Node
 {
     private CustomSignals customSignals = new();
-    
-    private Dictionary doorDictionary = new()
-    {
-        {"RightDoor", "StartPositionLeft"},
-        {"LeftDoor", "StartPositionRight"},
-        {"HouseDoor", "StartPosition"}
-    };
 
     public override void _Ready()
     {
@@ -21,32 +16,27 @@ public partial class SceneSwitcher : Node
         customSignals.SceneSwitch += HandleSceneSwitch;
     }
 
-    private void HandleSceneSwitch(PackedScene newScene, string doorName)
+    private void HandleSceneSwitch(string newSceneUid, string doorName)
     {
-        // Get the starting position based on the doorname
-        var marker2DName = doorDictionary[doorName];
-        if (marker2DName.AsStringName() == "")
+        var sceneToRemove = GetChild(0);
+        RemoveChild(sceneToRemove);
+        
+        var uid = ResourceUid.TextToId(newSceneUid);
+        var path = ResourceUid.GetIdPath(uid);
+        var nextScenePackedScene = (PackedScene)ResourceLoader.Load(path);
+        var sceneToAdd = nextScenePackedScene.Instantiate();
+        AddChild(sceneToAdd);
+        
+        // Find door by group name "door" and the "doorName".
+        var doorNodesInScene = GetTree().GetNodesInGroup(NodeGroup.Door);
+        var door = doorNodesInScene.Cast<Door2D>().FirstOrDefault(x => x.DoorName == doorName);
+        if (door == null)
         {
-            GD.PrintErr("DoorName from DoorwayArea does not match any corresponding key in doorDictionary.");
+            GD.PrintErr($"Door cannot be found. UID: {newSceneUid} - DoorName: {doorName}");
             return;
         }
         
-        var currentSceneName = GetChild(0);
-        var nextSceneName = newScene.Instantiate();
-        RemoveChild(currentSceneName);
-        AddChild(nextSceneName);
-        
-        var player = GetNode<Node2D>("./" + nextSceneName.Name + "/GameContainer/PlayerController");
-        try
-        {
-            var allDoors = GetTree().GetNodesInGroup(NodeGroup.Door);
-            
-            var newStartPosition = GetNode<Node2D>("./" + nextSceneName.Name + "/GameContainer/" + marker2DName);
-            player.Position = newStartPosition.Position;
-        }
-        catch (Exception ex)
-        {
-            // ignored
-        }
+        var player = GetNode<Node2D>("./" + sceneToAdd.Name + "/GameContainer/PlayerController");
+        player.Position = door.Position;
     }
 }

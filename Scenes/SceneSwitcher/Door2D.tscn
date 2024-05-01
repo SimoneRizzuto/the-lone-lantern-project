@@ -7,7 +7,6 @@ radius = 35.0
 
 [node name="Door2D" type="Area2D" groups=["door"]]
 script = ExtResource("1_gjld8")
-DoorName = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_04nkk")

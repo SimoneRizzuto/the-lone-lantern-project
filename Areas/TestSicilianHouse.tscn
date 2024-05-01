@@ -1,12 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c2g70y5vbb02x"]
+[gd_scene load_steps=5 format=3 uid="uid://c2g70y5vbb02x"]
 
-[ext_resource type="Script" path="res://Scenes/SceneSwitcher/Door2D.cs" id="3_6t27h"]
+[ext_resource type="PackedScene" uid="uid://weapjmpebmov" path="res://Scenes/SceneSwitcher/Door2D.tscn" id="2_gf51k"]
 [ext_resource type="PackedScene" uid="uid://h2iu1fkuw61u" path="res://Scenes/PlayerController/PlayerController.tscn" id="3_7e3n5"]
 [ext_resource type="Texture2D" uid="uid://dpqtbxftvbrc6" path="res://Assets/InsideArea.png" id="3_asfui"]
 [ext_resource type="PackedScene" uid="uid://ubc5cusrcpq7" path="res://Scenes/Static/Couch.tscn" id="5_jou2a"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jdkhh"]
-size = Vector2(27, 33)
 
 [node name="TestSicilianHouse" type="Node"]
 
@@ -18,22 +15,18 @@ zoom = Vector2(2, 2)
 z_as_relative = false
 y_sort_enabled = true
 
-[node name="PlayerController" parent="GameContainer" instance=ExtResource("3_7e3n5")]
+[node name="PlayerController" parent="GameContainer" groups=["player"] instance=ExtResource("3_7e3n5")]
 z_as_relative = false
 y_sort_enabled = true
 position = Vector2(279, 221)
 
-[node name="Couch" parent="GameContainer" instance=ExtResource("5_jou2a")]
-position = Vector2(301, 152)
-
-[node name="StartPosition" type="Area2D" parent="GameContainer"]
-position = Vector2(298, 257)
-script = ExtResource("3_6t27h")
+[node name="Door2D" parent="GameContainer" instance=ExtResource("2_gf51k")]
+position = Vector2(302, 271)
+SceneUID = "uid://jayyio27ybj4"
 DoorName = "HouseDoor"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="GameContainer/StartPosition"]
-position = Vector2(3.5, 6.5)
-shape = SubResource("RectangleShape2D_jdkhh")
+[node name="Couch" parent="GameContainer" instance=ExtResource("5_jou2a")]
+position = Vector2(301, 152)
 
 [node name="EnemyTimer" type="Timer" parent="."]
 one_shot = true
