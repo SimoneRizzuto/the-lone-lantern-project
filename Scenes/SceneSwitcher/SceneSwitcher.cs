@@ -33,8 +33,10 @@ public partial class SceneSwitcher : Node
         var sceneToAdd = nextScenePackedScene.Instantiate();
         AddChild(sceneToAdd);
         
+        var tree = GetTree();
+        
         // Find door by group name "door" and the "doorName".
-        var doorNodes = GetTree().GetNodesInGroup(NodeGroup.Door);
+        var doorNodes = tree.GetNodesInGroup(NodeGroup.Door);
         var door = doorNodes.Cast<Door2D>().FirstOrDefault(x => x.DoorName == doorName);
         if (door == null)
         {
@@ -43,7 +45,7 @@ public partial class SceneSwitcher : Node
         }
 
         // Find player by group name "player".
-        var playerNode = GetTree().GetNodesInGroup(NodeGroup.Player).FirstOrDefault();
+        var playerNode = tree.GetNodesInGroup(NodeGroup.Player).FirstOrDefault();
         if (playerNode == null)
         {
             GD.PrintErr($"Player cannot be found. UID: {newSceneUid} - DoorName: {doorName}");
@@ -53,7 +55,7 @@ public partial class SceneSwitcher : Node
         try
         {
             var playerNode2D = (Node2D)playerNode;
-            playerNode2D.Position = door.Position;
+            playerNode2D.Position = door.GlobalPosition;
         }
         catch (Exception ex)
         {
