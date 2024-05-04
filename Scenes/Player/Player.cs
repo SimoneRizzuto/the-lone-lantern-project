@@ -20,7 +20,7 @@ public partial class Player : CharacterBody2D
     private StaminaHealthState healthState;
     private Timer healthRegenBuffer;
 
-    public Direction Direction = Direction.Right;
+    public Direction Direction = Direction.Down;
     public PlayerState State = PlayerState.Idle;
 
     private Vector2 vectorForMovement = Vector2.Zero;
@@ -234,7 +234,6 @@ public partial class Player : CharacterBody2D
 
     public void OnAttackShapeAreaEntered(Node2D area)
     {
-        GD.Print("Area Entered: Attack");
         if (area.IsInGroup(NodeGroup.Enemy))
         {
             var enemy = (EnemyBase)area;
