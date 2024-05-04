@@ -2,10 +2,10 @@ namespace TheLoneLanternProject.Constants;
 
 public enum Direction
 {
-    Left,
-    Right,
-    Up,
-    Down
+    Up = 0,
+    Left = 1,
+    Right = 2,
+    Down = 3
 }
 
 public static class InputMapAction
