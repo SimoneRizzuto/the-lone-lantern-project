@@ -23,6 +23,7 @@ position = Vector2(35, 8)
 scale = Vector2(0.436729, 0.395595)
 SceneUID = "uid://c2g70y5vbb02x"
 DoorName = "HouseDoor"
+ExitDirection = 0
 
 [node name="Couch" parent="." instance=ExtResource("4_gn6q7")]
 position = Vector2(144, 242)

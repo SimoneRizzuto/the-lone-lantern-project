@@ -7,33 +7,25 @@
 
 [node name="TestSicilianHouse" type="Node"]
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(288, 164)
-zoom = Vector2(2, 2)
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -3
+position = Vector2(305, 171)
+texture = ExtResource("3_asfui")
 
-[node name="GameContainer" type="Node2D" parent="."]
-z_as_relative = false
-y_sort_enabled = true
-
-[node name="PlayerController" parent="GameContainer" instance=ExtResource("3_7e3n5")]
+[node name="PlayerController" parent="." instance=ExtResource("3_7e3n5")]
 z_as_relative = false
 y_sort_enabled = true
 position = Vector2(279, 221)
 
-[node name="Couch" parent="GameContainer" instance=ExtResource("5_jou2a")]
+[node name="Couch" parent="." instance=ExtResource("5_jou2a")]
 position = Vector2(301, 152)
 
-[node name="DoorSquare2D" parent="GameContainer" instance=ExtResource("3_8b2tr")]
+[node name="DoorSquare2D" parent="." instance=ExtResource("3_8b2tr")]
 position = Vector2(301, 261)
 SceneUID = "uid://bgpdxfsl820vp"
 DoorName = "HouseDoor"
 
 [node name="EnemyTimer" type="Timer" parent="."]
 one_shot = true
-
-[node name="Background" type="Sprite2D" parent="."]
-z_index = -3
-position = Vector2(305, 171)
-texture = ExtResource("3_asfui")
 
 [connection signal="timeout" from="EnemyTimer" to="." method="OnEnemyTimerTimeout"]
