@@ -15,11 +15,13 @@ public static class InputMapAction
     public const string Left = "Move Left";
     public const string Right = "Move Right";
     public const string Attack = "Attack";
+    public const string Enter = "Enter";
 }
 
 public static class NodeGroup
 {
     public const string Player = "player";
     public const string Attack = "attack";
+    public const string Door = "door";
     public const string Enemy = "enemy";
 }

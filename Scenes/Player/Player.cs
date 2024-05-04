@@ -231,6 +231,7 @@ public partial class Player : CharacterBody2D
     {
         healthState = StaminaHealthState.Regen;
     }
+
     public void OnAttackShapeAreaEntered(Node2D area)
     {
         GD.Print("Area Entered: Attack");
