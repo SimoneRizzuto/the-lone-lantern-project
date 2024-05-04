@@ -34,15 +34,30 @@ public partial class SceneSwitcher : Node
         AddChild(sceneToAdd);
         
         // Find door by group name "door" and the "doorName".
-        var doorNodesInScene = GetTree().GetNodesInGroup(NodeGroup.Door);
-        var door = doorNodesInScene.Cast<Door2D>().FirstOrDefault(x => x.DoorName == doorName);
+        var doorNodes = GetTree().GetNodesInGroup(NodeGroup.Door);
+        var door = doorNodes.Cast<Door2D>().FirstOrDefault(x => x.DoorName == doorName);
         if (door == null)
         {
             GD.PrintErr($"Door cannot be found. UID: {newSceneUid} - DoorName: {doorName}");
             return;
         }
-        
-        var player = GetNode<Node2D>("./" + sceneToAdd.Name + "/GameContainer/PlayerController");
-        player.Position = door.Position;
+
+        // Find player by group name "player".
+        var playerNode = GetTree().GetNodesInGroup(NodeGroup.Player).FirstOrDefault();
+        if (playerNode == null)
+        {
+            GD.PrintErr($"Player cannot be found. UID: {newSceneUid} - DoorName: {doorName}");
+            return;
+        }
+
+        try
+        {
+            var playerNode2D = (Node2D)playerNode;
+            playerNode2D.Position = door.Position;
+        }
+        catch (Exception ex)
+        {
+            GD.PrintErr($"Placing the player on a door failed: {ex.Message}");
+        }
     }
 }

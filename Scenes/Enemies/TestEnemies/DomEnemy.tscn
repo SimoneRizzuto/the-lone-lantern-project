@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://oe1ffghf4nah"]
 
-[ext_resource type="Script" path="res://Scenes/Enemies/TestEnemy.cs" id="1_vwt7c"]
-[ext_resource type="Texture2D" uid="uid://cwto5tbv5no2g" path="res://icon.svg" id="2_76t1e"]
+[ext_resource type="Script" path="res://Scenes/Enemies/BaseNode/EnemyBase.cs" id="1_8bofc"]
+[ext_resource type="Texture2D" uid="uid://cwto5tbv5no2g" path="res://icon.svg" id="2_toton"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8u7jq"]
 size = Vector2(16, 14)
@@ -12,16 +12,17 @@ _data = {
 }
 point_count = 19
 
-[node name="Enemy" type="Area2D" node_paths=PackedStringArray("PathToFollow") groups=["enemies"]]
+[node name="DomEnemy" type="Area2D" node_paths=PackedStringArray("HitBox", "AnimatedSprite2D") groups=["enemy"]]
 z_as_relative = false
 y_sort_enabled = true
-script = ExtResource("1_vwt7c")
-PathToFollow = NodePath("")
+script = ExtResource("1_8bofc")
+HitBox = NodePath("")
+AnimatedSprite2D = NodePath("")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.125, 0.116)
-texture = ExtResource("2_76t1e")
+texture = ExtResource("2_toton")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_8u7jq")

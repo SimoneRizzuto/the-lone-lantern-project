@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://be3yurhibr6t0"]
+[gd_scene load_steps=8 format=3 uid="uid://be3yurhibr6t0"]
 
+[ext_resource type="PackedScene" uid="uid://ci6v0ni6pk1ry" path="res://Scenes/SceneSwitcher/SceneSwitcher.tscn" id="1_20kky"]
 [ext_resource type="PackedScene" uid="uid://h2iu1fkuw61u" path="res://Scenes/PlayerController/PlayerController.tscn" id="1_bcck4"]
-[ext_resource type="PackedScene" path="res://Scenes/Enemies/Enemy.tscn" id="2_56tu2"]
 [ext_resource type="PackedScene" uid="uid://ubc5cusrcpq7" path="res://Scenes/Static/Couch.tscn" id="3_fnfmp"]
 [ext_resource type="PackedScene" uid="uid://bihv5yjq7muuh" path="res://Scenes/Static/SicilianHouse.tscn" id="3_ie86o"]
-[ext_resource type="PackedScene" uid="uid://cfe0an0x3l5ce" path="res://enemytesty.tscn" id="6_aqcfn"]
-[ext_resource type="Script" path="res://Scenes/Enemies/TestEnemy.cs" id="7_tb1ny"]
+[ext_resource type="PackedScene" uid="uid://barc3o7fkbn44" path="res://Scenes/SceneSwitcher/DoorSquare2D.tscn" id="3_vxagb"]
+[ext_resource type="PackedScene" uid="uid://cfe0an0x3l5ce" path="res://Scenes/Enemies/TestEnemies/enemytesty.tscn" id="4_ratag"]
+[ext_resource type="PackedScene" uid="uid://bjteskckd8oqn" path="res://Scenes/Enemies/EnemyBlob.tscn" id="5_58cfn"]
 
 [node name="Main" type="Node"]
 
@@ -13,24 +14,34 @@
 position = Vector2(288, 164)
 zoom = Vector2(2, 2)
 
-[node name="GameContainer" type="Node2D" parent="."]
+[node name="SceneSwitcher" parent="." instance=ExtResource("1_20kky")]
+
+[node name="GameContainer" type="Node2D" parent="SceneSwitcher"]
 z_as_relative = false
 y_sort_enabled = true
 
-[node name="PlayerController" parent="GameContainer" instance=ExtResource("1_bcck4")]
+[node name="PlayerController" parent="SceneSwitcher/GameContainer" instance=ExtResource("1_bcck4")]
 z_as_relative = false
 y_sort_enabled = true
-position = Vector2(279, 221)
+position = Vector2(204, 234)
 
-[node name="SicilianHouse" parent="GameContainer" instance=ExtResource("3_ie86o")]
+[node name="SicilianHouse" parent="SceneSwitcher/GameContainer" instance=ExtResource("3_ie86o")]
 position = Vector2(165, 173)
 
-[node name="Couch" parent="GameContainer" instance=ExtResource("3_fnfmp")]
+[node name="DoorSquare2D" parent="SceneSwitcher/GameContainer/SicilianHouse" instance=ExtResource("3_vxagb")]
+position = Vector2(35, 8)
+scale = Vector2(0.436729, 0.395595)
+SceneUID = "uid://c2g70y5vbb02x"
+DoorName = "HouseDoor"
+
+[node name="Couch" parent="SceneSwitcher/GameContainer" instance=ExtResource("3_fnfmp")]
 position = Vector2(144, 242)
 
-[node name="EnemyTesty" parent="GameContainer" instance=ExtResource("6_aqcfn")]
-position = Vector2(352, 194)
-script = ExtResource("7_tb1ny")
+[node name="enemytesty" parent="SceneSwitcher/GameContainer" node_paths=PackedStringArray("PathToFollow") instance=ExtResource("4_ratag")]
+position = Vector2(507, 294)
+PathToFollow = NodePath("")
 
-[node name="Enemy" parent="GameContainer" instance=ExtResource("2_56tu2")]
-scale = Vector2(1.00675, 0.999354)
+[node name="EnemyBlob" parent="SceneSwitcher/GameContainer" instance=ExtResource("5_58cfn")]
+z_as_relative = true
+y_sort_enabled = false
+position = Vector2(363, 198)

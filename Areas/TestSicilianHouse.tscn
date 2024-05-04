@@ -25,7 +25,7 @@ position = Vector2(301, 152)
 
 [node name="DoorSquare2D" parent="GameContainer" instance=ExtResource("3_8b2tr")]
 position = Vector2(301, 261)
-SceneUID = "uid://jayyio27ybj4"
+SceneUID = "uid://be3yurhibr6t0"
 DoorName = "HouseDoor"
 
 [node name="EnemyTimer" type="Timer" parent="."]

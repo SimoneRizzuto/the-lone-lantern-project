@@ -1,18 +1,17 @@
-using System;
 using Godot;
+using System;
+using System.Numerics;
+using System.Text.Encodings.Web;
 using TheLoneLanternProject.Constants;
+using TheLoneLanternProject.Scenes.Player;
 using TheLoneLanternProject.Scenes.Enemies.BaseNode;
 using Vector2 = Godot.Vector2;
 
-namespace TheLoneLanternProject.Scenes.Player;
-
-public partial class Player : CharacterBody2D
+public partial class OldPlayer : CharacterBody2D
 {
     [Signal] public delegate void HealthChangedEventHandler(double newHealth);
 
     [Export] public int Speed = 5000;
-
-    private int attackMoveSpeed = 8000;
 
     private double health = 100;
     private double maxHealth = 100;
@@ -27,15 +26,18 @@ public partial class Player : CharacterBody2D
 
     private AnimatedSprite2D mainSprite = new();
     private CollisionShape2D playerShape = new();
-    private CollisionPolygon2D attackShape = new();
+    private CollisionShape2D attackShape = new();
     private Timer attackTimer = new();
+
+    private AnimatedSprite2D attackAnimation = new();
 
     public override void _Ready()
     {
         mainSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+        attackAnimation = GetNode<AnimatedSprite2D>("AttackAnimation");
 
         playerShape = GetNode<CollisionShape2D>("PlayerShape");
-        attackShape = GetNode<CollisionPolygon2D>("HitBox/CollisionPolygon2D");
+        attackShape = GetNode<CollisionShape2D>("AttackShape/CollisionShape2D");
 
         attackTimer = GetNode<Timer>("Timers/AttackTimer");
         healthRegenBuffer = GetNode<Timer>("Timers/HealthRegenBuffer");
@@ -58,10 +60,33 @@ public partial class Player : CharacterBody2D
 
             State = vectorForMovement != Vector2.Zero ? PlayerState.Walking : PlayerState.Idle;
         }
-
-        Speed = State == PlayerState.Attacking ? attackMoveSpeed : 5000;
-        
         Velocity = vectorForMovement * Speed * (float)delta;
+
+        
+        /*
+        var tween = CreateTween().SetEase(Tween.EaseType.Out);
+
+        if (State == PlayerState.Attack)
+        {
+            tween.TweenProperty(this, "velocity", vectorForMovement * Speed * (float)delta, 0.2f);
+        }
+        else
+        {
+            tween.Stop();
+
+            vectorForMovement = Input.GetVector(InputMapAction.Left, InputMapAction.Right, InputMapAction.Up, InputMapAction.Down);
+            Velocity = vectorForMovement * Speed * (float)delta;
+
+            if (vectorForMovement != Vector2.Zero)
+            {
+                State = PlayerState.Walk;
+            }
+            else
+            {
+                State = PlayerState.Idle;
+            }
+        }
+        */
         
         MoveAndSlide();
     }
@@ -76,30 +101,14 @@ public partial class Player : CharacterBody2D
         {
             Direction = Direction.Right;
         }
-        else if (Input.IsActionPressed(InputMapAction.Up))
-        {
-            Direction = Direction.Up;
-        }
-        else if (Input.IsActionPressed(InputMapAction.Down))
-        {
-            Direction = Direction.Down;
-        }
     }
 
     private void SetPlayerState()
     {
         if (Input.IsActionJustPressed(InputMapAction.Attack) && State != PlayerState.Disabled)
         {
-            if (health > 0 && !disableAttackingInput)
+            if (State != PlayerState.Attacking && health > 0)
             {
-                if (internalAttackCounter == 1)
-                {
-                    internalAttackCounter++;
-                }
-                else
-                {
-                    internalAttackCounter--;
-                }
                 State = PlayerState.Attacking;
                 attackTimer.Start();
 
@@ -111,88 +120,67 @@ public partial class Player : CharacterBody2D
         }
     }
 
-
-    private bool disableAttackingInput;
     private void SetFlipH()
     {
         if (State == PlayerState.Attacking) return;
-
-        switch (Direction)
+        
+        if (Direction == Direction.Left)
         {
-            case Direction.Left:
+            var wasFacingRight = !mainSprite.FlipH;
+
+            mainSprite.FlipH = true;
+            attackAnimation.FlipH = true;
+
+            if (wasFacingRight)
             {
-                var wasFacingRight = !mainSprite.FlipH;
-
-                mainSprite.FlipH = true;
-
-                if (wasFacingRight)
-                {
-                    attackShape.Scale = new Vector2(-1, 1);
-                    //attackShape.Position = attackShape.Position.Reflect(Vector2.Up);
-                }
-
-                break;
+                attackShape.Position = attackShape.Position.Reflect(Vector2.Up);
+                attackAnimation.Offset = attackAnimation.Offset.Reflect(Vector2.Up);
             }
-            case Direction.Right:
+        }
+        else if (Direction == Direction.Right)
+        {
+            var wasFacingLeft = mainSprite.FlipH;
+
+            mainSprite.FlipH = false;
+            attackAnimation.FlipH = false;
+
+            if (wasFacingLeft)
             {
-                var wasFacingLeft = mainSprite.FlipH;
-
-                mainSprite.FlipH = false;
-
-                if (wasFacingLeft)
-                {
-                    attackShape.Scale = new Vector2(1, 1);
-                    //attackShape.Position = attackShape.Position.Reflect(Vector2.Up);
-                }
-
-                break;
+                attackShape.Position = attackShape.Position.Reflect(Vector2.Up);
+                attackAnimation.Offset = attackAnimation.Offset.Reflect(Vector2.Up);
             }
         }
     }
 
-    private int internalAttackCounter = 2;
-    
     private void SetAnimation()
     {
-        var animationDirection = "";
-        switch (Direction)
-        {
-            case Direction.Left:  animationDirection = "side"; break;
-            case Direction.Right: animationDirection = "side"; break;
-            case Direction.Down:  animationDirection = "down"; break;
-            case Direction.Up:    animationDirection = "up";   break;
-        }
-        
         if (State == PlayerState.Idle)
         {
-            mainSprite.Animation = $"idle {animationDirection}";
+            mainSprite.Animation = "idle";
         }
         else if (State == PlayerState.Walking)
         {
-            mainSprite.Animation = $"walk {animationDirection}";
+            mainSprite.Animation = "walk";
             mainSprite.Play();
         }
         else if (State == PlayerState.Attacking)
         {
-            mainSprite.Animation = $"attack {animationDirection} {internalAttackCounter}";
+            mainSprite.Animation = "attack";
             mainSprite.Play();
-
-            disableAttackingInput = true;
             
-            if (mainSprite.Frame == 0)
+            if (mainSprite.Frame == 1)
             {
                 attackShape.Disabled = false;
-                attackMoveSpeed = 4000;
+                attackAnimation.Visible = true;
+                attackAnimation.Play();
             }
-            else if (mainSprite.Frame == 1)
+
+            if (mainSprite.Frame == 3)
             {
-                attackMoveSpeed = 1250;
-            }
-            else
-            {
-                attackMoveSpeed = 0;
                 attackShape.Disabled = true;
-                disableAttackingInput = false;
+                attackAnimation.Visible = false;
+                attackAnimation.Stop();
+                State = PlayerState.Walking;
             }
         }
     }
@@ -215,23 +203,13 @@ public partial class Player : CharacterBody2D
     // Signal Events
     public void OnAttackTimerTimeout()
     {
-        //State = PlayerState.Idle;
-    }
-
-    private void OnAnimationFinished()
-    {
-        if (mainSprite.Animation.ToString().Contains("attack"))
-        {
-            State = PlayerState.Idle;
-            internalAttackCounter = 2;
-        }
+        State = PlayerState.Idle;
     }
 
     public void OnHealthRegenBufferTimeout()
     {
         healthState = StaminaHealthState.Regen;
     }
-
     public void OnAttackShapeAreaEntered(Node2D area)
     {
         GD.Print("Area Entered: Attack");

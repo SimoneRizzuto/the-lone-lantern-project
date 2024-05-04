@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://cfe0an0x3l5ce"]
+
+[ext_resource type="Script" path="res://Scenes/Enemies/BaseNode/EnemyBase.cs" id="1_p3d34"]
+[ext_resource type="Texture2D" uid="uid://qg1wluq8wfit" path="res://Scenes/Player/idle.png" id="2_fxm5f"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xtmrb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_fxm5f")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ukirx"]
+radius = 7.2111
+
+[node name="Node2D" type="Area2D" node_paths=PackedStringArray("HitBox", "AnimatedSprite2D") groups=["enemy"]]
+script = ExtResource("1_p3d34")
+HitBox = NodePath("")
+AnimatedSprite2D = NodePath("")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -18)
+sprite_frames = SubResource("SpriteFrames_xtmrb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -6)
+shape = SubResource("CircleShape2D_ukirx")
+
+[connection signal="area_entered" from="." to="." method="OnAreaEntered"]

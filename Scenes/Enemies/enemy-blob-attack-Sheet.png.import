@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dyft4tca38n2q"
-path="res://.godot/imported/death.png-540129f74934523a6803feb6580abf05.ctex"
+uid="uid://e0eq1h13m5ha"
+path="res://.godot/imported/enemy-blob-attack-Sheet.png-f1cb84899d30770913e1d0ecebd92729.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/Enemies/death.png"
-dest_files=["res://.godot/imported/death.png-540129f74934523a6803feb6580abf05.ctex"]
+source_file="res://Scenes/Enemies/enemy-blob-attack-Sheet.png"
+dest_files=["res://.godot/imported/enemy-blob-attack-Sheet.png-f1cb84899d30770913e1d0ecebd92729.ctex"]
 
 [params]
 
