@@ -1,7 +1,7 @@
 using Godot;
 using TheLoneLanternProject.Constants;
-using TheLoneLanternProject.Scenes.SceneSwitcher;
 
+namespace TheLoneLanternProject.Scenes.SceneSwitcher;
 public partial class Door2D : Area2D
 {
     [Export] public string SceneUID;
