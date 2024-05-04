@@ -1,6 +1,6 @@
 using Godot;
-using System;
 
+namespace TheLoneLanternProject.Scenes.PlayerController;
 public partial class StaminaHealthBar : CanvasLayer
 {
     private TextureProgressBar progressBar;

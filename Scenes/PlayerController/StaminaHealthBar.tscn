@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://xnsxf4vyq0vt"]
 
-[ext_resource type="Script" path="res://Scenes/UI/StaminaHealthBar.cs" id="1_bylq6"]
+[ext_resource type="Script" path="res://Scenes/PlayerController/StaminaHealthBar.cs" id="1_bylq6"]
 [ext_resource type="Texture2D" uid="uid://c7hx7pewjsco1" path="res://Assets/white-sprite.png" id="1_pweax"]
 
 [node name="StaminaHealthBar" type="CanvasLayer"]
