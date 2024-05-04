@@ -15,7 +15,7 @@ zoom = Vector2(2, 2)
 z_as_relative = false
 y_sort_enabled = true
 
-[node name="PlayerController" parent="GameContainer" groups=["player"] instance=ExtResource("3_7e3n5")]
+[node name="PlayerController" parent="GameContainer" instance=ExtResource("3_7e3n5")]
 z_as_relative = false
 y_sort_enabled = true
 position = Vector2(279, 221)
@@ -25,7 +25,7 @@ position = Vector2(301, 152)
 
 [node name="DoorSquare2D" parent="GameContainer" instance=ExtResource("3_8b2tr")]
 position = Vector2(301, 261)
-SceneUID = "uid://be3yurhibr6t0"
+SceneUID = "uid://bgpdxfsl820vp"
 DoorName = "HouseDoor"
 
 [node name="EnemyTimer" type="Timer" parent="."]
