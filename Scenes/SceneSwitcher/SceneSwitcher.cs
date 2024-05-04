@@ -1,10 +1,9 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using Godot;
-using Godot.Collections;
-using Microsoft.VisualBasic;
 using TheLoneLanternProject.Constants;
+
+namespace TheLoneLanternProject.Scenes.SceneSwitcher;
 
 public partial class SceneSwitcher : Node
 {
@@ -16,17 +15,17 @@ public partial class SceneSwitcher : Node
         customSignals.SceneSwitch += HandleSceneSwitch;
     }
 
-    private void HandleSceneSwitch(string newSceneUid, string doorName)
+    private void HandleSceneSwitch(DoorSpawnAttributes attributes)
     {
         var sceneToRemove = GetChild(0);
         RemoveChild(sceneToRemove);
         
-        var uid = ResourceUid.TextToId(newSceneUid);
+        var uid = ResourceUid.TextToId(attributes.NewSceneUid);
         var path = ResourceUid.GetIdPath(uid);
         var nextScenePackedScene = (PackedScene)ResourceLoader.Load(path);
         if (nextScenePackedScene == null)
         {
-            GD.PrintErr($"Scene cannot be found. UID: {newSceneUid} - DoorName: {doorName}");
+            GD.PrintErr($"Scene cannot be found. UID: {attributes.NewSceneUid} - DoorName: {attributes.DoorName}");
             return;
         }
         
@@ -37,10 +36,10 @@ public partial class SceneSwitcher : Node
         
         // Find door by group name "door" and the "doorName".
         var doorNodes = tree.GetNodesInGroup(NodeGroup.Door);
-        var door = doorNodes.Cast<Door2D>().FirstOrDefault(x => x.DoorName == doorName);
+        var door = doorNodes.Cast<Door2D>().FirstOrDefault(x => x.DoorName == attributes.DoorName);
         if (door == null)
         {
-            GD.PrintErr($"Door cannot be found. UID: {newSceneUid} - DoorName: {doorName}");
+            GD.PrintErr($"Door cannot be found. UID: {attributes.NewSceneUid} - DoorName: {attributes.DoorName}");
             return;
         }
 
@@ -48,7 +47,7 @@ public partial class SceneSwitcher : Node
         var playerNode = tree.GetNodesInGroup(NodeGroup.Player).FirstOrDefault();
         if (playerNode == null)
         {
-            GD.PrintErr($"Player cannot be found. UID: {newSceneUid} - DoorName: {doorName}");
+            GD.PrintErr($"Player cannot be found. UID: {attributes.NewSceneUid} - DoorName: {attributes.DoorName}");
             return;
         }
 
