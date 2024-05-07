@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scenes/Player/Player.cs" id="1_j363g"]
 [ext_resource type="Texture2D" uid="uid://81xf13qpggkw" path="res://Scenes/Player/luce attack side 1-Sheet.png" id="2_6ah8d"]
 [ext_resource type="Texture2D" uid="uid://dgfkhln6usvy3" path="res://Scenes/Player/luce attack side 2-Sheet.png" id="2_poesy"]
-[ext_resource type="Texture2D" uid="uid://cntnfj71yvnmi" path="res://Scenes/Player/luce attack bottom-Sheet.png" id="2_r817i"]
+[ext_resource type="Texture2D" uid="uid://dvrojqb1mcefh" path="res://Scenes/Player/luce attack bottom-Sheet.png" id="2_r817i"]
 [ext_resource type="Texture2D" uid="uid://k1mh05ukxll4" path="res://Scenes/Player/luce-stand-Sheet.png" id="3_y1wbj"]
 [ext_resource type="Texture2D" uid="uid://cfdqvyf0rvh8u" path="res://Scenes/Player/luce_walking_down-Sheet.png" id="4_nqpie"]
 [ext_resource type="Texture2D" uid="uid://vvefpri732dh" path="res://Scenes/Player/luce_walking_right-Sheet.png" id="4_rxvcw"]
@@ -331,7 +331,7 @@ one_shot = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_5q57h")
-animation = &"idle down"
+animation = &"attack down 1"
 offset = Vector2(0, -18)
 
 [node name="HitBox" type="Area2D" parent="."]
