@@ -19,6 +19,8 @@ public partial class Player : CharacterBody2D
     private double regenSpeed = 0.35;
     private StaminaHealthState healthState;
     private Timer healthRegenBuffer;
+    
+    private int attackCount = 0;
 
     public Direction Direction = Direction.Down;
     public PlayerState State = PlayerState.Idle;
@@ -92,16 +94,17 @@ public partial class Player : CharacterBody2D
         {
             if (health > 0 && !disableAttackingInput)
             {
-                if (internalAttackCounter == 1)
+                if (attackAnimationCounter == 1)
                 {
-                    internalAttackCounter++;
+                    attackAnimationCounter++;
                 }
                 else
                 {
-                    internalAttackCounter--;
+                    attackAnimationCounter--;
                 }
                 State = PlayerState.Attacking;
                 attackTimer.Start();
+                attackCount++;
 
                 health -= 20;
                 healthRegenBuffer.Start();
@@ -128,7 +131,6 @@ public partial class Player : CharacterBody2D
                 if (wasFacingRight)
                 {
                     attackShape.Scale = new Vector2(-1, 1);
-                    //attackShape.Position = attackShape.Position.Reflect(Vector2.Up);
                 }
 
                 break;
@@ -142,16 +144,25 @@ public partial class Player : CharacterBody2D
                 if (wasFacingLeft)
                 {
                     attackShape.Scale = new Vector2(1, 1);
-                    //attackShape.Position = attackShape.Position.Reflect(Vector2.Up);
                 }
 
+                break;
+            }
+            case Direction.Down:
+            {
+                mainSprite.FlipH = false;
+                
+                if (attackCount % 2 == 0) // is even
+                {
+                    mainSprite.FlipH = true;
+                }
+                
                 break;
             }
         }
     }
 
-    private int internalAttackCounter = 2;
-    
+    private int attackAnimationCounter = 2;
     private void SetAnimation()
     {
         var animationDirection = "";
@@ -174,7 +185,15 @@ public partial class Player : CharacterBody2D
         }
         else if (State == PlayerState.Attacking)
         {
-            mainSprite.Animation = $"attack {animationDirection} {internalAttackCounter}";
+            if (Direction is Direction.Left or Direction.Right)
+            {
+                mainSprite.Animation = $"attack {animationDirection} {attackAnimationCounter}";
+            }
+            else
+            {
+                mainSprite.Animation = $"attack {animationDirection}";
+            }
+            
             mainSprite.Play();
 
             disableAttackingInput = true;
@@ -223,7 +242,7 @@ public partial class Player : CharacterBody2D
         if (mainSprite.Animation.ToString().Contains("attack"))
         {
             State = PlayerState.Idle;
-            internalAttackCounter = 2;
+            attackAnimationCounter = 2;
         }
     }
 

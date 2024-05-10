@@ -160,13 +160,8 @@ animations = [{
 "texture": SubResource("AtlasTexture_1upuw")
 }],
 "loop": false,
-"name": &"attack down 1",
+"name": &"attack down",
 "speed": 10.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"attack down 2",
-"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -338,7 +333,7 @@ one_shot = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_5q57h")
-animation = &"attack side 1"
+animation = &"attack down"
 offset = Vector2(0, -18)
 
 [node name="HitBox" type="Area2D" parent="."]
