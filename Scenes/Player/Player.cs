@@ -73,12 +73,10 @@ public partial class Player : CharacterBody2D
     private void SetDirection()
     {
         var setDirection = HeldDirection();
+
+        nextBuffer.NextDirection = setDirection ?? Direction;
         
-        if (State == PlayerState.Attacking && nextBuffer.IsBuffering)
-        {
-            nextBuffer.NextDirection = setDirection ?? Direction;
-        }
-        else
+        if (State != PlayerState.Attacking)
         {
             Direction = setDirection ?? Direction;
         }
