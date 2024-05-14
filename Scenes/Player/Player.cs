@@ -12,13 +12,17 @@ public partial class Player : CharacterBody2D
 
     [Export] public int Speed = 5000;
 
-    private int attackMoveSpeed = 8000;
+    private int attackMoveSpeed = 4000;
 
     private double health = 100;
     private double maxHealth = 100;
     private double regenSpeed = 0.35;
     private StaminaHealthState healthState;
     private Timer healthRegenBuffer;
+    
+    private int attackCount;
+    private PlayerNextBuffer nextBuffer = new();
+    //private bool disableAttackingInput;
 
     public Direction Direction = Direction.Down;
     public PlayerState State = PlayerState.Idle;
@@ -28,7 +32,6 @@ public partial class Player : CharacterBody2D
     private AnimatedSprite2D mainSprite = new();
     private CollisionShape2D playerShape = new();
     private CollisionPolygon2D attackShape = new();
-    private Timer attackTimer = new();
 
     public override void _Ready()
     {
@@ -37,14 +40,15 @@ public partial class Player : CharacterBody2D
         playerShape = GetNode<CollisionShape2D>("PlayerShape");
         attackShape = GetNode<CollisionPolygon2D>("HitBox/CollisionPolygon2D");
 
-        attackTimer = GetNode<Timer>("Timers/AttackTimer");
         healthRegenBuffer = GetNode<Timer>("Timers/HealthRegenBuffer");
     }
 
     public override void _Process(double delta)
     {
+        if (State == PlayerState.Disabled) return;
+
         SetDirection();
-        SetPlayerState();
+        SetAttack();
         SetFlipH();
         SetAnimation();
 
@@ -68,51 +72,50 @@ public partial class Player : CharacterBody2D
 
     private void SetDirection()
     {
-        if (Input.IsActionPressed(InputMapAction.Left))
+        var setDirection = HeldDirection();
+
+        nextBuffer.NextDirection = setDirection ?? Direction;
+        
+        if (State != PlayerState.Attacking)
         {
-            Direction = Direction.Left;
-        }
-        else if (Input.IsActionPressed(InputMapAction.Right))
-        {
-            Direction = Direction.Right;
-        }
-        else if (Input.IsActionPressed(InputMapAction.Up))
-        {
-            Direction = Direction.Up;
-        }
-        else if (Input.IsActionPressed(InputMapAction.Down))
-        {
-            Direction = Direction.Down;
+            Direction = setDirection ?? Direction;
         }
     }
 
-    private void SetPlayerState()
+    private void SetAttack()
     {
-        if (Input.IsActionJustPressed(InputMapAction.Attack) && State != PlayerState.Disabled)
+        if (!Input.IsActionJustPressed(InputMapAction.Attack)) return;
+        
+        if (health > 0)
         {
-            if (health > 0 && !disableAttackingInput)
+            if (!nextBuffer.IsBuffering)
             {
-                if (internalAttackCounter == 1)
+                if (attackAnimationCounter == 1)
                 {
-                    internalAttackCounter++;
+                    attackAnimationCounter++;
                 }
                 else
                 {
-                    internalAttackCounter--;
+                    attackAnimationCounter--;
                 }
-                State = PlayerState.Attacking;
-                attackTimer.Start();
-
-                health -= 20;
-                healthRegenBuffer.Start();
-                healthState = StaminaHealthState.Pause;
-                EmitSignal(SignalName.HealthChanged, health);
             }
+            
+            if (State == PlayerState.Attacking)
+            {
+                nextBuffer.IsBuffering = true;
+            }
+            else
+            {
+                attackCount++;
+                health -= 20; // DO NOT REMOVE, only uncomment when you want stamina to work
+                
+                PauseStaminaRegen();
+            }
+            
+            State = PlayerState.Attacking;
         }
     }
-
-
-    private bool disableAttackingInput;
+    
     private void SetFlipH()
     {
         if (State == PlayerState.Attacking) return;
@@ -128,7 +131,6 @@ public partial class Player : CharacterBody2D
                 if (wasFacingRight)
                 {
                     attackShape.Scale = new Vector2(-1, 1);
-                    //attackShape.Position = attackShape.Position.Reflect(Vector2.Up);
                 }
 
                 break;
@@ -142,19 +144,29 @@ public partial class Player : CharacterBody2D
                 if (wasFacingLeft)
                 {
                     attackShape.Scale = new Vector2(1, 1);
-                    //attackShape.Position = attackShape.Position.Reflect(Vector2.Up);
                 }
 
+                break;
+            }
+            case Direction.Down:
+            {
+                mainSprite.FlipH = false;
+                
+                if (attackAnimationCounter % 2 == 0) // is even
+                {
+                    mainSprite.FlipH = true;
+                }
+                
                 break;
             }
         }
     }
 
-    private int internalAttackCounter = 2;
-    
+    private int attackAnimationCounter = 2;
     private void SetAnimation()
     {
         var animationDirection = "";
+        
         switch (Direction)
         {
             case Direction.Left:  animationDirection = "side"; break;
@@ -174,10 +186,28 @@ public partial class Player : CharacterBody2D
         }
         else if (State == PlayerState.Attacking)
         {
-            mainSprite.Animation = $"attack {animationDirection} {internalAttackCounter}";
+            if (nextBuffer.IsBuffering)
+            {
+                if (mainSprite.Frame == 3)
+                {
+                    Direction = nextBuffer.NextDirection;
+                    mainSprite.Frame = 0;
+                    nextBuffer.IsBuffering = false;
+                }
+            }
+            else
+            {
+                if (Direction is Direction.Left or Direction.Right)
+                {
+                    mainSprite.Animation = $"attack {animationDirection} {attackAnimationCounter}";
+                }
+                else
+                {
+                    mainSprite.Animation = $"attack {animationDirection}";
+                }
+            }
+            
             mainSprite.Play();
-
-            disableAttackingInput = true;
             
             if (mainSprite.Frame == 0)
             {
@@ -192,7 +222,6 @@ public partial class Player : CharacterBody2D
             {
                 attackMoveSpeed = 0;
                 attackShape.Disabled = true;
-                disableAttackingInput = false;
             }
         }
     }
@@ -212,6 +241,22 @@ public partial class Player : CharacterBody2D
         }
     }
 
+    private Direction? HeldDirection()
+    {
+        if (Input.IsActionPressed(InputMapAction.Up)) return Direction.Up;
+        if (Input.IsActionPressed(InputMapAction.Down)) return Direction.Down;
+        if (Input.IsActionPressed(InputMapAction.Right)) return Direction.Right;
+        if (Input.IsActionPressed(InputMapAction.Left)) return Direction.Left;
+        return null;
+    }
+
+    private void PauseStaminaRegen()
+    {
+        healthRegenBuffer.Start();
+        healthState = StaminaHealthState.Pause;
+        EmitSignal(SignalName.HealthChanged, health);
+    }
+
     // Signal Events
     public void OnAttackTimerTimeout()
     {
@@ -223,7 +268,7 @@ public partial class Player : CharacterBody2D
         if (mainSprite.Animation.ToString().Contains("attack"))
         {
             State = PlayerState.Idle;
-            internalAttackCounter = 2;
+            attackAnimationCounter = 2;
         }
     }
 
@@ -234,10 +279,17 @@ public partial class Player : CharacterBody2D
 
     public void OnAttackShapeAreaEntered(Node2D area)
     {
-        if (area.IsInGroup(NodeGroup.Enemy))
+        if (area.IsInGroup(NodeGroup.Enemy)) 
         {
             var enemy = (EnemyBase)area;
             enemy.TakeDamage(1);
         }
     }
+}
+
+public class PlayerNextBuffer
+{
+    public bool IsBuffering { get; set; }
+    public Direction NextDirection { get; set; }
+    
 }
