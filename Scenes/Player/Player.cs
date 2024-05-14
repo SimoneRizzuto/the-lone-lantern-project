@@ -107,7 +107,7 @@ public partial class Player : CharacterBody2D
             else
             {
                 attackCount++;
-                //health -= 20; // DO NOT REMOVE, only uncomment when you want stamina to work
+                health -= 20; // DO NOT REMOVE, only uncomment when you want stamina to work
                 
                 PauseStaminaRegen();
             }
