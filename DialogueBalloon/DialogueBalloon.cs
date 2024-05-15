@@ -9,18 +9,19 @@ namespace DialogueManagerRuntime
     [Export] public string SkipAction = "ui_cancel";
 
 
-    Control balloon;
-    RichTextLabel characterLabel;
-    RichTextLabel dialogueLabel;
-    VBoxContainer responsesMenu;
+    private Control balloon;
+    private RichTextLabel characterLabel;
+    private TextureRect portrait;
+    private RichTextLabel dialogueLabel;
+    private VBoxContainer responsesMenu;
 
-    Resource resource;
-    Array<Variant> temporaryGameStates = new Array<Variant>();
-    bool isWaitingForInput = false;
-    bool willHideBalloon = false;
+    private Resource resource;
+    private Array<Variant> temporaryGameStates = new();
+    private bool isWaitingForInput;
+    private bool willHideBalloon;
 
-    DialogueLine dialogueLine;
-    DialogueLine DialogueLine
+    private DialogueLine dialogueLine;
+    private DialogueLine DialogueLine
     {
       get => dialogueLine;
       set
@@ -45,6 +46,7 @@ namespace DialogueManagerRuntime
     {
       balloon = GetNode<Control>("%Balloon");
       characterLabel = GetNode<RichTextLabel>("%CharacterLabel");
+      portrait = GetNode<TextureRect>("%Portrait");
       dialogueLabel = GetNode<RichTextLabel>("%DialogueLabel");
       responsesMenu = GetNode<VBoxContainer>("%ResponsesMenu");
 
