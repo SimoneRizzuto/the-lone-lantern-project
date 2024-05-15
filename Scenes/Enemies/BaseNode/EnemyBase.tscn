@@ -28,12 +28,11 @@ animations = [{
 resource_local_to_scene = true
 size = Vector2(22.5, 22.5)
 
-[node name="EnemyBase" type="Area2D" node_paths=PackedStringArray("PathToFollow", "HitBox", "AnimatedSprite2D") groups=["enemy"]]
+[node name="EnemyBase" type="Area2D" node_paths=PackedStringArray("HitBox", "AnimatedSprite2D") groups=["enemy"]]
 z_as_relative = false
 y_sort_enabled = true
 scale = Vector2(0.25, 0.25)
 script = ExtResource("1_jqb75")
-PathToFollow = NodePath("")
 HitBox = NodePath("HitBox/CollisionShape2D")
 AnimatedSprite2D = NodePath("AnimatedSprite2D")
 
@@ -52,3 +51,4 @@ shape = SubResource("RectangleShape2D_c1xke")
 disabled = true
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="OnAnimatedSprite2dAnimationFinished"]
+[connection signal="body_entered" from="HitBox" to="." method="OnBodyEnteredHitBox"]

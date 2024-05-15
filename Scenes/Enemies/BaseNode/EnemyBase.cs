@@ -168,6 +168,14 @@ public partial class EnemyBase : Area2D, IEnemy
             state = EnemyState.Default;
         }
     }
+
+    public virtual void OnBodyEnteredHitBox(Node2D body)
+    {
+        if (body is CharacterBody2D player && player.IsInGroup(NodeGroup.Player))
+        {
+            
+        }
+    }
 }
 
 public enum EnemyState
