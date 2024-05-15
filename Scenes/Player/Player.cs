@@ -15,6 +15,21 @@ public partial class Player : CharacterBody2D
     private int attackMoveSpeed = 4000;
 
     private double health = 100;
+    private double Health
+    {
+        get => health;
+        set
+        {
+            health = value;
+            EmitSignal(SignalName.HealthChanged, health);
+
+            if (health <= 0)
+            {
+                Die();
+            }
+        }
+    }
+
     private double maxHealth = 100;
     private double regenSpeed = 0.35;
     private StaminaHealthState healthState;
@@ -86,7 +101,7 @@ public partial class Player : CharacterBody2D
     {
         if (!Input.IsActionJustPressed(InputMapAction.Attack)) return;
         
-        if (health > 0)
+        if (Health > 0)
         {
             if (!nextBuffer.IsBuffering)
             {
@@ -107,7 +122,7 @@ public partial class Player : CharacterBody2D
             else
             {
                 attackCount++;
-                health -= 20; // DO NOT REMOVE, only uncomment when you want stamina to work
+                Health -= 20; // DO NOT REMOVE, only uncomment when you want stamina to work
                 
                 PauseStaminaRegen();
             }
@@ -230,10 +245,9 @@ public partial class Player : CharacterBody2D
     {
         if (healthState != StaminaHealthState.Regen) return;
         
-        if (health < maxHealth)
+        if (Health < maxHealth)
         {
-            health += regenSpeed;
-            EmitSignal(SignalName.HealthChanged, health);
+            Health += regenSpeed;
         }
         else
         {
@@ -254,7 +268,17 @@ public partial class Player : CharacterBody2D
     {
         healthRegenBuffer.Start();
         healthState = StaminaHealthState.Pause;
-        EmitSignal(SignalName.HealthChanged, health);
+        EmitSignal(SignalName.HealthChanged, Health);
+    }
+
+    public void TakeDamage(double amount)
+    {
+        Health -= amount;
+    }
+
+    private void Die()
+    {
+        
     }
 
     // Signal Events
