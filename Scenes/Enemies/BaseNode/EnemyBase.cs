@@ -171,9 +171,9 @@ public partial class EnemyBase : Area2D, IEnemy
 
     public virtual void OnBodyEnteredHitBox(Node2D body)
     {
-        if (body is CharacterBody2D player && player.IsInGroup(NodeGroup.Player))
+        if (body is Player.Player player)
         {
-            
+            player.TakeDamage(20);
         }
     }
 }
