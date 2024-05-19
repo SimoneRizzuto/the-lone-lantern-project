@@ -4,7 +4,4 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <RootNamespace>TheLoneLanternProject</RootNamespace>
   </PropertyGroup>
-  <ItemGroup>
-    <Folder Include="Areas\" />
-  </ItemGroup>
 </Project>

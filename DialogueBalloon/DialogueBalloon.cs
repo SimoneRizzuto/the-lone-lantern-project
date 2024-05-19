@@ -136,6 +136,15 @@ namespace DialogueManagerRuntime
       // Set up the character name
       characterLabel.Visible = !string.IsNullOrEmpty(dialogueLine.Character);
       characterLabel.Text = Tr(dialogueLine.Character, "dialogue");
+      var portraitPath = $"res://Assets/{dialogueLine.Character.ToLower()}.png";
+      if (ResourceLoader.Exists(portraitPath))
+      {
+        portrait.Texture = GD.Load<Texture2D>(portraitPath);
+      }
+      else
+      {
+        portrait.Texture = null;
+      }
 
       // Set up the dialogue
       dialogueLabel.Hide();
