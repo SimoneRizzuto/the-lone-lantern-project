@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://jg01u1gfamd"
-path="res://.godot/imported/Reaper Font.ttf-f48c7839a91f60a0d346bf2f4d758ac5.fontdata"
+path="res://.godot/imported/ReaperFont.ttf-e6624e9734dee79df822a920510cf10b.fontdata"
 
 [deps]
 
-source_file="res://Assets/Reaper Font.ttf"
-dest_files=["res://.godot/imported/Reaper Font.ttf-f48c7839a91f60a0d346bf2f4d758ac5.fontdata"]
+source_file="res://Assets/ReaperFont.ttf"
+dest_files=["res://.godot/imported/ReaperFont.ttf-e6624e9734dee79df822a920510cf10b.fontdata"]
 
 [params]
 

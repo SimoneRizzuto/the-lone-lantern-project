@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://bgpdxfsl820vp"]
+[gd_scene load_steps=7 format=3 uid="uid://bgpdxfsl820vp"]
 
 [ext_resource type="PackedScene" uid="uid://h2iu1fkuw61u" path="res://Scenes/PlayerController/PlayerController.tscn" id="1_7nylb"]
 [ext_resource type="PackedScene" uid="uid://bihv5yjq7muuh" path="res://Scenes/Static/SicilianHouse.tscn" id="2_msofi"]
 [ext_resource type="PackedScene" uid="uid://barc3o7fkbn44" path="res://Scenes/SceneSwitcher/DoorSquare2D.tscn" id="3_stxbc"]
 [ext_resource type="PackedScene" uid="uid://ubc5cusrcpq7" path="res://Scenes/Static/Couch.tscn" id="4_shl2e"]
 [ext_resource type="PackedScene" uid="uid://bjteskckd8oqn" path="res://Scenes/Enemies/EnemyBlob.tscn" id="5_4pwfj"]
+[ext_resource type="PackedScene" uid="uid://73jm5qjy52vq" path="res://DialogueBalloon/Balloon.tscn" id="6_3jsa6"]
 
 [node name="DevRoom" type="Node2D"]
 z_as_relative = false
@@ -32,3 +33,5 @@ position = Vector2(150, 329)
 z_as_relative = true
 y_sort_enabled = false
 position = Vector2(363, 198)
+
+[node name="BalloonCanvas" parent="." instance=ExtResource("6_3jsa6")]
