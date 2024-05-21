@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://barc3o7fkbn44" path="res://Scenes/SceneSwitcher/DoorSquare2D.tscn" id="3_stxbc"]
 [ext_resource type="PackedScene" uid="uid://ubc5cusrcpq7" path="res://Scenes/Static/Couch.tscn" id="4_shl2e"]
 [ext_resource type="PackedScene" uid="uid://bjteskckd8oqn" path="res://Scenes/Enemies/EnemyBlob.tscn" id="5_4pwfj"]
-[ext_resource type="PackedScene" uid="uid://73jm5qjy52vq" path="res://DialogueBalloon/Balloon.tscn" id="6_3jsa6"]
+[ext_resource type="PackedScene" uid="uid://73jm5qjy52vq" path="res://Scenes/DialogueManager/Balloon/Balloon.tscn" id="6_3jsa6"]
 
 [node name="DevRoom" type="Node2D"]
 z_as_relative = false

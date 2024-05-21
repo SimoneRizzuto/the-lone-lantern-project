@@ -22,7 +22,7 @@ DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 
 [dialogue_manager]
 
-general/balloon_path="res://DialogueBalloon/Balloon.tscn"
+general/balloon_path="res://Scenes/DialogueManager/Balloon/Balloon.tscn"
 
 [display]
 

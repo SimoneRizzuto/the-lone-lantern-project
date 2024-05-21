@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bytt8t6kl0g6"
-path="res://.godot/imported/nori.png-c086faab15010fc38695286fbbc66922.ctex"
+uid="uid://ccg4l1aq1qffu"
+path="res://.godot/imported/luce.png-63af4d6716df7bb845f48aca884d203f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/nori.png"
-dest_files=["res://.godot/imported/nori.png-c086faab15010fc38695286fbbc66922.ctex"]
+source_file="res://Scenes/DialogueManager/Portraits/luce.png"
+dest_files=["res://.godot/imported/luce.png-63af4d6716df7bb845f48aca884d203f.ctex"]
 
 [params]
 

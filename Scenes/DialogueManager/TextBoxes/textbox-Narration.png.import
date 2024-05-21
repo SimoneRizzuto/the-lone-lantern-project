@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dv1wm5c236yvf"
-path="res://.godot/imported/textbox-Generic.png-f2d59740f479e43d1fbd298a0b8c3392.ctex"
+uid="uid://rbkrkxv7sbuw"
+path="res://.godot/imported/textbox-Narration.png-6b7abdc58d8dc5073638bb5ff4047b4c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/textbox-Generic.png"
-dest_files=["res://.godot/imported/textbox-Generic.png-f2d59740f479e43d1fbd298a0b8c3392.ctex"]
+source_file="res://Scenes/DialogueManager/TextBoxes/textbox-Narration.png"
+dest_files=["res://.godot/imported/textbox-Narration.png-6b7abdc58d8dc5073638bb5ff4047b4c.ctex"]
 
 [params]
 

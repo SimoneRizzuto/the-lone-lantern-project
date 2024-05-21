@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccg4l1aq1qffu"
-path="res://.godot/imported/luce.png-d2a80200b895689dbd85105bfdad91ad.ctex"
+uid="uid://dv1wm5c236yvf"
+path="res://.godot/imported/textbox-Generic.png-4a9e4edcd44c82a0e7fb18b41bd28fcf.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/luce.png"
-dest_files=["res://.godot/imported/luce.png-d2a80200b895689dbd85105bfdad91ad.ctex"]
+source_file="res://Scenes/DialogueManager/TextBoxes/textbox-Generic.png"
+dest_files=["res://.godot/imported/textbox-Generic.png-4a9e4edcd44c82a0e7fb18b41bd28fcf.ctex"]
 
 [params]
 

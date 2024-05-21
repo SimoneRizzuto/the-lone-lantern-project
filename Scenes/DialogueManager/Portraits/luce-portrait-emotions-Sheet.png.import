@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cscfeofja585q"
-path="res://.godot/imported/luce-portrait-emotions-Sheet.png-f7701f7ede6f449704d16d55f6061280.ctex"
+path="res://.godot/imported/luce-portrait-emotions-Sheet.png-5fe6b7386fb4f76bc5fead957889f0ec.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/luce-portrait-emotions-Sheet.png"
-dest_files=["res://.godot/imported/luce-portrait-emotions-Sheet.png-f7701f7ede6f449704d16d55f6061280.ctex"]
+source_file="res://Scenes/DialogueManager/Portraits/luce-portrait-emotions-Sheet.png"
+dest_files=["res://.godot/imported/luce-portrait-emotions-Sheet.png-5fe6b7386fb4f76bc5fead957889f0ec.ctex"]
 
 [params]
 
