@@ -3,7 +3,6 @@
 [ext_resource type="Script" path="res://Scenes/DialogueManager/Balloon/DialogueBalloon.cs" id="1_xngbd"]
 [ext_resource type="Texture2D" uid="uid://caji48d22igaw" path="res://Scenes/DialogueManager/TextBoxes/textbox-Luce.png" id="2_r8hcs"]
 [ext_resource type="StyleBox" uid="uid://dg27pk700f34b" path="res://Scenes/DialogueManager/TextBoxes/textbox-Luce.tres" id="3_lcelf"]
-[ext_resource type="Texture2D" uid="uid://ccg4l1aq1qffu" path="res://Scenes/DialogueManager/Portraits/luce.png" id="4_5l1gg"]
 [ext_resource type="FontFile" uid="uid://jg01u1gfamd" path="res://Scenes/DialogueManager/ReaperFont.ttf" id="5_qf5jg"]
 [ext_resource type="PackedScene" uid="uid://ckvgyvclnwggo" path="res://addons/dialogue_manager/dialogue_label.tscn" id="6_gpw7v"]
 [ext_resource type="Script" path="res://addons/dialogue_manager/dialogue_reponses_menu.gd" id="7_5q6q2"]
@@ -61,6 +60,9 @@ MarginContainer/constants/margin_right = 30
 MarginContainer/constants/margin_top = 15
 Panel/styles/panel = SubResource("StyleBoxTexture_5l8qh")
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pin4q"]
+load_path = "res://.godot/imported/luce.png-63af4d6716df7bb845f48aca884d203f.ctex"
+
 [node name="BalloonCanvas" type="CanvasLayer"]
 layer = 100
 script = ExtResource("1_xngbd")
@@ -106,7 +108,7 @@ scale = Vector2(0.416499, 0.416222)
 unique_name_in_owner = true
 z_index = 100
 layout_mode = 2
-texture = ExtResource("4_5l1gg")
+texture = SubResource("CompressedTexture2D_pin4q")
 expand_mode = 4
 stretch_mode = 5
 

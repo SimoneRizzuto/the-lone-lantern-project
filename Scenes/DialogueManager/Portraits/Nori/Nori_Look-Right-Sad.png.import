@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ccg4l1aq1qffu"
-path="res://.godot/imported/luce.png-63af4d6716df7bb845f48aca884d203f.ctex"
+uid="uid://dmjemy1bph14a"
+path="res://.godot/imported/Nori_Look-Right-Sad.png-c1c054833377ae052de4b3109a5d3b46.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/DialogueManager/Portraits/luce.png"
-dest_files=["res://.godot/imported/luce.png-63af4d6716df7bb845f48aca884d203f.ctex"]
+source_file="res://Scenes/DialogueManager/Portraits/Nori/Nori_Look-Right-Sad.png"
+dest_files=["res://.godot/imported/Nori_Look-Right-Sad.png-c1c054833377ae052de4b3109a5d3b46.ctex"]
 
 [params]
 

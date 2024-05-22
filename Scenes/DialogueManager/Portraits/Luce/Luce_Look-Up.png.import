@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bytt8t6kl0g6"
-path="res://.godot/imported/nori.png-8ecee6e87295109854beb16377cd4333.ctex"
+uid="uid://c8a2eqqfgnan4"
+path="res://.godot/imported/Luce_Look-Up.png-6d695a66e207316d7af5e5c138dd9e2d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/DialogueManager/Portraits/nori.png"
-dest_files=["res://.godot/imported/nori.png-8ecee6e87295109854beb16377cd4333.ctex"]
+source_file="res://Scenes/DialogueManager/Portraits/Luce/Luce_Look-Up.png"
+dest_files=["res://.godot/imported/Luce_Look-Up.png-6d695a66e207316d7af5e5c138dd9e2d.ctex"]
 
 [params]
 
