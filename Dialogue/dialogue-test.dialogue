@@ -10,7 +10,7 @@ Nori: [#crying-hidden] Don’t touch me.
 Luce: [#default] ...
 Luce: [#default] ...
 It begins raining.
-Nori: [#crying-hidden] Great... 
+Nori: [#crying-hidden] Great.
 Nori: [#crying-hidden] *sigh* 
 Luce: [#default] ...
 Luce channels a light, slowly building its’ shape into an umbrella.
@@ -41,55 +41,55 @@ Nori: ...
 Nori: Thanks...
 Nori: I, um...
 Nori: I like your shirt too. Or cloak I mean.
-Luce: !
+Luce: [#default] !
 Nori: Do you... wear that around a lot?
-Luce: *nods*
+Luce: [#satisfaction] *nods*
 Nori: Huh. You’re not from around here then.
-Luce: How can you tell?
+Luce: [#surprised] How can you tell?
 Nori: I mean, it’s not hard to notice you.
-Luce: ...
+Luce: [#look-down] ...
 Nori: ...
 Nori: Where are you from, exactly?
-Luce: ... I am... on a secret mission. 
-Luce: ...
-Luce: I... cannot say.
+Luce: [#look-right] ... I am... on a secret mission. 
+Luce: [#default] ...
+Luce: [#look-up] I... cannot say.
 Nori: What kind of mission?
-Luce: ...
+Luce: [#close-eyes-down] ...
 Nori: Oh... right. It’s a secret.
 School bells are heard in the distance.
-(shocked) Nori: Oh crap! I didn’t realise the time.
+Nori: [#shocked] Oh crap! I didn’t realise the time.
 The little girl gets out of the seat.
 Nori: Thanks for the umbrella. Here you go.
 She offers the umbrella back to Luce.
-Luce: ... Take it with you.
+Luce: [#default] ... Take it with you.
 Nori: ... Oh.
-Um... I’ll give it back if I find you again. You aren’t hard to miss.
-See you around.
+Nori: Um... I’ll give it back if I find you again. You aren’t hard to miss.
+Nori: See you around.
 She leaves the playground, leaving Luce behind.
 He sits there alone.
 A firefly comes out of him and floats around. He places his finger high, and the firefly lands on it.
-Luce: I... hesitated.
-Luce: ... Why?
+Luce: [#look-up] I... hesitated.
+Luce: [#look-up] ... Why?
 Little whirls are heard from the firefly. The light from it flickers as it talks.
-Luce: I know. I should have done it when she was here.
-Luce: And... I will do what I must.
+Luce: [#close-eyes-down] I know. I should have done it when she was here.
+Luce: [#close-eyes-down] And... I will do what I must.
 He looks up to the sky, letting the rain soak him.
-Luce: ...
-Luce: But... 
-Luce: It could wait just a little.
+Luce: [#look-up] ...
+Luce: [#look-up] But... 
+Luce: [#look-up] It could wait just a little.
 He sits on the swing set, and listens to the sounds of the environment.
 A pause to take in the atmosphere.
-Luce: These sounds...
-Luce: I would not mind to sit here. To listen for a while.
+Luce: [#look-up] These sounds...
+Luce: [#satisfaction] I would not mind to sit here. To listen for a while.
 Flashing images of a cricket chirping, a puddle rippling, the wind blowing on grass.
 The winds whistle a little song. Something soothing, sounding like the tip taps of the rain, the soft breaths of the breeze.
 (Option to save)
 Luce gets up.
-Luce: I wonder... if this is what life felt like. 
-Luce: What do you think?
+Luce: [#look-right] I wonder... if this is what life felt like. 
+Luce: [#default] What do you think?
 Little whirls are heard from the firefly.
-Luce: You are getting wet. I am sorry.
-Luce: You are right. We should find her again.
-Luce: ...
+Luce: [#close-eyes-down] You are getting wet. I am sorry.
+Luce: [#default] You are right. We should find her again.
+Luce: [#default] ...
 The firefly flies back into Luce’s hood.
 => END
