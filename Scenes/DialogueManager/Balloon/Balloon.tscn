@@ -61,7 +61,6 @@ MarginContainer/constants/margin_top = 15
 Panel/styles/panel = SubResource("StyleBoxTexture_5l8qh")
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_pin4q"]
-load_path = "res://.godot/imported/luce.png-63af4d6716df7bb845f48aca884d203f.ctex"
 
 [node name="BalloonCanvas" type="CanvasLayer"]
 layer = 100
