@@ -1,3 +1,4 @@
+using System.Linq;
 using Godot;
 using Godot.Collections;
 
@@ -134,11 +135,13 @@ public partial class DialogueBalloon : CanvasLayer
 
     // Set up the character name
     characterLabel.Visible = !string.IsNullOrEmpty(dialogueLine.Character);
-    characterLabel.Text = Tr(dialogueLine.Character, "dialogue");
     
+    var splitCharacterLine = dialogueLine.Character.Split('_');
+    var character = splitCharacterLine.First();
     
+    characterLabel.Text = Tr(character, "dialogue");
     
-    var portraitPath = $"res://Scenes/DialogueManager/Portraits/{dialogueLine.Character.ToLower()}.png";
+    var portraitPath = $"res://Scenes/DialogueManager/Portraits/{character}/{dialogueLine.Character}.png";
     if (ResourceLoader.Exists(portraitPath))
     {
       portrait.Texture = GD.Load<Texture2D>(portraitPath);
