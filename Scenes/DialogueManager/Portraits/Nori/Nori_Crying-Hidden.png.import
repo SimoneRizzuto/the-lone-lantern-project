@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://m6vhphy56uqa"
-path="res://.godot/imported/Nori_Crying-Hidden.png-0c9e9f67b9ca7d822e58847e1c97028f.ctex"
+path="res://.godot/imported/nori_crying-hidden.png-75536251c561c1ae595f90c8de44ecc0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/DialogueManager/Portraits/Nori/Nori_Crying-Hidden.png"
-dest_files=["res://.godot/imported/Nori_Crying-Hidden.png-0c9e9f67b9ca7d822e58847e1c97028f.ctex"]
+source_file="res://Scenes/DialogueManager/Portraits/Nori/nori_crying-hidden.png"
+dest_files=["res://.godot/imported/nori_crying-hidden.png-75536251c561c1ae595f90c8de44ecc0.ctex"]
 
 [params]
 

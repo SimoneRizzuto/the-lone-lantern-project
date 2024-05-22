@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cytrh8oexugmf"
-path="res://.godot/imported/Luce_Shock.png-54f1cf1ac95a333fe663f753eb1f26c0.ctex"
+path="res://.godot/imported/luce_shock.png-0fd6a9f3d2ec505819b191d9549076c1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/DialogueManager/Portraits/Luce/Luce_Shock.png"
-dest_files=["res://.godot/imported/Luce_Shock.png-54f1cf1ac95a333fe663f753eb1f26c0.ctex"]
+source_file="res://Scenes/DialogueManager/Portraits/Luce/luce_shock.png"
+dest_files=["res://.godot/imported/luce_shock.png-0fd6a9f3d2ec505819b191d9549076c1.ctex"]
 
 [params]
 

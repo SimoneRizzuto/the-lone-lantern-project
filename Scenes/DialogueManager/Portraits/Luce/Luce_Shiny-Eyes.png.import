@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b4ti11ptdwjg6"
-path="res://.godot/imported/Luce_Shiny-Eyes.png-852e66413e3411585b5369267bff3d46.ctex"
+path="res://.godot/imported/luce_shiny-eyes.png-023ed31b902ce1f68de3818206f9bf20.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/DialogueManager/Portraits/Luce/Luce_Shiny-Eyes.png"
-dest_files=["res://.godot/imported/Luce_Shiny-Eyes.png-852e66413e3411585b5369267bff3d46.ctex"]
+source_file="res://Scenes/DialogueManager/Portraits/Luce/luce_shiny-eyes.png"
+dest_files=["res://.godot/imported/luce_shiny-eyes.png-023ed31b902ce1f68de3818206f9bf20.ctex"]
 
 [params]
 

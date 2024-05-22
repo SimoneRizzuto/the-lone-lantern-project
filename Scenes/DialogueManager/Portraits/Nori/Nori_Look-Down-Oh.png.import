@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d027m7xgo63jr"
-path="res://.godot/imported/Nori_Look-Down-Oh.png-4e47a8334c504904cf98287996674246.ctex"
+path="res://.godot/imported/nori_look-down-oh.png-ebe5aa35144d9182cf4243e574c5681a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/DialogueManager/Portraits/Nori/Nori_Look-Down-Oh.png"
-dest_files=["res://.godot/imported/Nori_Look-Down-Oh.png-4e47a8334c504904cf98287996674246.ctex"]
+source_file="res://Scenes/DialogueManager/Portraits/Nori/nori_look-down-oh.png"
+dest_files=["res://.godot/imported/nori_look-down-oh.png-ebe5aa35144d9182cf4243e574c5681a.ctex"]
 
 [params]
 

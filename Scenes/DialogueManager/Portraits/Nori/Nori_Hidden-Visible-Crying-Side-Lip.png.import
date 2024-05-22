@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://hhf0tphoctis"
-path="res://.godot/imported/Nori_Hidden-Visible-Crying-Side-Lip.png-01e20cd7843050bc35b7fdfec1ea70c8.ctex"
+path="res://.godot/imported/nori_hidden-visible-crying-side-lip.png-2a72705e208d28af2d8123606f10312d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/DialogueManager/Portraits/Nori/Nori_Hidden-Visible-Crying-Side-Lip.png"
-dest_files=["res://.godot/imported/Nori_Hidden-Visible-Crying-Side-Lip.png-01e20cd7843050bc35b7fdfec1ea70c8.ctex"]
+source_file="res://Scenes/DialogueManager/Portraits/Nori/nori_hidden-visible-crying-side-lip.png"
+dest_files=["res://.godot/imported/nori_hidden-visible-crying-side-lip.png-2a72705e208d28af2d8123606f10312d.ctex"]
 
 [params]
 

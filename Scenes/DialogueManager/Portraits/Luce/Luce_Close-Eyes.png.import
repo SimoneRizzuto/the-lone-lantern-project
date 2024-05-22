@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c6qhhd146n6kr"
-path="res://.godot/imported/Luce_Close-Eyes.png-a7277e3a86a117da83aa9d3a83d63e66.ctex"
+path="res://.godot/imported/luce_close-eyes.png-43d7fe50b87aa34aeeb9c6e5599af248.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/DialogueManager/Portraits/Luce/Luce_Close-Eyes.png"
-dest_files=["res://.godot/imported/Luce_Close-Eyes.png-a7277e3a86a117da83aa9d3a83d63e66.ctex"]
+source_file="res://Scenes/DialogueManager/Portraits/Luce/luce_close-eyes.png"
+dest_files=["res://.godot/imported/luce_close-eyes.png-43d7fe50b87aa34aeeb9c6e5599af248.ctex"]
 
 [params]
 

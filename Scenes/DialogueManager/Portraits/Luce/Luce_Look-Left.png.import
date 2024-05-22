@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://xcn20vw1a4hc"
-path="res://.godot/imported/Luce_Look-Left.png-22d1cb1527c4d7f8057d8959e71f9e9f.ctex"
+path="res://.godot/imported/luce_look-left.png-25c2b41cc4be2454843ae2c964d29353.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/DialogueManager/Portraits/Luce/Luce_Look-Left.png"
-dest_files=["res://.godot/imported/Luce_Look-Left.png-22d1cb1527c4d7f8057d8959e71f9e9f.ctex"]
+source_file="res://Scenes/DialogueManager/Portraits/Luce/luce_look-left.png"
+dest_files=["res://.godot/imported/luce_look-left.png-25c2b41cc4be2454843ae2c964d29353.ctex"]
 
 [params]
 

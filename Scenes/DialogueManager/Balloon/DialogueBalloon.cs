@@ -139,7 +139,7 @@ public partial class DialogueBalloon : CanvasLayer
     characterLabel.Text = Tr(dialogueLine.Character, "dialogue");
 
     var tag = dialogueLine.Tags.FirstOrDefault();
-    var portraitNameFormat = $"{dialogueLine.Character}/{dialogueLine.Character}_{tag}";
+    var portraitNameFormat = $"{dialogueLine.Character.ToLower()}/{dialogueLine.Character.ToLower()}_{tag?.ToLower()}";
 
     var portraitPath = $"res://Scenes/DialogueManager/Portraits/{portraitNameFormat}.png";
     if (ResourceLoader.Exists(portraitPath))

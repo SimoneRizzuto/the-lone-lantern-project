@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b6miqo4koxpry"
-path="res://.godot/imported/Luce_Squint.png-3e61ac232a8d0ac4d70e39dacf994bd9.ctex"
+path="res://.godot/imported/luce_squint.png-9ab45cb217a90801c22fa0af292e7791.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/DialogueManager/Portraits/Luce/Luce_Squint.png"
-dest_files=["res://.godot/imported/Luce_Squint.png-3e61ac232a8d0ac4d70e39dacf994bd9.ctex"]
+source_file="res://Scenes/DialogueManager/Portraits/Luce/luce_squint.png"
+dest_files=["res://.godot/imported/luce_squint.png-9ab45cb217a90801c22fa0af292e7791.ctex"]
 
 [params]
 

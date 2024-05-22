@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://60y2nnsl07rx"
-path="res://.godot/imported/Luce_Sad-1.png-45ddf9c365f30c2cdb6410b74ddd4143.ctex"
+path="res://.godot/imported/luce_sad-1.png-d35a695ad2c3447674fcb44e27598a93.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/DialogueManager/Portraits/Luce/Luce_Sad-1.png"
-dest_files=["res://.godot/imported/Luce_Sad-1.png-45ddf9c365f30c2cdb6410b74ddd4143.ctex"]
+source_file="res://Scenes/DialogueManager/Portraits/Luce/luce_sad-1.png"
+dest_files=["res://.godot/imported/luce_sad-1.png-d35a695ad2c3447674fcb44e27598a93.ctex"]
 
 [params]
 

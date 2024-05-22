@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://byjji8wu37nt1"
-path="res://.godot/imported/Luce_Cheeky.png-0ed7d9dbe250347ac9a58775c03ea146.ctex"
+path="res://.godot/imported/luce_cheeky.png-dd9e81a999f9fb6c58cd4520b12525b9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/DialogueManager/Portraits/Luce/Luce_Cheeky.png"
-dest_files=["res://.godot/imported/Luce_Cheeky.png-0ed7d9dbe250347ac9a58775c03ea146.ctex"]
+source_file="res://Scenes/DialogueManager/Portraits/Luce/luce_cheeky.png"
+dest_files=["res://.godot/imported/luce_cheeky.png-dd9e81a999f9fb6c58cd4520b12525b9.ctex"]
 
 [params]
 
