@@ -1,4 +1,5 @@
 using System;
+using DialogueManagerRuntime;
 using Godot;
 using TheLoneLanternProject.Constants;
 using TheLoneLanternProject.Scenes.Enemies.BaseNode;
@@ -88,6 +89,11 @@ public partial class Player : CharacterBody2D
     private void SetDirection()
     {
         var setDirection = HeldDirection();
+
+        if (Input.IsActionJustPressed("TestTriggerDialogue")) // TEST DIALOGUE TRIGGER FOR NOW, DELETE LATER
+        {
+            DialogueManager.ShowDialogueBalloon(GD.Load("res://Dialogue/dialogue-test.dialogue"), "initial_dialogue");
+        }
 
         nextBuffer.NextDirection = setDirection ?? Direction;
         

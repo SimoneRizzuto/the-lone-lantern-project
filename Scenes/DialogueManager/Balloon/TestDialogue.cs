@@ -6,14 +6,6 @@ public partial class TestDialogue : Node
 {
     public override void _Ready()
     {
-        var balloonPackedScene = (PackedScene)ResourceLoader.Load("res://DialogueBalloon/balloon.tscn");
-        if (balloonPackedScene == null)
-        {
-            GD.PrintErr($"{nameof(balloonPackedScene)} cannot be found.");
-            return;
-        }
-        
-        var sceneToAdd = balloonPackedScene.Instantiate();
-        AddChild(sceneToAdd);
+        DialogueManager.ShowDialogueBalloon(GD.Load("res://Dialogue/dialogue-test.dialogue"), "start");
     }
 }
