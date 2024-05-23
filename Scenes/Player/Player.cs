@@ -13,6 +13,8 @@ public partial class Player : CharacterBody2D
 
     [Export] public int Speed = 5000;
 
+    private CustomSignals customSignals = new();
+    
     private int attackMoveSpeed = 4000;
 
     private double health = 100;
@@ -51,6 +53,7 @@ public partial class Player : CharacterBody2D
 
     public override void _Ready()
     {
+        customSignals = GetNode<CustomSignals>("/root/CustomSignals");
         mainSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 
         playerShape = GetNode<CollisionShape2D>("PlayerShape");
@@ -92,7 +95,7 @@ public partial class Player : CharacterBody2D
 
         if (Input.IsActionJustPressed("TestTriggerDialogue")) // TEST DIALOGUE TRIGGER FOR NOW, DELETE LATER
         {
-            DialogueManager.ShowDialogueBalloon(GD.Load("res://Dialogue/dialogue-test.dialogue"), "initial_dialogue");
+            customSignals.EmitSignal(nameof(CustomSignals.ShowDialogueBalloon), "dialogue-test", "initial_dialogue");
         }
 
         nextBuffer.NextDirection = setDirection ?? Direction;

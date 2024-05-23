@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://q204niocn3b8"]
-
-[ext_resource type="Script" path="res://Scenes/DialogueManager/Balloon/TestDialogue.cs" id="1_0frs7"]
-
-[node name="TestDialogue" type="Node2D"]
-script = ExtResource("1_0frs7")
