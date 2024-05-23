@@ -75,6 +75,8 @@ public partial class Player : CharacterBody2D
     }
     public override void _PhysicsProcess(double delta)
     {
+        if (State == PlayerState.Disabled) return;
+        
         if (State != PlayerState.Attacking)
         {
             vectorForMovement = Input.GetVector(InputMapAction.Left, InputMapAction.Right, InputMapAction.Up, InputMapAction.Down);
