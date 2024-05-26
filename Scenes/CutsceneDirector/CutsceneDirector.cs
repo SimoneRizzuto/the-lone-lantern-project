@@ -26,6 +26,8 @@ public partial class CutsceneDirector : Node
     
     public override void _Ready()
     {
+        if (!LoadActorsIntoCurrentScene()) return;
+        
         customSignals = GetNode<CustomSignals>("/root/CustomSignals");
         customSignals.ShowDialogueBalloon += ShowDialogueBalloon;
         
@@ -34,12 +36,29 @@ public partial class CutsceneDirector : Node
         player = playerNodes.Cast<Player>().FirstOrDefault();
     }
 
+    private bool LoadActorsIntoCurrentScene()
+    {
+        var scriptPath = "res://Constants/Actors.cs";
+        var scriptLoaded = ResourceLoader.Load(scriptPath);
+        var scriptAsVariant = (Variant)scriptLoaded;
+
+        var currentScene = GetTree().CurrentScene;
+        var script = GetTree().CurrentScene.GetScript();
+        if (script.Obj != null)
+        {
+            GD.PrintErr($"Script {script.Obj} already exists in the CurrentScene \"{currentScene.Name}\". Cannot load \"{scriptPath}\" as a script. Actor directions may stop functioning.");
+            return false;
+        }
+        
+        GetTree().CurrentScene.SetScript(scriptAsVariant);
+        
+        return true;
+    }
+
     private void ShowDialogueBalloon(string dialogue, string title)
     {
         player.State = PlayerState.Disabled;
         
         DialogueManager.ShowDialogueBalloon(GD.Load($"res://Dialogue/{dialogue}.dialogue"), title);
-        
-        
     }
 }

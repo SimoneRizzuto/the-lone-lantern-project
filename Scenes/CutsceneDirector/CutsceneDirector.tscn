@@ -1,10 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://h0qtabwk04wy"]
+[gd_scene load_steps=2 format=3 uid="uid://h0qtabwk04wy"]
 
 [ext_resource type="Script" path="res://Scenes/CutsceneDirector/CutsceneDirector.cs" id="1_bmeum"]
-[ext_resource type="PackedScene" uid="uid://73jm5qjy52vq" path="res://Scenes/CutsceneDirector/BalloonCanvas/BalloonCanvas.tscn" id="1_xcbfa"]
 
 [node name="CutsceneDirector" type="Node"]
 script = ExtResource("1_bmeum")
-
-[node name="BalloonCanvas" parent="." instance=ExtResource("1_xcbfa")]
-visible = false
