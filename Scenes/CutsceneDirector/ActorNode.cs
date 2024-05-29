@@ -10,7 +10,7 @@ public partial class ActorNode : Node2D // ReSharper disable IntroduceOptionalPa
 {
     [Export] public CharacterBody2D Actor;
     
-    private ActionToPlay actionToPlay = ActionToPlay.Stop;
+    private ActionToPlay actionToPlay = ActionToPlay.NoAction;
     
     // variables for managing time passing for Action commands
     private Task ActionCompleted => actionGiven.Task;
@@ -41,6 +41,11 @@ public partial class ActorNode : Node2D // ReSharper disable IntroduceOptionalPa
         actionToPlay = action;
         
         await ActionCompleted;
+    }
+    
+    public virtual async Task Wait()
+    {
+        await SetupAction(ActionToPlay.Wait);
     }
     
     public virtual async Task LookUp()
@@ -87,7 +92,10 @@ public partial class ActorNode : Node2D // ReSharper disable IntroduceOptionalPa
     
     public override void _PhysicsProcess(double delta)
     {
-        if (actionToPlay == ActionToPlay.Stop) return;
+        if (actionToPlay == ActionToPlay.NoAction) return;
+        
+        
+        if (actionToPlay == ActionToPlay.Wait) Move_Process(delta, Vector2.Zero);
         
         //if (actionToPlay == ActionToPlay.LookUp) LookUp_Process(delta);
         //if (actionToPlay == ActionToPlay.LookRight) LookRight_Process(delta);
@@ -113,7 +121,7 @@ public partial class ActorNode : Node2D // ReSharper disable IntroduceOptionalPa
         if (stopwatch.ElapsedMilliseconds > 500) // 1 second = 1000
         {
             stopwatch.Stop();
-            actionToPlay = ActionToPlay.Stop;
+            actionToPlay = ActionToPlay.NoAction;
             
             actionGiven.SetResult();
         }
@@ -122,7 +130,9 @@ public partial class ActorNode : Node2D // ReSharper disable IntroduceOptionalPa
 
 enum ActionToPlay
 {
-    Stop,
+    NoAction,
+    
+    Wait,
     
     LookUp,
     LookDown,
