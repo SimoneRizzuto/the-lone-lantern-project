@@ -11,12 +11,14 @@ public partial class ActorNode : Node2D // ReSharper disable IntroduceOptionalPa
     [Export] public CharacterBody2D Actor;
     
     private ActionToPlay actionToPlay = ActionToPlay.NoAction;
+
+    private double millisecondsToPass = 1000;
     
     // variables for managing time passing for Action commands
     private Task ActionCompleted => actionGiven.Task;
     private TaskCompletionSource actionGiven = new();
     private readonly Stopwatch stopwatch = new();
-    
+
     public override void _Ready()
     {
         FindParentActor();
@@ -35,57 +37,53 @@ public partial class ActorNode : Node2D // ReSharper disable IntroduceOptionalPa
         Actor = actor;
     }
 
-    private async Task SetupAction(ActionToPlay action)
+    private async Task SetupAction(ActionToPlay action, double seconds)
     {
         actionGiven = new TaskCompletionSource();
         actionToPlay = action;
         
+        millisecondsToPass = seconds * 1000;
+        
         await ActionCompleted;
     }
     
-    public virtual async Task Wait()
+    public virtual async Task Wait(double seconds = 1)
     {
-        await SetupAction(ActionToPlay.Wait);
+        await SetupAction(ActionToPlay.Wait, seconds);
     }
     
-    public virtual async Task LookUp()
+    public virtual void LookUp()
     {
-        await SetupAction(ActionToPlay.LookUp);
+        actionToPlay = ActionToPlay.LookUp;
+    }
+    public virtual void LookRight()
+    {
+        actionToPlay = ActionToPlay.LookRight;
+    }
+    public virtual void LookLeft()
+    {
+        actionToPlay = ActionToPlay.LookLeft;
+    }
+    public virtual void LookDown()
+    {
+        actionToPlay = ActionToPlay.LookDown;
     }
     
-    public virtual async Task LookRight()
+    public async Task MoveUp(double seconds = 1)
     {
-        await SetupAction(ActionToPlay.LookRight);
+        await SetupAction(ActionToPlay.MoveUp, seconds);
     }
-    
-    public virtual async Task LookLeft()
+    public async Task MoveRight(double seconds = 1)
     {
-        await SetupAction(ActionToPlay.LookLeft);
+        await SetupAction(ActionToPlay.MoveRight, seconds);
     }
-    
-    public virtual async Task LookDown()
+    public async Task MoveLeft(double seconds = 1)
     {
-        await SetupAction(ActionToPlay.LookDown);
+        await SetupAction(ActionToPlay.MoveLeft, seconds);
     }
-    
-    public async Task MoveUp()
+    public async Task MoveDown(double seconds = 1)
     {
-        await SetupAction(ActionToPlay.MoveUp);
-    }
-    
-    public async Task MoveRight()
-    {
-        await SetupAction(ActionToPlay.MoveRight);
-    }
-    
-    public async Task MoveLeft()
-    {
-        await SetupAction(ActionToPlay.MoveLeft);
-    }
-    
-    public async Task MoveDown()
-    {
-        await SetupAction(ActionToPlay.MoveDown);
+        await SetupAction(ActionToPlay.MoveDown, seconds);
     }
     
     // Process
@@ -94,14 +92,7 @@ public partial class ActorNode : Node2D // ReSharper disable IntroduceOptionalPa
     {
         if (actionToPlay == ActionToPlay.NoAction) return;
         
-        
         if (actionToPlay == ActionToPlay.Wait) Move_Process(delta, Vector2.Zero);
-        
-        //if (actionToPlay == ActionToPlay.LookUp) LookUp_Process(delta);
-        //if (actionToPlay == ActionToPlay.LookRight) LookRight_Process(delta);
-        //if (actionToPlay == ActionToPlay.LookLeft) LookLeft_Process(delta);
-        //if (actionToPlay == ActionToPlay.LookDown) LookDown_Process(delta);
-        
         if (actionToPlay == ActionToPlay.MoveUp) Move_Process(delta, Vector2.Up);
         if (actionToPlay == ActionToPlay.MoveRight) Move_Process(delta, Vector2.Right);
         if (actionToPlay == ActionToPlay.MoveLeft) Move_Process(delta, Vector2.Left);
@@ -118,7 +109,7 @@ public partial class ActorNode : Node2D // ReSharper disable IntroduceOptionalPa
         Actor.Velocity = direction * PlayerConstants.Speed * (float)delta;
         Actor.MoveAndSlide();
         
-        if (stopwatch.ElapsedMilliseconds > 500) // 1 second = 1000
+        if (stopwatch.ElapsedMilliseconds > millisecondsToPass)
         {
             stopwatch.Stop();
             actionToPlay = ActionToPlay.NoAction;

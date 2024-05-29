@@ -1,14 +1,12 @@
 ~ initial_dialogue
 
-do luce.MoveUp()
-do luce.MoveRight()
-do luce.MoveDown()
-do luce.MoveLeft()
 Nori: [#crying-hidden] ...
-do luce.MoveUp()
-do luce.MoveRight()
+do luce.Wait(1)
+do luce.MoveUp(0.5)
+do luce.MoveRight(0.25)
+do luce.Wait(2)
 do luce.MoveDown()
-do luce.MoveLeft()
+do luce.MoveLeft(3)
 Luce: [#default] ...
 Pause.
 Luce: [#look-down] ...
