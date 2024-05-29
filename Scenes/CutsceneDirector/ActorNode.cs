@@ -13,6 +13,7 @@ public partial class ActorNode : Node2D // ReSharper disable IntroduceOptionalPa
     private ActionToPlay actionToPlay = ActionToPlay.NoAction;
 
     private double millisecondsToPass = 1000;
+    private double multiplier = 1;
     
     // variables for managing time passing for Action commands
     private Task ActionCompleted => actionGiven.Task;
@@ -37,11 +38,12 @@ public partial class ActorNode : Node2D // ReSharper disable IntroduceOptionalPa
         Actor = actor;
     }
 
-    private async Task SetupActionTask(ActionToPlay action, double seconds)
+    private async Task SetupActionTask(ActionToPlay action, double seconds, double? moveSpeedMultiplier = 1)
     {
         actionGiven = new TaskCompletionSource();
         actionToPlay = action;
-        
+
+        multiplier = moveSpeedMultiplier > 0 ? moveSpeedMultiplier.Value : 1;
         millisecondsToPass = seconds * 1000;
         
         await ActionCompleted;
@@ -68,21 +70,21 @@ public partial class ActorNode : Node2D // ReSharper disable IntroduceOptionalPa
     {
         await SetupActionTask(ActionToPlay.Wait, seconds);
     }
-    public async Task MoveUp(double seconds = 1)
+    public async Task MoveUp(double seconds = 1, double moveSpeedMultiplier = 1)
     {
-        await SetupActionTask(ActionToPlay.MoveUp, seconds);
+        await SetupActionTask(ActionToPlay.MoveUp, seconds, moveSpeedMultiplier);
     }
-    public async Task MoveRight(double seconds = 1)
+    public async Task MoveRight(double seconds = 1, double moveSpeedMultiplier = 1)
     {
-        await SetupActionTask(ActionToPlay.MoveRight, seconds);
+        await SetupActionTask(ActionToPlay.MoveRight, seconds, moveSpeedMultiplier);
     }
-    public async Task MoveLeft(double seconds = 1)
+    public async Task MoveLeft(double seconds = 1, double moveSpeedMultiplier = 1)
     {
-        await SetupActionTask(ActionToPlay.MoveLeft, seconds);
+        await SetupActionTask(ActionToPlay.MoveLeft, seconds, moveSpeedMultiplier);
     }
-    public async Task MoveDown(double seconds = 1)
+    public async Task MoveDown(double seconds = 1, double moveSpeedMultiplier = 1)
     {
-        await SetupActionTask(ActionToPlay.MoveDown, seconds);
+        await SetupActionTask(ActionToPlay.MoveDown, seconds, moveSpeedMultiplier);
     }
     
     // Process
@@ -113,7 +115,7 @@ public partial class ActorNode : Node2D // ReSharper disable IntroduceOptionalPa
             stopwatch.Restart();
         }
         
-        Actor.Velocity = direction * PlayerConstants.Speed * (float)delta;
+        Actor.Velocity = direction * (PlayerConstants.Speed * (float)multiplier) * (float)delta;
         Actor.MoveAndSlide();
     }
 }
