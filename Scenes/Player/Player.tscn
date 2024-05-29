@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://1q0v7as1ovpm"]
+[gd_scene load_steps=45 format=3 uid="uid://1q0v7as1ovpm"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.cs" id="1_j363g"]
 [ext_resource type="Texture2D" uid="uid://da7o7d7i0se1v" path="res://Scenes/Player/luce attack side 1-Sheet.png" id="2_6ah8d"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cfdqvyf0rvh8u" path="res://Scenes/Player/luce_walking_down-Sheet.png" id="4_nqpie"]
 [ext_resource type="Texture2D" uid="uid://vvefpri732dh" path="res://Scenes/Player/luce_walking_right-Sheet.png" id="4_rxvcw"]
 [ext_resource type="Texture2D" uid="uid://crhnqx5rq8fj6" path="res://Scenes/Player/luce_walking_up-Sheet.png" id="6_2axde"]
+[ext_resource type="PackedScene" uid="uid://chq772iw2og30" path="res://Scenes/CutsceneDirector/ActorNode.tscn" id="9_hq8u7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_we0ol"]
 size = Vector2(14.87, 7.44669)
@@ -342,6 +343,8 @@ collision_layer = 4
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HitBox"]
 polygon = PackedVector2Array(-9, -34, 0, -34, 11, -32, 17, -30, 21, -28, 30, -19, 30, -10, 21, -1, 11, 3, 0, 5, -10, 5)
 disabled = true
+
+[node name="ActorNode" parent="." instance=ExtResource("9_hq8u7")]
 
 [connection signal="timeout" from="Timers/AttackTimer" to="." method="OnAttackTimerTimeout"]
 [connection signal="timeout" from="Timers/HealthRegenBuffer" to="." method="OnHealthRegenBufferTimeout"]

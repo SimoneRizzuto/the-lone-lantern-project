@@ -11,7 +11,7 @@ public partial class Player : CharacterBody2D
 {
     [Signal] public delegate void HealthChangedEventHandler(double newHealth);
 
-    [Export] public int Speed = 5000;
+    [Export] public int Speed = PlayerConstants.Speed;
 
     private CustomSignals customSignals = new();
     
