@@ -37,7 +37,7 @@ public partial class ActorNode : Node2D // ReSharper disable IntroduceOptionalPa
         Actor = actor;
     }
 
-    private async Task SetupAction(ActionToPlay action, double seconds)
+    private async Task SetupActionTask(ActionToPlay action, double seconds)
     {
         actionGiven = new TaskCompletionSource();
         actionToPlay = action;
@@ -45,11 +45,6 @@ public partial class ActorNode : Node2D // ReSharper disable IntroduceOptionalPa
         millisecondsToPass = seconds * 1000;
         
         await ActionCompleted;
-    }
-    
-    public virtual async Task Wait(double seconds = 1)
-    {
-        await SetupAction(ActionToPlay.Wait, seconds);
     }
     
     public virtual void LookUp()
@@ -69,21 +64,25 @@ public partial class ActorNode : Node2D // ReSharper disable IntroduceOptionalPa
         actionToPlay = ActionToPlay.LookDown;
     }
     
+    public virtual async Task Wait(double seconds = 1)
+    {
+        await SetupActionTask(ActionToPlay.Wait, seconds);
+    }
     public async Task MoveUp(double seconds = 1)
     {
-        await SetupAction(ActionToPlay.MoveUp, seconds);
+        await SetupActionTask(ActionToPlay.MoveUp, seconds);
     }
     public async Task MoveRight(double seconds = 1)
     {
-        await SetupAction(ActionToPlay.MoveRight, seconds);
+        await SetupActionTask(ActionToPlay.MoveRight, seconds);
     }
     public async Task MoveLeft(double seconds = 1)
     {
-        await SetupAction(ActionToPlay.MoveLeft, seconds);
+        await SetupActionTask(ActionToPlay.MoveLeft, seconds);
     }
     public async Task MoveDown(double seconds = 1)
     {
-        await SetupAction(ActionToPlay.MoveDown, seconds);
+        await SetupActionTask(ActionToPlay.MoveDown, seconds);
     }
     
     // Process
@@ -97,9 +96,17 @@ public partial class ActorNode : Node2D // ReSharper disable IntroduceOptionalPa
         if (actionToPlay == ActionToPlay.MoveRight) Move_Process(delta, Vector2.Right);
         if (actionToPlay == ActionToPlay.MoveLeft) Move_Process(delta, Vector2.Left);
         if (actionToPlay == ActionToPlay.MoveDown) Move_Process(delta, Vector2.Down);
+        
+        if (stopwatch.ElapsedMilliseconds > millisecondsToPass)
+        {
+            stopwatch.Stop();
+            actionToPlay = ActionToPlay.NoAction;
+
+            actionGiven.TrySetResult();
+        }
     }
     
-    private void Move_Process(double delta, Vector2 direction)
+    public virtual void Move_Process(double delta, Vector2 direction)
     {
         if (!stopwatch.IsRunning)
         {
@@ -108,14 +115,6 @@ public partial class ActorNode : Node2D // ReSharper disable IntroduceOptionalPa
         
         Actor.Velocity = direction * PlayerConstants.Speed * (float)delta;
         Actor.MoveAndSlide();
-        
-        if (stopwatch.ElapsedMilliseconds > millisecondsToPass)
-        {
-            stopwatch.Stop();
-            actionToPlay = ActionToPlay.NoAction;
-            
-            actionGiven.SetResult();
-        }
     }
 }
 
@@ -123,17 +122,18 @@ enum ActionToPlay
 {
     NoAction,
     
-    Wait,
-    
     LookUp,
     LookDown,
     LookLeft,
     LookRight,
-
+    
+    Wait,
     MoveUp,
     MoveDown,
     MoveLeft,
     MoveRight,
     
     PlayAnimation,
+    //PlaySound,
+    //PlayAnimationSound,
 }
