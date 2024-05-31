@@ -18,6 +18,7 @@ public partial class ActorNodeBase : Node2D // ReSharper disable IntroduceOption
     private ActionToPlay actionToPlay = ActionToPlay.NoAction;
     private double millisecondsToPass = 1000;
     private double multiplier = 1;
+    private string lastDirection = "down";
     
     // variables for managing time passing for Action commands
     private Task ActionCompleted => actionGiven.Task;
@@ -30,16 +31,16 @@ public partial class ActorNodeBase : Node2D // ReSharper disable IntroduceOption
     }
     private void FindParentActor()
     {
-        if (this.actor != null) return;
+        if (actor != null) return;
         
-        var actor = GetParentOrNull<CharacterBody2D>();
-        if (actor == null)
+        var getParentActor = GetParentOrNull<CharacterBody2D>();
+        if (getParentActor == null)
         {
             GD.PrintErr($"Cannot find parent {nameof(CharacterBody2D)} as a parent.");
             return;
         }
 
-        this.actor = actor;
+        actor = getParentActor;
     }
 
     private async Task SetupActionTask(ActionToPlay action, double seconds, double? moveSpeedMultiplier = 1)
@@ -56,18 +57,22 @@ public partial class ActorNodeBase : Node2D // ReSharper disable IntroduceOption
     public virtual void LookUp()
     {
         actionToPlay = ActionToPlay.LookUp;
+        MainSprite.Animation = "idle up";
     }
     public virtual void LookRight()
     {
         actionToPlay = ActionToPlay.LookRight;
+        MainSprite.Animation = "idle right";
     }
     public virtual void LookLeft()
     {
         actionToPlay = ActionToPlay.LookLeft;
+        MainSprite.Animation = "idle left";
     }
     public virtual void LookDown()
     {
         actionToPlay = ActionToPlay.LookDown;
+        MainSprite.Animation = "idle down";
     }
     
     public virtual async Task Wait(double seconds = 1)
@@ -97,7 +102,7 @@ public partial class ActorNodeBase : Node2D // ReSharper disable IntroduceOption
     {
         if (actionToPlay == ActionToPlay.NoAction) return;
         
-        if (actionToPlay == ActionToPlay.Wait) Move_Process(delta, Vector2.Zero);
+        if (actionToPlay == ActionToPlay.Wait) Idle_Process();
         if (actionToPlay == ActionToPlay.MoveUp) Move_Process(delta, Vector2.Up);
         if (actionToPlay == ActionToPlay.MoveRight) Move_Process(delta, Vector2.Right);
         if (actionToPlay == ActionToPlay.MoveLeft) Move_Process(delta, Vector2.Left);
@@ -106,19 +111,26 @@ public partial class ActorNodeBase : Node2D // ReSharper disable IntroduceOption
         if (stopwatch.ElapsedMilliseconds > millisecondsToPass)
         {
             stopwatch.Stop();
-            
-            var animationDirection = "";
-            if (actionToPlay == ActionToPlay.MoveLeft) animationDirection = "left";
-            if (actionToPlay == ActionToPlay.MoveRight) animationDirection = "right";
-            if (actionToPlay == ActionToPlay.MoveDown) animationDirection = "down";
-            if (actionToPlay == ActionToPlay.MoveUp) animationDirection = "up";
-            
-            MainSprite.Animation = $"idle {animationDirection}";
-            
+
+            MainSprite.Animation = $"idle {lastDirection}";
+            MainSprite.SpeedScale = (float)multiplier;
             actionToPlay = ActionToPlay.NoAction;
 
             actionGiven.TrySetResult();
         }
+    }
+    
+    public virtual void Idle_Process()
+    {
+        if (!stopwatch.IsRunning)
+        {
+            stopwatch.Restart();
+        }
+        
+        MainSprite.Animation = $"idle {lastDirection}";
+        MainSprite.SpeedScale = (float)multiplier;
+        
+        if (!MainSprite.IsPlaying()) MainSprite.Play();
     }
     
     public virtual void Move_Process(double delta, Vector2 direction)
@@ -128,16 +140,15 @@ public partial class ActorNodeBase : Node2D // ReSharper disable IntroduceOption
             stopwatch.Restart();
         }
         
-        var animationDirection = "";
-        if (direction == Vector2.Left) animationDirection = "left";
-        if (direction == Vector2.Right) animationDirection = "right";
-        if (direction == Vector2.Down) animationDirection = "down";
-        if (direction == Vector2.Up) animationDirection = "up";
-
-        MainSprite.Animation = $"walk {animationDirection}";
+        if (direction == Vector2.Left) lastDirection = "left";
+        if (direction == Vector2.Right) lastDirection = "right";
+        if (direction == Vector2.Down) lastDirection = "down";
+        if (direction == Vector2.Up) lastDirection = "up";
+        
+        MainSprite.Animation = $"walk {lastDirection}";
         MainSprite.SpeedScale = (float)multiplier;
         if (!MainSprite.IsPlaying()) MainSprite.Play();
-
+        
         actor.Velocity = direction * (PlayerConstants.Speed * (float)multiplier) * (float)delta;
         
         actor.MoveAndSlide();
