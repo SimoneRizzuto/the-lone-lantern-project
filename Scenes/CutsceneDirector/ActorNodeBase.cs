@@ -5,13 +5,17 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using TheLoneLanternProject.Scenes.Player;
 
-
-public partial class ActorNode : Node2D // ReSharper disable IntroduceOptionalParameters.Global
+public partial class ActorNodeBase : Node2D // ReSharper disable IntroduceOptionalParameters.Global
 {
-    [Export] public CharacterBody2D Actor;
+    [Export] public AnimatedSprite2D MainSprite;
+    [Export] public string MoveUpAnimation;
+    [Export] public string MoveRightAnimation;
+    [Export] public string MoveLeftAnimation;
+    [Export] public string MoveDownAnimation;
+    
+    private CharacterBody2D actor;
     
     private ActionToPlay actionToPlay = ActionToPlay.NoAction;
-
     private double millisecondsToPass = 1000;
     private double multiplier = 1;
     
@@ -26,7 +30,7 @@ public partial class ActorNode : Node2D // ReSharper disable IntroduceOptionalPa
     }
     private void FindParentActor()
     {
-        if (Actor != null) return;
+        if (this.actor != null) return;
         
         var actor = GetParentOrNull<CharacterBody2D>();
         if (actor == null)
@@ -35,7 +39,7 @@ public partial class ActorNode : Node2D // ReSharper disable IntroduceOptionalPa
             return;
         }
 
-        Actor = actor;
+        this.actor = actor;
     }
 
     private async Task SetupActionTask(ActionToPlay action, double seconds, double? moveSpeedMultiplier = 1)
@@ -102,6 +106,15 @@ public partial class ActorNode : Node2D // ReSharper disable IntroduceOptionalPa
         if (stopwatch.ElapsedMilliseconds > millisecondsToPass)
         {
             stopwatch.Stop();
+            
+            var animationDirection = "";
+            if (actionToPlay == ActionToPlay.MoveLeft) animationDirection = "left";
+            if (actionToPlay == ActionToPlay.MoveRight) animationDirection = "right";
+            if (actionToPlay == ActionToPlay.MoveDown) animationDirection = "down";
+            if (actionToPlay == ActionToPlay.MoveUp) animationDirection = "up";
+            
+            MainSprite.Animation = $"idle {animationDirection}";
+            
             actionToPlay = ActionToPlay.NoAction;
 
             actionGiven.TrySetResult();
@@ -115,8 +128,19 @@ public partial class ActorNode : Node2D // ReSharper disable IntroduceOptionalPa
             stopwatch.Restart();
         }
         
-        Actor.Velocity = direction * (PlayerConstants.Speed * (float)multiplier) * (float)delta;
-        Actor.MoveAndSlide();
+        var animationDirection = "";
+        if (direction == Vector2.Left) animationDirection = "left";
+        if (direction == Vector2.Right) animationDirection = "right";
+        if (direction == Vector2.Down) animationDirection = "down";
+        if (direction == Vector2.Up) animationDirection = "up";
+
+        MainSprite.Animation = $"walk {animationDirection}";
+        MainSprite.SpeedScale = (float)multiplier;
+        if (!MainSprite.IsPlaying()) MainSprite.Play();
+
+        actor.Velocity = direction * (PlayerConstants.Speed * (float)multiplier) * (float)delta;
+        
+        actor.MoveAndSlide();
     }
 }
 

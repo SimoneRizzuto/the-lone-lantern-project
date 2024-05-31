@@ -10,7 +10,7 @@ using TheLoneLanternProject.Scenes.Player;
 /// </summary>
 public partial class CastActors : Node
 {
-    public ActorNode luce;
+    public ActorNodeBase luce;
     
     public Player player;
 
@@ -21,6 +21,6 @@ public partial class CastActors : Node
         player = playerNodes.Cast<Player>().FirstOrDefault();
         
         var actorNodes = tree.GetNodesInGroup(NodeGroup.ActorNode);
-        luce = actorNodes.Cast<ActorNode>().FirstOrDefault();
+        luce = actorNodes.Cast<ActorNodeBase>().FirstOrDefault();
     }
 }

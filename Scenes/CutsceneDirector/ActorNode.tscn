@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://chq772iw2og30"]
-
-[ext_resource type="Script" path="res://Scenes/CutsceneDirector/ActorNode.cs" id="1_qct73"]
-
-[node name="ActorNode" type="Node2D" groups=["actor node"]]
-script = ExtResource("1_qct73")
