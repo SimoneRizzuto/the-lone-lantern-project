@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://1q0v7as1ovpm"]
+[gd_scene load_steps=52 format=3 uid="uid://1q0v7as1ovpm"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Player.cs" id="1_j363g"]
 [ext_resource type="Texture2D" uid="uid://da7o7d7i0se1v" path="res://Scenes/Player/luce attack side 1-Sheet.png" id="2_6ah8d"]
@@ -8,7 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://cfdqvyf0rvh8u" path="res://Scenes/Player/luce_walking_down-Sheet.png" id="4_nqpie"]
 [ext_resource type="Texture2D" uid="uid://vvefpri732dh" path="res://Scenes/Player/luce_walking_right-Sheet.png" id="4_rxvcw"]
 [ext_resource type="Texture2D" uid="uid://crhnqx5rq8fj6" path="res://Scenes/Player/luce_walking_up-Sheet.png" id="6_2axde"]
-[ext_resource type="PackedScene" uid="uid://chq772iw2og30" path="res://Scenes/CutsceneDirector/ActorNode.tscn" id="9_hq8u7"]
+[ext_resource type="Texture2D" uid="uid://dauiq7s4jsegj" path="res://Scenes/Player/luce_walking_left-Sheet.png" id="7_w1srb"]
+[ext_resource type="Script" path="res://Scenes/Player/LuceActorNode.cs" id="9_5hnjk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_we0ol"]
 size = Vector2(14.87, 7.44669)
@@ -96,6 +97,30 @@ region = Rect2(52, 0, 13, 37)
 [sub_resource type="AtlasTexture" id="AtlasTexture_sb1pq"]
 atlas = ExtResource("4_nqpie")
 region = Rect2(65, 0, 13, 37)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_go5ys"]
+atlas = ExtResource("7_w1srb")
+region = Rect2(0, 0, 14, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_la45g"]
+atlas = ExtResource("7_w1srb")
+region = Rect2(14, 0, 14, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_860ut"]
+atlas = ExtResource("7_w1srb")
+region = Rect2(28, 0, 14, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3lea2"]
+atlas = ExtResource("7_w1srb")
+region = Rect2(42, 0, 14, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_grv6l"]
+atlas = ExtResource("7_w1srb")
+region = Rect2(56, 0, 14, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_aykhw"]
+atlas = ExtResource("7_w1srb")
+region = Rect2(70, 0, 14, 36)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oyfuv"]
 atlas = ExtResource("4_rxvcw")
@@ -216,12 +241,17 @@ animations = [{
 "name": &"idle down",
 "speed": 8.0
 }, {
+"frames": [],
+"loop": true,
+"name": &"idle left",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ik4hc")
 }],
 "loop": true,
-"name": &"idle side",
+"name": &"idle right",
 "speed": 8.0
 }, {
 "frames": [{
@@ -257,6 +287,29 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_go5ys")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_la45g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_860ut")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3lea2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_grv6l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_aykhw")
+}],
+"loop": true,
+"name": &"walk left",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_oyfuv")
 }, {
 "duration": 1.0,
@@ -275,7 +328,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_kdtu1")
 }],
 "loop": true,
-"name": &"walk side",
+"name": &"walk right",
 "speed": 8.0
 }, {
 "frames": [{
@@ -334,7 +387,7 @@ one_shot = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_5q57h")
-animation = &"attack down"
+animation = &"walk right"
 offset = Vector2(0, -18)
 
 [node name="HitBox" type="Area2D" parent="."]
@@ -344,7 +397,9 @@ collision_layer = 4
 polygon = PackedVector2Array(-9, -34, 0, -34, 11, -32, 17, -30, 21, -28, 30, -19, 30, -10, 21, -1, 11, 3, 0, 5, -10, 5)
 disabled = true
 
-[node name="ActorNode" parent="." instance=ExtResource("9_hq8u7")]
+[node name="ActorNode" type="Node2D" parent="." node_paths=PackedStringArray("MainSprite") groups=["actor node"]]
+script = ExtResource("9_5hnjk")
+MainSprite = NodePath("../AnimatedSprite2D")
 
 [connection signal="timeout" from="Timers/AttackTimer" to="." method="OnAttackTimerTimeout"]
 [connection signal="timeout" from="Timers/HealthRegenBuffer" to="." method="OnHealthRegenBufferTimeout"]

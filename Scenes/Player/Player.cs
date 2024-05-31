@@ -68,7 +68,6 @@ public partial class Player : CharacterBody2D
 
         SetDirection();
         SetAttack();
-        SetFlipH();
         SetAnimation();
 
         RegenerateHealth();
@@ -141,52 +140,6 @@ public partial class Player : CharacterBody2D
             State = PlayerState.Attacking;
         }
     }
-    
-    private void SetFlipH()
-    {
-        if (State == PlayerState.Attacking) return;
-
-        switch (Direction)
-        {
-            case Direction.Left:
-            {
-                var wasFacingRight = !mainSprite.FlipH;
-
-                mainSprite.FlipH = true;
-
-                if (wasFacingRight)
-                {
-                    attackShape.Scale = new Vector2(-1, 1);
-                }
-
-                break;
-            }
-            case Direction.Right:
-            {
-                var wasFacingLeft = mainSprite.FlipH;
-
-                mainSprite.FlipH = false;
-
-                if (wasFacingLeft)
-                {
-                    attackShape.Scale = new Vector2(1, 1);
-                }
-
-                break;
-            }
-            case Direction.Down:
-            {
-                mainSprite.FlipH = false;
-                
-                if (attackAnimationCounter % 2 == 0) // is even
-                {
-                    mainSprite.FlipH = true;
-                }
-                
-                break;
-            }
-        }
-    }
 
     private int attackAnimationCounter = 2;
     private void SetAnimation()
@@ -195,8 +148,8 @@ public partial class Player : CharacterBody2D
         
         switch (Direction)
         {
-            case Direction.Left:  animationDirection = "side"; break;
-            case Direction.Right: animationDirection = "side"; break;
+            case Direction.Left:  animationDirection = "left"; break;
+            case Direction.Right: animationDirection = "right"; break;
             case Direction.Down:  animationDirection = "down"; break;
             case Direction.Up:    animationDirection = "up";   break;
         }
