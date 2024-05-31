@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dt4llwrbk7cwb"
-path="res://.godot/imported/luce attack side 2-Sheet.png-0be71dfeba34099af428bc1b2e1c45a1.ctex"
+path="res://.godot/imported/luce attack right 2-Sheet.png-fcf97ec5c40cf8aa2a6df95335a43e03.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/Player/luce attack side 2-Sheet.png"
-dest_files=["res://.godot/imported/luce attack side 2-Sheet.png-0be71dfeba34099af428bc1b2e1c45a1.ctex"]
+source_file="res://Scenes/Player/luce attack right 2-Sheet.png"
+dest_files=["res://.godot/imported/luce attack right 2-Sheet.png-fcf97ec5c40cf8aa2a6df95335a43e03.ctex"]
 
 [params]
 
