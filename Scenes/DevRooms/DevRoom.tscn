@@ -27,7 +27,7 @@ DoorName = "HouseDoor"
 ExitDirection = 0
 
 [node name="Couch" parent="." instance=ExtResource("4_shl2e")]
-position = Vector2(139, 264)
+position = Vector2(99, 263)
 
 [node name="EnemyBlob" parent="." instance=ExtResource("5_4pwfj")]
 z_as_relative = true
