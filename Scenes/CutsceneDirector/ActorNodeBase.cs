@@ -57,21 +57,25 @@ public partial class ActorNodeBase : Node2D // ReSharper disable IntroduceOption
     public virtual void LookUp()
     {
         actionToPlay = ActionToPlay.LookUp;
+        lastDirection = "up";
         MainSprite.Animation = "idle up";
     }
     public virtual void LookRight()
     {
         actionToPlay = ActionToPlay.LookRight;
+        lastDirection = "right";
         MainSprite.Animation = "idle right";
     }
     public virtual void LookLeft()
     {
         actionToPlay = ActionToPlay.LookLeft;
+        lastDirection = "left";
         MainSprite.Animation = "idle left";
     }
     public virtual void LookDown()
     {
         actionToPlay = ActionToPlay.LookDown;
+        lastDirection = "down";
         MainSprite.Animation = "idle down";
     }
     
