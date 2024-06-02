@@ -16,6 +16,8 @@ public static class InputMapAction
     public const string Right = "Move Right";
     public const string Attack = "Attack";
     public const string Enter = "Enter";
+    public const string Save = "Save";
+    public const string Load = "Load";
 }
 
 public static class NodeGroup
