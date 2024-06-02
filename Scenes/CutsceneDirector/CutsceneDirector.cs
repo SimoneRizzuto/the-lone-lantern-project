@@ -12,15 +12,17 @@ public partial class CutsceneDirector : Node
     private CustomSignals customSignals = new();
     private Player player = new();
     
+    private ActionToPlay actionToPlay = ActionToPlay.NoAction;
+    private double millisecondsToPass = 1000;
+    private double multiplier = 1;
+    private string lastDirection = "down";
+    
     // variables for managing time passing for Action commands
     private Task ActionCompleted => actionGiven.Task;
     private TaskCompletionSource actionGiven = new();
     private readonly Stopwatch stopwatch = new();
     
-    private ActionToPlay actionToPlay = ActionToPlay.NoAction;
-    private double millisecondsToPass = 1000;
-    private double multiplier = 1;
-    private string lastDirection = "down";
+    
     
     /*
      * There are two options for implementing Cutscene directions:
