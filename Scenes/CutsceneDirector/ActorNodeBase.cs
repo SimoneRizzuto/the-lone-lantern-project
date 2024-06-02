@@ -78,11 +78,6 @@ public partial class ActorNodeBase : Node2D // ReSharper disable IntroduceOption
         lastDirection = "down";
         MainSprite.Animation = "idle down";
     }
-    
-    public virtual async Task Wait(double seconds = 1)
-    {
-        await SetupActionTask(ActionToPlay.Wait, seconds);
-    }
     public async Task MoveUp(double seconds = 1, double moveSpeedMultiplier = 1)
     {
         await SetupActionTask(ActionToPlay.MoveUp, seconds, moveSpeedMultiplier);

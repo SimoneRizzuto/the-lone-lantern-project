@@ -2,5 +2,5 @@
 
 [ext_resource type="Script" path="res://Scenes/CutsceneDirector/CutsceneDirector.cs" id="1_bmeum"]
 
-[node name="CutsceneDirector" type="Node"]
+[node name="CutsceneDirector" type="Node" groups=["cutscene director"]]
 script = ExtResource("1_bmeum")

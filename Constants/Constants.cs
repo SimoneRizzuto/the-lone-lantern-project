@@ -25,4 +25,5 @@ public static class NodeGroup
     public const string Door = "door";
     public const string Enemy = "enemy";
     public const string ActorNode = "actor node";
+    public const string CutsceneDirector = "cutscene director";
 }

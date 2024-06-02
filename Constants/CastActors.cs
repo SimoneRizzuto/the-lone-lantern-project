@@ -10,17 +10,20 @@ using TheLoneLanternProject.Scenes.Player;
 /// </summary>
 public partial class CastActors : Node
 {
+    public CutsceneDirector director;
+    
     public ActorNodeBase luce;
     
-    public Player player;
-
+    
+    
     public override void _Ready()
     {
         var tree = GetTree();
-        var playerNodes = tree.GetNodesInGroup(NodeGroup.Player);
-        player = playerNodes.Cast<Player>().FirstOrDefault();
         
         var actorNodes = tree.GetNodesInGroup(NodeGroup.ActorNode);
         luce = actorNodes.Cast<ActorNodeBase>().FirstOrDefault();
+        
+        var cutsceneDirectorNodes = tree.GetNodesInGroup(NodeGroup.CutsceneDirector);
+        director = cutsceneDirectorNodes.Cast<CutsceneDirector>().FirstOrDefault();
     }
 }

@@ -1,6 +1,8 @@
 using Godot;
 using System;
+using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 using DialogueManagerRuntime;
 using TheLoneLanternProject.Constants;
 using TheLoneLanternProject.Scenes.Player;
@@ -9,6 +11,16 @@ public partial class CutsceneDirector : Node
 {
     private CustomSignals customSignals = new();
     private Player player = new();
+    
+    // variables for managing time passing for Action commands
+    private Task ActionCompleted => actionGiven.Task;
+    private TaskCompletionSource actionGiven = new();
+    private readonly Stopwatch stopwatch = new();
+    
+    private ActionToPlay actionToPlay = ActionToPlay.NoAction;
+    private double millisecondsToPass = 1000;
+    private double multiplier = 1;
+    private string lastDirection = "down";
     
     /*
      * There are two options for implementing Cutscene directions:
@@ -35,10 +47,9 @@ public partial class CutsceneDirector : Node
         var playerNodes = tree.GetNodesInGroup(NodeGroup.Player);
         player = playerNodes.Cast<Player>().FirstOrDefault();
     }
-
     private bool LoadActorsIntoCurrentScene()
     {
-        var scriptPath = "res://Constants/CastActors.cs";
+        var scriptPath = $"res://Constants/{nameof(CastActors)}.cs";
         try
         {
             var scriptLoaded = ResourceLoader.Load(scriptPath);
@@ -61,11 +72,43 @@ public partial class CutsceneDirector : Node
 
         return true;
     }
-
     private void ShowDialogueBalloon(string dialogue, string title)
     {
         player.State = PlayerState.Disabled;
         
         DialogueManager.ShowDialogueBalloon(GD.Load($"res://Dialogue/{dialogue}.dialogue"), title);
+    }
+    
+    private async Task SetupActionTask(ActionToPlay action, double seconds, double? moveSpeedMultiplier = 1)
+    {
+        actionGiven = new TaskCompletionSource();
+        actionToPlay = action;
+
+        multiplier = moveSpeedMultiplier > 0 ? moveSpeedMultiplier.Value : 1;
+        millisecondsToPass = seconds * 1000;
+        
+        await ActionCompleted;
+    }
+    
+    public virtual async Task Wait(double seconds = 1)
+    {
+        await SetupActionTask(ActionToPlay.Wait, seconds);
+    }
+    
+    public override void _Process(double delta)
+    {
+        if (!stopwatch.IsRunning)
+        {
+            stopwatch.Restart();
+        }
+        
+        if (stopwatch.ElapsedMilliseconds > millisecondsToPass)
+        {
+            stopwatch.Stop();
+
+            actionToPlay = ActionToPlay.NoAction;
+
+            actionGiven.TrySetResult();
+        }
     }
 }
