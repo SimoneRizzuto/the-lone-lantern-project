@@ -462,7 +462,7 @@ one_shot = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_5q57h")
-animation = &"walk down"
+animation = &"attack down"
 offset = Vector2(0, -18)
 
 [node name="HitBox" type="Area2D" parent="."]
@@ -472,9 +472,9 @@ collision_layer = 4
 polygon = PackedVector2Array(-9, -34, 0, -34, 11, -32, 17, -30, 21, -28, 30, -19, 30, -10, 21, -1, 11, 3, 0, 5, -10, 5)
 disabled = true
 
-[node name="ActorNode" type="Node2D" parent="." node_paths=PackedStringArray("MainSprite") groups=["actor node"]]
+[node name="ActorNode" type="Node2D" parent="." node_paths=PackedStringArray("AnimatedSprite2D") groups=["actor node"]]
 script = ExtResource("9_5hnjk")
-MainSprite = NodePath("../AnimatedSprite2D")
+AnimatedSprite2D = NodePath("../AnimatedSprite2D")
 
 [connection signal="timeout" from="Timers/AttackTimer" to="." method="OnAttackTimerTimeout"]
 [connection signal="timeout" from="Timers/HealthRegenBuffer" to="." method="OnHealthRegenBufferTimeout"]

@@ -253,6 +253,8 @@ public partial class Player : CharacterBody2D
 
     private void OnAnimationFinished()
     {
+        if (State == PlayerState.Disabled) return;
+        
         if (mainSprite.Animation.ToString().Contains("attack"))
         {
             State = PlayerState.Idle;
@@ -262,11 +264,15 @@ public partial class Player : CharacterBody2D
 
     public void OnHealthRegenBufferTimeout()
     {
+        if (State == PlayerState.Disabled) return;
+        
         healthState = StaminaHealthState.Regen;
     }
 
     public void OnAttackShapeAreaEntered(Node2D area)
     {
+        if (State == PlayerState.Disabled) return;
+        
         if (area.IsInGroup(NodeGroup.Enemy)) 
         {
             var enemy = (EnemyBase)area;

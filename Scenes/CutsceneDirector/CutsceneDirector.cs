@@ -12,7 +12,7 @@ public partial class CutsceneDirector : Node
     private CustomSignals customSignals = new();
     private Player player = new();
     
-    private ActionToPlay actionToPlay = ActionToPlay.NoAction;
+    private AsyncActionToPlay asyncActionToPlay = AsyncActionToPlay.NoAction;
     private double millisecondsToPass = 1000;
     private double multiplier = 1;
     private string lastDirection = "down";
@@ -81,10 +81,10 @@ public partial class CutsceneDirector : Node
         DialogueManager.ShowDialogueBalloon(GD.Load($"res://Dialogue/{dialogue}.dialogue"), title);
     }
     
-    private async Task SetupActionTask(ActionToPlay action, double seconds, double? moveSpeedMultiplier = 1)
+    private async Task SetupActionTask(AsyncActionToPlay asyncAction, double seconds, double? moveSpeedMultiplier = 1)
     {
         actionGiven = new TaskCompletionSource();
-        actionToPlay = action;
+        asyncActionToPlay = asyncAction;
 
         multiplier = moveSpeedMultiplier > 0 ? moveSpeedMultiplier.Value : 1;
         millisecondsToPass = seconds * 1000;
@@ -94,7 +94,12 @@ public partial class CutsceneDirector : Node
     
     public virtual async Task Wait(double seconds = 1)
     {
-        await SetupActionTask(ActionToPlay.Wait, seconds);
+        await SetupActionTask(AsyncActionToPlay.Wait, seconds);
+    }
+    
+    public void PlaySound()
+    {
+        
     }
     
     public override void _Process(double delta)
@@ -108,7 +113,7 @@ public partial class CutsceneDirector : Node
         {
             stopwatch.Stop();
 
-            actionToPlay = ActionToPlay.NoAction;
+            asyncActionToPlay = AsyncActionToPlay.NoAction;
 
             actionGiven.TrySetResult();
         }
