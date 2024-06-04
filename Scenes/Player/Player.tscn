@@ -462,7 +462,7 @@ one_shot = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_5q57h")
-animation = &"attack down"
+animation = &"idle down"
 offset = Vector2(0, -18)
 
 [node name="HitBox" type="Area2D" parent="."]

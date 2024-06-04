@@ -1,6 +1,11 @@
 ~ initial_dialogue
 
+do luce.MoveLeft()
+do luce.MoveRight()
+do luce.PlayAnimationAsync("attack left 1")
+do luce.LookUp()
 Nori: [#crying-hidden] ...
+do luce.MoveLeft()
 Luce: [#default] ...
 do director.Wait(4)
 Luce: [#look-down] ...

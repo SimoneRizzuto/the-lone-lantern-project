@@ -79,11 +79,9 @@ public partial class ActorNodeBase : Node2D // ReSharper disable IntroduceOption
         AnimatedSprite2D.Play($"idle {lastDirection}");
     }
     
-    public virtual void PlayAnimation(string animationToPlay/*, double playSpeedMultiplier = 1*/)
+    public virtual void PlayAnimation(string animationToPlay)
     {
         asyncActionToPlay = AsyncActionToPlay.NoAction;
-        //multiplier = playSpeedMultiplier > 0 ? playSpeedMultiplier : 1;
-        
         AnimatedSprite2D.Play(animationToPlay, (float)multiplier);
     }
 
