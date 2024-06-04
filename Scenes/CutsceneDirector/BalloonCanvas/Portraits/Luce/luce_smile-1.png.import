@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://8drkcimupkeg"
-path="res://.godot/imported/death.png-cf2d4c96e4698d246b2d718ac9a90534.ctex"
+uid="uid://duosl80jga1k0"
+path="res://.godot/imported/luce_smile-1.png-e3ecd9cf105a74572ac2fbf9f8824184.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://death.png"
-dest_files=["res://.godot/imported/death.png-cf2d4c96e4698d246b2d718ac9a90534.ctex"]
+source_file="res://Scenes/CutsceneDirector/BalloonCanvas/Portraits/Luce/luce_smile-1.png"
+dest_files=["res://.godot/imported/luce_smile-1.png-e3ecd9cf105a74572ac2fbf9f8824184.ctex"]
 
 [params]
 

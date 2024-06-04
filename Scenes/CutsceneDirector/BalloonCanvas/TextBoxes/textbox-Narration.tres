@@ -1,0 +1,7 @@
+[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://eap461q4vqfw"]
+
+[ext_resource type="Texture2D" uid="uid://rbkrkxv7sbuw" path="res://Scenes/CutsceneDirector/BalloonCanvas/TextBoxes/textbox-Narration.png" id="1_1ia1e"]
+
+[resource]
+texture = ExtResource("1_1ia1e")
+region_rect = Rect2(0.0520363, -0.109196, 178.231, 29.0531)

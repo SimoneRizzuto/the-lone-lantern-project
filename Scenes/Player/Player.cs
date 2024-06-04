@@ -1,4 +1,5 @@
 using System;
+using DialogueManagerRuntime;
 using Godot;
 using TheLoneLanternProject.Constants;
 using TheLoneLanternProject.Scenes.Enemies.BaseNode;
@@ -10,8 +11,10 @@ public partial class Player : CharacterBody2D
 {
     [Signal] public delegate void HealthChangedEventHandler(double newHealth);
 
-    [Export] public int Speed = 5000;
+    [Export] public int Speed = PlayerConstants.Speed;
 
+    private CustomSignals customSignals = new();
+    
     private int attackMoveSpeed = 4000;
 
     private double health = 100;
@@ -50,6 +53,7 @@ public partial class Player : CharacterBody2D
 
     public override void _Ready()
     {
+        customSignals = GetNode<CustomSignals>("/root/CustomSignals");
         mainSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 
         playerShape = GetNode<CollisionShape2D>("PlayerShape");
@@ -64,13 +68,14 @@ public partial class Player : CharacterBody2D
 
         SetDirection();
         SetAttack();
-        SetFlipH();
         SetAnimation();
 
         RegenerateHealth();
     }
     public override void _PhysicsProcess(double delta)
     {
+        if (State == PlayerState.Disabled) return;
+        
         if (State != PlayerState.Attacking)
         {
             vectorForMovement = Input.GetVector(InputMapAction.Left, InputMapAction.Right, InputMapAction.Up, InputMapAction.Down);
@@ -88,6 +93,11 @@ public partial class Player : CharacterBody2D
     private void SetDirection()
     {
         var setDirection = HeldDirection();
+
+        if (Input.IsActionJustPressed("TestTriggerDialogue")) // TEST DIALOGUE TRIGGER FOR NOW, DELETE LATER
+        {
+            customSignals.EmitSignal(nameof(CustomSignals.ShowDialogueBalloon), "dialogue-test", "initial_dialogue");
+        }
 
         nextBuffer.NextDirection = setDirection ?? Direction;
         
@@ -130,52 +140,6 @@ public partial class Player : CharacterBody2D
             State = PlayerState.Attacking;
         }
     }
-    
-    private void SetFlipH()
-    {
-        if (State == PlayerState.Attacking) return;
-
-        switch (Direction)
-        {
-            case Direction.Left:
-            {
-                var wasFacingRight = !mainSprite.FlipH;
-
-                mainSprite.FlipH = true;
-
-                if (wasFacingRight)
-                {
-                    attackShape.Scale = new Vector2(-1, 1);
-                }
-
-                break;
-            }
-            case Direction.Right:
-            {
-                var wasFacingLeft = mainSprite.FlipH;
-
-                mainSprite.FlipH = false;
-
-                if (wasFacingLeft)
-                {
-                    attackShape.Scale = new Vector2(1, 1);
-                }
-
-                break;
-            }
-            case Direction.Down:
-            {
-                mainSprite.FlipH = false;
-                
-                if (attackAnimationCounter % 2 == 0) // is even
-                {
-                    mainSprite.FlipH = true;
-                }
-                
-                break;
-            }
-        }
-    }
 
     private int attackAnimationCounter = 2;
     private void SetAnimation()
@@ -184,8 +148,8 @@ public partial class Player : CharacterBody2D
         
         switch (Direction)
         {
-            case Direction.Left:  animationDirection = "side"; break;
-            case Direction.Right: animationDirection = "side"; break;
+            case Direction.Left:  animationDirection = "left"; break;
+            case Direction.Right: animationDirection = "right"; break;
             case Direction.Down:  animationDirection = "down"; break;
             case Direction.Up:    animationDirection = "up";   break;
         }
@@ -289,6 +253,8 @@ public partial class Player : CharacterBody2D
 
     private void OnAnimationFinished()
     {
+        if (State == PlayerState.Disabled) return;
+        
         if (mainSprite.Animation.ToString().Contains("attack"))
         {
             State = PlayerState.Idle;
@@ -298,11 +264,15 @@ public partial class Player : CharacterBody2D
 
     public void OnHealthRegenBufferTimeout()
     {
+        if (State == PlayerState.Disabled) return;
+        
         healthState = StaminaHealthState.Regen;
     }
 
     public void OnAttackShapeAreaEntered(Node2D area)
     {
+        if (State == PlayerState.Disabled) return;
+        
         if (area.IsInGroup(NodeGroup.Enemy)) 
         {
             var enemy = (EnemyBase)area;
