@@ -1,12 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://h2iu1fkuw61u"]
 
 [ext_resource type="PackedScene" uid="uid://xnsxf4vyq0vt" path="res://Scenes/PlayerController/StaminaHealthBar.tscn" id="1_ajbvv"]
-[ext_resource type="PackedScene" uid="uid://1q0v7as1ovpm" path="res://Scenes/Player/Player.tscn" id="2_gx71h"]
+[ext_resource type="PackedScene" uid="uid://1q0v7as1ovpm" path="res://Scenes/Player/Luce.tscn" id="2_8x6wv"]
 
 [node name="PlayerController" type="Node2D"]
 
 [node name="StaminaHealthBar" parent="." instance=ExtResource("1_ajbvv")]
 
-[node name="Player" parent="." instance=ExtResource("2_gx71h")]
-
-[connection signal="HealthChanged" from="Player" to="StaminaHealthBar" method="OnPlayerHealthChanged"]
+[node name="Luce" parent="." instance=ExtResource("2_8x6wv")]

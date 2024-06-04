@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using Godot;
 using TheLoneLanternProject.Constants;
+using TheLoneLanternProject.Scenes.Player;
 
 namespace TheLoneLanternProject.Scenes.SceneSwitcher;
 
@@ -44,15 +45,15 @@ public partial class SceneSwitcher : Node
         }
         
         // Find player by group name "player".
-        var playerNode = tree.GetNodesInGroup(NodeGroup.Player).FirstOrDefault();
-        if (playerNode == null)
+        var luceNode = tree.GetNodesInGroup(NodeGroup.Player).FirstOrDefault();
+        if (luceNode == null)
         {
-            GD.PrintErr($"{nameof(playerNode)} was null. UID: {attributes.NewSceneUid} - DoorName: {attributes.DoorName}");
+            GD.PrintErr($"{nameof(luceNode)} was null. UID: {attributes.NewSceneUid} - DoorName: {attributes.DoorName}");
             return;
         }
         
-        var player = (Player.Player)playerNode;
-        player.GlobalPosition = door.GlobalPosition;
-        player.Direction = attributes.ExitDirection;
+        var luce = (Luce)luceNode;
+        luce.GlobalPosition = door.GlobalPosition;
+        luce.Direction = attributes.ExitDirection;
     }
 }
