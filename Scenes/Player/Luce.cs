@@ -1,5 +1,3 @@
-using System;
-using DialogueManagerRuntime;
 using Godot;
 using TheLoneLanternProject.Constants;
 using TheLoneLanternProject.Scenes.Enemies.BaseNode;
@@ -7,7 +5,7 @@ using Vector2 = Godot.Vector2;
 
 namespace TheLoneLanternProject.Scenes.Player;
 
-public partial class Player : CharacterBody2D
+public partial class Luce : CharacterBody2D
 {
     [Signal] public delegate void HealthChangedEventHandler(double newHealth);
 
@@ -48,7 +46,7 @@ public partial class Player : CharacterBody2D
     private Vector2 vectorForMovement = Vector2.Zero;
 
     private AnimatedSprite2D mainSprite = new();
-    private CollisionShape2D playerShape = new();
+    private CollisionShape2D mainShape = new();
     private CollisionPolygon2D attackShape = new();
 
     public override void _Ready()
@@ -56,7 +54,7 @@ public partial class Player : CharacterBody2D
         customSignals = GetNode<CustomSignals>("/root/CustomSignals");
         mainSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 
-        playerShape = GetNode<CollisionShape2D>("PlayerShape");
+        mainShape = GetNode<CollisionShape2D>("MainShape");
         attackShape = GetNode<CollisionPolygon2D>("HitBox/CollisionPolygon2D");
 
         healthRegenBuffer = GetNode<Timer>("Timers/HealthRegenBuffer");

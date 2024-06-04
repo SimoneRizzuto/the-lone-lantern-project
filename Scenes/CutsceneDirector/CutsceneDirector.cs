@@ -10,7 +10,7 @@ using TheLoneLanternProject.Scenes.Player;
 public partial class CutsceneDirector : Node
 {
     private CustomSignals customSignals = new();
-    private Player player = new();
+    private Luce luce = new();
     
     private AsyncActionToPlay asyncActionToPlay = AsyncActionToPlay.NoAction;
     private double millisecondsToPass = 1000;
@@ -46,8 +46,8 @@ public partial class CutsceneDirector : Node
         customSignals.ShowDialogueBalloon += ShowDialogueBalloon;
         
         var tree = GetTree();
-        var playerNodes = tree.GetNodesInGroup(NodeGroup.Player);
-        player = playerNodes.Cast<Player>().FirstOrDefault();
+        var luceNodes = tree.GetNodesInGroup(NodeGroup.Player);
+        luce = luceNodes.Cast<Luce>().FirstOrDefault();
     }
     private bool LoadActorsIntoCurrentScene()
     {
@@ -76,7 +76,7 @@ public partial class CutsceneDirector : Node
     }
     private void ShowDialogueBalloon(string dialogue, string title)
     {
-        player.State = PlayerState.Disabled;
+        luce.State = PlayerState.Disabled;
         
         DialogueManager.ShowDialogueBalloon(GD.Load($"res://Dialogue/{dialogue}.dialogue"), title);
     }
