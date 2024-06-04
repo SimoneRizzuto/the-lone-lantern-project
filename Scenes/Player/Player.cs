@@ -4,6 +4,8 @@ using TheLoneLanternProject.Constants;
 using TheLoneLanternProject.Scenes.Enemies.BaseNode;
 using Vector2 = Godot.Vector2;
 using TheLoneLanternProject.Scenes.SaveHelper;
+using Newtonsoft.Json;
+
 
 namespace TheLoneLanternProject.Scenes.Player;
 
@@ -16,7 +18,7 @@ public partial class Player : CharacterBody2D
     private int attackMoveSpeed = 4000;
 
     private double health = 100;
-    private double Health
+    public double Health
     {
         get => health;
         set
@@ -69,8 +71,7 @@ public partial class Player : CharacterBody2D
         SetAnimation();
 
         RegenerateHealth();
-        SaveGame();
-        LoadGame();
+        
     }
     public override void _PhysicsProcess(double delta)
     {
@@ -314,56 +315,7 @@ public partial class Player : CharacterBody2D
     }
 
 
-    public void SaveGame()
-    {
-        if (Input.IsActionPressed(InputMapAction.Save))
-        {
-            using var saveGame = FileAccess.Open("res://SaveData//SaveData.json", FileAccess.ModeFlags.Write);
-            //SaveHelper.SaveHelper.Save(); //Come back to this later.
-
-            var saveDictionary = new Godot.Collections.Dictionary<string, Variant>()
-            {
-                {"Health", Health},
-                // For now while testing the IO system assume that scene won't change
-            };
-
-            var jsonString = Json.Stringify(saveDictionary);
-
-            saveGame.StoreLine(jsonString);
-
-        }
-        
-    }
-
-    public void LoadGame()
-    {
-        if (!FileAccess.FileExists("res://SaveData//SaveData.json"))
-        {
-           return;
-        }
-
-        if (Input.IsActionPressed(InputMapAction.Load))
-        {
-            using var saveGame = FileAccess.Open("res://SaveData//SaveData.json", FileAccess.ModeFlags.Read);
-            var jsonString = saveGame.GetLine();
-            
-
-            var json = new Json();
-            var parseResult = json.Parse(jsonString);
-            if (parseResult != Error.Ok)
-            {
-                GD.Print($"JSON Parse Error: {json.GetErrorMessage()} in {jsonString} at line {json.GetErrorLine()}");
-                return;
-            }
-
-            // For now just overwrite the Health value for IO testing
-            var nodeData = new Godot.Collections.Dictionary<string, Variant>((Godot.Collections.Dictionary)json.Data);
-            Health = (float) nodeData["Health"];
-
-        }
-
-
-    }
+    
 }
 
 public class PlayerNextBuffer
