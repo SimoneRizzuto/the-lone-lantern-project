@@ -1,0 +1,16 @@
+~ this_is_a_node_title
+
+Before cutscene, walk down, and slow the player down. Once fully stopped...
+
+(Move the camera down to the door)
+
+do director.Wait(8)
+
+(Trigger "eyes opening" animation)
+
+do director.Wait(4)
+
+(Trigger "eyes closing" animation)
+(Trigger "door opening" animation)
+
+=> END

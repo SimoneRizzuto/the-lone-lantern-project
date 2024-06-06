@@ -440,7 +440,6 @@ floor_block_on_wall = false
 floor_snap_length = 0.0
 platform_on_leave = 2
 script = ExtResource("1_nq6ir")
-Speed = null
 metadata/_edit_group_ = true
 
 [node name="MainShape" type="CollisionShape2D" parent="."]
