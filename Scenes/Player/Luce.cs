@@ -8,6 +8,8 @@ namespace TheLoneLanternProject.Scenes.Player;
 public partial class Luce : CharacterBody2D
 {
     [Signal] public delegate void HealthChangedEventHandler(double newHealth);
+    [Signal] public delegate void LastWalkDirectionEventHandler(int direction);
+    [Signal] public delegate void PlayerIsMovingEventHandler(bool isMoving);
 
     [Export] public int Speed = PlayerConstants.Speed;
 
@@ -155,14 +157,20 @@ public partial class Luce : CharacterBody2D
         if (State == PlayerState.Idle)
         {
             mainSprite.Animation = $"idle {animationDirection}";
+            EmitSignal(SignalName.LastWalkDirection, (int)nextBuffer.NextDirection);
+            EmitSignal(SignalName.PlayerIsMoving, false);
         }
         else if (State == PlayerState.Walking)
         {
             mainSprite.Animation = $"walk {animationDirection}";
+            EmitSignal(SignalName.LastWalkDirection, (int)nextBuffer.NextDirection);
+            EmitSignal(SignalName.PlayerIsMoving, true);
             mainSprite.Play();
         }
         else if (State == PlayerState.Attacking)
         {
+            EmitSignal(SignalName.PlayerIsMoving, true);
+            
             if (nextBuffer.IsBuffering)
             {
                 if (mainSprite.Frame == 3)

@@ -1,14 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://be3yurhibr6t0"]
 
 [ext_resource type="PackedScene" uid="uid://ci6v0ni6pk1ry" path="res://Scenes/SceneSwitcher/SceneSwitcher.tscn" id="1_20kky"]
-[ext_resource type="PackedScene" uid="uid://bgpdxfsl820vp" path="res://Scenes/DevRooms/DevRoom.tscn" id="2_y7m8y"]
+[ext_resource type="PackedScene" uid="uid://dkbdv3d5r33e8" path="res://Rooms/NoriInitialVoid.tscn" id="2_af4hj"]
 
 [node name="Main" type="Node"]
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(288, 164)
-zoom = Vector2(2, 2)
-
 [node name="SceneSwitcher" parent="." instance=ExtResource("1_20kky")]
 
-[node name="DevRoom" parent="SceneSwitcher" instance=ExtResource("2_y7m8y")]
+[node name="NoriInitialVoid" parent="SceneSwitcher" instance=ExtResource("2_af4hj")]
