@@ -26,4 +26,5 @@ public static class NodeGroup
     public const string Attack = "attack";
     public const string Door = "door";
     public const string Enemy = "enemy";
+    public const string Persist = "Persist";
 }

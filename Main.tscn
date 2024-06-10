@@ -12,6 +12,6 @@ zoom = Vector2(2, 2)
 
 [node name="SaveNode" parent="." instance=ExtResource("1_j1ht5")]
 
-[node name="SceneSwitcher" parent="." instance=ExtResource("1_20kky")]
+[node name="SceneSwitcher" parent="." groups=["Persist"] instance=ExtResource("1_20kky")]
 
 [node name="DevRoom" parent="SceneSwitcher" instance=ExtResource("2_y7m8y")]
