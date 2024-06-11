@@ -29,9 +29,7 @@ public partial class PlayerCamera2D : Camera2D
 
     public override void _Ready()
     {
-        var tree = GetTree();
-        var luceNodes = tree.GetNodesInGroup(NodeGroup.Player);
-        luce = luceNodes.Cast<Luce>().FirstOrDefault();
+        luce = LuceHelper.GetLuce(GetTree());
     }
 
     public override void _PhysicsProcess(double delta)

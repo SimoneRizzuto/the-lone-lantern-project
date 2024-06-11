@@ -15,11 +15,7 @@ public partial class Tripod2D : Node2D
     {
         var tree = GetTree();
         
-        var luceNode = tree.GetNodesInGroup(NodeGroup.Player).FirstOrDefault();
-        if (luceNode is Luce player)
-        {
-            luce = player;
-        }
+        luce = LuceHelper.GetLuce(tree);
         
         var camera2DNode = tree.GetNodesInGroup(NodeGroup.PlayerCamera).FirstOrDefault();
         if (camera2DNode is PlayerCamera2D camera)
