@@ -279,7 +279,7 @@ public partial class Luce : CharacterBody2D
     {
         if (State == PlayerState.Disabled) return;
         
-        if (area.IsInGroup(NodeGroup.Enemy)) 
+        if (area.IsInGroup(NodeGroup.Enemy))
         {
             var enemy = (EnemyBase)area;
             enemy.TakeDamage(1);
