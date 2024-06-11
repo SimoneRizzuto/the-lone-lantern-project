@@ -1,8 +1,9 @@
-using Godot;
-using System;
 using System.Linq;
+using Godot;
 using TheLoneLanternProject.Constants;
 using TheLoneLanternProject.Scenes.Player;
+
+namespace TheLoneLanternProject.Scenes.Camera;
 
 public partial class Tripod2D : Node2D
 {
@@ -54,15 +55,15 @@ public partial class Tripod2D : Node2D
     
     
     /*public void OnScreenEntered()
-    {
-        // CHANGE THIS, instead, trigger this with an area 2D
-        
-        playerCamera2D.FollowPlayer = false;
-        
-        // instead, slowly transition to position, THEN LOCK NODE
-        
-        
-        
-        MoveNode(playerCamera2D, this);
-    }*/
+{
+    // CHANGE THIS, instead, trigger this with an area 2D
+    
+    playerCamera2D.FollowPlayer = false;
+    
+    // instead, slowly transition to position, THEN LOCK NODE
+    
+    
+    
+    MoveNode(playerCamera2D, this);
+}*/
 }

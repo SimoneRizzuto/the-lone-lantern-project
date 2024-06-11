@@ -1,12 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://b2e5gws18vd27"]
 
-[ext_resource type="Script" path="res://Scenes/Player/Tripod2D.cs" id="1_4ujg0"]
+[ext_resource type="Script" path="res://Scenes/Camera/Tripod2D.cs" id="1_4biqa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4o0ka"]
 size = Vector2(104, 89.5)
 
 [node name="Tripod2D" type="Node2D"]
-script = ExtResource("1_4ujg0")
+script = ExtResource("1_4biqa")
 
 [node name="TripodIsOnScreen" type="VisibleOnScreenEnabler2D" parent="."]
 
