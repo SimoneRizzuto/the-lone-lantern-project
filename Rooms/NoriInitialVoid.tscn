@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dkbdv3d5r33e8"]
+[gd_scene load_steps=16 format=3 uid="uid://dl7o7wudkbmk8"]
 
 [ext_resource type="Texture2D" uid="uid://i11c6j0s4337" path="res://Rooms/white door opening-Sheet.png" id="1_psg7o"]
 [ext_resource type="PackedScene" uid="uid://barc3o7fkbn44" path="res://Scenes/SceneSwitcher/DoorSquare2D.tscn" id="2_qb42v"]
@@ -92,6 +92,13 @@ animations = [{
 }]
 
 [node name="NoriInitialVoid" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -117.0
+offset_top = -211.0
+offset_right = 763.0
+offset_bottom = 406.0
+color = Color(0, 0, 0, 1)
 
 [node name="VoidDoor" type="StaticBody2D" parent="."]
 position = Vector2(237, 173)
