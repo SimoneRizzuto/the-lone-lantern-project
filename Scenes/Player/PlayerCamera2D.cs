@@ -31,8 +31,6 @@ public partial class PlayerCamera2D : Camera2D
 
     public override void _Ready()
     {
-        MakeCurrent();
-
         var tree = GetTree();
         
         luce = LuceHelper.GetLuce(tree);

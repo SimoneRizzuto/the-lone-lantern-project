@@ -44,10 +44,9 @@ public partial class Tripod2D : Node2D
         if (area.IsInGroup(NodeGroup.Player))
         {
             playerCamera2D.FollowPlayer = false;
-            GDHelper.MoveNode(playerCamera2D, this);
-            playerCamera2D.MakeCurrent();
-            
-            mainCamera2D.ToNode(tripodIsOnScreen);
+            GDHelper.MoveNode(playerCamera2D, tripodIsOnScreen);
+
+            mainCamera2D.ToNode(playerCamera2D);
         }
     }
 }
