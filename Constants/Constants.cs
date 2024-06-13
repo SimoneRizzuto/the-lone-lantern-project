@@ -27,4 +27,5 @@ public static class NodeGroup
     public const string ActorNode = "actor node";
     public const string CutsceneDirector = "cutscene director";
     public const string PlayerCamera = "player camera";
+    public const string TransitionCamera = "transition camera";
 }

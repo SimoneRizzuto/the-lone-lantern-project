@@ -1,12 +1,14 @@
 using Godot;
-using System;
 using System.Diagnostics;
 using System.Linq;
 using TheLoneLanternProject.Constants;
+using TheLoneLanternProject.Helpers;
 using TheLoneLanternProject.Scenes.Player;
 
 public partial class PlayerCamera2D : Camera2D
 {
+    private MainCamera2D mainCamera2D;
+    
     private int positionValue = 30;
     private int horizontalOffset = 6;
     private int verticalOffset = 12;
@@ -29,7 +31,17 @@ public partial class PlayerCamera2D : Camera2D
 
     public override void _Ready()
     {
-        luce = LuceHelper.GetLuce(GetTree());
+        MakeCurrent();
+
+        var tree = GetTree();
+        
+        luce = LuceHelper.GetLuce(tree);
+        
+        var transitionCameraNode = tree.GetNodesInGroup(NodeGroup.TransitionCamera).FirstOrDefault();
+        if (transitionCameraNode is MainCamera2D transitionCamera)
+        {
+            mainCamera2D = transitionCamera;
+        }
     }
 
     public override void _PhysicsProcess(double delta)
@@ -38,9 +50,9 @@ public partial class PlayerCamera2D : Camera2D
         {
             SetCameraToAdjust();
 
-            if (howLongPlayerMoving.ElapsedMilliseconds > 300/* && howLongPlayerIdle.ElapsedMilliseconds < 2000*/)
+            if (howLongPlayerMoving.ElapsedMilliseconds > 300)
             {
-                SetPositionOnDirection(delta);
+                SetPositionOnDirection();
             }
         }
     }
@@ -50,23 +62,13 @@ public partial class PlayerCamera2D : Camera2D
         if (!playerIsMoving)
         {
             howLongPlayerIdle.Start();
-            
-            /*if (howLongPlayerIdle.ElapsedMilliseconds > 2000)
-            {
-                howLongPlayerMoving.Stop();
-                howLongPlayerMoving.Reset();
-            }*/
-            
             return;
         }
-        
-        /*howLongPlayerIdle.Stop();
-        howLongPlayerIdle.Reset();*/
         
         howLongPlayerMoving.Start();
     }
     
-    public void SetPositionOnDirection(double delta)
+    public void SetPositionOnDirection()
     {
         int maxY = 0, maxX = 0;
         
@@ -111,22 +113,7 @@ public partial class PlayerCamera2D : Camera2D
         
         Position = new Vector2(x, y);
     }
-    
-    private void MoveNode(Node child, Node parent)
-    {
-        // Get the current parent of the node
-        var currentParent = child.GetParent();
-        if (currentParent != null)
-        {
-            // Remove the node from its current parent
-            currentParent.RemoveChild(child);
-        }
-        
-        // Add the node to the new parent
-        parent.AddChild(child);
-        child.Owner = parent;
-    }
-    
+
     // SIGNALS
     public void OnLuceLastWalkDirection(int direction) => lastDirection = (Direction)direction;
 
@@ -135,6 +122,8 @@ public partial class PlayerCamera2D : Camera2D
     public void PlayerOnScreenExited()
     {
         FollowPlayer = true;
-        MoveNode(this, luce);
+        GDHelper.MoveNode(this, luce);
+        
+        mainCamera2D.ToNode(this);
     }
 }

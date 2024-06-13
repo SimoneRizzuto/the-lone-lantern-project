@@ -130,7 +130,7 @@ TriggerByInteract = false
 position = Vector2(1.06189, 0)
 
 [node name="PlayerController" parent="." instance=ExtResource("3_7bro5")]
-position = Vector2(337, 139)
+position = Vector2(392, 132)
 
 [node name="Tripod2D" parent="." instance=ExtResource("4_ufy4f")]
 position = Vector2(93, 131)

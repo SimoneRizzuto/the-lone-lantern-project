@@ -1,16 +1,17 @@
 using System.Linq;
 using Godot;
 using TheLoneLanternProject.Constants;
+using TheLoneLanternProject.Helpers;
 using TheLoneLanternProject.Scenes.Player;
 
 namespace TheLoneLanternProject.Scenes.Camera;
-
 public partial class Tripod2D : Node2D
 {
     private PlayerCamera2D playerCamera2D;
+    private MainCamera2D mainCamera2D;
+    private VisibleOnScreenEnabler2D tripodIsOnScreen;
+    
     private Luce luce;
-
-    private bool followPlayer = true;
     
     public override void _Ready()
     {
@@ -18,52 +19,35 @@ public partial class Tripod2D : Node2D
         
         luce = LuceHelper.GetLuce(tree);
         
-        var camera2DNode = tree.GetNodesInGroup(NodeGroup.PlayerCamera).FirstOrDefault();
-        if (camera2DNode is PlayerCamera2D camera)
+        var playerCameraNode = tree.GetNodesInGroup(NodeGroup.PlayerCamera).FirstOrDefault();
+        if (playerCameraNode is PlayerCamera2D playerCamera)
         {
-            playerCamera2D = camera;
+            playerCamera2D = playerCamera;
         }
         
-        GD.Print("camera fetched");
+        var transitionCameraNode = tree.GetNodesInGroup(NodeGroup.TransitionCamera).FirstOrDefault();
+        if (transitionCameraNode is MainCamera2D transitionCamera)
+        {
+            mainCamera2D = transitionCamera;
+        }
+
+        var tripodIsOnScreenNode = GetNode("TripodIsOnScreen");
+        if (tripodIsOnScreenNode is VisibleOnScreenEnabler2D onScreenNode)
+        {
+            tripodIsOnScreen = onScreenNode;
+        }
     }
 
-    
-    private void MoveNode(Node child, Node parent)
-    {
-        // Get the current parent of the node
-        var currentParent = child.GetParent();
-        if (currentParent != null)
-        {
-            // Remove the node from its current parent
-            currentParent.RemoveChild(child);
-        }
-        
-        // Add the node to the new parent
-        parent.AddChild(child);
-        child.Owner = parent;
-    }
-    
     // SIGNALS
     public void OnBodyEnteredMountCameraTrigger(Node2D area)
     {
         if (area.IsInGroup(NodeGroup.Player))
         {
             playerCamera2D.FollowPlayer = false;
-            MoveNode(playerCamera2D, this);
+            GDHelper.MoveNode(playerCamera2D, this);
+            playerCamera2D.MakeCurrent();
+            
+            mainCamera2D.ToNode(tripodIsOnScreen);
         }
     }
-    
-    
-    /*public void OnScreenEntered()
-{
-    // CHANGE THIS, instead, trigger this with an area 2D
-    
-    playerCamera2D.FollowPlayer = false;
-    
-    // instead, slowly transition to position, THEN LOCK NODE
-    
-    
-    
-    MoveNode(playerCamera2D, this);
-}*/
 }
