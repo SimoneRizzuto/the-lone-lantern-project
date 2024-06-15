@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 CustomSignals="*res://Constants/CustomSignals.cs"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+TransitionCamera2D="*res://Scenes/Camera/MainCamera2D.tscn"
 
 [dialogue_manager]
 
@@ -39,7 +40,7 @@ enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg")
 [input]
 
 "Move Up"={
-"deadzone": 0.5,
+"deadzone": 0.75,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":87,"key_label":0,"unicode":119,"echo":false,"script":null)
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194320,"key_label":0,"unicode":0,"echo":false,"script":null)
 , Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":1,"axis_value":-1.0,"script":null)

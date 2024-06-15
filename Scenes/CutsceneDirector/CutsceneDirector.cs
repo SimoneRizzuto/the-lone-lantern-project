@@ -45,9 +45,7 @@ public partial class CutsceneDirector : Node
         customSignals = GetNode<CustomSignals>("/root/CustomSignals");
         customSignals.ShowDialogueBalloon += ShowDialogueBalloon;
         
-        var tree = GetTree();
-        var luceNodes = tree.GetNodesInGroup(NodeGroup.Player);
-        luce = luceNodes.Cast<Luce>().FirstOrDefault();
+        luce = LuceHelper.GetLuce(GetTree());
     }
     private bool LoadActorsIntoCurrentScene()
     {
