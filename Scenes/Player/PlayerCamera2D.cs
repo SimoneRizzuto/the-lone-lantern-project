@@ -35,7 +35,7 @@ public partial class PlayerCamera2D : Camera2D
         
         luce = LuceHelper.GetLuce(tree);
         
-        var transitionCameraNode = tree.GetNodesInGroup(NodeGroup.TransitionCamera).FirstOrDefault();
+        var transitionCameraNode = tree.GetNodesInGroup(NodeGroup.MainCamera).FirstOrDefault();
         if (transitionCameraNode is MainCamera2D transitionCamera)
         {
             mainCamera2D = transitionCamera;
