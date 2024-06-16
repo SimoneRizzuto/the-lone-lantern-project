@@ -1,6 +1,6 @@
-using System;
-using System.Linq;
 using Godot;
+using System.Linq;
+using TheLoneLanternProject.Helpers;
 using TheLoneLanternProject.Constants;
 using TheLoneLanternProject.Scenes.Player;
 
@@ -10,10 +10,17 @@ public partial class SceneSwitcher : Node
 {
     private CustomSignals customSignals = new();
 
+    private MainCamera2D mainCamera2D;
+    private PlayerCamera2D playerCamera2D;
+
     public override void _Ready()
     {
+        var tree = GetTree();
+
         customSignals = GetNode<CustomSignals>("/root/CustomSignals");
         customSignals.SceneSwitch += HandleSceneSwitch;
+
+        mainCamera2D = GetNodeHelper.GetMainCamera2D(tree);
     }
 
     private void HandleSceneSwitch(DoorSpawnAttributes attributes)
@@ -55,5 +62,9 @@ public partial class SceneSwitcher : Node
         var luce = (Luce)luceNode;
         luce.GlobalPosition = door.GlobalPosition;
         luce.Direction = attributes.ExitDirection;
+
+        playerCamera2D = GetNodeHelper.GetPlayerCamera2D(tree);
+        playerCamera2D.PlayerOnScreenExited();
+        mainCamera2D.ToNode(playerCamera2D);
     }
 }

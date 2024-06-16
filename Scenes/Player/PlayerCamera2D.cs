@@ -33,13 +33,8 @@ public partial class PlayerCamera2D : Camera2D
     {
         var tree = GetTree();
         
-        luce = LuceHelper.GetLuce(tree);
-        
-        var transitionCameraNode = tree.GetNodesInGroup(NodeGroup.MainCamera).FirstOrDefault();
-        if (transitionCameraNode is MainCamera2D transitionCamera)
-        {
-            mainCamera2D = transitionCamera;
-        }
+        luce = GetNodeHelper.GetLuce(tree);
+        mainCamera2D = GetNodeHelper.GetMainCamera2D(tree);
     }
 
     public override void _PhysicsProcess(double delta)

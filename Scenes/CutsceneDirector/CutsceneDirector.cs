@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using DialogueManagerRuntime;
 using TheLoneLanternProject.Constants;
+using TheLoneLanternProject.Helpers;
 using TheLoneLanternProject.Scenes.Player;
 
 public partial class CutsceneDirector : Node
@@ -45,7 +46,7 @@ public partial class CutsceneDirector : Node
         customSignals = GetNode<CustomSignals>("/root/CustomSignals");
         customSignals.ShowDialogueBalloon += ShowDialogueBalloon;
         
-        luce = LuceHelper.GetLuce(GetTree());
+        luce = GetNodeHelper.GetLuce(GetTree());
     }
     private bool LoadActorsIntoCurrentScene()
     {
