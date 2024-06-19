@@ -3,8 +3,6 @@ using Godot;
 using TheLoneLanternProject.Constants;
 using TheLoneLanternProject.Scenes.Enemies.BaseNode;
 using Vector2 = Godot.Vector2;
-using TheLoneLanternProject.Scenes.SaveHelper;
-using Newtonsoft.Json;
 
 
 namespace TheLoneLanternProject.Scenes.Player;
@@ -71,7 +69,6 @@ public partial class Player : CharacterBody2D
         SetAnimation();
 
         RegenerateHealth();
-        
     }
     public override void _PhysicsProcess(double delta)
     {
@@ -312,10 +309,7 @@ public partial class Player : CharacterBody2D
             var enemy = (EnemyBase)area;
             enemy.TakeDamage(1);
         }
-    }
-
-
-    
+    }   
 }
 
 public class PlayerNextBuffer
