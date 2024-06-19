@@ -19,7 +19,7 @@ config/icon="res://icon.svg"
 
 CustomSignals="*res://Constants/CustomSignals.cs"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
-TransitionCamera2D="*res://Scenes/Camera/MainCamera2D.tscn"
+MainCamera2D="*res://Scenes/Camera/MainCamera2D.tscn"
 
 [dialogue_manager]
 
