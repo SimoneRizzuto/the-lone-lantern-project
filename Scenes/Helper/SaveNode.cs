@@ -1,9 +1,7 @@
 using Godot;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text.Json;
-using System.Xml.Linq;
 using TheLoneLanternProject.Constants;
 using TheLoneLanternProject.Scenes.Player;
 
@@ -15,8 +13,7 @@ public partial class SaveNode : Node2D
         var tree = GetTree();
         var playerNodes = tree.GetNodesInGroup(NodeGroup.Player);
         player = playerNodes.Cast<Player>().FirstOrDefault();
-        
-        
+
     }
 
     public override void _Process(double delta)
@@ -27,11 +24,11 @@ public partial class SaveNode : Node2D
 
     public Godot.Collections.Dictionary<string, Variant> Serialize(Node saveNode)
     {
-        
+        // Scene
         if (saveNode.Name == "SceneSwitcher")
         {
-            // Assuming that current scene is first child
-            var currentScene = saveNode.GetChild(0);
+            var currentScene = saveNode.GetChild(0); // Assuming that current scene is first child
+
             return new Godot.Collections.Dictionary<string, Variant>()
             {
                 {"CurrentSceneName",  currentScene.Name.ToString()},
@@ -39,6 +36,8 @@ public partial class SaveNode : Node2D
                 {"CurrentSceneTreePath",  currentScene.GetPath().ToString()},
             };
         }
+
+        // Player
         if (saveNode.Name == "Player")
         {
             var playerNode = (Player)saveNode;
@@ -55,10 +54,11 @@ public partial class SaveNode : Node2D
 
         }
 
+        // Other
         return new Godot.Collections.Dictionary<string, Variant>()
         {
             { saveNode.Name.ToString(), JsonSerializer.Serialize(this)}
-        }; // For now try to just save everything
+        }; 
 
     }
 
@@ -66,11 +66,13 @@ public partial class SaveNode : Node2D
     {
         if (Input.IsActionPressed(InputMapAction.Save))
         {
+            // Write to savefile
             using var saveGame = FileAccess.Open("res://SaveData//SaveData.json", FileAccess.ModeFlags.Write);
-            //SaveHelper.SaveHelper.Save(); //Come back to this later.
+            
             var tree = GetTree();
             var saveableNodes = tree.GetNodesInGroup(NodeGroup.Persist);
             var saveJsonString = new Godot.Collections.Dictionary<string, Variant>() { };
+
             foreach (Node saveNode in saveableNodes)
             {
                 var saveDictionary = Serialize(saveNode);
@@ -78,6 +80,7 @@ public partial class SaveNode : Node2D
 
 
             }
+
             saveGame.StoreLine(Json.Stringify(saveJsonString));
 
         }
@@ -93,28 +96,26 @@ public partial class SaveNode : Node2D
 
         if (Input.IsActionPressed(InputMapAction.Load))
         {
+            // Read in savefile
             using var saveGame = FileAccess.Open("res://SaveData//SaveData.json", FileAccess.ModeFlags.Read);
+
             var jsonString = saveGame.GetLine();
-
-
             var json = new Json();
             var parseResult = json.Parse(jsonString);
+
             if (parseResult != Error.Ok)
             {
                 GD.Print($"JSON Parse Error: {json.GetErrorMessage()} in {jsonString} at line {json.GetErrorLine()}");
                 return;
             }
 
-            // For now just overwrite the Health value for IO testing
             var nodeData = new Godot.Collections.Dictionary<string, Variant>((Godot.Collections.Dictionary)json.Data);
-
-            // Current Scene
             var sceneNodeData = new Godot.Collections.Dictionary<string, Variant>((Godot.Collections.Dictionary)nodeData["SceneSwitcher"]);
-            // Must remove the scene that is child of SceneSwitcher and add the scene from save data.
-            //GD.Print(sceneNodeData);
-            //var treePath = (string)sceneNodeData["CurrentSceneTreePath"];
-            //var sceneToRemove = GetNode<Node>(treePath);
-            //RemoveChild(sceneToRemove);
+
+            // Scene
+            var sceneSwitcher = GetNode<Node>("/root/Main/SceneSwitcher");
+            var currentScene = sceneSwitcher.GetChild(0);
+            currentScene.Free();
 
             var projectPath = (string)sceneNodeData["CurrentSceneProjectPath"];
             var nextScenePackedScene = (PackedScene)ResourceLoader.Load(projectPath);
@@ -125,10 +126,14 @@ public partial class SaveNode : Node2D
             }
 
             var sceneToAdd = nextScenePackedScene.Instantiate();
-            AddChild(sceneToAdd);
+            sceneSwitcher.AddChild(sceneToAdd); 
 
 
             // Player
+            var tree = GetTree();
+            var playerNodes = tree.GetNodesInGroup(NodeGroup.Player);
+            player = playerNodes.Cast<Player>().FirstOrDefault();
+
             var playerNodeData = new Godot.Collections.Dictionary<string, Variant>((Godot.Collections.Dictionary)nodeData["Player"]);
             player.Health = (float)playerNodeData["Health"];
             player.Position = new Vector2((float)playerNodeData["PositionX"], (float)playerNodeData["PositionY"]);
