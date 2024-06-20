@@ -35,3 +35,7 @@ y_sort_enabled = false
 position = Vector2(363, 198)
 
 [node name="CutsceneDirector" parent="." instance=ExtResource("6_rv17u")]
+
+[node name="Sun" type="DirectionalLight2D" parent="."]
+energy = 0.64
+blend_mode = 1

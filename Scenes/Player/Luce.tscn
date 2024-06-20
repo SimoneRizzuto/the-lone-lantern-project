@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://1q0v7as1ovpm"]
+[gd_scene load_steps=66 format=3 uid="uid://1q0v7as1ovpm"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Luce.cs" id="1_nq6ir"]
 [ext_resource type="Script" path="res://Scenes/Player/PlayerCamera2D.cs" id="2_lo3wm"]
@@ -431,6 +431,15 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="Gradient" id="Gradient_46csv"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wxsah"]
+gradient = SubResource("Gradient_46csv")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0.64977, 0.456221)
+
 [node name="Luce" type="CharacterBody2D" groups=["player"]]
 z_as_relative = false
 y_sort_enabled = true
@@ -479,12 +488,25 @@ offset = Vector2(0, -18)
 collision_layer = 4
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HitBox"]
+visible = false
 polygon = PackedVector2Array(-9, -34, 0, -34, 11, -32, 17, -30, 21, -28, 30, -19, 30, -10, 21, -1, 11, 3, 0, 5, -10, 5)
 disabled = true
 
 [node name="ActorNode" type="Node2D" parent="." node_paths=PackedStringArray("AnimatedSprite2D") groups=["actor node"]]
 script = ExtResource("12_o1tfm")
 AnimatedSprite2D = NodePath("../AnimatedSprite2D")
+
+[node name="EyeLeft" type="PointLight2D" parent="."]
+position = Vector2(-2, -28)
+color = Color(1, 0.909804, 0.505882, 1)
+energy = 0.3
+texture = SubResource("GradientTexture2D_wxsah")
+
+[node name="EyeRight" type="PointLight2D" parent="."]
+position = Vector2(2, -28)
+color = Color(1, 0.909804, 0.505882, 1)
+energy = 0.3
+texture = SubResource("GradientTexture2D_wxsah")
 
 [connection signal="LastWalkDirection" from="." to="Camera2D" method="OnLuceLastWalkDirection"]
 [connection signal="PlayerIsMoving" from="." to="Camera2D" method="OnPlayerIsMoving"]
