@@ -1,4 +1,5 @@
 using Godot;
+using Godot.NativeInterop;
 using TheLoneLanternProject.Constants;
 using TheLoneLanternProject.Scenes.Enemies.BaseNode;
 using Vector2 = Godot.Vector2;
@@ -50,6 +51,8 @@ public partial class Luce : CharacterBody2D
     private AnimatedSprite2D mainSprite = new();
     private CollisionShape2D mainShape = new();
     private CollisionPolygon2D attackShape = new();
+    private PointLight2D eyeLeft = new();
+    private PointLight2D eyeRight = new();
 
     public override void _Ready()
     {
@@ -60,6 +63,9 @@ public partial class Luce : CharacterBody2D
         attackShape = GetNode<CollisionPolygon2D>("HitBox/CollisionPolygon2D");
 
         healthRegenBuffer = GetNode<Timer>("Timers/HealthRegenBuffer");
+
+        eyeLeft = GetNode<PointLight2D>("EyeLeft");
+        eyeRight = GetNode<PointLight2D>("EyeRight");
     }
 
     public override void _Process(double delta)
@@ -159,12 +165,14 @@ public partial class Luce : CharacterBody2D
             mainSprite.Animation = $"idle {animationDirection}";
             EmitSignal(SignalName.LastWalkDirection, (int)nextBuffer.NextDirection);
             EmitSignal(SignalName.PlayerIsMoving, false);
+            EyeGlow(animationDirection);
         }
         else if (State == PlayerState.Walking)
         {
             mainSprite.Animation = $"walk {animationDirection}";
             EmitSignal(SignalName.LastWalkDirection, (int)nextBuffer.NextDirection);
             EmitSignal(SignalName.PlayerIsMoving, true);
+            EyeGlow(animationDirection);
             mainSprite.Play();
         }
         else if (State == PlayerState.Attacking)
@@ -209,6 +217,46 @@ public partial class Luce : CharacterBody2D
                 attackShape.Disabled = true;
             }
         }
+    }
+
+    private void EyeGlow(string animationDirection)
+    {
+        /*var gradient = new GradientTexture2D();
+        gradient.Gradient.Reverse();
+        eyeLeft.Texture.Gradient.Reverse();*/
+
+
+        if (animationDirection == "right")
+        {
+            eyeLeft.Energy = (float)0;
+            eyeRight.Energy = (float)0.3;
+           
+        }
+        else if (animationDirection == "left")
+        {
+            eyeLeft.Energy = (float)0.3; 
+            eyeRight.Energy = (float)0;
+            
+        }
+        else if (animationDirection == "up")
+        {
+            eyeLeft.ZIndex = -1;
+            eyeRight.ZIndex = -1; 
+            eyeLeft.Energy = (float)0.3;
+            eyeRight.Energy = (float)0.3;
+            /*var gradient = new GradientTexture2D();
+            gradient.Gradient.Reverse();
+            eyeLeft.Texture = gradient;*/ // This needs to reverse the gradient so that it is dark where the cowl is and light outside the cowl for effect.
+            // How can I edit the properties of eyeLeft.Texture?
+        }
+        else
+        {
+            eyeLeft.Energy = (float)0.3;
+            eyeRight.Energy = (float)0.3;
+            /*eyeLeft.BlendMode = Light2D.BlendModeEnum.Add;
+            eyeRight.BlendMode = Light2D.BlendModeEnum.Add;*/
+        }
+        
     }
 
     private void RegenerateHealth()
