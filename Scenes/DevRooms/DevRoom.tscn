@@ -17,6 +17,7 @@ y_sort_enabled = true
 position = Vector2(204, 234)
 
 [node name="SicilianHouse" parent="." instance=ExtResource("2_msofi")]
+z_index = -1
 position = Vector2(165, 173)
 
 [node name="DoorSquare2D" parent="SicilianHouse" instance=ExtResource("3_stxbc")]
@@ -27,6 +28,7 @@ DoorName = "HouseDoor"
 ExitDirection = 0
 
 [node name="Couch" parent="." instance=ExtResource("4_shl2e")]
+z_index = -1
 position = Vector2(99, 263)
 
 [node name="EnemyBlob" parent="." instance=ExtResource("5_4pwfj")]

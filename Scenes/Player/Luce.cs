@@ -53,6 +53,8 @@ public partial class Luce : CharacterBody2D
     private CollisionPolygon2D attackShape = new();
     private PointLight2D eyeLeft = new();
     private PointLight2D eyeRight = new();
+    private PointLight2D eyeDown= new();
+    private PointLight2D eyeUp= new();
 
     public override void _Ready()
     {
@@ -66,6 +68,8 @@ public partial class Luce : CharacterBody2D
 
         eyeLeft = GetNode<PointLight2D>("EyeLeft");
         eyeRight = GetNode<PointLight2D>("EyeRight");
+        eyeDown = GetNode<PointLight2D>("EyeDown");
+        eyeUp = GetNode<PointLight2D>("EyeUp");
     }
 
     public override void _Process(double delta)
@@ -221,42 +225,36 @@ public partial class Luce : CharacterBody2D
 
     private void EyeGlow(string animationDirection)
     {
-        /*var gradient = new GradientTexture2D();
-        gradient.Gradient.Reverse();
-        eyeLeft.Texture.Gradient.Reverse();*/
-
+        eyeLeft.Enabled = false;
+        eyeRight.Enabled = false;
+        eyeDown.Enabled = false;
+        eyeUp.Enabled = false;
 
         if (animationDirection == "right")
         {
-            eyeLeft.Energy = (float)0;
-            eyeRight.Energy = (float)0.3;
-           
+            eyeRight.Enabled = true;
+
         }
         else if (animationDirection == "left")
         {
-            eyeLeft.Energy = (float)0.3; 
-            eyeRight.Energy = (float)0;
+            
+            eyeLeft.Enabled = true;
             
         }
         else if (animationDirection == "up")
         {
-            eyeLeft.ZIndex = -1;
-            eyeRight.ZIndex = -1; 
-            eyeLeft.Energy = (float)0.3;
-            eyeRight.Energy = (float)0.3;
-            /*var gradient = new GradientTexture2D();
-            gradient.Gradient.Reverse();
-            eyeLeft.Texture = gradient;*/ // This needs to reverse the gradient so that it is dark where the cowl is and light outside the cowl for effect.
-            // How can I edit the properties of eyeLeft.Texture?
+            eyeUp.Enabled = true;   
+
+        }
+        else if(animationDirection == "down")
+        {
+            eyeDown.Enabled = true;
         }
         else
         {
-            eyeLeft.Energy = (float)0.3;
-            eyeRight.Energy = (float)0.3;
-            /*eyeLeft.BlendMode = Light2D.BlendModeEnum.Add;
-            eyeRight.BlendMode = Light2D.BlendModeEnum.Add;*/
+            return;
         }
-        
+
     }
 
     private void RegenerateHealth()
