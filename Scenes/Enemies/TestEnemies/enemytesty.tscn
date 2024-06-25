@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cfe0an0x3l5ce"]
 
 [ext_resource type="Script" path="res://Scenes/Enemies/BaseNode/EnemyBase.cs" id="1_p3d34"]
-[ext_resource type="Texture2D" uid="uid://qg1wluq8wfit" path="res://Scenes/Player/idle.png" id="2_fxm5f"]
+[ext_resource type="Texture2D" uid="uid://qg1wluq8wfit" path="res://Scenes/Luce/idle.png" id="2_fxm5f"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_xtmrb"]
 animations = [{

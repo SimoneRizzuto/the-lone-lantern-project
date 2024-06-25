@@ -15,3 +15,8 @@ public enum StaminaHealthState
     Pause = 1,
     Regen = 2
 }
+
+public static class PlayerConstants
+{
+    public const int Speed = 5000;
+}

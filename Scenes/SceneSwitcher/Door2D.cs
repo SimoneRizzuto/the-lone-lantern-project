@@ -7,6 +7,7 @@ public partial class Door2D : Area2D
     [Export] public string SceneUID;
     [Export] public string DoorName;
     [Export] public Direction ExitDirection = Direction.Down;
+    [Export] public bool TriggerByInteract = true;
 
     private CustomSignals customSignals;
     private bool bodyEntered = false;
@@ -18,21 +19,28 @@ public partial class Door2D : Area2D
 
     public override void _Process(double delta)
     {
-        TriggerTransition();
+        if (bodyEntered)
+        {
+            if (TriggerByInteract && Input.IsActionJustPressed(InputMapAction.Enter))
+            {
+                TriggerTransition();
+            }
+            else if (!TriggerByInteract)
+            {
+                TriggerTransition();
+            }
+        }
     }
     private void TriggerTransition()
     {
-        if (bodyEntered && Input.IsActionJustPressed(InputMapAction.Enter))
+        var doorSpawnAttribute = new DoorSpawnAttributes
         {
-            var doorSpawnAttribute = new DoorSpawnAttributes
-            {
-                NewSceneUid = SceneUID,
-                DoorName = DoorName,
-                ExitDirection = ExitDirection
-            };
-            
-            customSignals.EmitSignal(nameof(CustomSignals.SceneSwitch), doorSpawnAttribute);
-        }
+            NewSceneUid = SceneUID,
+            DoorName = DoorName,
+            ExitDirection = ExitDirection
+        };
+        
+        customSignals.EmitSignal(nameof(CustomSignals.SceneSwitch), doorSpawnAttribute);
     }
 
     // Signal Events

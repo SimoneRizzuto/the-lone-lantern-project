@@ -26,5 +26,9 @@ public static class NodeGroup
     public const string Attack = "attack";
     public const string Door = "door";
     public const string Enemy = "enemy";
+    public const string ActorNode = "actor node";
+    public const string CutsceneDirector = "cutscene director";
+    public const string PlayerCamera = "player camera";
+    public const string TransitionCamera = "transition camera";
     public const string Persist = "Persist";
 }

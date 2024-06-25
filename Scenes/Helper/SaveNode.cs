@@ -7,12 +7,12 @@ using TheLoneLanternProject.Scenes.Player;
 
 public partial class SaveNode : Node2D
 {
-    private Player player;
+    private Luce luce;
     public override void _Ready()
     {
         var tree = GetTree();
         var playerNodes = tree.GetNodesInGroup(NodeGroup.Player);
-        player = playerNodes.Cast<Player>().FirstOrDefault();
+        luce = playerNodes.Cast<Luce>().FirstOrDefault();
 
     }
 
@@ -40,7 +40,7 @@ public partial class SaveNode : Node2D
         // Player
         if (saveNode.Name == "Player")
         {
-            var playerNode = (Player)saveNode;
+            var playerNode = (Luce)saveNode;
 
 
             return new Godot.Collections.Dictionary<string, Variant>()
@@ -132,13 +132,13 @@ public partial class SaveNode : Node2D
             // Player
             var tree = GetTree();
             var playerNodes = tree.GetNodesInGroup(NodeGroup.Player);
-            player = playerNodes.Cast<Player>().FirstOrDefault();
+            luce = playerNodes.Cast<Luce>().FirstOrDefault();
 
             var playerNodeData = new Godot.Collections.Dictionary<string, Variant>((Godot.Collections.Dictionary)nodeData["Player"]);
-            player.Health = (float)playerNodeData["Health"];
-            player.Position = new Vector2((float)playerNodeData["PositionX"], (float)playerNodeData["PositionY"]);
+            luce.Health = (float)playerNodeData["Health"];
+            luce.Position = new Vector2((float)playerNodeData["PositionX"], (float)playerNodeData["PositionY"]);
             Enum.TryParse((string)playerNodeData["Direction"], out Direction direction);
-            player.Direction = direction;
+            luce.Direction = direction;
 
 
         }

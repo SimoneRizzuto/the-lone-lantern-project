@@ -1,4 +1,3 @@
-using System;
 using Godot;
 using TheLoneLanternProject.Constants;
 using TheLoneLanternProject.Scenes.Enemies.BaseNode;
@@ -7,12 +6,16 @@ using Vector2 = Godot.Vector2;
 
 namespace TheLoneLanternProject.Scenes.Player;
 
-public partial class Player : CharacterBody2D
+public partial class Luce : CharacterBody2D
 {
     [Signal] public delegate void HealthChangedEventHandler(double newHealth);
+    [Signal] public delegate void LastWalkDirectionEventHandler(int direction);
+    [Signal] public delegate void PlayerIsMovingEventHandler(bool isMoving);
 
-    [Export] public int Speed = 5000;
+    [Export] public int Speed = PlayerConstants.Speed;
 
+    private CustomSignals customSignals = new();
+    
     private int attackMoveSpeed = 4000;
 
     private double health = 100;
@@ -46,14 +49,15 @@ public partial class Player : CharacterBody2D
     private Vector2 vectorForMovement = Vector2.Zero;
 
     private AnimatedSprite2D mainSprite = new();
-    private CollisionShape2D playerShape = new();
+    private CollisionShape2D mainShape = new();
     private CollisionPolygon2D attackShape = new();
 
     public override void _Ready()
     {
+        customSignals = GetNode<CustomSignals>("/root/CustomSignals");
         mainSprite = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
 
-        playerShape = GetNode<CollisionShape2D>("PlayerShape");
+        mainShape = GetNode<CollisionShape2D>("MainShape");
         attackShape = GetNode<CollisionPolygon2D>("HitBox/CollisionPolygon2D");
 
         healthRegenBuffer = GetNode<Timer>("Timers/HealthRegenBuffer");
@@ -65,13 +69,14 @@ public partial class Player : CharacterBody2D
 
         SetDirection();
         SetAttack();
-        SetFlipH();
         SetAnimation();
 
         RegenerateHealth();
     }
     public override void _PhysicsProcess(double delta)
     {
+        if (State == PlayerState.Disabled) return;
+        
         if (State != PlayerState.Attacking)
         {
             vectorForMovement = Input.GetVector(InputMapAction.Left, InputMapAction.Right, InputMapAction.Up, InputMapAction.Down);
@@ -89,6 +94,11 @@ public partial class Player : CharacterBody2D
     private void SetDirection()
     {
         var setDirection = HeldDirection();
+
+        if (Input.IsActionJustPressed("TestTriggerDialogue")) // TEST DIALOGUE TRIGGER FOR NOW, DELETE LATER
+        {
+            customSignals.EmitSignal(nameof(CustomSignals.ShowDialogueBalloon), "dialogue-test", "initial_dialogue");
+        }
 
         nextBuffer.NextDirection = setDirection ?? Direction;
         
@@ -131,52 +141,6 @@ public partial class Player : CharacterBody2D
             State = PlayerState.Attacking;
         }
     }
-    
-    private void SetFlipH()
-    {
-        if (State == PlayerState.Attacking) return;
-
-        switch (Direction)
-        {
-            case Direction.Left:
-            {
-                var wasFacingRight = !mainSprite.FlipH;
-
-                mainSprite.FlipH = true;
-
-                if (wasFacingRight)
-                {
-                    attackShape.Scale = new Vector2(-1, 1);
-                }
-
-                break;
-            }
-            case Direction.Right:
-            {
-                var wasFacingLeft = mainSprite.FlipH;
-
-                mainSprite.FlipH = false;
-
-                if (wasFacingLeft)
-                {
-                    attackShape.Scale = new Vector2(1, 1);
-                }
-
-                break;
-            }
-            case Direction.Down:
-            {
-                mainSprite.FlipH = false;
-                
-                if (attackAnimationCounter % 2 == 0) // is even
-                {
-                    mainSprite.FlipH = true;
-                }
-                
-                break;
-            }
-        }
-    }
 
     private int attackAnimationCounter = 2;
     private void SetAnimation()
@@ -185,8 +149,8 @@ public partial class Player : CharacterBody2D
         
         switch (Direction)
         {
-            case Direction.Left:  animationDirection = "side"; break;
-            case Direction.Right: animationDirection = "side"; break;
+            case Direction.Left:  animationDirection = "left"; break;
+            case Direction.Right: animationDirection = "right"; break;
             case Direction.Down:  animationDirection = "down"; break;
             case Direction.Up:    animationDirection = "up";   break;
         }
@@ -194,14 +158,20 @@ public partial class Player : CharacterBody2D
         if (State == PlayerState.Idle)
         {
             mainSprite.Animation = $"idle {animationDirection}";
+            EmitSignal(SignalName.LastWalkDirection, (int)nextBuffer.NextDirection);
+            EmitSignal(SignalName.PlayerIsMoving, false);
         }
         else if (State == PlayerState.Walking)
         {
             mainSprite.Animation = $"walk {animationDirection}";
+            EmitSignal(SignalName.LastWalkDirection, (int)nextBuffer.NextDirection);
+            EmitSignal(SignalName.PlayerIsMoving, true);
             mainSprite.Play();
         }
         else if (State == PlayerState.Attacking)
         {
+            EmitSignal(SignalName.PlayerIsMoving, true);
+            
             if (nextBuffer.IsBuffering)
             {
                 if (mainSprite.Frame == 3)
@@ -290,6 +260,8 @@ public partial class Player : CharacterBody2D
 
     private void OnAnimationFinished()
     {
+        if (State == PlayerState.Disabled) return;
+        
         if (mainSprite.Animation.ToString().Contains("attack"))
         {
             State = PlayerState.Idle;
@@ -299,12 +271,16 @@ public partial class Player : CharacterBody2D
 
     public void OnHealthRegenBufferTimeout()
     {
+        if (State == PlayerState.Disabled) return;
+        
         healthState = StaminaHealthState.Regen;
     }
 
     public void OnAttackShapeAreaEntered(Node2D area)
     {
-        if (area.IsInGroup(NodeGroup.Enemy)) 
+        if (State == PlayerState.Disabled) return;
+        
+        if (area.IsInGroup(NodeGroup.Enemy))
         {
             var enemy = (EnemyBase)area;
             enemy.TakeDamage(1);

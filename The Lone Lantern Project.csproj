@@ -4,10 +4,4 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <RootNamespace>TheLoneLanternProject</RootNamespace>
   </PropertyGroup>
-  <ItemGroup>
-    <Folder Include="Areas\" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-  </ItemGroup>
 </Project>
