@@ -3,6 +3,7 @@ using TheLoneLanternProject.Constants;
 using TheLoneLanternProject.Scenes.Enemies.BaseNode;
 using Vector2 = Godot.Vector2;
 
+
 namespace TheLoneLanternProject.Scenes.Player;
 
 public partial class Luce : CharacterBody2D
@@ -18,7 +19,7 @@ public partial class Luce : CharacterBody2D
     private int attackMoveSpeed = 4000;
 
     private double health = 100;
-    private double Health
+    public double Health
     {
         get => health;
         set
@@ -284,7 +285,7 @@ public partial class Luce : CharacterBody2D
             var enemy = (EnemyBase)area;
             enemy.TakeDamage(1);
         }
-    }
+    }   
 }
 
 public class PlayerNextBuffer
