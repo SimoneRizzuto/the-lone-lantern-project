@@ -102,7 +102,7 @@ offset_bottom = 406.0
 color = Color(0, 0, 0, 1)
 
 [node name="VoidDoor" type="StaticBody2D" parent="."]
-position = Vector2(237, 173)
+position = Vector2(162, -4)
 
 [node name="RightSide" type="CollisionShape2D" parent="VoidDoor"]
 position = Vector2(14.5, 14.2188)
@@ -130,13 +130,16 @@ TriggerByInteract = false
 position = Vector2(1.06189, 0)
 
 [node name="PlayerController" parent="." instance=ExtResource("3_7bro5")]
-position = Vector2(392, 132)
+position = Vector2(333, 35)
 
 [node name="Tripod2D" parent="." instance=ExtResource("4_ufy4f")]
 position = Vector2(93, 131)
 
 [node name="TripodIsOnScreen" parent="Tripod2D" index="0"]
 position = Vector2(-34, -64)
+
+[node name="MountCameraTrigger" parent="Tripod2D" index="1"]
+position = Vector2(-156, -132)
 
 [node name="CollisionShape2D" parent="Tripod2D/MountCameraTrigger" index="0"]
 position = Vector2(150, -4)
