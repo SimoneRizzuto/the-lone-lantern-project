@@ -9,6 +9,8 @@
 width = 134
 
 [node name="TestSicilianHouse" type="Node2D"]
+z_as_relative = false
+y_sort_enabled = true
 
 [node name="PlayerController" parent="." instance=ExtResource("3_7e3n5")]
 z_as_relative = false
