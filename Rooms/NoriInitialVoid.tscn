@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://i11c6j0s4337" path="res://Rooms/white door opening-Sheet.png" id="1_psg7o"]
 [ext_resource type="PackedScene" uid="uid://barc3o7fkbn44" path="res://Scenes/SceneSwitcher/DoorSquare2D.tscn" id="2_qb42v"]
-[ext_resource type="PackedScene" uid="uid://h2iu1fkuw61u" path="res://Scenes/PlayerController/PlayerController.tscn" id="3_7bro5"]
+[ext_resource type="PackedScene" uid="uid://1q0v7as1ovpm" path="res://Scenes/Player/Luce.tscn" id="3_7bro5"]
 [ext_resource type="PackedScene" uid="uid://b2e5gws18vd27" path="res://Scenes/Camera/Tripod2D.tscn" id="4_ufy4f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vgofx"]
@@ -129,7 +129,7 @@ TriggerByInteract = false
 [node name="CollisionShape2D" parent="VoidDoor/DoorSquare2D" index="0"]
 position = Vector2(1.06189, 0)
 
-[node name="PlayerController" parent="." instance=ExtResource("3_7bro5")]
+[node name="Luce" parent="." instance=ExtResource("3_7bro5")]
 position = Vector2(333, 35)
 
 [node name="Tripod2D" parent="." instance=ExtResource("4_ufy4f")]
