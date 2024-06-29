@@ -1,15 +1,21 @@
-[gd_scene load_steps=7 format=3 uid="uid://b0g2v7tkj7vyq"]
+[gd_scene load_steps=11 format=3 uid="uid://b0g2v7tkj7vyq"]
 
 [ext_resource type="PackedScene" uid="uid://b2e5gws18vd27" path="res://Scenes/Camera/Tripod2D.tscn" id="1_0htn0"]
 [ext_resource type="Texture2D" uid="uid://b2iwlbq5gt1bb" path="res://Assets/swingset.png" id="1_vn8ua"]
 [ext_resource type="Texture2D" uid="uid://bhpqhi6835fw" path="res://Assets/playground_plaza_ground.png" id="3_e0hc1"]
 [ext_resource type="PackedScene" uid="uid://1q0v7as1ovpm" path="res://Scenes/Player/Luce.tscn" id="4_jhdro"]
+[ext_resource type="Texture2D" uid="uid://crq4yjcjurdb1" path="res://Assets/playground_plaza-wall-horizontal-end.png" id="5_m7ygs"]
+[ext_resource type="Texture2D" uid="uid://d3s31mee3j147" path="res://Assets/playground_plaza-wall-horizontal-2.png" id="6_qu0ox"]
+[ext_resource type="Texture2D" uid="uid://dgy78l2xjxndf" path="res://Assets/playground_plaza-wall-horizontal-1.png" id="7_or2x4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ssvm"]
 size = Vector2(3, 4)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1lkc0"]
 size = Vector2(3, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2sh6o"]
+size = Vector2(78.5, 16)
 
 [node name="PlaygroundPlaza" type="Node2D"]
 z_as_relative = false
@@ -19,10 +25,13 @@ y_sort_enabled = true
 
 [node name="TripodIsOnScreen" parent="Tripod2D" index="0"]
 z_index = 4096
-position = Vector2(170, 84)
+position = Vector2(170.5, 84)
 
 [node name="CollisionShape2D" parent="Tripod2D/MountCameraTrigger" index="0"]
 position = Vector2(130, 58)
+
+[node name="Luce" parent="." instance=ExtResource("4_jhdro")]
+position = Vector2(146, 44)
 
 [node name="PlaygroundPlazaGround" type="Sprite2D" parent="."]
 position = Vector2(37, -18)
@@ -45,6 +54,83 @@ shape = SubResource("RectangleShape2D_4ssvm")
 position = Vector2(89.5, -3)
 shape = SubResource("RectangleShape2D_1lkc0")
 
-[node name="Luce" parent="." instance=ExtResource("4_jhdro")]
+[node name="Walls" type="Node2D" parent="."]
+
+[node name="WallHorizontal-End" type="Sprite2D" parent="Walls"]
+position = Vector2(118, -45)
+texture = ExtResource("5_m7ygs")
+centered = false
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Walls/WallHorizontal-End"]
+position = Vector2(-23, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/WallHorizontal-End/StaticBody2D"]
+z_index = 1
+position = Vector2(-8, 35)
+shape = SubResource("RectangleShape2D_2sh6o")
+
+[node name="WallHorizontal-1" type="Sprite2D" parent="Walls/WallHorizontal-End"]
+position = Vector2(-12, 0)
+texture = ExtResource("6_qu0ox")
+centered = false
+
+[node name="WallHorizontal-2" type="Sprite2D" parent="Walls/WallHorizontal-End"]
+position = Vector2(-24, 0)
+texture = ExtResource("7_or2x4")
+centered = false
+
+[node name="WallHorizontal-3" type="Sprite2D" parent="Walls/WallHorizontal-End"]
+position = Vector2(-36, 0)
+texture = ExtResource("6_qu0ox")
+centered = false
+
+[node name="WallHorizontal-4" type="Sprite2D" parent="Walls/WallHorizontal-End"]
+position = Vector2(-48, 0)
+texture = ExtResource("6_qu0ox")
+centered = false
+
+[node name="WallHorizontal-5" type="Sprite2D" parent="Walls/WallHorizontal-End"]
+position = Vector2(-60, 0)
+texture = ExtResource("6_qu0ox")
+centered = false
+
+[node name="WallHorizontal-End2" type="Sprite2D" parent="Walls"]
+position = Vector2(214, -45)
+texture = ExtResource("5_m7ygs")
+centered = false
+flip_h = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Walls/WallHorizontal-End2"]
+position = Vector2(46, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/WallHorizontal-End2/StaticBody2D"]
+z_index = 1
+position = Vector2(-7.25, 35)
+shape = SubResource("RectangleShape2D_2sh6o")
+
+[node name="WallHorizontal-1" type="Sprite2D" parent="Walls/WallHorizontal-End2"]
+position = Vector2(53, 0)
+texture = ExtResource("6_qu0ox")
+centered = false
+
+[node name="WallHorizontal-2" type="Sprite2D" parent="Walls/WallHorizontal-End2"]
+position = Vector2(41, 0)
+texture = ExtResource("7_or2x4")
+centered = false
+
+[node name="WallHorizontal-3" type="Sprite2D" parent="Walls/WallHorizontal-End2"]
+position = Vector2(29, 0)
+texture = ExtResource("6_qu0ox")
+centered = false
+
+[node name="WallHorizontal-4" type="Sprite2D" parent="Walls/WallHorizontal-End2"]
+position = Vector2(17, 0)
+texture = ExtResource("6_qu0ox")
+centered = false
+
+[node name="WallHorizontal-5" type="Sprite2D" parent="Walls/WallHorizontal-End2"]
+position = Vector2(5, 0)
+texture = ExtResource("6_qu0ox")
+centered = false
 
 [editable path="Tripod2D"]
