@@ -1,17 +1,25 @@
 ~ initial_dialogue
 
-do luce.MoveLeft()
-do luce.MoveRight()
-do luce.PlayAnimationAsync("attack left 1")
-do luce.LookUp()
-Nori: [#crying-hidden] ...
-do luce.MoveLeft()
+do director.Wait(0)
+do luce.MoveDown(2, 0.5)
+do director.Wait(3)
+Luce readies his weapon to reaper her.
+Play a sound of her crying.
 Luce: [#default] ...
-do director.Wait(4)
+Luce lowers his weapon.
+do luce.MoveLeft(0.75, 0.5)
+do luce.MoveDown(0.75, 0.5)
+do luce.MoveRight(0.45, 0.5)
+do luce.LookDown()
+Luce sits.
+do director.Wait(5)
+
+Nori: [#crying-hidden] ...
+Luce: [#default] ...
 Luce: [#look-down] ...
 Luce: [#default] ...
 Luce gives her a little poke.
-Nori: [#crying-hidden] Don’t touch me.
+Nori: [#crying-hidden] Don’t.
 Luce: [#default] ...
 Luce: [#default] ...
 It begins raining.
@@ -21,8 +29,7 @@ Luce: [#default] ...
 Luce channels a light, slowly building its’ shape into an umbrella.
 Luce holds the umbrella above her head.
 Nori: [#crying-oh] Woah!
-Nori: [#crying-side-lip] How did you...
-Nori: [#crying-side-lip] ... do that?
+Nori: [#crying-side-lip] How did you... do that?
 Nori: [#crying-side-lip] ...
 Nori: [#hidden-visible-crying-side-lip] ...
 Luce: [#default] ...
@@ -41,35 +48,35 @@ Nori: [#look-left-sad] ...
 do director.Wait(4)
 Luce: [#look-down] ... I like your shirt.
 Nori: [#look-left-sad] ...
-Nori: ...
-Nori: ...
-Nori: Thanks...
-Nori: I, um...
-Nori: I like your shirt too. Or cloak I mean.
+Nori: [#side-lip] ...
+Nori: [#look-down-right-oh] ...
+Nori: [#look-right-hope-smile] Thanks...
+Nori: [#look-right-hope-smile] I, um...
+Nori: [#look-right-hope-smile] I like your shirt too. Or cloak I mean.
 Luce: [#default] !
-Nori: Do you... wear that around a lot?
+Nori: [#look-right-oh] Do you... wear that around a lot?
 Luce: [#satisfaction] *nods*
-Nori: Huh. You’re not from around here then.
+Nori: [#look-right-oh] Huh. You’re not from around here then.
 Luce: [#surprised] How can you tell?
-Nori: I mean, it’s not hard to notice you.
+Nori: [#cartoon-um-what] I mean, it’s not hard to notice you.
 Luce: [#look-down] ...
-Nori: ...
-Nori: Where are you from, exactly?
+Nori: [#doubt] ...
+Nori: [#doubt] Where are you from, exactly?
 Luce: [#look-right] ... I am... on a secret mission. 
 Luce: [#default] ...
 Luce: [#look-up] I... cannot say.
-Nori: What kind of mission?
+Nori: [#oh] What kind of mission?
 Luce: [#close-eyes-down] ...
-Nori: Oh... right. It’s a secret.
+Nori: [#close-eyes-smile] Oh... right. It’s a secret.
 School bells are heard in the distance.
 Nori: [#shocked] Oh crap! I didn’t realise the time.
 The little girl gets out of the seat.
-Nori: Thanks for the umbrella. Here you go.
+Nori: [#look-right-hope-smile] Thanks for the umbrella. Here you go.
 She offers the umbrella back to Luce.
 Luce: [#default] ... Take it with you.
-Nori: ... Oh.
-Nori: Um... I’ll give it back if I find you again. You aren’t hard to miss.
-Nori: See you around.
+Nori: [#oh] ... Oh.
+Nori: [#default] Um... I’ll give it back if I find you again. You aren’t hard to miss.
+Nori: [#hope-smile] See you around.
 She leaves the playground, leaving Luce behind.
 He sits there alone.
 A firefly comes out of him and floats around. He places his finger high, and the firefly lands on it.
@@ -90,7 +97,7 @@ Flashing images of a cricket chirping, a puddle rippling, the wind blowing on gr
 The winds whistle a little song. Something soothing, sounding like the tip taps of the rain, the soft breaths of the breeze.
 (Option to save)
 Luce gets up.
-Luce: [#look-right] I wonder... if this is what life felt like. 
+Luce: [#look-right] I wonder if this is what life felt like. 
 Luce: [#default] What do you think?
 Little whirls are heard from the firefly.
 Luce: [#close-eyes-down] You are getting wet. I am sorry.

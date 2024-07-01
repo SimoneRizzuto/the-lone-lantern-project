@@ -83,7 +83,7 @@ public partial class Luce : CharacterBody2D
             State = vectorForMovement != Vector2.Zero ? PlayerState.Walking : PlayerState.Idle;
         }
 
-        Speed = State == PlayerState.Attacking ? attackMoveSpeed : 5000;
+        Speed = State == PlayerState.Attacking ? attackMoveSpeed : Speed;
         
         Velocity = vectorForMovement * Speed * (float)delta;
         

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scenes/Camera/Tripod2D.cs" id="1_4biqa"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4o0ka"]
-size = Vector2(104, 89.5)
+size = Vector2(88, 19)
 
 [node name="Tripod2D" type="Node2D"]
 script = ExtResource("1_4biqa")
