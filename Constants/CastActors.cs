@@ -16,6 +16,7 @@ public partial class CastActors : Node
     
     // Actors
     public ActorNodeBase luce;
+    public ActorNodeBase nori;
     
     public override void _Ready()
     {
@@ -27,6 +28,28 @@ public partial class CastActors : Node
         camera = GetNodeHelper.GetMainCamera2D(tree);
         
         var actorNodes = tree.GetNodesInGroup(NodeGroup.ActorNode);
-        luce = actorNodes.Cast<ActorNodeBase>().FirstOrDefault();
+        var actorBaseNodes = actorNodes.Cast<ActorNodeBase>().ToList();
+
+        foreach (var actor in actorBaseNodes)
+        {
+            if (actor.Actor.Name == ActorNames.Luce)
+            {
+                luce = actor;
+            }
+
+            if (actor.Actor.Name == ActorNames.Nori)
+            {
+                nori = actor;
+            }
+        }
+        
+        //luce = actorBaseNodes.FirstOrDefault();
     }
+}
+
+// Actor Names
+public static class ActorNames
+{
+    public static string Luce = "Luce";
+    public static string Nori = "Nori";
 }

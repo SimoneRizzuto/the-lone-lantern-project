@@ -8,12 +8,8 @@ using TheLoneLanternProject.Scenes.Player;
 public partial class ActorNodeBase : Node2D // ReSharper disable IntroduceOptionalParameters.Global
 {
     [Export] public AnimatedSprite2D AnimatedSprite2D;
-    [Export] public string MoveUpAnimation;
-    [Export] public string MoveRightAnimation;
-    [Export] public string MoveLeftAnimation;
-    [Export] public string MoveDownAnimation;
     
-    private CharacterBody2D actor;
+    public CharacterBody2D Actor;
     
     private AsyncActionToPlay asyncActionToPlay = AsyncActionToPlay.NoAction;
     private double millisecondsToPass = 1000;
@@ -31,7 +27,7 @@ public partial class ActorNodeBase : Node2D // ReSharper disable IntroduceOption
     }
     private void FindParentActor()
     {
-        if (actor != null) return;
+        if (Actor != null) return;
         
         var getParentActor = GetParentOrNull<CharacterBody2D>();
         if (getParentActor == null)
@@ -40,7 +36,7 @@ public partial class ActorNodeBase : Node2D // ReSharper disable IntroduceOption
             return;
         }
 
-        actor = getParentActor;
+        Actor = getParentActor;
     }
 
     private async Task SetupActionTask(AsyncActionToPlay asyncAction, double seconds, double? moveSpeedMultiplier = 1)
@@ -147,9 +143,9 @@ public partial class ActorNodeBase : Node2D // ReSharper disable IntroduceOption
         if (direction == Vector2.Up) lastDirection = "up";
         
         AnimatedSprite2D.Play($"walk {lastDirection}", (float)multiplier);
-        actor.Velocity = direction * (PlayerConstants.Speed * (float)multiplier) * (float)delta;
+        Actor.Velocity = direction * (PlayerConstants.Speed * (float)multiplier) * (float)delta;
         
-        actor.MoveAndSlide();
+        Actor.MoveAndSlide();
     }
 }
 
