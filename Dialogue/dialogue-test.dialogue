@@ -1,6 +1,9 @@
 ~ initial_dialogue
 
-do director.Wait(0)
+do nori.PlayAnimation("sit crying down look down")
+
+
+do director.Wait(5)
 do luce.MoveDown(2, 0.5)
 do director.Wait(3)
 Luce readies his weapon to reaper her.
@@ -8,20 +11,35 @@ Play a sound of her crying.
 Luce: [#default] ...
 Luce lowers his weapon.
 do luce.MoveLeft(0.75, 0.5)
-do luce.MoveDown(0.75, 0.5)
-do luce.MoveRight(0.45, 0.5)
+do luce.MoveDown(0.45, 0.5)
+do luce.MoveRight(0.40, 0.5)
 do luce.LookDown()
-Luce sits.
-do director.Wait(5)
-
+do luce.PlayAnimation("sit down")
+do director.Wait(3)
+do luce.PlayAnimation("sit down look right")
+do director.Wait(3)
 Nori: [#crying-hidden] ...
+do luce.PlayAnimation("sit down")
 Luce: [#default] ...
+do luce.PlayAnimation("sit down look down")
 Luce: [#look-down] ...
+do luce.PlayAnimation("sit down")
 Luce: [#default] ...
-Luce gives her a little poke.
+do luce.PlayAnimationFrame("sit down poke right", 0, true)
+do director.Wait(3)
+do luce.PlayAnimationFromFrameAsync("sit down poke right", 1, true)
+do luce.PlayAnimationFrame("sit down poke right", 0, true)
+do director.Wait(1)
 Nori: [#crying-hidden] Don’t.
+Luce: [#look-right] ...
+do director.Wait(1)
+do luce.PlayAnimation("sit down look right")
+do director.Wait(1)
+do luce.PlayAnimation("sit down")
+do director.Wait(1)
 Luce: [#default] ...
-Luce: [#default] ...
+
+
 It begins raining.
 Nori: [#crying-hidden] Great.
 Nori: [#crying-hidden] *sigh* 
@@ -77,6 +95,8 @@ Luce: [#default] ... Take it with you.
 Nori: [#oh] ... Oh.
 Nori: [#default] Um... I’ll give it back if I find you again. You aren’t hard to miss.
 Nori: [#hope-smile] See you around.
+do nori.MoveDown(0.2, 0.5)
+do nori.MoveLeft(12, 0.5)
 She leaves the playground, leaving Luce behind.
 He sits there alone.
 A firefly comes out of him and floats around. He places his finger high, and the firefly lands on it.

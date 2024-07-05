@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://b0g2v7tkj7vyq"]
+[gd_scene load_steps=17 format=3 uid="uid://b0g2v7tkj7vyq"]
 
 [ext_resource type="PackedScene" uid="uid://b2e5gws18vd27" path="res://Scenes/Camera/Tripod2D.tscn" id="1_0htn0"]
 [ext_resource type="Texture2D" uid="uid://b2iwlbq5gt1bb" path="res://Assets/swingset.png" id="1_vn8ua"]
 [ext_resource type="Texture2D" uid="uid://bhpqhi6835fw" path="res://Assets/playground_plaza_ground.png" id="3_e0hc1"]
+[ext_resource type="PackedScene" uid="uid://cbw71y6mqaoy2" path="res://Scenes/Characters/Nori/Nori.tscn" id="3_hhhlb"]
 [ext_resource type="PackedScene" uid="uid://1q0v7as1ovpm" path="res://Scenes/Player/Luce.tscn" id="4_jhdro"]
 [ext_resource type="Texture2D" uid="uid://crq4yjcjurdb1" path="res://Assets/playground_plaza-wall-horizontal-end.png" id="5_m7ygs"]
 [ext_resource type="Texture2D" uid="uid://d3s31mee3j147" path="res://Assets/playground_plaza-wall-horizontal-2.png" id="6_qu0ox"]
@@ -42,25 +43,28 @@ position = Vector2(170, -11.5)
 [node name="Luce" parent="." instance=ExtResource("4_jhdro")]
 position = Vector2(170, -12)
 
+[node name="Nori" parent="." instance=ExtResource("3_hhhlb")]
+position = Vector2(184, 89)
+
 [node name="PlaygroundPlazaGround" type="Sprite2D" parent="."]
 position = Vector2(37, -18)
 texture = ExtResource("3_e0hc1")
 centered = false
 
 [node name="Swingset" type="Sprite2D" parent="."]
-position = Vector2(124, 92)
+position = Vector2(124, 87)
 texture = ExtResource("1_vn8ua")
 centered = false
-offset = Vector2(0, -47)
+offset = Vector2(0, -42)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="Swingset"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Swingset/StaticBody2D"]
-position = Vector2(2.5, -3)
+position = Vector2(2.5, 2)
 shape = SubResource("RectangleShape2D_4ssvm")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Swingset/StaticBody2D"]
-position = Vector2(89.5, -3)
+position = Vector2(89.5, 2)
 shape = SubResource("RectangleShape2D_1lkc0")
 
 [node name="Walls" type="Node2D" parent="."]
