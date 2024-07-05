@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using TheLoneLanternProject.Scenes.Player;
 
@@ -74,14 +75,28 @@ public partial class ActorNodeBase : Node2D // ReSharper disable IntroduceOption
         lastDirection = "down";
         AnimatedSprite2D.Play($"idle {lastDirection}");
     }
-    
+
+    public virtual void PlayAnimationFrame(string animationToPlay, int frameIndex, bool pause)
+    {
+        PlayAnimation(animationToPlay);
+        AnimatedSprite2D.Frame = frameIndex;
+        if (pause)
+        {
+            AnimatedSprite2D.Pause();
+        }
+    }
+
+    public virtual async Task PlayAnimationFromFrameAsync(string animationToPlay, int frameIndex)
+    {
+        await PlayAnimationAsync(animationToPlay);
+        AnimatedSprite2D.Frame = frameIndex;
+    }
     public virtual void PlayAnimation(string animationToPlay)
     {
         asyncActionToPlay = AsyncActionToPlay.NoAction;
         AnimatedSprite2D.Play(animationToPlay, (float)multiplier);
     }
-
-    public async Task PlayAnimationAsync(string animationToPlay, double playSpeedMultiplier = 1)
+    public virtual async Task PlayAnimationAsync(string animationToPlay, double playSpeedMultiplier = 1)
     {
         asyncActionToPlay = AsyncActionToPlay.NoAction;
         
@@ -92,19 +107,19 @@ public partial class ActorNodeBase : Node2D // ReSharper disable IntroduceOption
         await ToSignal(AnimatedSprite2D, "animation_finished");
     }
     
-    public async Task MoveUp(double seconds = 1, double moveSpeedMultiplier = 1)
+    public virtual async Task MoveUp(double seconds = 1, double moveSpeedMultiplier = 1)
     {
         await SetupActionTask(AsyncActionToPlay.MoveUp, seconds, moveSpeedMultiplier);
     }
-    public async Task MoveRight(double seconds = 1, double moveSpeedMultiplier = 1)
+    public virtual async Task MoveRight(double seconds = 1, double moveSpeedMultiplier = 1)
     {
         await SetupActionTask(AsyncActionToPlay.MoveRight, seconds, moveSpeedMultiplier);
     }
-    public async Task MoveLeft(double seconds = 1, double moveSpeedMultiplier = 1)
+    public virtual async Task MoveLeft(double seconds = 1, double moveSpeedMultiplier = 1)
     {
         await SetupActionTask(AsyncActionToPlay.MoveLeft, seconds, moveSpeedMultiplier);
     }
-    public async Task MoveDown(double seconds = 1, double moveSpeedMultiplier = 1)
+    public virtual async Task MoveDown(double seconds = 1, double moveSpeedMultiplier = 1)
     {
         await SetupActionTask(AsyncActionToPlay.MoveDown, seconds, moveSpeedMultiplier);
     }
