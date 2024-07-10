@@ -76,21 +76,9 @@ public partial class ActorNodeBase : Node2D // ReSharper disable IntroduceOption
         AnimatedSprite2D.Play($"idle {lastDirection}");
     }
 
-    public virtual void PlayAnimationFrame(string animationToPlay, int frameIndex, bool pause)
-    {
-        PlayAnimation(animationToPlay);
-        AnimatedSprite2D.Frame = frameIndex;
-        if (pause)
-        {
-            AnimatedSprite2D.Pause();
-        }
-    }
+    
 
-    public virtual async Task PlayAnimationFromFrameAsync(string animationToPlay, int frameIndex)
-    {
-        await PlayAnimationAsync(animationToPlay);
-        AnimatedSprite2D.Frame = frameIndex;
-    }
+    
     public virtual void PlayAnimation(string animationToPlay)
     {
         asyncActionToPlay = AsyncActionToPlay.NoAction;
@@ -105,6 +93,26 @@ public partial class ActorNodeBase : Node2D // ReSharper disable IntroduceOption
         AnimatedSprite2D.Play(animationToPlay, (float)multiplier);
 
         await ToSignal(AnimatedSprite2D, "animation_finished");
+    }
+    public virtual void PlayAnimationFrame(string animationToPlay, int frameIndex, bool pause = false)
+    {
+        PlayAnimation(animationToPlay);
+        AnimatedSprite2D.Frame = frameIndex;
+        if (pause)
+        {
+            AnimatedSprite2D.Pause();
+        }
+    }
+
+    public virtual void PlayAnimationBackwards(string animationToPlay)
+    {
+        PlayAnimation(animationToPlay);
+        AnimatedSprite2D.PlayBackwards();
+    }
+    public virtual async Task PlayAnimationBackwardAsync(string animationToPlay, double playSpeedMultiplier = 1)
+    {
+        await PlayAnimationAsync(animationToPlay);
+        AnimatedSprite2D.PlayBackwards();
     }
     
     public virtual async Task MoveUp(double seconds = 1, double moveSpeedMultiplier = 1)

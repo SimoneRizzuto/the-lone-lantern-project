@@ -3,10 +3,13 @@
 do nori.PlayAnimation("sit crying down look down")
 
 
-do director.Wait(5)
+#do director.Wait(5)
 do luce.MoveDown(2, 0.5)
-do director.Wait(3)
-Luce readies his weapon to reaper her.
+#do director.Wait(3)
+Luce readies his weapon to reap her.
+
+#do director.WaitForInput("attack input", 5)
+
 Play a sound of her crying.
 Luce: [#default] ...
 Luce lowers his weapon.
@@ -27,14 +30,17 @@ do luce.PlayAnimation("sit down")
 Luce: [#default] ...
 do luce.PlayAnimationFrame("sit down poke right", 0, true)
 do director.Wait(3)
-do luce.PlayAnimationFromFrameAsync("sit down poke right", 1, true)
-do luce.PlayAnimationFrame("sit down poke right", 0, true)
-do director.Wait(1)
+do luce.PlayAnimationAsync("sit down poke right")
+do luce.PlayAnimationFrame("sit down poke right", 2, true)
+do director.Wait(0.5)
+do luce.PlayAnimationFrame("sit down poke right", 1, true)
 Nori: [#crying-hidden] Don’t.
 Luce: [#look-right] ...
 do director.Wait(1)
+do luce.PlayAnimationFrame("sit down poke right", 0, true)
+do director.Wait(0.25)
 do luce.PlayAnimation("sit down look right")
-do director.Wait(1)
+do director.Wait(2)
 do luce.PlayAnimation("sit down")
 do director.Wait(1)
 Luce: [#default] ...
@@ -48,6 +54,7 @@ Luce channels a light, slowly building its’ shape into an umbrella.
 Luce holds the umbrella above her head.
 Nori: [#crying-oh] Woah!
 Nori: [#crying-side-lip] How did you... do that?
+#the hesitation here is weird. rearrange. maybe do "How did you do that?" "Take it" "..." then hesitate.
 Nori: [#crying-side-lip] ...
 Nori: [#hidden-visible-crying-side-lip] ...
 Luce: [#default] ...
