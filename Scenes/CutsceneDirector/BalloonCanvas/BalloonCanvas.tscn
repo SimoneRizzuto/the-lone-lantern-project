@@ -69,59 +69,58 @@ script = ExtResource("1_xngbd")
 [node name="Balloon" type="Control" parent="."]
 unique_name_in_owner = true
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 80.0
-offset_top = 48.0
-offset_right = 80.0
-offset_bottom = 48.0
 grow_horizontal = 2
-grow_vertical = 2
+grow_vertical = 0
 theme = SubResource("Theme_qq3yp")
 
 [node name="TextBox" type="Panel" parent="Balloon"]
+custom_minimum_size = Vector2(178, 40)
 layout_mode = 1
-anchors_preset = -1
-offset_left = 51.0
-offset_top = 373.0
-offset_right = 229.0
-offset_bottom = 413.0
-scale = Vector2(5, 5)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -534.0
+offset_top = -261.0
+offset_right = -356.0
+offset_bottom = -221.0
+grow_horizontal = 2
+scale = Vector2(6, 6)
 theme_override_styles/panel = ExtResource("3_lcelf")
 
 [node name="PortraitContainer" type="MarginContainer" parent="Balloon"]
 layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.053
-anchor_top = 0.676
-anchor_right = 0.17
-anchor_bottom = 0.869
-offset_left = -0.0559998
-offset_top = -0.0480652
-offset_right = 189.16
-offset_bottom = 174.888
-scale = Vector2(0.416499, 0.416222)
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -522.0
+offset_top = -183.0
+offset_right = -198.0
+offset_bottom = 117.0
+grow_horizontal = 2
+scale = Vector2(0.5, 0.5)
 
 [node name="Portrait" type="TextureRect" parent="Balloon/PortraitContainer"]
 unique_name_in_owner = true
 z_index = 100
 layout_mode = 2
 texture = SubResource("CompressedTexture2D_pin4q")
-expand_mode = 4
 stretch_mode = 5
 
 [node name="TextContainer" type="MarginContainer" parent="Balloon"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 192.0
-offset_top = 444.0
-offset_right = -230.0
-offset_bottom = -46.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -354.0
+offset_top = -176.0
+offset_right = 520.0
+offset_bottom = -14.0
 grow_horizontal = 2
-grow_vertical = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Balloon/TextContainer"]
 layout_mode = 2
@@ -138,7 +137,7 @@ layout_mode = 2
 mouse_filter = 1
 theme_override_colors/default_color = Color(1, 0.909804, 0.505882, 1)
 theme_override_fonts/normal_font = ExtResource("5_qf5jg")
-theme_override_font_sizes/normal_font_size = 22
+theme_override_font_sizes/normal_font_size = 26
 bbcode_enabled = true
 text = "Name"
 fit_content = true
@@ -149,7 +148,7 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_fonts/normal_font = ExtResource("5_qf5jg")
-theme_override_font_sizes/normal_font_size = 22
+theme_override_font_sizes/normal_font_size = 26
 text = "Dialogue...
 Dialogue...
 
@@ -157,16 +156,11 @@ Dialogue...
 
 [node name="Responses" type="MarginContainer" parent="Balloon"]
 visible = false
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -547.0
-offset_top = -974.0
-offset_right = 94.0
-offset_bottom = -570.0
+layout_mode = 2
+offset_left = -34.5
+offset_top = 24.0
+offset_right = 212.5
+offset_bottom = 202.0
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -184,12 +178,10 @@ text = "Response example"
 
 [node name="Panel" type="Panel" parent="Balloon"]
 visible = false
-layout_mode = 0
-offset_left = 50.0
-offset_top = 161.0
-offset_right = 228.0
-offset_bottom = 190.0
-scale = Vector2(6, 6)
+layout_mode = 2
+offset_top = 24.0
+offset_right = 178.0
+offset_bottom = 202.0
 theme_override_styles/panel = ExtResource("8_cabsi")
 
 [connection signal="gui_input" from="Balloon" to="." method="_on_balloon_gui_input"]
