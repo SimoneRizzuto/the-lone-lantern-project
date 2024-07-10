@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b0g2v7tkj7vyq"]
+[gd_scene load_steps=18 format=3 uid="uid://b0g2v7tkj7vyq"]
 
 [ext_resource type="PackedScene" uid="uid://b2e5gws18vd27" path="res://Scenes/Camera/Tripod2D.tscn" id="1_0htn0"]
 [ext_resource type="Texture2D" uid="uid://b2iwlbq5gt1bb" path="res://Assets/swingset.png" id="1_vn8ua"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cxqsca8cxm68c" path="res://Assets/playground_plaza-wall-vertical.png" id="8_xpa85"]
 [ext_resource type="Texture2D" uid="uid://xepk7m1tits3" path="res://Assets/playground_plaza-wall-horizontal-end2.png" id="9_llm1h"]
 [ext_resource type="PackedScene" uid="uid://h0qtabwk04wy" path="res://Scenes/CutsceneDirector/CutsceneDirector.tscn" id="10_ejcvy"]
+[ext_resource type="PackedScene" uid="uid://buj8skc4edik3" path="res://Rain.tscn" id="12_1tbu8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ssvm"]
 size = Vector2(3, 4)
@@ -22,7 +23,7 @@ size = Vector2(3, 4)
 size = Vector2(78, 13)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b221m"]
-size = Vector2(11, 21.0194)
+size = Vector2(11, 19.6108)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c4u88"]
 size = Vector2(256, 13)
@@ -156,7 +157,7 @@ centered = false
 [node name="StaticBody2D" type="StaticBody2D" parent="Walls/WallVertical-Right"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/WallVertical-Right/StaticBody2D"]
-position = Vector2(5.5, 7.78652)
+position = Vector2(5.50006, 8.49081)
 shape = SubResource("RectangleShape2D_b221m")
 
 [node name="WallVertical-Left" type="Sprite2D" parent="Walls"]
@@ -297,5 +298,12 @@ centered = false
 flip_h = true
 
 [node name="CutsceneDirector" parent="." instance=ExtResource("10_ejcvy")]
+
+[node name="Rain" parent="." instance=ExtResource("12_1tbu8")]
+z_index = 1000
+z_as_relative = false
+position = Vector2(173, -196)
+emitting = true
+Raining = true
 
 [editable path="Tripod2D"]
