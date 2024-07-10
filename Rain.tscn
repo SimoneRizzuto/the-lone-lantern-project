@@ -13,7 +13,7 @@ gravity = Vector3(-100, 1200, 0)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0x30l"]
 size = Vector2(486.5, 4.5)
 
-[node name="Rain" type="GPUParticles2D" node_paths=PackedStringArray("CanvasModulate")]
+[node name="Rain" type="GPUParticles2D"]
 position = Vector2(0, -72)
 emitting = false
 amount = 3000
@@ -25,7 +25,6 @@ collision_base_size = 0.0
 visibility_rect = Rect2(-500, 0, 1000, 1000)
 draw_order = 0
 script = ExtResource("2_yb6k6")
-CanvasModulate = NodePath("CanvasModulate")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.603922, 0.698039, 0.74902, 1)
