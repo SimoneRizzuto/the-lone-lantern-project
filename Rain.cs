@@ -13,6 +13,7 @@ public partial class Rain : GpuParticles2D
 		AmountRatio = 0;
 		canvasModulate = GetNode<CanvasModulate>("CanvasModulate");
 		canvasModulate.Color = InitialColor;
+		ZIndex = 5;
 	}
 	
 	public override void _Process(double delta)

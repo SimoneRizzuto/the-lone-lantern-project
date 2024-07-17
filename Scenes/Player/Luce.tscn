@@ -1,4 +1,4 @@
-[gd_scene load_steps=72 format=3 uid="uid://1q0v7as1ovpm"]
+[gd_scene load_steps=73 format=3 uid="uid://1q0v7as1ovpm"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Luce.cs" id="1_nq6ir"]
 [ext_resource type="Script" path="res://Scenes/Player/PlayerCamera2D.cs" id="2_lo3wm"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://bdnhhlwun0ylj" path="res://Scenes/Player/luce sit down look down.png" id="11_d7g6y"]
 [ext_resource type="Texture2D" uid="uid://crhnqx5rq8fj6" path="res://Scenes/Player/luce_walking_up-Sheet.png" id="11_sjhjd"]
 [ext_resource type="Script" path="res://Scenes/Player/LuceActorNode.cs" id="12_o1tfm"]
+[ext_resource type="Texture2D" uid="uid://cix4djk60i4aq" path="res://Scenes/Player/luce sit down look up.png" id="13_cn8tn"]
 [ext_resource type="Texture2D" uid="uid://c3o3o3aa2asqu" path="res://Scenes/Player/luce sit down poke right-Sheet.png" id="13_qcohb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_we0ol"]
@@ -367,7 +368,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("11_d7g6y")
 }],
-"loop": true,
+"loop": false,
 "name": &"sit down look down",
 "speed": 5.0
 }, {
@@ -377,6 +378,14 @@ animations = [{
 }],
 "loop": false,
 "name": &"sit down look right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_cn8tn")
+}],
+"loop": false,
+"name": &"sit down look up",
 "speed": 5.0
 }, {
 "frames": [{

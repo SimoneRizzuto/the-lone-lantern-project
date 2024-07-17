@@ -12,6 +12,7 @@ public partial class CutsceneDirector : Node
 {
     private CustomSignals customSignals = new();
     private Luce luce = new();
+    private Rain rain;
     
     private AsyncActionToPlay asyncActionToPlay = AsyncActionToPlay.NoAction;
     private double millisecondsToPass = 1000;
@@ -96,9 +97,34 @@ public partial class CutsceneDirector : Node
         await SetupActionTask(AsyncActionToPlay.Wait, seconds);
     }
     
-    public void PlaySound()
+    public void TriggerRain()
     {
+        if (rain == null)
+        {
+            rain = GetNodeHelper.GetRain(GetTree());
+        }
+        else
+        {
+            rain = InstanceNodeHelper.Rain(this);
+        }
+
+        rain.TriggerRain();
+        // emit signal instead
+    }
+    
+    public void StopRain()
+    {
+        if (rain == null)
+        {
+            rain = GetNodeHelper.GetRain(GetTree());
+        }
+        else
+        {
+            rain = InstanceNodeHelper.Rain(this);
+        }
         
+        rain.StopRain();
+        // emit signal instead
     }
     
     public override void _Process(double delta)

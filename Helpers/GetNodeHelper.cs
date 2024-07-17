@@ -41,4 +41,16 @@ public static class GetNodeHelper
         
         return playerCamera2D;
     }
+    
+    public static Rain GetRain(SceneTree tree)
+    {
+        var weatherNodes = tree.GetNodesInGroup(NodeGroup.Weather);
+        var rain = weatherNodes.Cast<Rain>().FirstOrDefault();
+        if (rain == null)
+        {
+            GD.PrintErr($"{nameof(rain)} was null.");
+        }
+
+        return rain;
+    }
 }

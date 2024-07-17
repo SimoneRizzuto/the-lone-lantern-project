@@ -13,7 +13,7 @@ gravity = Vector3(-100, 1200, 0)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0x30l"]
 size = Vector2(486.5, 4.5)
 
-[node name="Rain" type="GPUParticles2D"]
+[node name="Rain" type="GPUParticles2D" groups=["weather"]]
 position = Vector2(0, -72)
 emitting = false
 amount = 3000

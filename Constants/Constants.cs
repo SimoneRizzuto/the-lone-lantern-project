@@ -28,4 +28,5 @@ public static class NodeGroup
     public const string CutsceneDirector = "cutscene director";
     public const string PlayerCamera = "player camera";
     public const string MainCamera = "main camera";
+    public const string Weather = "weather";
 }

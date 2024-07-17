@@ -44,12 +44,15 @@ do director.Wait(2)
 do luce.PlayAnimation("sit down")
 do director.Wait(1)
 Luce: [#default] ...
-
-
-It begins raining.
+do director.TriggerRain()
+do director.Wait(3)
+do luce.PlayAnimation("sit down look up")
+do director.Wait(6)
+#nori looks up
 Nori: [#crying-hidden] Great.
-Nori: [#crying-hidden] *sigh* 
-Luce: [#default] ...
+do luce.PlayAnimation("sit down look right")
+Nori: [#crying-hidden] *sigh*
+Luce: [#look-right] ...
 Luce channels a light, slowly building its’ shape into an umbrella.
 Luce holds the umbrella above her head.
 Nori: [#crying-oh] Woah!

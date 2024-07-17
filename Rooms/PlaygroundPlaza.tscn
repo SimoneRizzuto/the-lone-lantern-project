@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cxqsca8cxm68c" path="res://Assets/playground_plaza-wall-vertical.png" id="8_xpa85"]
 [ext_resource type="Texture2D" uid="uid://xepk7m1tits3" path="res://Assets/playground_plaza-wall-horizontal-end2.png" id="9_llm1h"]
 [ext_resource type="PackedScene" uid="uid://h0qtabwk04wy" path="res://Scenes/CutsceneDirector/CutsceneDirector.tscn" id="10_ejcvy"]
-[ext_resource type="PackedScene" uid="uid://buj8skc4edik3" path="res://Rain.tscn" id="12_1tbu8"]
+[ext_resource type="PackedScene" uid="uid://buj8skc4edik3" path="res://Rain.tscn" id="12_kbawf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ssvm"]
 size = Vector2(3, 4)
@@ -31,6 +31,10 @@ size = Vector2(256, 13)
 [node name="PlaygroundPlaza" type="Node2D"]
 z_as_relative = false
 y_sort_enabled = true
+
+[node name="Rain" parent="." instance=ExtResource("12_kbawf")]
+z_index = 4
+position = Vector2(164, -205)
 
 [node name="Tripod2D" parent="." instance=ExtResource("1_0htn0")]
 
@@ -298,12 +302,5 @@ centered = false
 flip_h = true
 
 [node name="CutsceneDirector" parent="." instance=ExtResource("10_ejcvy")]
-
-[node name="Rain" parent="." instance=ExtResource("12_1tbu8")]
-z_index = 1000
-z_as_relative = false
-position = Vector2(173, -196)
-emitting = true
-Raining = true
 
 [editable path="Tripod2D"]
