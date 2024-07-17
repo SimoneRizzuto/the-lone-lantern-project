@@ -7,6 +7,7 @@ using TheLoneLanternProject.Scenes.Player;
 namespace TheLoneLanternProject.Scenes.Camera;
 public partial class Tripod2D : Node2D
 {
+    [Export] public bool DetachOnScreenExit = true;
     private Luce luce;
     private PlayerCamera2D playerCamera2D;
     private MainCamera2D mainCamera2D;
@@ -30,6 +31,8 @@ public partial class Tripod2D : Node2D
     // SIGNALS
     public void OnBodyEnteredMountCameraTrigger(Node2D area)
     {
+        if (!DetachOnScreenExit) return;
+        
         if (area.IsInGroup(NodeGroup.Player))
         {
             playerCamera2D.FollowPlayer = false;
