@@ -4,6 +4,8 @@ using TheLoneLanternProject.Constants;
 
 public partial class MainCamera2D : Node2D
 {
+    [Export] public Vector2 Zoom = new(2, 2);
+    
     private Camera2D mainCamera2D;
     private Camera2D playerCamera2D;
 
@@ -37,6 +39,8 @@ public partial class MainCamera2D : Node2D
             mainCamera2D.PositionSmoothingEnabled = true;
             Position = nodeToFollow.GlobalPosition;
         }
+        
+        mainCamera2D.Zoom = Zoom;
     }
     
     public void ToNode(Node2D node)

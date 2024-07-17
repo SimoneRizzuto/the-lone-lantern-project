@@ -1,4 +1,3 @@
-using System.Linq;
 using Godot;
 using TheLoneLanternProject.Constants;
 using TheLoneLanternProject.Helpers;
@@ -8,6 +7,8 @@ namespace TheLoneLanternProject.Scenes.Camera;
 public partial class Tripod2D : Node2D
 {
     [Export] public bool DetachOnScreenExit = true;
+    [Export] public Vector2 Zoom = new(2, 2);
+    
     private Luce luce;
     private PlayerCamera2D playerCamera2D;
     private MainCamera2D mainCamera2D;
@@ -26,6 +27,8 @@ public partial class Tripod2D : Node2D
         luce = GetNodeHelper.GetLuce(tree);
         playerCamera2D = GetNodeHelper.GetPlayerCamera2D(tree);
         mainCamera2D = GetNodeHelper.GetMainCamera2D(tree);
+        
+        mainCamera2D.Zoom = Zoom;
     }
     
     // SIGNALS
