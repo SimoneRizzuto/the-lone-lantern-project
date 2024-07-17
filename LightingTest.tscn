@@ -1,0 +1,118 @@
+[gd_scene load_steps=7 format=3 uid="uid://fm4e8bjbh2fq"]
+
+[ext_resource type="Texture2D" uid="uid://b2iwlbq5gt1bb" path="res://Assets/swingset.png" id="1_0tofw"]
+[ext_resource type="PackedScene" uid="uid://1q0v7as1ovpm" path="res://Scenes/Player/Luce.tscn" id="1_um5i0"]
+[ext_resource type="Texture2D" uid="uid://t7165rtwfb6x" path="res://Assets/2d_lights_and_shadows_neutral_point_light.webp" id="2_xgesw"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_qe2ay"]
+polygon = PackedVector2Array(-45, 23, -45, -17, -41, -23, 43, -23, 46, -19, 45, 23, 41, 23, 42, -20, -41, -20, -42, -16, -42, 22)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_2asey"]
+polygon = PackedVector2Array(-45, 23, -45, -6, -42, -6, -42, 23)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_tugvj"]
+polygon = PackedVector2Array(-42, 22, -42, 20, -45, 20, -45, 22)
+
+[node name="LightingTest" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -71.0
+offset_top = 7.0
+offset_right = 882.0
+offset_bottom = 509.0
+color = Color(0.309804, 0.505882, 0.623529, 1)
+
+[node name="PointLight2D2" type="PointLight2D" parent="."]
+position = Vector2(207, 59)
+scale = Vector2(0.123291, 0.118652)
+color = Color(0.960784, 0.611765, 0.027451, 1)
+energy = 0.86
+shadow_enabled = true
+texture = ExtResource("2_xgesw")
+
+[node name="Luce" parent="." instance=ExtResource("1_um5i0")]
+position = Vector2(125, 153)
+
+[node name="PointLight2D2" type="PointLight2D" parent="Luce"]
+position = Vector2(0, -12)
+shadow_enabled = true
+texture = ExtResource("2_xgesw")
+
+[node name="Light" type="Node2D" parent="."]
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="Light"]
+visible = false
+position = Vector2(-241, -73)
+
+[node name="PointLight2D" type="PointLight2D" parent="Light"]
+position = Vector2(691, 269)
+energy = 0.3
+shadow_enabled = true
+shadow_filter = 1
+texture = ExtResource("2_xgesw")
+
+[node name="Swingset" type="Sprite2D" parent="."]
+position = Vector2(541, 168)
+texture = ExtResource("1_0tofw")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Swingset"]
+occluder = SubResource("OccluderPolygon2D_qe2ay")
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.270588, 0.270588, 0.270588, 1)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="CanvasModulate"]
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(401, 206)
+texture = ExtResource("1_0tofw")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Sprite2D2"]
+occluder = SubResource("OccluderPolygon2D_2asey")
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="Sprite2D2"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(311, 129)
+texture = ExtResource("1_0tofw")
+
+[node name="LightOccluder2D2" type="LightOccluder2D" parent="Sprite2D"]
+position = Vector2(0, -4)
+occluder = SubResource("OccluderPolygon2D_tugvj")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Sprite2D/LightOccluder2D2"]
+position = Vector2(0, -4)
+occluder = SubResource("OccluderPolygon2D_tugvj")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Sprite2D/LightOccluder2D2/LightOccluder2D"]
+position = Vector2(0, -4)
+occluder = SubResource("OccluderPolygon2D_tugvj")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Sprite2D/LightOccluder2D2/LightOccluder2D/LightOccluder2D"]
+position = Vector2(0, -4)
+occluder = SubResource("OccluderPolygon2D_tugvj")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Sprite2D/LightOccluder2D2/LightOccluder2D/LightOccluder2D/LightOccluder2D"]
+position = Vector2(0, -4)
+occluder = SubResource("OccluderPolygon2D_tugvj")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Sprite2D/LightOccluder2D2/LightOccluder2D/LightOccluder2D/LightOccluder2D/LightOccluder2D"]
+position = Vector2(0, -4)
+occluder = SubResource("OccluderPolygon2D_tugvj")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Sprite2D/LightOccluder2D2/LightOccluder2D/LightOccluder2D/LightOccluder2D/LightOccluder2D/LightOccluder2D"]
+position = Vector2(0, -4)
+occluder = SubResource("OccluderPolygon2D_tugvj")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Sprite2D/LightOccluder2D2/LightOccluder2D/LightOccluder2D/LightOccluder2D/LightOccluder2D/LightOccluder2D/LightOccluder2D"]
+position = Vector2(0, -4)
+occluder = SubResource("OccluderPolygon2D_tugvj")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Sprite2D/LightOccluder2D2/LightOccluder2D/LightOccluder2D/LightOccluder2D/LightOccluder2D/LightOccluder2D/LightOccluder2D/LightOccluder2D"]
+position = Vector2(0, -4)
+occluder = SubResource("OccluderPolygon2D_tugvj")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Sprite2D"]
+occluder = SubResource("OccluderPolygon2D_tugvj")
+
+[node name="LightOccluder2D3" type="LightOccluder2D" parent="Sprite2D"]

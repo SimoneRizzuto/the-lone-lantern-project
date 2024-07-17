@@ -2,18 +2,15 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using TheLoneLanternProject.Scenes.Player;
 
 public partial class ActorNodeBase : Node2D // ReSharper disable IntroduceOptionalParameters.Global
 {
     [Export] public AnimatedSprite2D AnimatedSprite2D;
-    [Export] public string MoveUpAnimation;
-    [Export] public string MoveRightAnimation;
-    [Export] public string MoveLeftAnimation;
-    [Export] public string MoveDownAnimation;
     
-    private CharacterBody2D actor;
+    public CharacterBody2D Actor;
     
     private AsyncActionToPlay asyncActionToPlay = AsyncActionToPlay.NoAction;
     private double millisecondsToPass = 1000;
@@ -31,7 +28,7 @@ public partial class ActorNodeBase : Node2D // ReSharper disable IntroduceOption
     }
     private void FindParentActor()
     {
-        if (actor != null) return;
+        if (Actor != null) return;
         
         var getParentActor = GetParentOrNull<CharacterBody2D>();
         if (getParentActor == null)
@@ -40,7 +37,7 @@ public partial class ActorNodeBase : Node2D // ReSharper disable IntroduceOption
             return;
         }
 
-        actor = getParentActor;
+        Actor = getParentActor;
     }
 
     private async Task SetupActionTask(AsyncActionToPlay asyncAction, double seconds, double? moveSpeedMultiplier = 1)
@@ -78,14 +75,16 @@ public partial class ActorNodeBase : Node2D // ReSharper disable IntroduceOption
         lastDirection = "down";
         AnimatedSprite2D.Play($"idle {lastDirection}");
     }
+
+    
+
     
     public virtual void PlayAnimation(string animationToPlay)
     {
         asyncActionToPlay = AsyncActionToPlay.NoAction;
         AnimatedSprite2D.Play(animationToPlay, (float)multiplier);
     }
-
-    public async Task PlayAnimationAsync(string animationToPlay, double playSpeedMultiplier = 1)
+    public virtual async Task PlayAnimationAsync(string animationToPlay, double playSpeedMultiplier = 1)
     {
         asyncActionToPlay = AsyncActionToPlay.NoAction;
         
@@ -95,20 +94,40 @@ public partial class ActorNodeBase : Node2D // ReSharper disable IntroduceOption
 
         await ToSignal(AnimatedSprite2D, "animation_finished");
     }
+    public virtual void PlayAnimationFrame(string animationToPlay, int frameIndex, bool pause = false)
+    {
+        PlayAnimation(animationToPlay);
+        AnimatedSprite2D.Frame = frameIndex;
+        if (pause)
+        {
+            AnimatedSprite2D.Pause();
+        }
+    }
+
+    public virtual void PlayAnimationBackwards(string animationToPlay)
+    {
+        PlayAnimation(animationToPlay);
+        AnimatedSprite2D.PlayBackwards();
+    }
+    public virtual async Task PlayAnimationBackwardAsync(string animationToPlay, double playSpeedMultiplier = 1)
+    {
+        await PlayAnimationAsync(animationToPlay);
+        AnimatedSprite2D.PlayBackwards();
+    }
     
-    public async Task MoveUp(double seconds = 1, double moveSpeedMultiplier = 1)
+    public virtual async Task MoveUp(double seconds = 1, double moveSpeedMultiplier = 1)
     {
         await SetupActionTask(AsyncActionToPlay.MoveUp, seconds, moveSpeedMultiplier);
     }
-    public async Task MoveRight(double seconds = 1, double moveSpeedMultiplier = 1)
+    public virtual async Task MoveRight(double seconds = 1, double moveSpeedMultiplier = 1)
     {
         await SetupActionTask(AsyncActionToPlay.MoveRight, seconds, moveSpeedMultiplier);
     }
-    public async Task MoveLeft(double seconds = 1, double moveSpeedMultiplier = 1)
+    public virtual async Task MoveLeft(double seconds = 1, double moveSpeedMultiplier = 1)
     {
         await SetupActionTask(AsyncActionToPlay.MoveLeft, seconds, moveSpeedMultiplier);
     }
-    public async Task MoveDown(double seconds = 1, double moveSpeedMultiplier = 1)
+    public virtual async Task MoveDown(double seconds = 1, double moveSpeedMultiplier = 1)
     {
         await SetupActionTask(AsyncActionToPlay.MoveDown, seconds, moveSpeedMultiplier);
     }
@@ -147,9 +166,9 @@ public partial class ActorNodeBase : Node2D // ReSharper disable IntroduceOption
         if (direction == Vector2.Up) lastDirection = "up";
         
         AnimatedSprite2D.Play($"walk {lastDirection}", (float)multiplier);
-        actor.Velocity = direction * (PlayerConstants.Speed * (float)multiplier) * (float)delta;
+        Actor.Velocity = direction * (PlayerConstants.Speed * (float)multiplier) * (float)delta;
         
-        actor.MoveAndSlide();
+        Actor.MoveAndSlide();
     }
 }
 

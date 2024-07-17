@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://i11c6j0s4337" path="res://Rooms/white door opening-Sheet.png" id="1_psg7o"]
 [ext_resource type="PackedScene" uid="uid://barc3o7fkbn44" path="res://Scenes/SceneSwitcher/DoorSquare2D.tscn" id="2_qb42v"]
-[ext_resource type="PackedScene" uid="uid://h2iu1fkuw61u" path="res://Scenes/PlayerController/PlayerController.tscn" id="3_7bro5"]
+[ext_resource type="PackedScene" uid="uid://1q0v7as1ovpm" path="res://Scenes/Player/Luce.tscn" id="3_7bro5"]
 [ext_resource type="PackedScene" uid="uid://b2e5gws18vd27" path="res://Scenes/Camera/Tripod2D.tscn" id="4_ufy4f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vgofx"]
@@ -102,7 +102,7 @@ offset_bottom = 406.0
 color = Color(0, 0, 0, 1)
 
 [node name="VoidDoor" type="StaticBody2D" parent="."]
-position = Vector2(237, 173)
+position = Vector2(162, -4)
 
 [node name="RightSide" type="CollisionShape2D" parent="VoidDoor"]
 position = Vector2(14.5, 14.2188)
@@ -129,14 +129,17 @@ TriggerByInteract = false
 [node name="CollisionShape2D" parent="VoidDoor/DoorSquare2D" index="0"]
 position = Vector2(1.06189, 0)
 
-[node name="PlayerController" parent="." instance=ExtResource("3_7bro5")]
-position = Vector2(392, 132)
+[node name="Luce" parent="." instance=ExtResource("3_7bro5")]
+position = Vector2(333, 35)
 
 [node name="Tripod2D" parent="." instance=ExtResource("4_ufy4f")]
 position = Vector2(93, 131)
 
 [node name="TripodIsOnScreen" parent="Tripod2D" index="0"]
 position = Vector2(-34, -64)
+
+[node name="MountCameraTrigger" parent="Tripod2D" index="1"]
+position = Vector2(-156, -132)
 
 [node name="CollisionShape2D" parent="Tripod2D/MountCameraTrigger" index="0"]
 position = Vector2(150, -4)

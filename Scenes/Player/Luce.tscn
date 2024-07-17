@@ -1,7 +1,8 @@
-[gd_scene load_steps=64 format=3 uid="uid://1q0v7as1ovpm"]
+[gd_scene load_steps=73 format=3 uid="uid://1q0v7as1ovpm"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Luce.cs" id="1_nq6ir"]
 [ext_resource type="Script" path="res://Scenes/Player/PlayerCamera2D.cs" id="2_lo3wm"]
+[ext_resource type="PackedScene" uid="uid://xnsxf4vyq0vt" path="res://Scenes/PlayerController/StaminaHealthBar.tscn" id="2_teppg"]
 [ext_resource type="Texture2D" uid="uid://bfgf1fv5ereq8" path="res://Scenes/Player/luce attack bottom-Sheet.png" id="2_v4qfv"]
 [ext_resource type="Texture2D" uid="uid://wwtb3f3y563q" path="res://Scenes/Player/luce attack left 1-Sheet.png" id="3_776re"]
 [ext_resource type="Texture2D" uid="uid://ov665bj6r5ch" path="res://Scenes/Player/luce attack left 2-Sheet.png" id="4_rcr03"]
@@ -11,8 +12,13 @@
 [ext_resource type="Texture2D" uid="uid://cfdqvyf0rvh8u" path="res://Scenes/Player/luce_walking_down-Sheet.png" id="8_agf2x"]
 [ext_resource type="Texture2D" uid="uid://dauiq7s4jsegj" path="res://Scenes/Player/luce_walking_left-Sheet.png" id="9_xx714"]
 [ext_resource type="Texture2D" uid="uid://vvefpri732dh" path="res://Scenes/Player/luce_walking_right-Sheet.png" id="10_7p6hr"]
+[ext_resource type="Texture2D" uid="uid://c88mewq3kusue" path="res://Scenes/Player/luce sit down.png" id="10_fqy5y"]
+[ext_resource type="Texture2D" uid="uid://d0kqav05k26fw" path="res://Scenes/Player/luce sit down look right.png" id="10_gsc60"]
+[ext_resource type="Texture2D" uid="uid://bdnhhlwun0ylj" path="res://Scenes/Player/luce sit down look down.png" id="11_d7g6y"]
 [ext_resource type="Texture2D" uid="uid://crhnqx5rq8fj6" path="res://Scenes/Player/luce_walking_up-Sheet.png" id="11_sjhjd"]
 [ext_resource type="Script" path="res://Scenes/Player/LuceActorNode.cs" id="12_o1tfm"]
+[ext_resource type="Texture2D" uid="uid://cix4djk60i4aq" path="res://Scenes/Player/luce sit down look up.png" id="13_cn8tn"]
+[ext_resource type="Texture2D" uid="uid://c3o3o3aa2asqu" path="res://Scenes/Player/luce sit down poke right-Sheet.png" id="13_qcohb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_we0ol"]
 size = Vector2(14.87, 7.44669)
@@ -112,6 +118,18 @@ region = Rect2(39, 0, 13, 36)
 [sub_resource type="AtlasTexture" id="AtlasTexture_lw0ot"]
 atlas = ExtResource("7_jxdku")
 region = Rect2(13, 0, 13, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cx41n"]
+atlas = ExtResource("13_qcohb")
+region = Rect2(49, 0, 49, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ma6r7"]
+atlas = ExtResource("13_qcohb")
+region = Rect2(98, 0, 49, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yvp6o"]
+atlas = ExtResource("13_qcohb")
+region = Rect2(147, 0, 49, 38)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l0tje"]
 atlas = ExtResource("8_agf2x")
@@ -340,6 +358,52 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("10_fqy5y")
+}],
+"loop": false,
+"name": &"sit down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_d7g6y")
+}],
+"loop": false,
+"name": &"sit down look down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_gsc60")
+}],
+"loop": false,
+"name": &"sit down look right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_cn8tn")
+}],
+"loop": false,
+"name": &"sit down look up",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cx41n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ma6r7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yvp6o")
+}],
+"loop": false,
+"name": &"sit down poke right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_l0tje")
 }, {
 "duration": 1.0,
@@ -434,6 +498,7 @@ animations = [{
 [node name="Player" type="CharacterBody2D" groups=["Persist", "player"]]
 z_as_relative = false
 y_sort_enabled = true
+scale = Vector2(0.998411, 1)
 motion_mode = 1
 wall_min_slide_angle = 0.0
 floor_stop_on_slope = false
@@ -442,6 +507,9 @@ floor_snap_length = 0.0
 platform_on_leave = 2
 script = ExtResource("1_nq6ir")
 metadata/_edit_group_ = true
+
+[node name="StaminaHealthBar" parent="." instance=ExtResource("2_teppg")]
+visible = false
 
 [node name="Camera2D" type="Camera2D" parent="." groups=["player camera"]]
 position = Vector2(0, -12)
@@ -452,9 +520,9 @@ script = ExtResource("2_lo3wm")
 
 [node name="MainShape" type="CollisionShape2D" parent="."]
 z_index = 1
-position = Vector2(2.98023e-07, -4)
+position = Vector2(8.52651e-13, -4)
 rotation = 1.57079
-scale = Vector2(0.501, 1.5)
+scale = Vector2(0.5, 1.5)
 shape = SubResource("RectangleShape2D_we0ol")
 one_way_collision_margin = 0.0
 
