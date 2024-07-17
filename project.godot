@@ -29,6 +29,7 @@ general/balloon_path="res://Scenes/CutsceneDirector/BalloonCanvas/BalloonCanvas.
 
 window/size/viewport_width=1280
 window/size/viewport_height=720
+window/size/mode=4
 window/stretch/mode="viewport"
 window/stretch/scale_mode="integer"
 
