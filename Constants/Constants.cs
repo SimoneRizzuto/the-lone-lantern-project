@@ -16,6 +16,8 @@ public static class InputMapAction
     public const string Right = "Move Right";
     public const string Attack = "Attack";
     public const string Enter = "Enter";
+    public const string Save = "Save";
+    public const string Load = "Load";
 }
 
 public static class NodeGroup
@@ -29,4 +31,6 @@ public static class NodeGroup
     public const string PlayerCamera = "player camera";
     public const string MainCamera = "main camera";
     public const string Weather = "weather";
+    public const string TransitionCamera = "transition camera";
+    public const string Persist = "Persist";
 }
