@@ -15,6 +15,10 @@ run/main_scene="res://Main.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
+[audio]
+
+buses/default_bus_layout="res://Assets/Audio/Scratch/scratch.tres"
+
 [autoload]
 
 CustomSignals="*res://Constants/CustomSignals.cs"
