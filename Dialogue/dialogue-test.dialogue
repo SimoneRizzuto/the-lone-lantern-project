@@ -2,9 +2,23 @@
 
 do nori.PlayAnimation("sit crying down look down")
 
+do director.PlaySoundAsync("enemy_hit", "SFX")
+do director.PlaySound("hurt1", "SFX")
+
+do director.PlaySound("Grasslands Theme", "Music")
+do director.Wait(3)
+do director.StopAllAudio()
+
+do director.PlaySoundAsync("Intro Theme", "Music")
+#do director.StopSound("Grasslands Theme", "Music")
+do director.Wait(3)
+do director.StopSound("Intro Theme", "Music") # Neither stop the async function!!!
+
+# This demonstrates all the functions 
 
 #do director.Wait(5)
 do luce.MoveDown(2, 0.5)
+do director.PlaySoundAsync("pickup2", "SFX") # plays at the end of MoveDown
 #do director.Wait(3)
 Luce readies his weapon to reap her.
 

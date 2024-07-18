@@ -126,7 +126,145 @@ public partial class CutsceneDirector : Node
         rain.StopRain();
         // emit signal instead
     }
-    
+
+    public void PlaySound(string name, string bus)
+    {
+        // Create audio stream if doesn't already exist
+        var audioNodes = GetTree().GetNodesInGroup(bus);
+        int arraySize = audioNodes.Count;
+        if (arraySize == 0)
+        {
+            // Create node to be played
+            var audioStreamerNode = new AudioStreamPlayer2D();
+            audioStreamerNode.Stream = (AudioStream)ResourceLoader.Load($"res://Assets/Audio/Scratch/{name}.ogg");
+            audioStreamerNode.Bus = bus; // set default bus layouy to scratch.tres
+            audioStreamerNode.Name = name;
+            AddChild(audioStreamerNode); // to cutscenedirector
+            audioStreamerNode.AddToGroup(bus);
+            audioStreamerNode.AddToGroup("Audio");
+            audioStreamerNode.Play();
+            return;
+
+        }
+
+        foreach (var audioNode in audioNodes)
+        {
+            if (audioNode.Name == name)
+            {
+                // Play existing sound node
+                var audioStreamerNode = (AudioStreamPlayer2D)audioNode;
+                audioStreamerNode.Play();
+                return;
+            }
+            
+        }
+        // Create node to be played
+        var audioStreamer = new AudioStreamPlayer2D();
+        audioStreamer.Stream = (AudioStream)ResourceLoader.Load($"res://Assets/Audio/Scratch/{name}.ogg");
+        audioStreamer.Bus = bus; // set default bus layout to scratch.tres
+        audioStreamer.Name = name;
+        AddChild(audioStreamer); // to cutscenedirector
+        audioStreamer.AddToGroup(bus);
+        audioStreamer.AddToGroup("Audio");
+        audioStreamer.Play();
+        return;
+
+
+
+    }
+
+    public async Task PlaySoundAsync(string name, string bus)
+    {
+        asyncActionToPlay = AsyncActionToPlay.NoAction;
+        
+
+        // Create audio stream if doesn't already exist
+        var audioNodes = GetTree().GetNodesInGroup(bus);
+        int arraySize = audioNodes.Count;
+        if (arraySize == 0)
+        {
+            // Create node to be played
+            var audioStreamerNode = new AudioStreamPlayer2D();
+            audioStreamerNode.Stream = (AudioStream)ResourceLoader.Load($"res://Assets/Audio/Scratch/{name}.ogg");
+            audioStreamerNode.Bus = bus; // set default bus layouy to scratch.tres
+            audioStreamerNode.Name = name;
+            AddChild(audioStreamerNode); // to cutscenedirector
+            audioStreamerNode.AddToGroup(bus);
+            audioStreamerNode.AddToGroup("Audio");
+            audioStreamerNode.Play();
+            //audioStreamerNode.ProcessMode = ProcessModeEnum.Always;
+            //GetTree().Paused = false;
+            await ToSignal(audioStreamerNode, "finished");
+            return;
+
+        }
+
+        foreach (var audioNode in audioNodes)
+        {
+            if (audioNode.Name == name)
+            {
+                // Play existing sound node
+                var audioStreamerNode = (AudioStreamPlayer2D)audioNode;
+                audioStreamerNode.Play();
+                //audioStreamerNode.ProcessMode = ProcessModeEnum.Always;
+                //GetTree().Paused = false;
+                await ToSignal(audioStreamerNode, "finished");
+                return;
+            }
+        }
+
+        // Create node to be played
+        var audioStreamer = new AudioStreamPlayer2D();
+        audioStreamer.Stream = (AudioStream)ResourceLoader.Load($"res://Assets/Audio/Scratch/{name}.ogg");
+        audioStreamer.Bus = bus; // set default bus layout to scratch.tres
+        audioStreamer.Name = name;
+        AddChild(audioStreamer); // to cutscenedirector
+        audioStreamer.AddToGroup(bus);
+        audioStreamer.AddToGroup("Audio");
+        audioStreamer.Play();
+        //audioStreamer.ProcessMode = ProcessModeEnum.Always;
+        //GetTree().Paused = false;
+        await ToSignal(audioStreamer, "finished");
+        return;
+
+
+    }
+
+
+    public void StopSound(string name, string bus)
+    {
+        var audioNodes = GetTree().GetNodesInGroup(bus);
+        foreach (var audioNode in audioNodes)
+        {
+            if (audioNode.Name == name)
+            {
+                RemoveChild(audioNode);
+                audioNode.QueueFree();
+                return;
+            }
+
+        }
+        GD.Print("Could not find specified sound to stop.");
+        return;
+    }
+
+    public void StopAllAudio()
+    {
+        // Remove all nodes from scene in the Audio node group
+        var audioNodes = GetTree().GetNodesInGroup("Audio");
+        foreach (var audioNode in audioNodes)
+        {
+            var streamingPlayer= (AudioStreamPlayer2D)audioNode;
+            streamingPlayer.VolumeDb = 0;
+            streamingPlayer.Stop();
+            streamingPlayer.EmitSignal("finished");
+            RemoveChild(audioNode);
+            audioNode.QueueFree();
+           
+        }
+        return;
+    }
+
     public override void _Process(double delta)
     {
         if (!stopwatch.IsRunning)
