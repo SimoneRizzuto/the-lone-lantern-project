@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://1q0v7as1ovpm"]
+[gd_scene load_steps=88 format=3 uid="uid://1q0v7as1ovpm"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Luce.cs" id="1_nq6ir"]
 [ext_resource type="Script" path="res://Scenes/Player/PlayerCamera2D.cs" id="2_lo3wm"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://crhnqx5rq8fj6" path="res://Scenes/Player/luce_walking_up-Sheet.png" id="11_sjhjd"]
 [ext_resource type="Script" path="res://Scenes/Player/LuceActorNode.cs" id="12_o1tfm"]
 [ext_resource type="Texture2D" uid="uid://cix4djk60i4aq" path="res://Scenes/Player/luce sit down look up.png" id="13_cn8tn"]
+[ext_resource type="Texture2D" uid="uid://csaanif24t287" path="res://Scenes/Player/luce sit down look right hold umbrella-Sheet.png" id="13_fncwd"]
 [ext_resource type="Texture2D" uid="uid://c3o3o3aa2asqu" path="res://Scenes/Player/luce sit down poke right-Sheet.png" id="13_qcohb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_we0ol"]
@@ -118,6 +119,62 @@ region = Rect2(39, 0, 13, 36)
 [sub_resource type="AtlasTexture" id="AtlasTexture_lw0ot"]
 atlas = ExtResource("7_jxdku")
 region = Rect2(13, 0, 13, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jq03y"]
+atlas = ExtResource("13_fncwd")
+region = Rect2(923, 0, 71, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uvpuk"]
+atlas = ExtResource("13_fncwd")
+region = Rect2(0, 0, 71, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oo60u"]
+atlas = ExtResource("13_fncwd")
+region = Rect2(71, 0, 71, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kifub"]
+atlas = ExtResource("13_fncwd")
+region = Rect2(142, 0, 71, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lhypm"]
+atlas = ExtResource("13_fncwd")
+region = Rect2(213, 0, 71, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rmcj2"]
+atlas = ExtResource("13_fncwd")
+region = Rect2(284, 0, 71, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fljt7"]
+atlas = ExtResource("13_fncwd")
+region = Rect2(355, 0, 71, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d3r2l"]
+atlas = ExtResource("13_fncwd")
+region = Rect2(426, 0, 71, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7gaop"]
+atlas = ExtResource("13_fncwd")
+region = Rect2(497, 0, 71, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a1qwv"]
+atlas = ExtResource("13_fncwd")
+region = Rect2(568, 0, 71, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b85cq"]
+atlas = ExtResource("13_fncwd")
+region = Rect2(639, 0, 71, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u5kxv"]
+atlas = ExtResource("13_fncwd")
+region = Rect2(710, 0, 71, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hql1e"]
+atlas = ExtResource("13_fncwd")
+region = Rect2(781, 0, 71, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hxn2d"]
+atlas = ExtResource("13_fncwd")
+region = Rect2(852, 0, 71, 38)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cx41n"]
 atlas = ExtResource("13_qcohb")
@@ -382,11 +439,63 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_jq03y")
+}],
+"loop": true,
+"name": &"sit down look right umbrella",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("13_cn8tn")
 }],
 "loop": false,
 "name": &"sit down look up",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uvpuk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oo60u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kifub")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lhypm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rmcj2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fljt7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d3r2l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7gaop")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a1qwv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b85cq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u5kxv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hql1e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hxn2d")
+}],
+"loop": false,
+"name": &"sit down make umbrella",
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,

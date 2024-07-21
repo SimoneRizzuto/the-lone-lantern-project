@@ -47,14 +47,16 @@ Luce: [#default] ...
 do director.TriggerRain()
 do director.Wait(3)
 do luce.PlayAnimation("sit down look up")
-do director.Wait(6)
-#nori looks up
+do director.Wait(3)
+Nori looks up.
 Nori: [#crying-hidden] Great.
 do luce.PlayAnimation("sit down look right")
 Nori: [#crying-hidden] *sigh*
 Luce: [#look-right] ...
-Luce channels a light, slowly building its’ shape into an umbrella.
-Luce holds the umbrella above her head.
+do luce.PlayAnimationAsync("sit down make umbrella")
+do director.Wait(2)
+do luce.PlayAnimation("sit down look right umbrella")
+do director.Wait(3)
 Nori: [#crying-oh] Woah!
 Nori: [#crying-side-lip] How did you... do that?
 #the hesitation here is weird. rearrange. maybe do "How did you do that?" "Take it" "..." then hesitate.
