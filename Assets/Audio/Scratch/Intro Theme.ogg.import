@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dx2bl07mdb8l5"
+path="res://.godot/imported/Intro Theme.ogg-d5ffc440e16cef2529f01a0984bbc99f.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Audio/Scratch/Intro Theme.ogg"
+dest_files=["res://.godot/imported/Intro Theme.ogg-d5ffc440e16cef2529f01a0984bbc99f.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4
