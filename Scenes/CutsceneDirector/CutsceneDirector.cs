@@ -129,20 +129,18 @@ public partial class CutsceneDirector : Node
 
     public void PlaySound(string name, string bus)
     {
-        // Create audio stream if doesn't already exist
         var audioNodes = GetTree().GetNodesInGroup(bus);
         int arraySize = audioNodes.Count;
         if (arraySize == 0)
         {
-            // Create node to be played
-            var audioStreamerNode = new AudioStreamPlayer2D();
-            audioStreamerNode.Stream = (AudioStream)ResourceLoader.Load($"res://Assets/Audio/Scratch/{name}.ogg");
-            audioStreamerNode.Bus = bus; // set default bus layouy to scratch.tres
-            audioStreamerNode.Name = name;
-            AddChild(audioStreamerNode); // to cutscenedirector
-            audioStreamerNode.AddToGroup(bus);
-            audioStreamerNode.AddToGroup("Audio");
-            audioStreamerNode.Play();
+            var newAudioStreamerNode = new AudioStreamPlayer2D();
+            newAudioStreamerNode.Stream = (AudioStream)ResourceLoader.Load($"res://Assets/Audio/Scratch/{name}.ogg");
+            newAudioStreamerNode.Bus = bus;
+            newAudioStreamerNode.Name = name;
+            AddChild(newAudioStreamerNode);
+            newAudioStreamerNode.AddToGroup(bus);
+            newAudioStreamerNode.AddToGroup("Audio");
+            newAudioStreamerNode.Play();
             return;
 
         }
@@ -151,23 +149,13 @@ public partial class CutsceneDirector : Node
         {
             if (audioNode.Name == name)
             {
-                // Play existing sound node
-                var audioStreamerNode = (AudioStreamPlayer2D)audioNode;
-                audioStreamerNode.Play();
+                var existingAudioStreamerNode = (AudioStreamPlayer2D)audioNode;
+                existingAudioStreamerNode.Play();
                 return;
             }
             
         }
-        // Create node to be played
-        var audioStreamer = new AudioStreamPlayer2D();
-        audioStreamer.Stream = (AudioStream)ResourceLoader.Load($"res://Assets/Audio/Scratch/{name}.ogg");
-        audioStreamer.Bus = bus; // set default bus layout to scratch.tres
-        audioStreamer.Name = name;
-        AddChild(audioStreamer); // to cutscenedirector
-        audioStreamer.AddToGroup(bus);
-        audioStreamer.AddToGroup("Audio");
-        audioStreamer.Play();
-        return;
+        
 
 
 
@@ -178,23 +166,19 @@ public partial class CutsceneDirector : Node
         asyncActionToPlay = AsyncActionToPlay.NoAction;
         
 
-        // Create audio stream if doesn't already exist
         var audioNodes = GetTree().GetNodesInGroup(bus);
         int arraySize = audioNodes.Count;
         if (arraySize == 0)
         {
-            // Create node to be played
-            var audioStreamerNode = new AudioStreamPlayer2D();
-            audioStreamerNode.Stream = (AudioStream)ResourceLoader.Load($"res://Assets/Audio/Scratch/{name}.ogg");
-            audioStreamerNode.Bus = bus; // set default bus layouy to scratch.tres
-            audioStreamerNode.Name = name;
-            AddChild(audioStreamerNode); // to cutscenedirector
-            audioStreamerNode.AddToGroup(bus);
-            audioStreamerNode.AddToGroup("Audio");
-            audioStreamerNode.Play();
-            //audioStreamerNode.ProcessMode = ProcessModeEnum.Always;
-            //GetTree().Paused = false;
-            await ToSignal(audioStreamerNode, "finished");
+            var newAudioStreamerNode = new AudioStreamPlayer2D();
+            newAudioStreamerNode.Stream = (AudioStream)ResourceLoader.Load($"res://Assets/Audio/Scratch/{name}.ogg");
+            newAudioStreamerNode.Bus = bus;
+            newAudioStreamerNode.Name = name;
+            AddChild(newAudioStreamerNode); 
+            newAudioStreamerNode.AddToGroup(bus);
+            newAudioStreamerNode.AddToGroup("Audio");
+            newAudioStreamerNode.Play();
+            await ToSignal(newAudioStreamerNode, "finished");
             return;
 
         }
@@ -203,29 +187,14 @@ public partial class CutsceneDirector : Node
         {
             if (audioNode.Name == name)
             {
-                // Play existing sound node
-                var audioStreamerNode = (AudioStreamPlayer2D)audioNode;
-                audioStreamerNode.Play();
-                //audioStreamerNode.ProcessMode = ProcessModeEnum.Always;
-                //GetTree().Paused = false;
-                await ToSignal(audioStreamerNode, "finished");
+                var existingAudioStreamerNode = (AudioStreamPlayer2D)audioNode;
+                existingAudioStreamerNode.Play();
+                await ToSignal(existingAudioStreamerNode, "finished");
                 return;
             }
         }
 
-        // Create node to be played
-        var audioStreamer = new AudioStreamPlayer2D();
-        audioStreamer.Stream = (AudioStream)ResourceLoader.Load($"res://Assets/Audio/Scratch/{name}.ogg");
-        audioStreamer.Bus = bus; // set default bus layout to scratch.tres
-        audioStreamer.Name = name;
-        AddChild(audioStreamer); // to cutscenedirector
-        audioStreamer.AddToGroup(bus);
-        audioStreamer.AddToGroup("Audio");
-        audioStreamer.Play();
-        //audioStreamer.ProcessMode = ProcessModeEnum.Always;
-        //GetTree().Paused = false;
-        await ToSignal(audioStreamer, "finished");
-        return;
+        
 
 
     }
