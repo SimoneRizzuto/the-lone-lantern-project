@@ -39,6 +39,9 @@ public partial class SceneSwitcher : Node
         
         var sceneToAdd = nextScenePackedScene.Instantiate();
         AddChild(sceneToAdd);
+
+        // Inherit pause mode from the scene manager which is pausable.
+        sceneToAdd.ProcessMode = ProcessModeEnum.Inherit;
         
         var tree = GetTree();
         

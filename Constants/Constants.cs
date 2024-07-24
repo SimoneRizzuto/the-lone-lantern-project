@@ -18,6 +18,8 @@ public static class InputMapAction
     public const string Enter = "Enter";
     public const string Save = "Save";
     public const string Load = "Load";
+    public const string Pause = "Pause";
+
 }
 
 public static class NodeGroup
