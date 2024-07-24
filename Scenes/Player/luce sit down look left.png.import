@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cd8iyst7y3exp"
-path="res://.godot/imported/nori_sit_crying_look_down.png-718719f03e89e512378003c120674461.ctex"
+uid="uid://dtl4jvhl33f08"
+path="res://.godot/imported/luce sit down look left.png-1d343ea25f5e3ce5b98c7010f6b45418.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/Characters/Nori/nori_sit_crying_look_down.png"
-dest_files=["res://.godot/imported/nori_sit_crying_look_down.png-718719f03e89e512378003c120674461.ctex"]
+source_file="res://Scenes/Player/luce sit down look left.png"
+dest_files=["res://.godot/imported/luce sit down look left.png-1d343ea25f5e3ce5b98c7010f6b45418.ctex"]
 
 [params]
 

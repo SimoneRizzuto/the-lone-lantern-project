@@ -49,7 +49,7 @@ position = Vector2(170, -11.5)
 position = Vector2(170, -12)
 
 [node name="Nori" parent="." instance=ExtResource("3_hhhlb")]
-position = Vector2(184, 89)
+position = Vector2(184, 88)
 
 [node name="PlaygroundPlazaGround" type="Sprite2D" parent="."]
 position = Vector2(37, -18)

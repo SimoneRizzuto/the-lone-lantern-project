@@ -1,6 +1,6 @@
 ~ initial_dialogue
 
-do nori.PlayAnimation("sit crying down look down")
+do nori.PlayAnimation("sit crying look down")
 
 
 #do director.Wait(5)
@@ -54,25 +54,30 @@ do luce.PlayAnimation("sit down look right")
 Nori: [#crying-hidden] *sigh*
 Luce: [#look-right] ...
 do luce.PlayAnimationAsync("sit down make umbrella")
+do nori.PlayAnimationAsync("sit crying look left")
 do director.Wait(2)
 do luce.PlayAnimation("sit down look right umbrella")
-do director.Wait(3)
+do director.Wait(1)
 Nori: [#crying-oh] Woah!
-Nori: [#crying-side-lip] How did you... do that?
+Nori: [#crying-side-lip] How did you do that?
+Luce: [#default] ... Take it.
 #the hesitation here is weird. rearrange. maybe do "How did you do that?" "Take it" "..." then hesitate.
 Nori: [#crying-side-lip] ...
+do nori.PlayAnimation("sit crying look down")
 Nori: [#hidden-visible-crying-side-lip] ...
 Luce: [#default] ...
-do director.Wait(4)
-Luce: [#default] ... Take it.
-Nori: [#hidden-visible-crying] ...
+do director.Wait(2)
 Nori wipes her tears, before grabbing the umbrella.
 Nori: [#look-right-sad] ...
+#Nori: [#hidden-visible-crying] ...
+do luce.PlayAnimation("sit down look down")
 Luce: [#look-down] ...
 do director.Wait(4)
-Luce: [#default] Are you... ok?
+do luce.PlayAnimation("sit down look right")
+Luce: [#look-right] Are you... ok?
 Nori: [#look-down-oh] I’m, um...
 Nori: [#look-left-sad] I’m ok...
+do luce.PlayAnimation("sit down look down")
 Luce: [#look-down] ...
 Nori: [#look-left-sad] ...
 do director.Wait(4)
@@ -83,24 +88,36 @@ Nori: [#look-down-right-oh] ...
 Nori: [#look-right-hope-smile] Thanks...
 Nori: [#look-right-hope-smile] I, um...
 Nori: [#look-right-hope-smile] I like your shirt too. Or cloak I mean.
+do luce.PlayAnimation("sit down")
 Luce: [#default] !
 Nori: [#look-right-oh] Do you... wear that around a lot?
+do luce.PlayAnimation("sit down look down")
 Luce: [#satisfaction] *nods*
 Nori: [#look-right-oh] Huh. You’re not from around here then.
+do luce.PlayAnimation("sit down look right")
 Luce: [#surprised] How can you tell?
 Nori: [#cartoon-um-what] I mean, it’s not hard to notice you.
+do luce.PlayAnimation("sit down look down")
 Luce: [#look-down] ...
 Nori: [#doubt] ...
 Nori: [#doubt] Where are you from, exactly?
+do luce.PlayAnimation("sit down look right")
 Luce: [#look-right] ... I am... on a secret mission. 
+do luce.PlayAnimation("sit down")
 Luce: [#default] ...
+do luce.PlayAnimation("sit down look up")
 Luce: [#look-up] I... cannot say.
 Nori: [#oh] What kind of mission?
+do luce.PlayAnimation("sit down look down")
 Luce: [#close-eyes-down] ...
 Nori: [#close-eyes-smile] Oh... right. It’s a secret.
+do luce.PlayAnimation("sit down look left")
 School bells are heard in the distance.
+do luce.PlayAnimation("sit down look right")
 Nori: [#shocked] Oh crap! I didn’t realise the time.
-The little girl gets out of the seat.
+do nori.PlayAnimation("idle down")
+do director.Wait(1)
+do nori.PlayAnimation("idle left")
 Nori: [#look-right-hope-smile] Thanks for the umbrella. Here you go.
 She offers the umbrella back to Luce.
 Luce: [#default] ... Take it with you.
@@ -112,27 +129,35 @@ do nori.MoveLeft(12, 0.5)
 She leaves the playground, leaving Luce behind.
 He sits there alone.
 A firefly comes out of him and floats around. He places his finger high, and the firefly lands on it.
+do luce.PlayAnimation("sit down look up")
 Luce: [#look-up] I... hesitated.
 Luce: [#look-up] ... Why?
 Little whirls are heard from the firefly. The light from it flickers as it talks.
+do luce.PlayAnimation("sit down look down")
 Luce: [#close-eyes-down] I know. I should have done it when she was here.
 Luce: [#close-eyes-down] And... I will do what I must.
 He looks up to the sky, letting the rain soak him.
+do luce.PlayAnimation("sit down look up")
 Luce: [#look-up] ...
 Luce: [#look-up] But... 
 Luce: [#look-up] It could wait just a little.
 He sits on the swing set, and listens to the sounds of the environment.
 A pause to take in the atmosphere.
 Luce: [#look-up] These sounds...
+do luce.PlayAnimation("sit down look down")
 Luce: [#satisfaction] I would not mind to sit here. To listen for a while.
 Flashing images of a cricket chirping, a puddle rippling, the wind blowing on grass.
 The winds whistle a little song. Something soothing, sounding like the tip taps of the rain, the soft breaths of the breeze.
 (Option to save)
 Luce gets up.
-Luce: [#look-right] I wonder if this is what life felt like. 
+do luce.PlayAnimation("sit down look right")
+Luce: [#look-right] I wonder if this is what life felt like.
+do luce.PlayAnimation("sit down")
 Luce: [#default] What do you think?
 Little whirls are heard from the firefly.
+do luce.PlayAnimation("sit down look down")
 Luce: [#close-eyes-down] You are getting wet. I am sorry.
+do luce.PlayAnimation("sit down")
 Luce: [#default] You are right. We should find her again.
 Luce: [#default] ...
 The firefly flies back into Luce’s hood.

@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=3 uid="uid://1q0v7as1ovpm"]
+[gd_scene load_steps=90 format=3 uid="uid://1q0v7as1ovpm"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Luce.cs" id="1_nq6ir"]
 [ext_resource type="Script" path="res://Scenes/Player/PlayerCamera2D.cs" id="2_lo3wm"]
@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://bdnhhlwun0ylj" path="res://Scenes/Player/luce sit down look down.png" id="11_d7g6y"]
 [ext_resource type="Texture2D" uid="uid://crhnqx5rq8fj6" path="res://Scenes/Player/luce_walking_up-Sheet.png" id="11_sjhjd"]
 [ext_resource type="Script" path="res://Scenes/Player/LuceActorNode.cs" id="12_o1tfm"]
+[ext_resource type="Texture2D" uid="uid://dtl4jvhl33f08" path="res://Scenes/Player/luce sit down look left.png" id="12_q1lfk"]
 [ext_resource type="Texture2D" uid="uid://cix4djk60i4aq" path="res://Scenes/Player/luce sit down look up.png" id="13_cn8tn"]
 [ext_resource type="Texture2D" uid="uid://csaanif24t287" path="res://Scenes/Player/luce sit down look right hold umbrella-Sheet.png" id="13_fncwd"]
 [ext_resource type="Texture2D" uid="uid://c3o3o3aa2asqu" path="res://Scenes/Player/luce sit down poke right-Sheet.png" id="13_qcohb"]
@@ -119,6 +120,10 @@ region = Rect2(39, 0, 13, 36)
 [sub_resource type="AtlasTexture" id="AtlasTexture_lw0ot"]
 atlas = ExtResource("7_jxdku")
 region = Rect2(13, 0, 13, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3iyr2"]
+atlas = ExtResource("12_q1lfk")
+region = Rect2(0, 0, 15, 37)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jq03y"]
 atlas = ExtResource("13_fncwd")
@@ -431,6 +436,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_3iyr2")
+}],
+"loop": true,
+"name": &"sit down look left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("10_gsc60")
 }],
 "loop": false,
@@ -649,7 +662,7 @@ one_shot = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_5q57h")
-animation = &"idle down"
+animation = &"sit down look left"
 offset = Vector2(0, -18)
 
 [node name="HitBox" type="Area2D" parent="."]
