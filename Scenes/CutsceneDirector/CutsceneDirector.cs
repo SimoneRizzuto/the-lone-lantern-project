@@ -79,6 +79,7 @@ public partial class CutsceneDirector : Node
         luce.State = PlayerState.Disabled;
         
         DialogueManager.ShowDialogueBalloon(GD.Load($"res://Dialogue/{dialogue}.dialogue"), title);
+        DialogueManager.DialogueEnded += SetupGameplayAfterDialogueEnded;
     }
     
     private async Task SetupActionTask(AsyncActionToPlay asyncAction, double seconds, double? moveSpeedMultiplier = 1)
@@ -142,5 +143,11 @@ public partial class CutsceneDirector : Node
 
             actionGiven.TrySetResult();
         }
+    }
+
+    private void SetupGameplayAfterDialogueEnded(Resource dialogueResource)
+    {
+        luce.State = PlayerState.Idle;
+        DialogueManager.DialogueEnded -= SetupGameplayAfterDialogueEnded;
     }
 }
