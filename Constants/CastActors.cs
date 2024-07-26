@@ -41,8 +41,6 @@ public partial class CastActors : Node
                 nori = actor;
             }
         }
-        
-        //luce = actorBaseNodes.FirstOrDefault();
     }
 }
 
