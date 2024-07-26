@@ -40,7 +40,7 @@ do luce.PlayAnimationAsync("sit down poke right")
 do luce.PlayAnimationFrame("sit down poke right", 2, true)
 do director.Wait(0.5)
 do luce.PlayAnimationFrame("sit down poke right", 1, true)
-Nori: [#crying-hidden] Don’t.
+Nori: [#crying-hidden] Don’t touch me.
 Luce: [#look-right] ...
 do director.Wait(1)
 do luce.PlayAnimationFrame("sit down poke right", 0, true)
@@ -79,14 +79,16 @@ Nori: [#look-right-sad] ...
 do luce.PlayAnimation("sit down look down")
 Luce: [#look-down] ...
 do director.Wait(4)
-do luce.PlayAnimation("sit down look right")
-Luce: [#look-right] Are you... ok?
+Luce: [#look-down] Are you... ok?
 Nori: [#look-down-oh] I’m, um...
 Nori: [#look-left-sad] I’m ok...
-do luce.PlayAnimation("sit down look down")
 Luce: [#look-down] ...
 Nori: [#look-left-sad] ...
-do director.Wait(4)
+do director.Wait(2)
+do luce.PlayAnimation("sit down look right")
+do director.Wait(2)
+do luce.PlayAnimation("sit down look down")
+do director.Wait(2)
 Luce: [#look-down] ... I like your shirt.
 Nori: [#look-left-sad] ...
 Nori: [#side-lip] ...
@@ -131,7 +133,11 @@ Nori: [#oh] ... Oh.
 Nori: [#default] Um... I’ll give it back if I find you again. You aren’t hard to miss.
 Nori: [#hope-smile] See you around.
 do nori.MoveDown(0.2, 0.5)
-do nori.MoveLeft(12, 0.5)
+do nori.MoveLeft(0.5, 0.5)
+do luce.PlayAnimation("sit down")
+do nori.MoveLeft(0.5, 0.5)
+do luce.PlayAnimation("sit down look left")
+do nori.MoveLeft(11, 0.5)
 She leaves the playground, leaving Luce behind.
 He sits there alone.
 A firefly comes out of him and floats around. He places his finger high, and the firefly lands on it.
