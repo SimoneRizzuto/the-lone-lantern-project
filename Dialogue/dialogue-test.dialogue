@@ -2,15 +2,21 @@
 
 do nori.PlayAnimation("sit crying look down")
 
-
 #do director.Wait(5)
 do luce.MoveDown(2, 0.5)
 #do director.Wait(3)
 Luce readies his weapon to reap her.
+Play a sound of her crying.
 
 #do director.WaitForInput("attack input", 5)
 
-Play a sound of her crying.
+do director.CheckForAttackInput()
+
+if (director.noriReapTriggered):
+	Luce attacks Nori, reaping her.
+	A dramatic animation plays of the world crumbling, and Luce fading back into limbo.
+	=> END
+	
 Luce: [#default] ...
 Luce lowers his weapon.
 do luce.MoveLeft(0.75, 0.5)

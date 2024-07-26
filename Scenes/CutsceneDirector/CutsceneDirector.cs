@@ -128,8 +128,34 @@ public partial class CutsceneDirector : Node
         // emit signal instead
     }
     
+    public async Task CheckForAttackInput()
+    {
+        await SetupActionTask(AsyncActionToPlay.WaitForInput, 3);
+    }
+
+    private void FinishTask()
+    {
+        stopwatch.Stop();
+        asyncActionToPlay = AsyncActionToPlay.NoAction;
+        actionGiven.TrySetResult();
+    }
+    
+    // Flags
+    public bool noriReapTriggered;
+    
     public override void _Process(double delta)
     {
+        if (asyncActionToPlay == AsyncActionToPlay.NoAction) return;
+        if (asyncActionToPlay == AsyncActionToPlay.WaitForInput)
+        {
+            // logic for wait, logic for returning when input is received
+            if (Input.IsActionJustPressed(InputMapAction.Attack))
+            {
+                noriReapTriggered = true;
+                FinishTask();
+            }
+        }
+        
         if (!stopwatch.IsRunning)
         {
             stopwatch.Restart();
@@ -137,14 +163,10 @@ public partial class CutsceneDirector : Node
         
         if (stopwatch.ElapsedMilliseconds > millisecondsToPass)
         {
-            stopwatch.Stop();
-
-            asyncActionToPlay = AsyncActionToPlay.NoAction;
-
-            actionGiven.TrySetResult();
+            FinishTask();
         }
     }
-
+    
     private void SetupGameplayAfterDialogueEnded(Resource dialogueResource)
     {
         luce.State = PlayerState.Idle;

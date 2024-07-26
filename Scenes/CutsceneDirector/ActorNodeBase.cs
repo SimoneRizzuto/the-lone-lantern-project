@@ -177,6 +177,7 @@ enum AsyncActionToPlay
     NoAction,
 
     Wait,
+    WaitForInput,
 
     MoveUp,
     MoveDown,
