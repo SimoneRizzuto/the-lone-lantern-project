@@ -1,8 +1,7 @@
 using Godot;
-using System;
 using System.Linq;
-using TheLoneLanternProject.Constants;
 using TheLoneLanternProject.Helpers;
+using TheLoneLanternProject.Constants;
 
 /// <summary>
 /// When a new Actor needs to be available for a .dialogue file to direct it, add it as a property in CastActors.
