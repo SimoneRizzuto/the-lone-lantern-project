@@ -12,6 +12,7 @@ public partial class CutsceneDirector : Node
 {
     private CustomSignals customSignals = new();
     private Luce luce = new();
+    private ActorNodeBase luceActor = new();
     private Rain rain;
     
     private AsyncActionToPlay asyncActionToPlay = AsyncActionToPlay.NoAction;
@@ -46,8 +47,19 @@ public partial class CutsceneDirector : Node
         
         customSignals = GetNode<CustomSignals>("/root/CustomSignals");
         customSignals.ShowDialogueBalloon += ShowDialogueBalloon;
-        
-        luce = GetNodeHelper.GetLuce(GetTree());
+
+        var tree = GetTree();
+        luce = GetNodeHelper.GetLuce(tree);
+        var actorNodes = tree.GetNodesInGroup(NodeGroup.ActorNode);
+        var actorBaseNodes = actorNodes.Cast<ActorNodeBase>().ToList();
+
+        foreach (var actor in actorBaseNodes)
+        {
+            if (actor.Actor.Name == ActorNames.Luce)
+            {
+                luceActor = actor;
+            }
+        }
     }
     private bool LoadActorsIntoCurrentScene()
     {
@@ -141,7 +153,7 @@ public partial class CutsceneDirector : Node
     }
     
     // Flags
-    public bool noriReapTriggered;
+    public bool noriReapTriggered; // used in DialogueManager for branching the dialogue
     
     public override void _Process(double delta)
     {

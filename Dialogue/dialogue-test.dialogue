@@ -13,7 +13,10 @@ Play a sound of her crying.
 do director.CheckForAttackInput()
 
 if (director.noriReapTriggered):
-	Luce attacks Nori, reaping her.
+	Turn everything to black and red.
+	do luce.PlayAnimationWithSpeed("attack down", 0.5)
+	do nori.PlayAnimationWithSpeed("walk up", 0.5)
+	do director.Wait(3)
 	A dramatic animation plays of the world crumbling, and Luce fading back into limbo.
 	=> END
 	
@@ -34,16 +37,16 @@ do luce.PlayAnimation("sit down look down")
 Luce: [#look-down] ...
 do luce.PlayAnimation("sit down")
 Luce: [#default] ...
-do luce.PlayAnimationFrame("sit down poke right", 0, true)
+do luce.PlayAnimationFromFrame("sit down poke right", 0, true)
 do director.Wait(3)
 do luce.PlayAnimationAsync("sit down poke right")
-do luce.PlayAnimationFrame("sit down poke right", 2, true)
+do luce.PlayAnimationFromFrame("sit down poke right", 2, true)
 do director.Wait(0.5)
-do luce.PlayAnimationFrame("sit down poke right", 1, true)
+do luce.PlayAnimationFromFrame("sit down poke right", 1, true)
 Nori: [#crying-hidden] Don’t touch me.
 Luce: [#look-right] ...
 do director.Wait(1)
-do luce.PlayAnimationFrame("sit down poke right", 0, true)
+do luce.PlayAnimationFromFrame("sit down poke right", 0, true)
 do director.Wait(0.25)
 do luce.PlayAnimation("sit down look right")
 do director.Wait(2)

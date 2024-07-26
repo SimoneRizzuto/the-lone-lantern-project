@@ -82,19 +82,19 @@ public partial class ActorNodeBase : Node2D // ReSharper disable IntroduceOption
     public virtual void PlayAnimation(string animationToPlay)
     {
         asyncActionToPlay = AsyncActionToPlay.NoAction;
-        AnimatedSprite2D.Play(animationToPlay, (float)multiplier);
+        AnimatedSprite2D.Play(animationToPlay);
+    }
+    public virtual void PlayAnimationWithSpeed(string animationToPlay, double playSpeedMultiplier = 1)
+    {
+        multiplier = playSpeedMultiplier > 0 ? playSpeedMultiplier : 1;
+        PlayAnimation(animationToPlay);
     }
     public virtual async Task PlayAnimationAsync(string animationToPlay, double playSpeedMultiplier = 1)
     {
-        asyncActionToPlay = AsyncActionToPlay.NoAction;
-        
-        multiplier = playSpeedMultiplier > 0 ? playSpeedMultiplier : 1;
-        
-        AnimatedSprite2D.Play(animationToPlay, (float)multiplier);
-
+        PlayAnimationWithSpeed(animationToPlay, playSpeedMultiplier);
         await ToSignal(AnimatedSprite2D, "animation_finished");
     }
-    public virtual void PlayAnimationFrame(string animationToPlay, int frameIndex, bool pause = false)
+    public virtual void PlayAnimationFromFrame(string animationToPlay, int frameIndex, bool pause = false)
     {
         PlayAnimation(animationToPlay);
         AnimatedSprite2D.Frame = frameIndex;
