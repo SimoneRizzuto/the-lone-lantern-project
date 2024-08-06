@@ -7,3 +7,7 @@
 script = ExtResource("1_tky64")
 
 [node name="PauseMenu" parent="." instance=ExtResource("1_ki0n6")]
+offset_left = 5.0
+offset_top = 1.0
+offset_right = 5.0
+offset_bottom = 1.0
