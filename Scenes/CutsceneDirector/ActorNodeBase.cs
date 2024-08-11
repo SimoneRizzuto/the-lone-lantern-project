@@ -9,6 +9,7 @@ using TheLoneLanternProject.Scenes.Player;
 public partial class ActorNodeBase : Node2D // ReSharper disable IntroduceOptionalParameters.Global
 {
     [Export] public AnimatedSprite2D AnimatedSprite2D;
+    [Export] public AnimationPlayer AnimationPlayer;
     
     public CharacterBody2D Actor;
     
@@ -76,27 +77,30 @@ public partial class ActorNodeBase : Node2D // ReSharper disable IntroduceOption
         AnimatedSprite2D.Play($"idle {lastDirection}");
     }
 
+    public virtual void PlayAnimationPlayer(string animationToPlay)
+    {
+        asyncActionToPlay = AsyncActionToPlay.NoAction;
+        AnimationPlayer.Play(animationToPlay);
+    }
     
-
-    
-    public virtual void PlayAnimation(string animationToPlay)
+    public virtual void PlayAnimatedSprite(string animationToPlay)
     {
         asyncActionToPlay = AsyncActionToPlay.NoAction;
         AnimatedSprite2D.Play(animationToPlay);
     }
-    public virtual void PlayAnimationWithSpeed(string animationToPlay, double playSpeedMultiplier = 1)
+    public virtual void PlayAnimatedSpriteWithSpeed(string animationToPlay, double playSpeedMultiplier = 1)
     {
         multiplier = playSpeedMultiplier > 0 ? playSpeedMultiplier : 1;
-        PlayAnimation(animationToPlay);
+        PlayAnimatedSprite(animationToPlay);
     }
-    public virtual async Task PlayAnimationAsync(string animationToPlay, double playSpeedMultiplier = 1)
+    public virtual async Task PlayAnimatedSpriteAsync(string animationToPlay, double playSpeedMultiplier = 1)
     {
-        PlayAnimationWithSpeed(animationToPlay, playSpeedMultiplier);
+        PlayAnimatedSpriteWithSpeed(animationToPlay, playSpeedMultiplier);
         await ToSignal(AnimatedSprite2D, "animation_finished");
     }
-    public virtual void PlayAnimationFromFrame(string animationToPlay, int frameIndex, bool pause = false)
+    public virtual void PlayAnimatedSpriteFromFrame(string animationToPlay, int frameIndex, bool pause = false)
     {
-        PlayAnimation(animationToPlay);
+        PlayAnimatedSprite(animationToPlay);
         AnimatedSprite2D.Frame = frameIndex;
         if (pause)
         {
@@ -104,14 +108,14 @@ public partial class ActorNodeBase : Node2D // ReSharper disable IntroduceOption
         }
     }
 
-    public virtual void PlayAnimationBackwards(string animationToPlay)
+    public virtual void PlayAnimatedSpriteBackwards(string animationToPlay)
     {
-        PlayAnimation(animationToPlay);
+        PlayAnimatedSprite(animationToPlay);
         AnimatedSprite2D.PlayBackwards();
     }
-    public virtual async Task PlayAnimationBackwardAsync(string animationToPlay, double playSpeedMultiplier = 1)
+    public virtual async Task PlayAnimatedSpriteBackwardAsync(string animationToPlay, double playSpeedMultiplier = 1)
     {
-        await PlayAnimationAsync(animationToPlay);
+        await PlayAnimatedSpriteAsync(animationToPlay);
         AnimatedSprite2D.PlayBackwards();
     }
     
@@ -131,6 +135,13 @@ public partial class ActorNodeBase : Node2D // ReSharper disable IntroduceOption
     {
         await SetupActionTask(AsyncActionToPlay.MoveDown, seconds, moveSpeedMultiplier);
     }
+    
+    /*public virtual async Task MoveLeftFromFrame(double seconds = 1, double moveSpeedMultiplier = 1, int frame = 0)
+    {
+        await MoveLeft(seconds, moveSpeedMultiplier);
+        AnimatedSprite2D.Frame = frame;
+    }*/
+    
     
     // Process
     public override void _PhysicsProcess(double delta)

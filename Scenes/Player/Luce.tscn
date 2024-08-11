@@ -1,4 +1,4 @@
-[gd_scene load_steps=90 format=3 uid="uid://1q0v7as1ovpm"]
+[gd_scene load_steps=93 format=3 uid="uid://1q0v7as1ovpm"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Luce.cs" id="1_nq6ir"]
 [ext_resource type="Script" path="res://Scenes/Player/PlayerCamera2D.cs" id="2_lo3wm"]
@@ -438,7 +438,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3iyr2")
 }],
-"loop": true,
+"loop": false,
 "name": &"sit down look left",
 "speed": 5.0
 }, {
@@ -617,6 +617,42 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="Animation" id="Animation_s4357"]
+resource_name = "watch Nori walking by while on swing set"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [&"sit down look right", &"sit down", &"sit down look left"]
+}
+
+[sub_resource type="Animation" id="Animation_c7ong"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [&"sit down"]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h7vfs"]
+_data = {
+"RESET": SubResource("Animation_c7ong"),
+"watch Nori walking by while on swing set": SubResource("Animation_s4357")
+}
+
 [node name="Player" type="CharacterBody2D" groups=["Persist", "player"]]
 z_as_relative = false
 y_sort_enabled = true
@@ -662,8 +698,13 @@ one_shot = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_5q57h")
-animation = &"sit down look left"
+animation = &"sit down"
 offset = Vector2(0, -18)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_h7vfs")
+}
 
 [node name="HitBox" type="Area2D" parent="."]
 collision_layer = 4
@@ -672,9 +713,10 @@ collision_layer = 4
 polygon = PackedVector2Array(-9, -34, 0, -34, 11, -32, 17, -30, 21, -28, 30, -19, 30, -10, 21, -1, 11, 3, 0, 5, -10, 5)
 disabled = true
 
-[node name="ActorNode" type="Node2D" parent="." node_paths=PackedStringArray("AnimatedSprite2D") groups=["actor node"]]
+[node name="ActorNode" type="Node2D" parent="." node_paths=PackedStringArray("AnimatedSprite2D", "AnimationPlayer") groups=["actor node"]]
 script = ExtResource("12_o1tfm")
 AnimatedSprite2D = NodePath("../AnimatedSprite2D")
+AnimationPlayer = NodePath("../AnimationPlayer")
 
 [connection signal="LastWalkDirection" from="." to="Camera2D" method="OnLuceLastWalkDirection"]
 [connection signal="PlayerIsMoving" from="." to="Camera2D" method="OnPlayerIsMoving"]
