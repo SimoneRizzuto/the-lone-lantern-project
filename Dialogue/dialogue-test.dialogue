@@ -41,7 +41,7 @@ do luce.PlayAnimatedSpriteFromFrame("sit down poke right", 0, true)
 do director.Wait(3)
 do luce.PlayAnimatedSpriteAsync("sit down poke right")
 do luce.PlayAnimatedSpriteFromFrame("sit down poke right", 2, true)
-do director.Wait(0.5)
+do director.Wait(0.01)
 do luce.PlayAnimatedSpriteFromFrame("sit down poke right", 1, true)
 Nori: [#crying-hidden] Don’t touch me.
 Luce: [#look-right] ...
@@ -51,8 +51,7 @@ do director.Wait(0.25)
 do luce.PlayAnimatedSprite("sit down look right")
 do director.Wait(2)
 do luce.PlayAnimatedSprite("sit down")
-do director.Wait(1)
-Luce: [#default] ...
+do director.Wait(1.5)
 do director.TriggerRain()
 do director.Wait(3)
 do luce.PlayAnimatedSprite("sit down look up")
