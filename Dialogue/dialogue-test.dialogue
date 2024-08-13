@@ -35,97 +35,97 @@ do luce.PlayAnimatedSprite("sit down")
 Luce: [#default] ...
 do luce.PlayAnimatedSprite("sit down look down")
 Luce: [#look-down] ...
-#do luce.PlayAnimatedSprite("sit down")
-#Luce: [#default] ...
-#do luce.PlayAnimatedSpriteFromFrame("sit down poke right", 0, true)
-#do director.Wait(3)
-#do luce.PlayAnimatedSpriteAsync("sit down poke right")
-#do luce.PlayAnimatedSpriteFromFrame("sit down poke right", 2, true)
-#do director.Wait(0.5)
-#do luce.PlayAnimatedSpriteFromFrame("sit down poke right", 1, true)
-#Nori: [#crying-hidden] Don’t touch me.
-#Luce: [#look-right] ...
-#do director.Wait(1)
-#do luce.PlayAnimatedSpriteFromFrame("sit down poke right", 0, true)
-#do director.Wait(0.25)
-#do luce.PlayAnimatedSprite("sit down look right")
-#do director.Wait(2)
-#do luce.PlayAnimatedSprite("sit down")
-#do director.Wait(1)
-#Luce: [#default] ...
-#do director.TriggerRain()
-#do director.Wait(3)
-#do luce.PlayAnimatedSprite("sit down look up")
-#do director.Wait(3)
-#Nori looks up.
-#Nori: [#crying-hidden] Great.
-#do luce.PlayAnimatedSprite("sit down look right")
-#Nori: [#crying-hidden] *sigh*
-#Luce: [#look-right] ...
-#do luce.PlayAnimatedSpriteAsync("sit down make umbrella")
-#do nori.PlayAnimatedSpriteAsync("sit crying look left")
-#do director.Wait(2)
-#do luce.PlayAnimatedSprite("sit down look right umbrella")
-#do director.Wait(1)
-#Nori: [#crying-oh] Woah!
-#Nori: [#crying-side-lip] How did you do that?
-#Luce: [#default] ... Take it.
-##the hesitation here is weird. rearrange. maybe do "How did you do that?" "Take it" "..." then hesitate.
-#Nori: [#crying-side-lip] ...
-#do nori.PlayAnimatedSprite("sit crying look down")
-#Nori: [#hidden-visible-crying-side-lip] ...
-#Luce: [#default] ...
-#do director.Wait(2)
-#Nori wipes her tears, before grabbing the umbrella.
-#Nori: [#look-right-sad] ...
-##Nori: [#hidden-visible-crying] ...
-#do luce.PlayAnimatedSprite("sit down look down")
-#Luce: [#look-down] ...
-#do director.Wait(4)
-#Luce: [#look-down] Are you... ok?
-#Nori: [#look-down-oh] I’m, um...
-#Nori: [#look-left-sad] I’m ok...
-#Luce: [#look-down] ...
-#Nori: [#look-left-sad] ...
-#do director.Wait(2)
-#do luce.PlayAnimatedSprite("sit down look right")
-#do director.Wait(2)
-#do luce.PlayAnimatedSprite("sit down look down")
-#do director.Wait(2)
-#Luce: [#look-down] ... I like your shirt.
-#Nori: [#look-left-sad] ...
-#Nori: [#side-lip] ...
-#Nori: [#look-down-right-oh] ...
-#Nori: [#look-right-hope-smile] Thanks...
-#Nori: [#look-right-hope-smile] I, um...
-#Nori: [#look-right-hope-smile] I like your shirt too. Or cloak I mean.
-#do luce.PlayAnimatedSprite("sit down")
-#Luce: [#default] !
-#Nori: [#look-right-oh] Do you... wear that around a lot?
-#do luce.PlayAnimatedSprite("sit down look down")
-#Luce: [#satisfaction] *nods*
-#Nori: [#look-right-oh] Huh. You’re not from around here then.
-#do luce.PlayAnimatedSprite("sit down look right")
-#Luce: [#surprised] How can you tell?
-#Nori: [#cartoon-um-what] I mean, it’s not hard to notice you.
-#do luce.PlayAnimatedSprite("sit down look down")
-#Luce: [#look-down] ...
-#Nori: [#doubt] ...
-#Nori: [#doubt] Where are you from, exactly?
-#do luce.PlayAnimatedSprite("sit down look right")
-#Luce: [#look-right] ... I am... on a secret mission. 
-#do luce.PlayAnimatedSprite("sit down")
-#Luce: [#default] ...
-#do luce.PlayAnimatedSprite("sit down look up")
-#Luce: [#look-up] I... cannot say.
-#Nori: [#oh] What kind of mission?
-#do luce.PlayAnimatedSprite("sit down look down")
-#Luce: [#close-eyes-down] ...
-#Nori: [#close-eyes-smile] Oh... right. It’s a secret.
-#do luce.PlayAnimatedSprite("sit down look left")
-#School bells are heard in the distance.
-#do luce.PlayAnimatedSprite("sit down look right")
-#Nori: [#shocked] Oh crap! I didn’t realise the time.
+do luce.PlayAnimatedSprite("sit down")
+Luce: [#default] ...
+do luce.PlayAnimatedSpriteFromFrame("sit down poke right", 0, true)
+do director.Wait(3)
+do luce.PlayAnimatedSpriteAsync("sit down poke right")
+do luce.PlayAnimatedSpriteFromFrame("sit down poke right", 2, true)
+do director.Wait(0.5)
+do luce.PlayAnimatedSpriteFromFrame("sit down poke right", 1, true)
+Nori: [#crying-hidden] Don’t touch me.
+Luce: [#look-right] ...
+do director.Wait(1)
+do luce.PlayAnimatedSpriteFromFrame("sit down poke right", 0, true)
+do director.Wait(0.25)
+do luce.PlayAnimatedSprite("sit down look right")
+do director.Wait(2)
+do luce.PlayAnimatedSprite("sit down")
+do director.Wait(1)
+Luce: [#default] ...
+do director.TriggerRain()
+do director.Wait(3)
+do luce.PlayAnimatedSprite("sit down look up")
+do director.Wait(3)
+Nori looks up.
+Nori: [#crying-hidden] Great.
+do luce.PlayAnimatedSprite("sit down look right")
+Nori: [#crying-hidden] *sigh*
+Luce: [#look-right] ...
+do luce.PlayAnimatedSpriteAsync("sit down make umbrella")
+do nori.PlayAnimatedSpriteAsync("sit crying look left")
+do director.Wait(2)
+do luce.PlayAnimatedSprite("sit down look right umbrella")
+do director.Wait(1)
+Nori: [#crying-oh] Woah!
+Nori: [#crying-side-lip] How did you do that?
+Luce: [#default] ... Take it.
+#the hesitation here is weird. rearrange. maybe do "How did you do that?" "Take it" "..." then hesitate.
+Nori: [#crying-side-lip] ...
+do nori.PlayAnimatedSprite("sit crying look down")
+Nori: [#hidden-visible-crying-side-lip] ...
+Luce: [#default] ...
+do director.Wait(2)
+Nori wipes her tears, before grabbing the umbrella.
+Nori: [#look-right-sad] ...
+#Nori: [#hidden-visible-crying] ...
+do luce.PlayAnimatedSprite("sit down look down")
+Luce: [#look-down] ...
+do director.Wait(4)
+Luce: [#look-down] Are you... ok?
+Nori: [#look-down-oh] I’m, um...
+Nori: [#look-left-sad] I’m ok...
+Luce: [#look-down] ...
+Nori: [#look-left-sad] ...
+do director.Wait(2)
+do luce.PlayAnimatedSprite("sit down look right")
+do director.Wait(2)
+do luce.PlayAnimatedSprite("sit down look down")
+do director.Wait(2)
+Luce: [#look-down] ... I like your shirt.
+Nori: [#look-left-sad] ...
+Nori: [#side-lip] ...
+Nori: [#look-down-right-oh] ...
+Nori: [#look-right-hope-smile] Thanks...
+Nori: [#look-right-hope-smile] I, um...
+Nori: [#look-right-hope-smile] I like your shirt too. Or cloak I mean.
+do luce.PlayAnimatedSprite("sit down")
+Luce: [#default] !
+Nori: [#look-right-oh] Do you... wear that around a lot?
+do luce.PlayAnimatedSprite("sit down look down")
+Luce: [#satisfaction] *nods*
+Nori: [#look-right-oh] Huh. You’re not from around here then.
+do luce.PlayAnimatedSprite("sit down look right")
+Luce: [#surprised] How can you tell?
+Nori: [#cartoon-um-what] I mean, it’s not hard to notice you.
+do luce.PlayAnimatedSprite("sit down look down")
+Luce: [#look-down] ...
+Nori: [#doubt] ...
+Nori: [#doubt] Where are you from, exactly?
+do luce.PlayAnimatedSprite("sit down look right")
+Luce: [#look-right] ... I am... on a secret mission. 
+do luce.PlayAnimatedSprite("sit down")
+Luce: [#default] ...
+do luce.PlayAnimatedSprite("sit down look up")
+Luce: [#look-up] I... cannot say.
+Nori: [#oh] What kind of mission?
+do luce.PlayAnimatedSprite("sit down look down")
+Luce: [#close-eyes-down] ...
+Nori: [#close-eyes-smile] Oh... right. It’s a secret.
+do luce.PlayAnimatedSprite("sit down look left")
+School bells are heard in the distance.
+do luce.PlayAnimatedSprite("sit down look right")
+Nori: [#shocked] Oh crap! I didn’t realise the time.
 do nori.PlayAnimatedSprite("idle down")
 do director.Wait(1)
 do nori.PlayAnimatedSprite("idle left")
