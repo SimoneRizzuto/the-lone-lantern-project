@@ -113,9 +113,7 @@ Luce: [#look-down] ...
 Nori: [#doubt] ...
 Nori: [#doubt] Where are you from, exactly?
 do luce.PlayAnimatedSprite("sit down look right")
-Luce: [#look-right] ... I am... on a secret mission. 
-do luce.PlayAnimatedSprite("sit down")
-Luce: [#default] ...
+Luce: [#look-right] ... I am... on a secret mission.
 do luce.PlayAnimatedSprite("sit down look up")
 Luce: [#look-up] I... cannot say.
 Nori: [#oh] What kind of mission?
@@ -150,8 +148,7 @@ Luce: [#close-eyes-down] I know. I should have done it when she was here.
 Luce: [#close-eyes-down] And... I will do what I must.
 He looks up to the sky, letting the rain soak him.
 do luce.PlayAnimatedSprite("sit down look up")
-Luce: [#look-up] ...
-Luce: [#look-up] But... 
+Luce: [#look-up] But...
 Luce: [#look-up] It could wait just a little.
 He sits on the swing set, and listens to the sounds of the environment.
 A pause to take in the atmosphere.
