@@ -38,7 +38,7 @@ Luce: [#look-down] ...
 do luce.PlayAnimatedSprite("sit down")
 Luce: [#default] ...
 do luce.PlayAnimatedSpriteFromFrame("sit down poke right", 0, true)
-do director.Wait(3)
+do director.Wait(2)
 do luce.PlayAnimatedSpriteAsync("sit down poke right")
 do luce.PlayAnimatedSpriteFromFrame("sit down poke right", 2, true)
 do director.Wait(0.01)
@@ -63,7 +63,7 @@ Nori: [#crying-hidden] *sigh*
 Luce: [#look-right] ...
 do luce.PlayAnimatedSpriteAsync("sit down make umbrella")
 do nori.PlayAnimatedSpriteAsync("sit crying look left")
-do director.Wait(2)
+do director.Wait(1.5)
 do luce.PlayAnimatedSprite("sit down look right umbrella")
 do director.Wait(1)
 Nori: [#crying-oh] Woah!
