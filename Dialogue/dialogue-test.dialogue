@@ -55,10 +55,16 @@ do director.Wait(1.5)
 do director.TriggerRain()
 do director.Wait(3)
 do luce.PlayAnimatedSprite("sit down look up")
-do director.Wait(3)
-Nori looks up.
-Nori: [#crying-hidden] Great.
+do director.Wait(1.5)
+do nori.PlayAnimatedSpriteAsync("sit down look up crying")
+do director.Wait(1.5)
+Nori: [#crying-look-up] Great.
 do luce.PlayAnimatedSprite("sit down look right")
+do director.Wait(1.5)
+do nori.PlayAnimatedSpriteFromFrame("sit down look up crying", 0, true)
+do director.Wait(0.25)
+do nori.PlayAnimatedSprite("sit crying look down")
+do director.Wait(0.5)
 Nori: [#crying-hidden] *sigh*
 Luce: [#look-right] ...
 do luce.PlayAnimatedSpriteAsync("sit down make umbrella")
