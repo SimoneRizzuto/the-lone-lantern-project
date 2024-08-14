@@ -74,10 +74,19 @@ Nori: [#crying-side-lip] ...
 do nori.PlayAnimatedSprite("sit crying look down")
 Nori: [#hidden-visible-crying-side-lip] ...
 Luce: [#default] ...
-do director.Wait(2)
-Nori wipes her tears, before grabbing the umbrella.
+do director.Wait(1)
+do nori.PlayAnimatedSpriteAsync("sit down wipe tears")
+do nori.PlayAnimatedSprite("sit down look down")
+do director.Wait(1)
+do nori.PlayAnimatedSpriteAsync("sit down grab umbrella 1")
+do luce.PlayAnimatedSpriteFromFrame("sit down poke right", 1, true)
+do nori.PlayAnimatedSpriteAsync("sit down grab umbrella 2")
+do luce.PlayAnimatedSpriteFromFrame("sit down poke right", 1, true)
+do director.Wait(0.25)
+do luce.PlayAnimatedSpriteFromFrame("sit down poke right", 0, true)
+do director.Wait(0.25)
+do luce.PlayAnimatedSprite("sit down look right")
 Nori: [#look-right-sad] ...
-#Nori: [#hidden-visible-crying] ...
 do luce.PlayAnimatedSprite("sit down look down")
 Luce: [#look-down] ...
 do director.Wait(4)
