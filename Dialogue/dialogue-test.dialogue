@@ -139,20 +139,31 @@ do luce.PlayAnimatedSprite("sit down look left")
 School bells are heard in the distance.
 do luce.PlayAnimatedSprite("sit down look right lower")
 Nori: [#shocked] Oh crap! I didn’t realise the time.
-do nori.PlayAnimatedSprite("idle down")
+do nori.PlayAnimatedSprite("idle down umbrella")
 do director.Wait(0.5)
 do luce.PlayAnimatedSprite("sit down look right")
-do director.Wait(1)
-do nori.PlayAnimatedSprite("idle left")
+do nori.MoveDownCustomAnimation("umbrella", 0.4, 0.25)
+do director.Wait(0.25)
+do nori.PlayAnimatedSprite("idle left umbrella")
+do director.Wait(0.75)
+do nori.PlayAnimatedSprite("idle left hold out umbrella")
+do director.Wait(0.5)
 Nori: [#look-right-hope-smile] Thanks for the umbrella. Here you go.
-She offers the umbrella back to Luce.
 Luce: [#default] ... Take it with you.
 Nori: [#oh] ... Oh.
+do director.Wait(1)
+do nori.PlayAnimatedSprite("idle left umbrella")
+do director.Wait(1)
 Nori: [#default] Um... I’ll give it back if I find you again. You aren’t hard to miss.
-Nori: [#hope-smile] See you around.
+Nori: [#hope-smile] Thanks again. 
+Nori: [#hope-smile] I'll see you around.
 do nori.MoveDownCustomAnimation("umbrella", 0.2, 0.5)
 do luce.PlayAnimationPlayer("watch Nori walking by while on swing set")
-do nori.MoveLeftCustomAnimation("umbrella", 12, 0.5)
+do nori.MoveLeftCustomAnimation("umbrella", 3, 0.5)
+do nori.PlayAnimatedSprite("idle left umbrella")
+do director.Wait(2.5)
+do nori.MoveLeftCustomAnimation("umbrella", 6, 0.5)
+
 He sits there alone.
 A firefly comes out of him and floats around. He places his finger high, and the firefly lands on it.
 do luce.PlayAnimatedSprite("sit down look up")
