@@ -150,7 +150,7 @@ Luce: [#default] ... Take it with you.
 Nori: [#oh] ... Oh.
 Nori: [#default] Um... I’ll give it back if I find you again. You aren’t hard to miss.
 Nori: [#hope-smile] See you around.
-do nori.MoveDown(0.2, 0.5)
+do nori.MoveDownCustomAnimation("umbrella", 0.2, 0.5)
 do luce.PlayAnimationPlayer("watch Nori walking by while on swing set")
 do nori.MoveLeftCustomAnimation("umbrella", 12, 0.5)
 He sits there alone.
