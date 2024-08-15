@@ -186,9 +186,9 @@ Little whirls are heard from the firefly.
 Luce: [#smile-1] Is it that nice?
 do luce.PlayAnimatedSprite("sit down look down")
 Luce: [#close-eyes-down] I was not aware fireflies liked the rain this much.
-Luce: [#look-down] I am sorry that I have not taken you all much.
+Luce: [#look-down] I am sorry that I have not taken you much.
 do luce.PlayAnimatedSprite("sit down")
-Luce: [#default] If I can find a place where it rains, I shall take you all there.
+Luce: [#default] If I can find a place where it rains, I shall take you there.
 Luce gets up.
 do luce.PlayAnimatedSprite("sit down")
 Luce: [#default] For now though, come.
