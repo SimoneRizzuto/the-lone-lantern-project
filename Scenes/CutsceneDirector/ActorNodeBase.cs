@@ -17,6 +17,7 @@ public partial class ActorNodeBase : Node2D // ReSharper disable IntroduceOption
     private double millisecondsToPass = 1000;
     private double multiplier = 1;
     private string lastDirection = "down";
+    private string customAnimationTag = "";
     
     // variables for managing time passing for Action commands
     private Task ActionCompleted => actionGiven.Task;
@@ -136,12 +137,26 @@ public partial class ActorNodeBase : Node2D // ReSharper disable IntroduceOption
         await SetupActionTask(AsyncActionToPlay.MoveDown, seconds, moveSpeedMultiplier);
     }
     
-    /*public virtual async Task MoveLeftFromFrame(double seconds = 1, double moveSpeedMultiplier = 1, int frame = 0)
+    public virtual async Task MoveUpCustomAnimation(string tag = "", double seconds = 1, double moveSpeedMultiplier = 1)
     {
-        await MoveLeft(seconds, moveSpeedMultiplier);
-        AnimatedSprite2D.Frame = frame;
-    }*/
-    
+        customAnimationTag = tag;
+        await SetupActionTask(AsyncActionToPlay.MoveUp, seconds, moveSpeedMultiplier);
+    }
+    public virtual async Task MoveRightCustomAnimation(string tag = "", double seconds = 1, double moveSpeedMultiplier = 1)
+    {
+        customAnimationTag = tag;
+        await SetupActionTask(AsyncActionToPlay.MoveRight, seconds, moveSpeedMultiplier);
+    }
+    public virtual async Task MoveLeftCustomAnimation(string tag = "", double seconds = 1, double moveSpeedMultiplier = 1)
+    {
+        customAnimationTag = tag;
+        await SetupActionTask(AsyncActionToPlay.MoveLeft, seconds, moveSpeedMultiplier);
+    }
+    public virtual async Task MoveDownCustomAnimation(string tag = "", double seconds = 1, double moveSpeedMultiplier = 1)
+    {
+        customAnimationTag = tag;
+        await SetupActionTask(AsyncActionToPlay.MoveDown, seconds, moveSpeedMultiplier);
+    }
     
     // Process
     public override void _PhysicsProcess(double delta)
@@ -175,6 +190,8 @@ public partial class ActorNodeBase : Node2D // ReSharper disable IntroduceOption
         if (direction == Vector2.Right) lastDirection = "right";
         if (direction == Vector2.Down) lastDirection = "down";
         if (direction == Vector2.Up) lastDirection = "up";
+
+        if (!string.IsNullOrEmpty(customAnimationTag)) lastDirection += $" {customAnimationTag}";
         
         AnimatedSprite2D.Play($"walk {lastDirection}", (float)multiplier);
         Actor.Velocity = direction * (PlayerConstants.Speed * (float)multiplier) * (float)delta;
