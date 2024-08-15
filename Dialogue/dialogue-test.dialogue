@@ -103,7 +103,7 @@ Nori: [#look-left-sad] I’m ok...
 Luce: [#look-down] ...
 Nori: [#look-left-sad] ...
 do director.Wait(2)
-do luce.PlayAnimatedSprite("sit down look right")
+do luce.PlayAnimatedSprite("sit down look right lower")
 do director.Wait(2)
 do luce.PlayAnimatedSprite("sit down look down")
 do director.Wait(2)
@@ -120,14 +120,14 @@ Nori: [#look-right-oh] Do you... wear that around a lot?
 do luce.PlayAnimatedSprite("sit down look down")
 Luce: [#satisfaction] *nods*
 Nori: [#look-right-oh] Huh. You’re not from around here then.
-do luce.PlayAnimatedSprite("sit down look right")
+do luce.PlayAnimatedSprite("sit down look right lower")
 Luce: [#surprised] How can you tell?
 Nori: [#cartoon-um-what] I mean, it’s not hard to notice you.
 do luce.PlayAnimatedSprite("sit down look down")
 Luce: [#look-down] ...
 Nori: [#doubt] ...
 Nori: [#doubt] Where are you from, exactly?
-do luce.PlayAnimatedSprite("sit down look right")
+do luce.PlayAnimatedSprite("sit down look right lower")
 Luce: [#look-right] ... I am... on a secret mission.
 do luce.PlayAnimatedSprite("sit down look up")
 Luce: [#look-up] I... cannot say.
@@ -137,9 +137,11 @@ Luce: [#close-eyes-down] ...
 Nori: [#close-eyes-smile] Oh... right. It’s a secret.
 do luce.PlayAnimatedSprite("sit down look left")
 School bells are heard in the distance.
-do luce.PlayAnimatedSprite("sit down look right")
+do luce.PlayAnimatedSprite("sit down look right lower")
 Nori: [#shocked] Oh crap! I didn’t realise the time.
 do nori.PlayAnimatedSprite("idle down")
+do director.Wait(0.5)
+do luce.PlayAnimatedSprite("sit down look right")
 do director.Wait(1)
 do nori.PlayAnimatedSprite("idle left")
 Nori: [#look-right-hope-smile] Thanks for the umbrella. Here you go.
