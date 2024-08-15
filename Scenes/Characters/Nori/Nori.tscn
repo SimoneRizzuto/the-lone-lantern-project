@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://cbw71y6mqaoy2"]
+[gd_scene load_steps=63 format=3 uid="uid://cbw71y6mqaoy2"]
 
 [ext_resource type="Texture2D" uid="uid://br0pvdxe3r2c2" path="res://Scenes/Characters/Nori/nori_walk_down-Sheet.png" id="1_0rv05"]
 [ext_resource type="Texture2D" uid="uid://bgjan8hroire4" path="res://Scenes/Characters/Nori/nori_idle_down.png" id="1_ylujk"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://dfp4jwgrbgddh" path="res://Scenes/Characters/Nori/nori sit down grab umbrella 2-Sheet.png" id="8_bmudu"]
 [ext_resource type="Texture2D" uid="uid://do2nyg65js2i0" path="res://Scenes/Characters/Nori/nori_walk_up-Sheet.png" id="9_pt5id"]
 [ext_resource type="Texture2D" uid="uid://g784tx20n6cu" path="res://Scenes/Characters/Nori/nori sit down look up crying-Sheet.png" id="10_a8635"]
+[ext_resource type="Texture2D" uid="uid://dlr13jylo6ywb" path="res://Scenes/Characters/Nori/nori_walk_left_umbrella-Sheet.png" id="13_x37gn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dlsv6"]
 size = Vector2(8, 4)
@@ -122,6 +123,30 @@ region = Rect2(40, 0, 10, 22)
 [sub_resource type="AtlasTexture" id="AtlasTexture_tq7ve"]
 atlas = ExtResource("7_ty62a")
 region = Rect2(50, 0, 10, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bgphx"]
+atlas = ExtResource("13_x37gn")
+region = Rect2(0, 0, 31, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tdx5p"]
+atlas = ExtResource("13_x37gn")
+region = Rect2(31, 0, 31, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g3ntm"]
+atlas = ExtResource("13_x37gn")
+region = Rect2(62, 0, 31, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kspsq"]
+atlas = ExtResource("13_x37gn")
+region = Rect2(93, 0, 31, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ipmg4"]
+atlas = ExtResource("13_x37gn")
+region = Rect2(124, 0, 31, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_06qs4"]
+atlas = ExtResource("13_x37gn")
+region = Rect2(155, 0, 31, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_asm5c"]
 atlas = ExtResource("8_28kyh")
@@ -333,6 +358,29 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_bgphx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdx5p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g3ntm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kspsq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ipmg4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_06qs4")
+}],
+"loop": true,
+"name": &"walk left umbrella",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_asm5c")
 }, {
 "duration": 1.0,
@@ -389,9 +437,7 @@ shape = SubResource("RectangleShape2D_dlsv6")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 1)
 sprite_frames = SubResource("SpriteFrames_7yapm")
-animation = &"sit down look up crying"
-frame = 1
-frame_progress = 1.0
+animation = &"walk left umbrella"
 offset = Vector2(0, -12)
 
 [node name="ActorNodeBase" parent="." node_paths=PackedStringArray("AnimatedSprite2D") instance=ExtResource("7_imr5s")]

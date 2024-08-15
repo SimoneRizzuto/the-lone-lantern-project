@@ -152,8 +152,7 @@ Nori: [#default] Um... I’ll give it back if I find you again. You aren’t har
 Nori: [#hope-smile] See you around.
 do nori.MoveDown(0.2, 0.5)
 do luce.PlayAnimationPlayer("watch Nori walking by while on swing set")
-do nori.MoveLeft(12, 0.5)
-She leaves the playground, leaving Luce behind.
+do nori.MoveLeftCustomAnimation("umbrella", 12, 0.5)
 He sits there alone.
 A firefly comes out of him and floats around. He places his finger high, and the firefly lands on it.
 do luce.PlayAnimatedSprite("sit down look up")
