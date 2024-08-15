@@ -4,10 +4,11 @@ using TheLoneLanternProject.Constants;
 public partial class PauseMenu : Control
 {
     public bool Playing = true;
+    private CustomSignals customSignals = new();
 
     public override void _Ready()
     {
-        Hide();
+        customSignals = GetNode<CustomSignals>("/root/CustomSignals");
     }
 
 
@@ -51,6 +52,12 @@ public partial class PauseMenu : Control
         GetTree().Root.PropagateNotification((int)NotificationWMCloseRequest);
 
     }
+
+    public void OnSettingsPressed()
+    {
+        customSignals.EmitSignal(nameof(CustomSignals.MenuSwitch), "Options");
+    }
+
     public override void _Notification(int what)
     {
         if (what == NotificationWMCloseRequest)

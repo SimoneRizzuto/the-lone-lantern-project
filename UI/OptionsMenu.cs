@@ -1,15 +1,17 @@
 using Godot;
-using System;
+using TheLoneLanternProject.Constants;
 
 public partial class OptionsMenu : Control
 {
+    private CustomSignals customSignals = new();
+
     public override void _Ready()
     {
-        Hide();
+        customSignals = GetNode<CustomSignals>("/root/CustomSignals");
     }
 
     public void OnBackPressed()
     {
-        //Code to return to the pause menu
+        customSignals.EmitSignal(nameof(CustomSignals.MenuSwitch), "Pause");
     }
 }
