@@ -96,7 +96,7 @@ Nori: [#look-right-sad] ...
 do luce.PlayAnimatedSprite("sit down look down")
 Luce: [#look-down] ...
 do director.Wait(4)
-Luce: [#look-down] Are you... ok?
+Luce: [#look-down] Are you... okay?
 Nori: [#look-down-oh] I’m, um...
 Nori: [#look-right-sad] I’m ok...
 Luce: [#look-down] ...
@@ -162,7 +162,10 @@ do nori.MoveLeftCustomAnimation("umbrella", 3, 0.5)
 do nori.PlayAnimatedSprite("idle left umbrella")
 do director.Wait(2.5)
 do nori.MoveLeftCustomAnimation("umbrella", 6, 0.5)
-
+Luce: [#look-left] Goodbye...
+do director.Wait(2)
+do luce.PlayAnimatedSprite("sit down")
+do director.Wait(2)
 He sits there alone.
 A firefly comes out of him and floats around. He places his finger high, and the firefly lands on it.
 do luce.PlayAnimatedSprite("sit down look up")
