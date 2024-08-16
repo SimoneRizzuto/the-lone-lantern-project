@@ -127,8 +127,8 @@ do luce.PlayAnimatedSprite("sit down look down")
 Luce: [#look-down] ...
 Nori: [#doubt] ...
 Nori: [#doubt] Where are you from, exactly?
-do luce.PlayAnimatedSprite("sit down look right lower")
-Luce: [#look-right] ... I am... on a secret mission.
+do luce.PlayAnimatedSprite("sit down look left")
+Luce: [#look-left] ... I am... on a secret mission.
 do luce.PlayAnimatedSprite("sit down look up")
 Luce: [#look-up] I... cannot say.
 Nori: [#oh] What kind of mission?
