@@ -119,7 +119,7 @@ Nori: [#look-left-oh] Do you... wear that around a lot?
 do luce.PlayAnimatedSprite("sit down look down")
 Luce: [#satisfaction] *nods*
 Nori: [#look-left-oh] Huh. You’re not from around here then.
-do luce.PlayAnimatedSprite("sit down look right lower")
+do luce.PlayAnimatedSprite("sit down surprised")
 Luce: [#surprised] How can you tell?
 Nori: [#cartoon-um-what] I mean, it’s not hard to notice you.
 do luce.PlayAnimatedSprite("sit down look down")

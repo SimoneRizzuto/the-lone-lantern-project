@@ -1,4 +1,4 @@
-[gd_scene load_steps=95 format=3 uid="uid://1q0v7as1ovpm"]
+[gd_scene load_steps=97 format=3 uid="uid://1q0v7as1ovpm"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Luce.cs" id="1_nq6ir"]
 [ext_resource type="Script" path="res://Scenes/Player/PlayerCamera2D.cs" id="2_lo3wm"]
@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://csaanif24t287" path="res://Scenes/Player/luce sit down look right hold umbrella-Sheet.png" id="13_fncwd"]
 [ext_resource type="Texture2D" uid="uid://c3o3o3aa2asqu" path="res://Scenes/Player/luce sit down poke right-Sheet.png" id="13_qcohb"]
 [ext_resource type="Texture2D" uid="uid://dmwj7i1ql1qrp" path="res://Scenes/Player/luce sit down look right lower.png" id="14_0pns1"]
+[ext_resource type="Texture2D" uid="uid://q06axos06dre" path="res://Scenes/Player/luce sit down surprised.png" id="18_2gsf8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_we0ol"]
 size = Vector2(14.87, 7.44669)
@@ -197,6 +198,10 @@ region = Rect2(98, 0, 49, 38)
 [sub_resource type="AtlasTexture" id="AtlasTexture_yvp6o"]
 atlas = ExtResource("13_qcohb")
 region = Rect2(147, 0, 49, 38)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0q7go"]
+atlas = ExtResource("18_2gsf8")
+region = Rect2(0, 0, 15, 37)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l0tje"]
 atlas = ExtResource("8_agf2x")
@@ -535,6 +540,14 @@ animations = [{
 }],
 "loop": false,
 "name": &"sit down poke right",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0q7go")
+}],
+"loop": false,
+"name": &"sit down surprised",
 "speed": 5.0
 }, {
 "frames": [{
