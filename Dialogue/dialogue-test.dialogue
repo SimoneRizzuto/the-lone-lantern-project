@@ -75,7 +75,6 @@ do director.Wait(1)
 Nori: [#crying-oh] Woah!
 Nori: [#crying-side-lip] How did you do that?
 Luce: [#default] ... Take it.
-#the hesitation here is weird. rearrange. maybe do "How did you do that?" "Take it" "..." then hesitate.
 Nori: [#crying-side-lip] ...
 do nori.PlayAnimatedSprite("sit crying look down")
 Nori: [#hidden-visible-crying-side-lip] ...
