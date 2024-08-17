@@ -11,41 +11,79 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_8y0ep")
 
-[node name="Panel" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -207.0
-offset_top = -107.0
-offset_right = 298.0
-offset_bottom = 74.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -1.0
-offset_right = -1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
 
-[node name="Label" type="Label" parent="Panel/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 36
 text = "--Options--"
 horizontal_alignment = 1
 
-[node name="Settings" type="Button" parent="Panel/VBoxContainer"]
+[node name="SettingsTab" type="Control" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Settings"
 
-[node name="Back" type="Button" parent="Panel/VBoxContainer"]
+[node name="TabContainer" type="TabContainer" parent="MarginContainer/VBoxContainer/SettingsTab"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_top = 38.0
+offset_bottom = 573.0
+grow_horizontal = 2
+
+[node name="Visual" type="TabBar" parent="MarginContainer/VBoxContainer/SettingsTab/TabContainer"]
 layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/SettingsTab/TabContainer/Visual"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -56.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_right = 50
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/SettingsTab/TabContainer/Visual/MarginContainer"]
+layout_mode = 2
+
+[node name="WindowScreen" type="Label" parent="MarginContainer/VBoxContainer/SettingsTab/TabContainer/Visual/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 18
+text = "Window Screen"
+
+[node name="WinScn" type="OptionButton" parent="MarginContainer/VBoxContainer/SettingsTab/TabContainer/Visual/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Resolution" type="Label" parent="MarginContainer/VBoxContainer/SettingsTab/TabContainer/Visual/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 18
+text = "Resolution"
+
+[node name="Res" type="OptionButton" parent="MarginContainer/VBoxContainer/SettingsTab/TabContainer/Visual/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Back" type="Button" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(120, 40)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 10
+theme_override_font_sizes/font_size = 18
 text = "Back"
 
-[connection signal="pressed" from="Panel/VBoxContainer/Back" to="." method="OnBackPressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Back" to="." method="OnBackPressed"]
