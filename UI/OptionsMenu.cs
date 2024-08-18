@@ -8,9 +8,11 @@ public partial class OptionsMenu : Control
     private CustomSignals customSignals = new();
     private int viewportHeight = new();
     private int viewportWidth = new();
+    private int engineFPS= 60;
     private string viewportMode = "";
 
     private Godot.Collections.Dictionary<string, Vector2I> resolutionDict = new();
+    private Godot.Collections.Dictionary<string, int> fpsDict = new();
     private Godot.Collections.Array<string> windowScreenArray = new();
 
 
@@ -55,6 +57,12 @@ public partial class OptionsMenu : Control
         {
             windowOptionButton.Selected = -1;
         }
+
+        AddFPSOptions();
+        OptionButton fpsOptionButton = GetNode<OptionButton>("./MarginContainer/VBoxContainer/SettingsTab/TabContainer/Visual/MarginContainer/VBoxContainer/FPS"); // This needs to change & is bad practice
+        fpsOptionButton.ItemSelected += fpsIndex => ChangeFPSLock((int)fpsIndex);
+        Engine.MaxFps = engineFPS; // By default
+        fpsOptionButton.Selected = fpsDict.Keys.ToList().IndexOf("60 FPS");
     }
 
 
@@ -123,6 +131,26 @@ public partial class OptionsMenu : Control
         DisplayServer.WindowSetSize(resolutionDict.Values.ToList()[resolutionIndex]);
     }
 
+    private void FPSOptions()
+    {
+        fpsDict.Add("30 FPS", 30);
+        fpsDict.Add("60 FPS", 60);
+    }
+
+    private void AddFPSOptions()
+    {
+        FPSOptions();
+        var fpsOptionButton = GetNode<OptionButton>("./MarginContainer/VBoxContainer/SettingsTab/TabContainer/Visual/MarginContainer/VBoxContainer/FPS"); // This needs to change & is bad practice
+        foreach (var fps in fpsDict)
+        {
+            fpsOptionButton.AddItem(fps.Key);
+        }
+    }
+
+    private void ChangeFPSLock(int fpsIndex)
+    {
+        Engine.MaxFps = fpsDict.Values.ToList()[fpsIndex]; 
+    }
 
     public void OnBackPressed()
     {

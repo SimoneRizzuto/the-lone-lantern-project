@@ -78,6 +78,13 @@ text = "Resolution"
 [node name="Res" type="OptionButton" parent="MarginContainer/VBoxContainer/SettingsTab/TabContainer/Visual/MarginContainer/VBoxContainer"]
 layout_mode = 2
 
+[node name="FPSLock" type="Label" parent="MarginContainer/VBoxContainer/SettingsTab/TabContainer/Visual/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "FPS"
+
+[node name="FPS" type="OptionButton" parent="MarginContainer/VBoxContainer/SettingsTab/TabContainer/Visual/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
 [node name="Back" type="Button" parent="MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(120, 40)
 layout_mode = 2

@@ -15,7 +15,7 @@ public partial class PauseMenu : Control
     // I think that this should go somewhere more important maybe???
     public override void _Process(double delta)
     {
-        if (Input.IsActionPressed(InputMapAction.Pause))
+        if (Input.IsActionJustPressed(InputMapAction.Pause))
         {
             if (Playing)
             {
