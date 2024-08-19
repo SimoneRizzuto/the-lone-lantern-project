@@ -1,4 +1,4 @@
-[gd_scene load_steps=76 format=3 uid="uid://cbw71y6mqaoy2"]
+[gd_scene load_steps=81 format=3 uid="uid://cbw71y6mqaoy2"]
 
 [ext_resource type="Texture2D" uid="uid://br0pvdxe3r2c2" path="res://Scenes/Characters/Nori/nori_walk_down-Sheet.png" id="1_0rv05"]
 [ext_resource type="Texture2D" uid="uid://bgjan8hroire4" path="res://Scenes/Characters/Nori/nori_idle_down.png" id="1_ylujk"]
@@ -20,6 +20,8 @@
 [ext_resource type="Texture2D" uid="uid://g784tx20n6cu" path="res://Scenes/Characters/Nori/nori sit down look up crying-Sheet.png" id="10_a8635"]
 [ext_resource type="Texture2D" uid="uid://dachmne11wxsh" path="res://Scenes/Characters/Nori/nori_walk_down_umbrella-Sheet.png" id="12_crnhg"]
 [ext_resource type="Texture2D" uid="uid://dlr13jylo6ywb" path="res://Scenes/Characters/Nori/nori_walk_left_umbrella-Sheet.png" id="13_x37gn"]
+[ext_resource type="Texture2D" uid="uid://c5klkjfa4gis0" path="res://Scenes/Characters/Nori/nori sit down umbrella-Sheet.png" id="14_4qja5"]
+[ext_resource type="Texture2D" uid="uid://de7nhl5yb2fen" path="res://Scenes/Characters/Nori/nori_sit-look-left-umbrella.png" id="15_y7md5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dlsv6"]
 size = Vector2(8, 4)
@@ -54,6 +56,14 @@ region = Rect2(0, 0, 32, 36)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sm8i7"]
 atlas = ExtResource("8_bmudu")
+region = Rect2(32, 0, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7a24"]
+atlas = ExtResource("14_4qja5")
+region = Rect2(0, 0, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oatty"]
+atlas = ExtResource("14_4qja5")
 region = Rect2(32, 0, 32, 36)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ewojp"]
@@ -91,6 +101,10 @@ region = Rect2(40, 0, 10, 22)
 [sub_resource type="AtlasTexture" id="AtlasTexture_lv407"]
 atlas = ExtResource("7_flxrs")
 region = Rect2(50, 0, 10, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cfys2"]
+atlas = ExtResource("15_y7md5")
+region = Rect2(0, 0, 32, 36)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0xmva"]
 atlas = ExtResource("1_0rv05")
@@ -334,6 +348,17 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_q7a24")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oatty")
+}],
+"loop": false,
+"name": &"sit down head up umbrella",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_ewojp")
 }],
 "loop": true,
@@ -372,6 +397,14 @@ animations = [{
 }],
 "loop": false,
 "name": &"sit down wipe tears",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cfys2")
+}],
+"loop": true,
+"name": &"sit look left umbrella",
 "speed": 5.0
 }, {
 "frames": [{
@@ -524,7 +557,7 @@ shape = SubResource("RectangleShape2D_dlsv6")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 1)
 sprite_frames = SubResource("SpriteFrames_7yapm")
-animation = &"idle left hold out umbrella"
+animation = &"sit down look down"
 offset = Vector2(0, -12)
 
 [node name="ActorNodeBase" parent="." node_paths=PackedStringArray("AnimatedSprite2D") instance=ExtResource("7_imr5s")]
