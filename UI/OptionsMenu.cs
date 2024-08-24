@@ -1,7 +1,5 @@
 using Godot;
 using System.Linq;
-using System.Security.AccessControl;
-using System.Text.RegularExpressions;
 
 public partial class OptionsMenu : Control
 {
@@ -15,52 +13,66 @@ public partial class OptionsMenu : Control
     private Godot.Collections.Dictionary<string, int> fpsDict = new();
     private Godot.Collections.Array<string> windowScreenArray = new();
 
+    private OptionButton resolutionOptionButton = new OptionButton();
+    private OptionButton windowOptionButton = new OptionButton();
+    private OptionButton fpsOptionButton = new OptionButton();
+
 
 
     public override void _Ready()
     {
+        // This part should be executed at runtime
+        GetTree().Root.ContentScaleMode = Window.ContentScaleModeEnum.Viewport;
+        GetTree().Root.ContentScaleAspect = Window.ContentScaleAspectEnum.Expand;
+        GetTree().Root.ContentScaleStretch = Window.ContentScaleStretchEnum.Fractional;
+        //
+
         customSignals = GetNode<CustomSignals>("/root/CustomSignals");
         
-        AddResolutionOptions();
-        OptionButton resolutionOptionButton = GetNode<OptionButton>("./MarginContainer/VBoxContainer/SettingsTab/TabContainer/Visual/MarginContainer/VBoxContainer/Res"); // This needs to change & is bad practice
+        // Initialise Buttons
+        resolutionOptionButton = GetNode<OptionButton>("./MarginContainer/VBoxContainer/SettingsTab/TabContainer/Visual/MarginContainer/VBoxContainer/Res"); // This needs to change & is bad practice
         resolutionOptionButton.ItemSelected += resolutionIndex => ChangeResolution((int) resolutionIndex);
+        windowOptionButton = GetNode<OptionButton>("./MarginContainer/VBoxContainer/SettingsTab/TabContainer/Visual/MarginContainer/VBoxContainer/WinScn"); // This needs to change & is bad practice
+        windowOptionButton.ItemSelected += windowScreenIndex => ChangeWindowScreen((int) windowScreenIndex);
+        fpsOptionButton = GetNode<OptionButton>("./MarginContainer/VBoxContainer/SettingsTab/TabContainer/Visual/MarginContainer/VBoxContainer/FPS"); // This needs to change & is bad practice
+        fpsOptionButton.ItemSelected += fpsIndex => ChangeFPSLock((int)fpsIndex);
+        
+        // Add Options
+        AddResolutionOptions();
+        AddWindowScreenOptions();
+        AddFPSOptions();
 
+        // Auto select Reolution
         viewportHeight = (int)ProjectSettings.GetSetting("display/window/size/viewport_height");
         viewportWidth = (int)ProjectSettings.GetSetting("display/window/size/viewport_width");
         string key = $"{viewportWidth} x {viewportHeight}";
-
-
         if (resolutionDict.ContainsKey(key))
         {
             resolutionOptionButton.Selected = resolutionDict.Keys.ToList().IndexOf(key);
         }
         else
         {
-            resolutionOptionButton.Selected = -1; 
+            resolutionOptionButton.Selected = -1;
 
         }
 
-        AddWindowScreenOptions();
-        OptionButton windowOptionButton = GetNode<OptionButton>("./MarginContainer/VBoxContainer/SettingsTab/TabContainer/Visual/MarginContainer/VBoxContainer/WinScn"); // This needs to change & is bad practice
-        windowOptionButton.ItemSelected += windowScreenIndex => ChangeWindowScreen((int)windowScreenIndex);
-
+        // Auto select Window Setting
         viewportMode = GetViewport().GetWindow().Mode.ToString();
-        if (viewportMode == "ExclusiveFullscreen"){
+        if (viewportMode == "ExclusiveFullscreen")
+        {
             viewportMode = "Exclusive Fullscreen";
         }
         if (windowScreenArray.Contains(viewportMode))
         {
-            
-            windowOptionButton.Selected = windowScreenArray.IndexOf(viewportMode); 
+
+            windowOptionButton.Selected = windowScreenArray.IndexOf(viewportMode);
         }
         else
         {
             windowOptionButton.Selected = -1;
         }
 
-        AddFPSOptions();
-        OptionButton fpsOptionButton = GetNode<OptionButton>("./MarginContainer/VBoxContainer/SettingsTab/TabContainer/Visual/MarginContainer/VBoxContainer/FPS"); // This needs to change & is bad practice
-        fpsOptionButton.ItemSelected += fpsIndex => ChangeFPSLock((int)fpsIndex);
+        // Auto select FPS
         Engine.MaxFps = engineFPS; // By default
         fpsOptionButton.Selected = fpsDict.Keys.ToList().IndexOf("60 FPS");
     }
@@ -77,8 +89,6 @@ public partial class OptionsMenu : Control
     public void AddWindowScreenOptions()
     {
         WindowScreenOptions();
-        var windowOptionButton = GetNode<OptionButton>("./MarginContainer/VBoxContainer/SettingsTab/TabContainer/Visual/MarginContainer/VBoxContainer/WinScn"); // This needs to change & is bad practice
-        //GD.Print(GetTree().Root.GetTreeString());
         foreach (var screen in windowScreenArray)
         {
             windowOptionButton.AddItem(screen);
@@ -90,7 +100,7 @@ public partial class OptionsMenu : Control
         switch (windowScreenIndex)
         {
             case 0:
-                DisplayServer.WindowSetMode(DisplayServer.WindowMode.Windowed); 
+                DisplayServer.WindowSetMode(DisplayServer.WindowMode.Windowed);
                 break;
             case 1:
                 DisplayServer.WindowSetMode(DisplayServer.WindowMode.Fullscreen);
@@ -101,25 +111,25 @@ public partial class OptionsMenu : Control
             default:
                 break;
         }
+        ChangeResolution(resolutionOptionButton.Selected);
+
+
     }
 
     private void ResolutionOptions()
     {
-        resolutionDict.Add("1024 x 576", new Vector2I(1024, 576));
-        resolutionDict.Add("1152 x 648", new Vector2I(1152, 648));
+        /*resolutionDict.Add("1024 x 576", new Vector2I(1024, 576));
+        resolutionDict.Add("1152 x 648", new Vector2I(1152, 648));*/
         resolutionDict.Add("1280 x 720", new Vector2I(1280, 720));
-        resolutionDict.Add("1345 x 790", new Vector2I(1345, 790)); // Let's add a weird one to check the scaling
         resolutionDict.Add("1920 x 1080", new Vector2I(1920, 1080));
         resolutionDict.Add("2560 x 1440", new Vector2I(2560, 1440));
-        resolutionDict.Add("3840 x 2160", new Vector2I(3840, 2160));
+        /*resolutionDict.Add("3840 x 2160", new Vector2I(3840, 2160));*/
     }
 
 
     public void AddResolutionOptions()
     {
         ResolutionOptions();
-        var resolutionOptionButton = GetNode<OptionButton>("./MarginContainer/VBoxContainer/SettingsTab/TabContainer/Visual/MarginContainer/VBoxContainer/Res"); // This needs to change & is bad practice
-        //GD.Print(GetTree().Root.GetTreeString());
         foreach (var resolution in resolutionDict)
         {
             resolutionOptionButton.AddItem(resolution.Key);
@@ -140,7 +150,6 @@ public partial class OptionsMenu : Control
     private void AddFPSOptions()
     {
         FPSOptions();
-        var fpsOptionButton = GetNode<OptionButton>("./MarginContainer/VBoxContainer/SettingsTab/TabContainer/Visual/MarginContainer/VBoxContainer/FPS"); // This needs to change & is bad practice
         foreach (var fps in fpsDict)
         {
             fpsOptionButton.AddItem(fps.Key);
