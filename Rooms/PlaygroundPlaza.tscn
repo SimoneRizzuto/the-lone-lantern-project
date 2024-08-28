@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://b0g2v7tkj7vyq"]
+[gd_scene load_steps=29 format=3 uid="uid://b0g2v7tkj7vyq"]
 
 [ext_resource type="PackedScene" uid="uid://b2e5gws18vd27" path="res://Scenes/Camera/Tripod2D.tscn" id="1_0htn0"]
 [ext_resource type="Texture2D" uid="uid://b2iwlbq5gt1bb" path="res://Assets/swingset.png" id="1_vn8ua"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://clbgwybv3enxd" path="res://Assets/playground_bin.aseprite" id="14_mjfbv"]
 [ext_resource type="Texture2D" uid="uid://dy7q13pujx40" path="res://Assets/playground_slide.aseprite" id="15_pycv1"]
 [ext_resource type="Texture2D" uid="uid://5mnmxf8y6737" path="res://Assets/playground_seesaw.aseprite" id="16_74ddk"]
+[ext_resource type="Texture2D" uid="uid://ba2f81lheflsw" path="res://Assets/playground_water_fountain.aseprite" id="17_210mj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ssvm"]
 size = Vector2(3, 18)
@@ -45,6 +46,9 @@ size = Vector2(76.5, 5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lhfsx"]
 size = Vector2(70, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2u82w"]
+size = Vector2(11, 7)
 
 [node name="PlaygroundPlaza" type="Node2D"]
 z_as_relative = false
@@ -392,6 +396,19 @@ offset = Vector2(0, -10)
 z_index = -1
 position = Vector2(0, 9)
 shape = SubResource("RectangleShape2D_lhfsx")
+metadata/_edit_lock_ = true
+
+[node name="PlaygroundWaterFountain" type="Sprite2D" parent="."]
+position = Vector2(233, 10)
+texture = ExtResource("17_210mj")
+offset = Vector2(0, -12.5)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="PlaygroundWaterFountain"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlaygroundWaterFountain/StaticBody2D"]
+z_index = -1
+position = Vector2(0, -3.5)
+shape = SubResource("RectangleShape2D_2u82w")
 metadata/_edit_lock_ = true
 
 [editable path="Tripod2D"]
