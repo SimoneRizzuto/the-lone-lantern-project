@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://b0g2v7tkj7vyq"]
+[gd_scene load_steps=27 format=3 uid="uid://b0g2v7tkj7vyq"]
 
 [ext_resource type="PackedScene" uid="uid://b2e5gws18vd27" path="res://Scenes/Camera/Tripod2D.tscn" id="1_0htn0"]
 [ext_resource type="Texture2D" uid="uid://b2iwlbq5gt1bb" path="res://Assets/swingset.png" id="1_vn8ua"]
@@ -14,12 +14,14 @@
 [ext_resource type="PackedScene" uid="uid://buj8skc4edik3" path="res://Rain.tscn" id="12_kbawf"]
 [ext_resource type="Texture2D" uid="uid://cuji7jn0xmwvw" path="res://Assets/park_bench.aseprite" id="13_05pgp"]
 [ext_resource type="Texture2D" uid="uid://clbgwybv3enxd" path="res://Assets/playground_bin.aseprite" id="14_mjfbv"]
+[ext_resource type="Texture2D" uid="uid://dy7q13pujx40" path="res://Assets/playground_slide.aseprite" id="15_pycv1"]
+[ext_resource type="Texture2D" uid="uid://5mnmxf8y6737" path="res://Assets/playground_seesaw.aseprite" id="16_74ddk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ssvm"]
-size = Vector2(3, 4)
+size = Vector2(3, 18)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1lkc0"]
-size = Vector2(3, 4)
+size = Vector2(3, 18)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2sh6o"]
 size = Vector2(78, 13)
@@ -38,9 +40,17 @@ size = Vector2(48, 10)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cxy1r"]
 size = Vector2(10, 3.5)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qxl78"]
+size = Vector2(76.5, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lhfsx"]
+size = Vector2(70, 2)
+
 [node name="PlaygroundPlaza" type="Node2D"]
 z_as_relative = false
 y_sort_enabled = true
+
+[node name="CutsceneDirector" parent="." instance=ExtResource("10_ejcvy")]
 
 [node name="Rain" parent="." instance=ExtResource("12_kbawf")]
 z_index = 4
@@ -77,11 +87,11 @@ offset = Vector2(0, -42)
 [node name="StaticBody2D" type="StaticBody2D" parent="Swingset"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Swingset/StaticBody2D"]
-position = Vector2(2.5, 2)
+position = Vector2(2.5, -5)
 shape = SubResource("RectangleShape2D_4ssvm")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Swingset/StaticBody2D"]
-position = Vector2(89.5, 2)
+position = Vector2(89.5, -5)
 shape = SubResource("RectangleShape2D_1lkc0")
 
 [node name="WallsTop" type="Node2D" parent="."]
@@ -331,8 +341,6 @@ centered = false
 position = Vector2(5.50006, 8.49081)
 shape = SubResource("RectangleShape2D_b221m")
 
-[node name="CutsceneDirector" parent="." instance=ExtResource("10_ejcvy")]
-
 [node name="ParkBench" type="Sprite2D" parent="."]
 position = Vector2(88, 9)
 texture = ExtResource("13_05pgp")
@@ -358,6 +366,32 @@ offset = Vector2(0, -10)
 z_index = -1
 position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_cxy1r")
+metadata/_edit_lock_ = true
+
+[node name="PlaygroundSlide" type="Sprite2D" parent="."]
+position = Vector2(104, 147)
+texture = ExtResource("15_pycv1")
+offset = Vector2(0, -21)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="PlaygroundSlide"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlaygroundSlide/StaticBody2D"]
+z_index = -1
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_qxl78")
+metadata/_edit_lock_ = true
+
+[node name="PlaygroundSeesaw" type="Sprite2D" parent="."]
+position = Vector2(240, 145)
+texture = ExtResource("16_74ddk")
+offset = Vector2(0, -10)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="PlaygroundSeesaw"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlaygroundSeesaw/StaticBody2D"]
+z_index = -1
+position = Vector2(0, 9)
+shape = SubResource("RectangleShape2D_lhfsx")
 metadata/_edit_lock_ = true
 
 [editable path="Tripod2D"]
