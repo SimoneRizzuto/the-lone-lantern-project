@@ -55,7 +55,7 @@ public partial class CutsceneDirector : Node
 
         foreach (var actor in actorBaseNodes)
         {
-            if (actor.Actor.Name == ActorNames.Luce)
+            if (actor.Actor?.Name == ActorNames.Luce)
             {
                 luceActor = actor;
             }
