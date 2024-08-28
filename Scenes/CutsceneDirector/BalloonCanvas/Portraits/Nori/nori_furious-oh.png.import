@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dssrvqcovj7tr"
-path="res://.godot/imported/nori_doubt.png-ca8f1753f7635bed8f93ad7d6f0845f5.ctex"
+uid="uid://bubtsdfmbir5w"
+path="res://.godot/imported/nori_furious-oh.png-f704d4c63c904e932e7441717fc0b49c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/CutsceneDirector/BalloonCanvas/Portraits/Nori/nori_doubt.png"
-dest_files=["res://.godot/imported/nori_doubt.png-ca8f1753f7635bed8f93ad7d6f0845f5.ctex"]
+source_file="res://Scenes/CutsceneDirector/BalloonCanvas/Portraits/Nori/nori_furious-oh.png"
+dest_files=["res://.godot/imported/nori_furious-oh.png-f704d4c63c904e932e7441717fc0b49c.ctex"]
 
 [params]
 

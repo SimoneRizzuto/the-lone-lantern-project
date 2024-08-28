@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dssrvqcovj7tr"
-path="res://.godot/imported/nori_doubt.png-ca8f1753f7635bed8f93ad7d6f0845f5.ctex"
+uid="uid://xqf3gmpjkidw"
+path="res://.godot/imported/nori_sad-soft-frown.png-5dad60c1c4030d49b30cbd2ed3d98995.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/CutsceneDirector/BalloonCanvas/Portraits/Nori/nori_doubt.png"
-dest_files=["res://.godot/imported/nori_doubt.png-ca8f1753f7635bed8f93ad7d6f0845f5.ctex"]
+source_file="res://Scenes/CutsceneDirector/BalloonCanvas/Portraits/Nori/nori_sad-soft-frown.png"
+dest_files=["res://.godot/imported/nori_sad-soft-frown.png-5dad60c1c4030d49b30cbd2ed3d98995.ctex"]
 
 [params]
 

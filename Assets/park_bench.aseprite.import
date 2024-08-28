@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dssrvqcovj7tr"
-path="res://.godot/imported/nori_doubt.png-ca8f1753f7635bed8f93ad7d6f0845f5.ctex"
+uid="uid://cuji7jn0xmwvw"
+path="res://.godot/imported/park_bench.aseprite-837da5001bd36689174aeadb6e2f00f6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/CutsceneDirector/BalloonCanvas/Portraits/Nori/nori_doubt.png"
-dest_files=["res://.godot/imported/nori_doubt.png-ca8f1753f7635bed8f93ad7d6f0845f5.ctex"]
+source_file="res://Assets/park_bench.aseprite"
+dest_files=["res://.godot/imported/park_bench.aseprite-837da5001bd36689174aeadb6e2f00f6.ctex"]
 
 [params]
 

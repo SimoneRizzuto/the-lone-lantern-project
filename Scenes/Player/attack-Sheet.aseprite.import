@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dssrvqcovj7tr"
-path="res://.godot/imported/nori_doubt.png-ca8f1753f7635bed8f93ad7d6f0845f5.ctex"
+uid="uid://frspgjb8600n"
+path="res://.godot/imported/attack-Sheet.aseprite-d547f3498ba02ce47c7a8641f82f0ba8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/CutsceneDirector/BalloonCanvas/Portraits/Nori/nori_doubt.png"
-dest_files=["res://.godot/imported/nori_doubt.png-ca8f1753f7635bed8f93ad7d6f0845f5.ctex"]
+source_file="res://Scenes/Player/attack-Sheet.aseprite"
+dest_files=["res://.godot/imported/attack-Sheet.aseprite-d547f3498ba02ce47c7a8641f82f0ba8.ctex"]
 
 [params]
 

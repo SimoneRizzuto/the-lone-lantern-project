@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dssrvqcovj7tr"
-path="res://.godot/imported/nori_doubt.png-ca8f1753f7635bed8f93ad7d6f0845f5.ctex"
+uid="uid://c7880vd1bnijg"
+path="res://.godot/imported/white-sprite.aseprite-9ad54aa12d4bd9c400402d6b33528d55.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/CutsceneDirector/BalloonCanvas/Portraits/Nori/nori_doubt.png"
-dest_files=["res://.godot/imported/nori_doubt.png-ca8f1753f7635bed8f93ad7d6f0845f5.ctex"]
+source_file="res://Assets/white-sprite.aseprite"
+dest_files=["res://.godot/imported/white-sprite.aseprite-9ad54aa12d4bd9c400402d6b33528d55.ctex"]
 
 [params]
 
