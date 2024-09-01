@@ -45,7 +45,7 @@ size = Vector2(10, 3.5)
 size = Vector2(76.5, 5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lhfsx"]
-size = Vector2(70, 2)
+size = Vector2(71, 2)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2u82w"]
 size = Vector2(11, 7)
@@ -53,6 +53,7 @@ size = Vector2(11, 7)
 [node name="PlaygroundPlaza" type="Node2D"]
 z_as_relative = false
 y_sort_enabled = true
+position = Vector2(9, 0)
 
 [node name="CutsceneDirector" parent="." instance=ExtResource("10_ejcvy")]
 
@@ -360,22 +361,25 @@ shape = SubResource("RectangleShape2D_6k626")
 metadata/_edit_lock_ = true
 
 [node name="PlaygroundBin" type="Sprite2D" parent="."]
-position = Vector2(56, 6)
+position = Vector2(49, 5)
 texture = ExtResource("14_mjfbv")
-offset = Vector2(0, -10)
+centered = false
+offset = Vector2(0, -21)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="PlaygroundBin"]
+z_index = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlaygroundBin/StaticBody2D"]
 z_index = -1
-position = Vector2(0, -1)
+position = Vector2(6, -1)
 shape = SubResource("RectangleShape2D_cxy1r")
-metadata/_edit_lock_ = true
 
 [node name="PlaygroundSlide" type="Sprite2D" parent="."]
-position = Vector2(104, 147)
+z_index = 1
+position = Vector2(103, 146)
 texture = ExtResource("15_pycv1")
-offset = Vector2(0, -21)
+centered = false
+offset = Vector2(-38, -41)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="PlaygroundSlide"]
 
@@ -386,15 +390,17 @@ shape = SubResource("RectangleShape2D_qxl78")
 metadata/_edit_lock_ = true
 
 [node name="PlaygroundSeesaw" type="Sprite2D" parent="."]
-position = Vector2(240, 145)
+z_index = 3
+position = Vector2(204, 145)
 texture = ExtResource("16_74ddk")
-offset = Vector2(0, -10)
+centered = false
+offset = Vector2(0, -20)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="PlaygroundSeesaw"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlaygroundSeesaw/StaticBody2D"]
 z_index = -1
-position = Vector2(0, 9)
+position = Vector2(35.5, -1)
 shape = SubResource("RectangleShape2D_lhfsx")
 metadata/_edit_lock_ = true
 
@@ -409,6 +415,5 @@ offset = Vector2(0, -12.5)
 z_index = -1
 position = Vector2(0, -3.5)
 shape = SubResource("RectangleShape2D_2u82w")
-metadata/_edit_lock_ = true
 
 [editable path="Tripod2D"]
