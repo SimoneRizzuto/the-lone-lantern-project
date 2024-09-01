@@ -1,0 +1,62 @@
+~ this_is_a_node_title
+Luce walks in on Nori talking to a strange shadowy figure.
+Nori: [#doubt] Let me through…
+Student: Why should I let you?
+Nori: [#sad-soft-frown] Please… I need to get to school.
+Student: If you really want to get through, you owe me. I’ll be doing you a favour, really. 
+Nori pushes through the shadowy figure.
+Nori: [#sad-soft-frown] Get lost.
+Nori starts walking away.
+Student: The teachers know already...
+Nori stops walking.
+Student: Scrambling in there to grab your stuff, when it is obvious you ran away…
+Student: You might as well take your time. Go back to where you were hiding, if you want.
+Student: Won’t make much of a difference anyway.
+The shadowy figure walks away, in the direction of Luce. The figure stops for a second, giving Luce a glance. The winds is heard blowing.
+Luce: [#lights-out] ...
+Student: ...
+Student: Do not think you are in control…
+Student: It walks away faster.
+Student: Luce stands there looking at Nori. He walks up behind her.
+Nori: [#closed-eyes-side-lip] What am I gonna do?
+Luce pokes her shoulder.
+Nori: [#furious-oh] Go away!
+Nori: [#side-lip] Oh...
+Nori: [#side-lip] It’s you.
+Nori: [#look-left-sad] You saw that?
+Luce: [#default] *nods*
+Nori: [#look-left-sad] ... Gosh.
+Luce: [#default] ...
+Nori: [#look-left-sad-oh] What should I do?
+Nori: [#look-left-sad-oh] I need to grab my things but… I’ll get in big trouble as soon as I walk in.
+Nori: [#look-left-sad-oh] And… everyone’s going to laugh at me along the way…
+Luce: [#default] ... You cannot leave your things there?
+Nori: [#default] No, I left my keys there.
+Nori: [#look-left-sad] ...
+Nori: [#closed-eyes-side-lip] I hope they don’t tell my mum… I don’t want to go.
+Luce: [#look-down] ...
+Luce: [#look-down] Would you like... some company on the way?
+Nori: [#side-lip] Uh? 
+Luce: [#look-down] The others would not laugh if you had company.
+Nori: [#oh] ...
+Nori: [#look-right-hope-smile] That would be nice... 
+Nori: Um... Sorry, I never got your name.
+Luce: [#surprised] My name...
+Luce: [#look-down] ...
+do director.Wait(2)
+Nori: What? You shy?
+Luce: [#look-down] A little.
+Nori: Ok, I’ll go first.
+Nori: I’m Nori! Nice to meet you. (play her motif once)
+Luce: [#close-eyes-down] ... Luce. (play his motif once)
+Nori: Oh... What a weird name.
+Luce: [#sad-1] Is it really?
+Nori: [#cartoon-um-oh] I didn’t mean it that way... I’ve just never heard a name like that before.
+Nori: It’s cool.
+Luce: [#close-eyes-down] I hope so.
+Nori: Just this way is how we get to my school.
+Nori: Let’s go.
+Nori and Luce leave the scene together.
+
+
+=> END

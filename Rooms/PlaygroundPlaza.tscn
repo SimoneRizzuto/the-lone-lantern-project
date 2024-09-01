@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://b0g2v7tkj7vyq"]
+[gd_scene load_steps=29 format=3 uid="uid://b0g2v7tkj7vyq"]
 
 [ext_resource type="PackedScene" uid="uid://b2e5gws18vd27" path="res://Scenes/Camera/Tripod2D.tscn" id="1_0htn0"]
 [ext_resource type="Texture2D" uid="uid://b2iwlbq5gt1bb" path="res://Assets/swingset.png" id="1_vn8ua"]
@@ -12,25 +12,49 @@
 [ext_resource type="Texture2D" uid="uid://xepk7m1tits3" path="res://Assets/playground_plaza-wall-horizontal-end2.png" id="9_llm1h"]
 [ext_resource type="PackedScene" uid="uid://h0qtabwk04wy" path="res://Scenes/CutsceneDirector/CutsceneDirector.tscn" id="10_ejcvy"]
 [ext_resource type="PackedScene" uid="uid://buj8skc4edik3" path="res://Rain.tscn" id="12_kbawf"]
+[ext_resource type="Texture2D" uid="uid://cuji7jn0xmwvw" path="res://Assets/park_bench.aseprite" id="13_05pgp"]
+[ext_resource type="Texture2D" uid="uid://clbgwybv3enxd" path="res://Assets/playground_bin.aseprite" id="14_mjfbv"]
+[ext_resource type="Texture2D" uid="uid://dy7q13pujx40" path="res://Assets/playground_slide.aseprite" id="15_pycv1"]
+[ext_resource type="Texture2D" uid="uid://5mnmxf8y6737" path="res://Assets/playground_seesaw.aseprite" id="16_74ddk"]
+[ext_resource type="Texture2D" uid="uid://ba2f81lheflsw" path="res://Assets/playground_water_fountain.aseprite" id="17_210mj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ssvm"]
-size = Vector2(3, 4)
+size = Vector2(3, 18)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1lkc0"]
-size = Vector2(3, 4)
+size = Vector2(3, 18)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2sh6o"]
 size = Vector2(78, 13)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c4u88"]
+size = Vector2(256, 13)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b221m"]
 size = Vector2(11, 19.6108)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_c4u88"]
-size = Vector2(256, 13)
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_roi5q"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6k626"]
+size = Vector2(48, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cxy1r"]
+size = Vector2(10, 3.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qxl78"]
+size = Vector2(76.5, 5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lhfsx"]
+size = Vector2(70, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2u82w"]
+size = Vector2(11, 7)
 
 [node name="PlaygroundPlaza" type="Node2D"]
 z_as_relative = false
 y_sort_enabled = true
+
+[node name="CutsceneDirector" parent="." instance=ExtResource("10_ejcvy")]
 
 [node name="Rain" parent="." instance=ExtResource("12_kbawf")]
 z_index = 4
@@ -49,9 +73,11 @@ position = Vector2(170, -11.5)
 position = Vector2(170, -12)
 
 [node name="Nori" parent="." instance=ExtResource("3_hhhlb")]
-position = Vector2(184, 89)
+position = Vector2(184, 88)
 
 [node name="PlaygroundPlazaGround" type="Sprite2D" parent="."]
+z_as_relative = false
+y_sort_enabled = true
 position = Vector2(37, -18)
 texture = ExtResource("3_e0hc1")
 centered = false
@@ -65,242 +91,324 @@ offset = Vector2(0, -42)
 [node name="StaticBody2D" type="StaticBody2D" parent="Swingset"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Swingset/StaticBody2D"]
-position = Vector2(2.5, 2)
+position = Vector2(2.5, -5)
 shape = SubResource("RectangleShape2D_4ssvm")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Swingset/StaticBody2D"]
-position = Vector2(89.5, 2)
+position = Vector2(89.5, -5)
 shape = SubResource("RectangleShape2D_1lkc0")
 
-[node name="Walls" type="Node2D" parent="."]
-z_index = 1
+[node name="WallsTop" type="Node2D" parent="."]
+position = Vector2(170, -2)
 
-[node name="WallHorizontal-EndLeft" type="Sprite2D" parent="Walls"]
-position = Vector2(118, -45)
-texture = ExtResource("5_m7ygs")
-centered = false
-
-[node name="StaticBody2D" type="StaticBody2D" parent="Walls/WallHorizontal-EndLeft"]
-position = Vector2(-23, 0)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/WallHorizontal-EndLeft/StaticBody2D"]
-z_index = 1
-position = Vector2(-8, 36.5)
-shape = SubResource("RectangleShape2D_2sh6o")
-
-[node name="WallHorizontal-1" type="Sprite2D" parent="Walls/WallHorizontal-EndLeft"]
-position = Vector2(-12, 0)
-texture = ExtResource("6_qu0ox")
-centered = false
-
-[node name="WallHorizontal-2" type="Sprite2D" parent="Walls/WallHorizontal-EndLeft"]
-position = Vector2(-24, 0)
-texture = ExtResource("7_or2x4")
-centered = false
-
-[node name="WallHorizontal-3" type="Sprite2D" parent="Walls/WallHorizontal-EndLeft"]
-position = Vector2(-36, 0)
-texture = ExtResource("6_qu0ox")
-centered = false
-
-[node name="WallHorizontal-4" type="Sprite2D" parent="Walls/WallHorizontal-EndLeft"]
-position = Vector2(-48, 0)
-texture = ExtResource("6_qu0ox")
-centered = false
-
-[node name="WallHorizontal-5" type="Sprite2D" parent="Walls/WallHorizontal-EndLeft"]
-position = Vector2(-60, 0)
-texture = ExtResource("6_qu0ox")
-centered = false
-
-[node name="WallHorizontal-End-Right" type="Sprite2D" parent="Walls"]
-position = Vector2(214, -45)
+[node name="WallHorizontal-End-Right" type="Sprite2D" parent="WallsTop"]
+position = Vector2(44, -43)
 texture = ExtResource("5_m7ygs")
 centered = false
 flip_h = true
+metadata/_edit_lock_ = true
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Walls/WallHorizontal-End-Right"]
+[node name="StaticBody2D" type="StaticBody2D" parent="WallsTop/WallHorizontal-End-Right"]
 position = Vector2(46, 0)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/WallHorizontal-End-Right/StaticBody2D"]
-z_index = 1
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallsTop/WallHorizontal-End-Right/StaticBody2D"]
+z_index = -1
 position = Vector2(-7, 36.5)
 shape = SubResource("RectangleShape2D_2sh6o")
+metadata/_edit_lock_ = true
 
-[node name="WallHorizontal-1" type="Sprite2D" parent="Walls/WallHorizontal-End-Right"]
+[node name="WallHorizontal-1" type="Sprite2D" parent="WallsTop/WallHorizontal-End-Right"]
 position = Vector2(53, 0)
 texture = ExtResource("6_qu0ox")
 centered = false
+metadata/_edit_lock_ = true
 
-[node name="WallHorizontal-2" type="Sprite2D" parent="Walls/WallHorizontal-End-Right"]
+[node name="WallHorizontal-2" type="Sprite2D" parent="WallsTop/WallHorizontal-End-Right"]
 position = Vector2(41, 0)
 texture = ExtResource("7_or2x4")
 centered = false
+metadata/_edit_lock_ = true
 
-[node name="WallHorizontal-3" type="Sprite2D" parent="Walls/WallHorizontal-End-Right"]
+[node name="WallHorizontal-3" type="Sprite2D" parent="WallsTop/WallHorizontal-End-Right"]
 position = Vector2(29, 0)
 texture = ExtResource("6_qu0ox")
 centered = false
+metadata/_edit_lock_ = true
 
-[node name="WallHorizontal-4" type="Sprite2D" parent="Walls/WallHorizontal-End-Right"]
+[node name="WallHorizontal-4" type="Sprite2D" parent="WallsTop/WallHorizontal-End-Right"]
 position = Vector2(17, 0)
 texture = ExtResource("6_qu0ox")
 centered = false
+metadata/_edit_lock_ = true
 
-[node name="WallHorizontal-5" type="Sprite2D" parent="Walls/WallHorizontal-End-Right"]
+[node name="WallHorizontal-5" type="Sprite2D" parent="WallsTop/WallHorizontal-End-Right"]
 position = Vector2(5, 0)
 texture = ExtResource("6_qu0ox")
 centered = false
+metadata/_edit_lock_ = true
 
-[node name="WallVertical-Right" type="Sprite2D" parent="Walls"]
-position = Vector2(292, -2)
-scale = Vector2(0.999998, 9.88889)
-texture = ExtResource("8_xpa85")
+[node name="WallHorizontal-EndLeft" type="Sprite2D" parent="WallsTop"]
+position = Vector2(-52, -43)
+texture = ExtResource("5_m7ygs")
+centered = false
+metadata/_edit_lock_ = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="WallsTop/WallHorizontal-EndLeft"]
+position = Vector2(-23, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallsTop/WallHorizontal-EndLeft/StaticBody2D"]
+z_index = -1
+position = Vector2(-8, 36.5)
+shape = SubResource("RectangleShape2D_2sh6o")
+metadata/_edit_lock_ = true
+
+[node name="WallHorizontal-1" type="Sprite2D" parent="WallsTop/WallHorizontal-EndLeft"]
+position = Vector2(-12, 0)
+texture = ExtResource("6_qu0ox")
+centered = false
+metadata/_edit_lock_ = true
+
+[node name="WallHorizontal-2" type="Sprite2D" parent="WallsTop/WallHorizontal-EndLeft"]
+position = Vector2(-24, 0)
+texture = ExtResource("7_or2x4")
+centered = false
+metadata/_edit_lock_ = true
+
+[node name="WallHorizontal-3" type="Sprite2D" parent="WallsTop/WallHorizontal-EndLeft"]
+position = Vector2(-36, 0)
+texture = ExtResource("6_qu0ox")
+centered = false
+metadata/_edit_lock_ = true
+
+[node name="WallHorizontal-4" type="Sprite2D" parent="WallsTop/WallHorizontal-EndLeft"]
+position = Vector2(-48, 0)
+texture = ExtResource("6_qu0ox")
+centered = false
+metadata/_edit_lock_ = true
+
+[node name="WallHorizontal-5" type="Sprite2D" parent="WallsTop/WallHorizontal-EndLeft"]
+position = Vector2(-60, 0)
+texture = ExtResource("6_qu0ox")
+centered = false
+metadata/_edit_lock_ = true
+
+[node name="WallsBottom" type="Node2D" parent="."]
+position = Vector2(47, 192)
+
+[node name="WallHorizontal-Bottom" type="Sprite2D" parent="WallsBottom"]
+y_sort_enabled = true
+position = Vector2(-1, -43)
+texture = ExtResource("7_or2x4")
 centered = false
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Walls/WallVertical-Right"]
+[node name="StaticBody2D" type="StaticBody2D" parent="WallsBottom/WallHorizontal-Bottom"]
+z_index = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/WallVertical-Right/StaticBody2D"]
-position = Vector2(5.50006, 8.49081)
-shape = SubResource("RectangleShape2D_b221m")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallsBottom/WallHorizontal-Bottom/StaticBody2D"]
+position = Vector2(129, 36.5)
+shape = SubResource("RectangleShape2D_c4u88")
 
-[node name="WallVertical-Left" type="Sprite2D" parent="Walls"]
-position = Vector2(38, 120)
+[node name="WallHorizontal-1" type="Sprite2D" parent="WallsBottom/WallHorizontal-Bottom"]
+position = Vector2(156, 0)
+texture = ExtResource("7_or2x4")
+centered = false
+
+[node name="WallHorizontal-2" type="Sprite2D" parent="WallsBottom/WallHorizontal-Bottom"]
+position = Vector2(168, 0)
+texture = ExtResource("6_qu0ox")
+centered = false
+
+[node name="WallHorizontal-3" type="Sprite2D" parent="WallsBottom/WallHorizontal-Bottom"]
+position = Vector2(144, 0)
+texture = ExtResource("6_qu0ox")
+centered = false
+
+[node name="WallHorizontal-4" type="Sprite2D" parent="WallsBottom/WallHorizontal-Bottom"]
+position = Vector2(132, 0)
+texture = ExtResource("7_or2x4")
+centered = false
+
+[node name="WallHorizontal-5" type="Sprite2D" parent="WallsBottom/WallHorizontal-Bottom"]
+position = Vector2(204, 0)
+texture = ExtResource("7_or2x4")
+centered = false
+
+[node name="WallHorizontal-7" type="Sprite2D" parent="WallsBottom/WallHorizontal-Bottom"]
+position = Vector2(192, 0)
+texture = ExtResource("6_qu0ox")
+centered = false
+
+[node name="WallHorizontal-8" type="Sprite2D" parent="WallsBottom/WallHorizontal-Bottom"]
+position = Vector2(180, 0)
+texture = ExtResource("7_or2x4")
+centered = false
+
+[node name="WallHorizontal-13" type="Sprite2D" parent="WallsBottom/WallHorizontal-Bottom"]
+position = Vector2(216, 0)
+texture = ExtResource("7_or2x4")
+centered = false
+
+[node name="WallHorizontal-14" type="Sprite2D" parent="WallsBottom/WallHorizontal-Bottom"]
+position = Vector2(120, 0)
+texture = ExtResource("6_qu0ox")
+centered = false
+
+[node name="WallHorizontal-15" type="Sprite2D" parent="WallsBottom/WallHorizontal-Bottom"]
+position = Vector2(96, 0)
+texture = ExtResource("7_or2x4")
+centered = false
+
+[node name="WallHorizontal-16" type="Sprite2D" parent="WallsBottom/WallHorizontal-Bottom"]
+position = Vector2(108, 0)
+texture = ExtResource("6_qu0ox")
+centered = false
+
+[node name="WallHorizontal-17" type="Sprite2D" parent="WallsBottom/WallHorizontal-Bottom"]
+position = Vector2(84, 0)
+texture = ExtResource("6_qu0ox")
+centered = false
+
+[node name="WallHorizontal-18" type="Sprite2D" parent="WallsBottom/WallHorizontal-Bottom"]
+position = Vector2(72, 0)
+texture = ExtResource("7_or2x4")
+centered = false
+
+[node name="WallHorizontal-19" type="Sprite2D" parent="WallsBottom/WallHorizontal-Bottom"]
+position = Vector2(48, 0)
+texture = ExtResource("7_or2x4")
+centered = false
+
+[node name="WallHorizontal-20" type="Sprite2D" parent="WallsBottom/WallHorizontal-Bottom"]
+position = Vector2(60, 0)
+texture = ExtResource("6_qu0ox")
+centered = false
+
+[node name="WallHorizontal-21" type="Sprite2D" parent="WallsBottom/WallHorizontal-Bottom"]
+position = Vector2(36, 0)
+texture = ExtResource("6_qu0ox")
+centered = false
+
+[node name="WallHorizontal-22" type="Sprite2D" parent="WallsBottom/WallHorizontal-Bottom"]
+position = Vector2(24, 0)
+texture = ExtResource("7_or2x4")
+centered = false
+
+[node name="WallHorizontal-25" type="Sprite2D" parent="WallsBottom/WallHorizontal-Bottom"]
+position = Vector2(12, 0)
+texture = ExtResource("7_or2x4")
+centered = false
+
+[node name="WallHorizontal-23" type="Sprite2D" parent="WallsBottom/WallHorizontal-Bottom"]
+position = Vector2(228, 0)
+texture = ExtResource("7_or2x4")
+centered = false
+
+[node name="WallHorizontal-24" type="Sprite2D" parent="WallsBottom/WallHorizontal-Bottom"]
+position = Vector2(234, 0)
+texture = ExtResource("7_or2x4")
+centered = false
+
+[node name="WallHorizontal-End2" type="Sprite2D" parent="WallsBottom/WallHorizontal-Bottom"]
+position = Vector2(246, 0)
+texture = ExtResource("9_llm1h")
+centered = false
+
+[node name="WallHorizontal-End3" type="Sprite2D" parent="WallsBottom/WallHorizontal-Bottom"]
+position = Vector2(-9, 0)
+texture = ExtResource("9_llm1h")
+centered = false
+flip_h = true
+
+[node name="WallVertical-Left" type="Sprite2D" parent="."]
+position = Vector2(37, 120)
 scale = Vector2(1, 3.11111)
 texture = ExtResource("8_xpa85")
 centered = false
 flip_h = true
 
-[node name="WallVertical-Left" type="Sprite2D" parent="Walls/WallVertical-Left"]
-position = Vector2(-1, -39.2143)
+[node name="WallVertical-Left" type="Sprite2D" parent="WallVertical-Left"]
+position = Vector2(0, -39.2143)
 scale = Vector2(1, 0.910714)
 texture = ExtResource("8_xpa85")
 centered = false
 flip_h = true
 
-[node name="WallHorizontal-Bottom" type="Sprite2D" parent="Walls"]
-position = Vector2(46, 149)
-texture = ExtResource("7_or2x4")
+[node name="WallVertical-Right" type="Sprite2D" parent="."]
+position = Vector2(292, -2)
+scale = Vector2(0.999998, 9.88889)
+texture = ExtResource("8_xpa85")
 centered = false
 
-[node name="StaticBody2D" type="StaticBody2D" parent="Walls/WallHorizontal-Bottom"]
-z_index = 1
+[node name="StaticBody2D" type="StaticBody2D" parent="WallVertical-Right"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/WallHorizontal-Bottom/StaticBody2D"]
-position = Vector2(129, 36.5)
-shape = SubResource("RectangleShape2D_c4u88")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WallVertical-Right/StaticBody2D"]
+position = Vector2(5.50006, 8.49081)
+shape = SubResource("RectangleShape2D_b221m")
 
-[node name="WallHorizontal-1" type="Sprite2D" parent="Walls/WallHorizontal-Bottom"]
-position = Vector2(156, 0)
-texture = ExtResource("7_or2x4")
-centered = false
+[node name="ParkBench" type="Sprite2D" parent="."]
+position = Vector2(88, 9)
+texture = ExtResource("13_05pgp")
+offset = Vector2(0, -10)
 
-[node name="WallHorizontal-2" type="Sprite2D" parent="Walls/WallHorizontal-Bottom"]
-position = Vector2(168, 0)
-texture = ExtResource("6_qu0ox")
-centered = false
+[node name="StaticBody2D" type="StaticBody2D" parent="ParkBench"]
+physics_material_override = SubResource("PhysicsMaterial_roi5q")
 
-[node name="WallHorizontal-3" type="Sprite2D" parent="Walls/WallHorizontal-Bottom"]
-position = Vector2(144, 0)
-texture = ExtResource("6_qu0ox")
-centered = false
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ParkBench/StaticBody2D"]
+z_index = -1
+position = Vector2(0, -5)
+shape = SubResource("RectangleShape2D_6k626")
+metadata/_edit_lock_ = true
 
-[node name="WallHorizontal-4" type="Sprite2D" parent="Walls/WallHorizontal-Bottom"]
-position = Vector2(132, 0)
-texture = ExtResource("7_or2x4")
-centered = false
+[node name="PlaygroundBin" type="Sprite2D" parent="."]
+position = Vector2(56, 6)
+texture = ExtResource("14_mjfbv")
+offset = Vector2(0, -10)
 
-[node name="WallHorizontal-5" type="Sprite2D" parent="Walls/WallHorizontal-Bottom"]
-position = Vector2(204, 0)
-texture = ExtResource("7_or2x4")
-centered = false
+[node name="StaticBody2D" type="StaticBody2D" parent="PlaygroundBin"]
 
-[node name="WallHorizontal-7" type="Sprite2D" parent="Walls/WallHorizontal-Bottom"]
-position = Vector2(192, 0)
-texture = ExtResource("6_qu0ox")
-centered = false
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlaygroundBin/StaticBody2D"]
+z_index = -1
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_cxy1r")
+metadata/_edit_lock_ = true
 
-[node name="WallHorizontal-8" type="Sprite2D" parent="Walls/WallHorizontal-Bottom"]
-position = Vector2(180, 0)
-texture = ExtResource("7_or2x4")
-centered = false
+[node name="PlaygroundSlide" type="Sprite2D" parent="."]
+position = Vector2(104, 147)
+texture = ExtResource("15_pycv1")
+offset = Vector2(0, -21)
 
-[node name="WallHorizontal-13" type="Sprite2D" parent="Walls/WallHorizontal-Bottom"]
-position = Vector2(216, 0)
-texture = ExtResource("7_or2x4")
-centered = false
+[node name="StaticBody2D" type="StaticBody2D" parent="PlaygroundSlide"]
 
-[node name="WallHorizontal-14" type="Sprite2D" parent="Walls/WallHorizontal-Bottom"]
-position = Vector2(120, 0)
-texture = ExtResource("6_qu0ox")
-centered = false
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlaygroundSlide/StaticBody2D"]
+z_index = -1
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_qxl78")
+metadata/_edit_lock_ = true
 
-[node name="WallHorizontal-15" type="Sprite2D" parent="Walls/WallHorizontal-Bottom"]
-position = Vector2(96, 0)
-texture = ExtResource("7_or2x4")
-centered = false
+[node name="PlaygroundSeesaw" type="Sprite2D" parent="."]
+position = Vector2(240, 145)
+texture = ExtResource("16_74ddk")
+offset = Vector2(0, -10)
 
-[node name="WallHorizontal-16" type="Sprite2D" parent="Walls/WallHorizontal-Bottom"]
-position = Vector2(108, 0)
-texture = ExtResource("6_qu0ox")
-centered = false
+[node name="StaticBody2D" type="StaticBody2D" parent="PlaygroundSeesaw"]
 
-[node name="WallHorizontal-17" type="Sprite2D" parent="Walls/WallHorizontal-Bottom"]
-position = Vector2(84, 0)
-texture = ExtResource("6_qu0ox")
-centered = false
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlaygroundSeesaw/StaticBody2D"]
+z_index = -1
+position = Vector2(0, 9)
+shape = SubResource("RectangleShape2D_lhfsx")
+metadata/_edit_lock_ = true
 
-[node name="WallHorizontal-18" type="Sprite2D" parent="Walls/WallHorizontal-Bottom"]
-position = Vector2(72, 0)
-texture = ExtResource("7_or2x4")
-centered = false
+[node name="PlaygroundWaterFountain" type="Sprite2D" parent="."]
+position = Vector2(233, 10)
+texture = ExtResource("17_210mj")
+offset = Vector2(0, -12.5)
 
-[node name="WallHorizontal-19" type="Sprite2D" parent="Walls/WallHorizontal-Bottom"]
-position = Vector2(48, 0)
-texture = ExtResource("7_or2x4")
-centered = false
+[node name="StaticBody2D" type="StaticBody2D" parent="PlaygroundWaterFountain"]
 
-[node name="WallHorizontal-20" type="Sprite2D" parent="Walls/WallHorizontal-Bottom"]
-position = Vector2(60, 0)
-texture = ExtResource("6_qu0ox")
-centered = false
-
-[node name="WallHorizontal-21" type="Sprite2D" parent="Walls/WallHorizontal-Bottom"]
-position = Vector2(36, 0)
-texture = ExtResource("6_qu0ox")
-centered = false
-
-[node name="WallHorizontal-22" type="Sprite2D" parent="Walls/WallHorizontal-Bottom"]
-position = Vector2(24, 0)
-texture = ExtResource("7_or2x4")
-centered = false
-
-[node name="WallHorizontal-25" type="Sprite2D" parent="Walls/WallHorizontal-Bottom"]
-position = Vector2(12, 0)
-texture = ExtResource("7_or2x4")
-centered = false
-
-[node name="WallHorizontal-23" type="Sprite2D" parent="Walls/WallHorizontal-Bottom"]
-position = Vector2(228, 0)
-texture = ExtResource("7_or2x4")
-centered = false
-
-[node name="WallHorizontal-24" type="Sprite2D" parent="Walls/WallHorizontal-Bottom"]
-position = Vector2(234, 0)
-texture = ExtResource("7_or2x4")
-centered = false
-
-[node name="WallHorizontal-End2" type="Sprite2D" parent="Walls/WallHorizontal-Bottom"]
-position = Vector2(246, 0)
-texture = ExtResource("9_llm1h")
-centered = false
-
-[node name="WallHorizontal-End3" type="Sprite2D" parent="Walls/WallHorizontal-Bottom"]
-position = Vector2(-8, 0)
-texture = ExtResource("9_llm1h")
-centered = false
-flip_h = true
-
-[node name="CutsceneDirector" parent="." instance=ExtResource("10_ejcvy")]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlaygroundWaterFountain/StaticBody2D"]
+z_index = -1
+position = Vector2(0, -3.5)
+shape = SubResource("RectangleShape2D_2u82w")
+metadata/_edit_lock_ = true
 
 [editable path="Tripod2D"]

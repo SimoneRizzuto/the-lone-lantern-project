@@ -34,7 +34,14 @@ public partial class Tripod2D : Node2D
     // SIGNALS
     public void OnBodyEnteredMountCameraTrigger(Node2D area)
     {
+        OnBodyEntered(area);
+    }
+
+    private void OnBodyEntered(Node2D area)
+    {
         if (!DetachOnScreenExit) return;
+        
+        GD.Print("test");
         
         if (area.IsInGroup(NodeGroup.Player))
         {
