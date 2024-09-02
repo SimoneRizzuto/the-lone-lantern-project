@@ -63,9 +63,8 @@ position = Vector2(164, -205)
 
 [node name="Tripod2D" parent="." instance=ExtResource("1_0htn0")]
 
-[node name="TripodIsOnScreen" parent="Tripod2D" index="0"]
-z_index = 4096
-position = Vector2(170.5, 84)
+[node name="Mount" parent="Tripod2D" index="0"]
+position = Vector2(170, 84)
 
 [node name="CollisionShape2D" parent="Tripod2D/MountCameraTrigger" index="0"]
 position = Vector2(170, -11.5)

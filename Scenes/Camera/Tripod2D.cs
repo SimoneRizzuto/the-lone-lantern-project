@@ -7,21 +7,21 @@ namespace TheLoneLanternProject.Scenes.Camera;
 public partial class Tripod2D : Node2D
 {
     [Export] public bool DetachOnScreenExit = true;
-    [Export] public Vector2 Zoom = new(2, 2);
+    [Export] public Vector2 Zoom = new(2, 2); // CHANGE VALUE HERE TO CHANGE ZOOM
     
     private Luce luce;
     private PlayerCamera2D playerCamera2D;
     private MainCamera2D mainCamera2D;
-    private VisibleOnScreenEnabler2D tripodIsOnScreen;
+    private CollisionShape2D mount;
     
     public override void _Ready()
     {
         var tree = GetTree();
-        
-        var tripodIsOnScreenNode = GetNode("TripodIsOnScreen");
-        if (tripodIsOnScreenNode is VisibleOnScreenEnabler2D onScreenNode)
+
+        var mountNode = GetNode("Mount");
+        if (mountNode is CollisionShape2D node)
         {
-            tripodIsOnScreen = onScreenNode;
+            mount = node;
         }
         
         luce = GetNodeHelper.GetLuce(tree);
@@ -46,7 +46,7 @@ public partial class Tripod2D : Node2D
         if (area.IsInGroup(NodeGroup.Player))
         {
             playerCamera2D.FollowPlayer = false;
-            GDHelper.MoveNode(playerCamera2D, tripodIsOnScreen);
+            GDHelper.MoveNode(playerCamera2D, mount);
 
             mainCamera2D.ToNode(playerCamera2D);
         }
