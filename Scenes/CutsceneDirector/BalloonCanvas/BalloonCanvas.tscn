@@ -74,6 +74,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
+offset_left = 52.0
+offset_top = -6.0
+offset_right = 52.0
+offset_bottom = -6.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = SubResource("Theme_qq3yp")
@@ -84,12 +88,12 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -534.0
-offset_top = -261.0
-offset_right = -356.0
-offset_bottom = -221.0
+offset_left = -319.0
+offset_top = -126.0
+offset_right = -141.0
+offset_bottom = -86.0
 grow_horizontal = 2
-scale = Vector2(6, 6)
+scale = Vector2(3, 3)
 theme_override_styles/panel = ExtResource("3_lcelf")
 
 [node name="PortraitContainer" type="MarginContainer" parent="Balloon"]
@@ -97,12 +101,12 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -522.0
-offset_top = -183.0
-offset_right = -198.0
-offset_bottom = 117.0
+offset_left = -313.0
+offset_top = -87.0
+offset_right = 11.0
+offset_bottom = 213.0
 grow_horizontal = 2
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.25, 0.25)
 
 [node name="Portrait" type="TextureRect" parent="Balloon/PortraitContainer"]
 unique_name_in_owner = true
@@ -116,11 +120,12 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -354.0
-offset_top = -176.0
-offset_right = 520.0
-offset_bottom = -14.0
+offset_left = -229.0
+offset_top = -83.0
+offset_right = 645.0
+offset_bottom = 79.0
 grow_horizontal = 2
+scale = Vector2(0.5, 0.5)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Balloon/TextContainer"]
 layout_mode = 2
