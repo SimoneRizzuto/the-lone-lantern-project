@@ -83,17 +83,19 @@ public partial class Luce : CharacterBody2D
         if (State != PlayerState.Attacking)
         {
             vectorForMovement = Input.GetVector(InputMapAction.Left, InputMapAction.Right, InputMapAction.Up, InputMapAction.Down);
-
-            State = vectorForMovement != Vector2.Zero ? PlayerState.Walking : PlayerState.Idle;
+            
+            State = VelocityIsAboveThreshold(vectorForMovement.X * 100, vectorForMovement.Y * 100) ? PlayerState.Walking : PlayerState.Idle;
         }
-
         
         MoveSpeed = State == PlayerState.Attacking ? attackMoveSpeed : MoveSpeed;
         
-        var calculatedVelocity = vectorForMovement * MoveSpeed * (float)delta;
-        Velocity = calculatedVelocity;
-        
-        MoveAndSlide();
+        if (VelocityIsAboveThreshold(vectorForMovement.X * 100, vectorForMovement.Y * 100))
+        {
+            var calculatedVelocity = vectorForMovement * MoveSpeed * (float)delta;
+            Velocity = calculatedVelocity;
+            
+            MoveAndSlide();
+        }
         
         Position = Position.RoundToNearestValue(0.25);
     }
