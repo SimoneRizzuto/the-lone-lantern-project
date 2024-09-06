@@ -7,7 +7,7 @@ namespace TheLoneLanternProject.Scenes.Camera;
 public partial class Tripod2D : Node2D
 {
     [Export] public bool DetachOnScreenExit = true;
-    [Export] public Vector2 Zoom = new(2, 2); // CHANGE VALUE HERE TO CHANGE ZOOM
+    [Export] public Vector2 Zoom = new(1f, 1f); // CHANGE VALUE HERE TO CHANGE ZOOM
     
     private Luce luce;
     private PlayerCamera2D playerCamera2D;
