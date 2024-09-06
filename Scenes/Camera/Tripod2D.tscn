@@ -1,6 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://b2e5gws18vd27"]
+[gd_scene load_steps=4 format=3 uid="uid://b2e5gws18vd27"]
 
 [ext_resource type="Script" path="res://Scenes/Camera/Tripod2D.cs" id="1_4biqa"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sxtbn"]
+radius = 10.0499
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4o0ka"]
 size = Vector2(88, 19)
@@ -8,7 +11,8 @@ size = Vector2(88, 19)
 [node name="Tripod2D" type="Node2D"]
 script = ExtResource("1_4biqa")
 
-[node name="TripodIsOnScreen" type="VisibleOnScreenEnabler2D" parent="."]
+[node name="Mount" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_sxtbn")
 
 [node name="MountCameraTrigger" type="Area2D" parent="."]
 

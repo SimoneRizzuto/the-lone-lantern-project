@@ -1,19 +1,22 @@
 using Godot;
-using TheLoneLanternProject.Constants;
-using TheLoneLanternProject.Scenes.Enemies.BaseNode;
+using System;
 using Vector2 = Godot.Vector2;
-
+using TheLoneLanternProject.Constants;
+using TheLoneLanternProject.Extensions;
+using TheLoneLanternProject.Scenes.Enemies.BaseNode;
 
 namespace TheLoneLanternProject.Scenes.Player;
-
 public partial class Luce : CharacterBody2D
 {
     [Signal] public delegate void HealthChangedEventHandler(double newHealth);
     [Signal] public delegate void LastWalkDirectionEventHandler(int direction);
     [Signal] public delegate void PlayerIsMovingEventHandler(bool isMoving);
-
-    [Export] public int Speed = PlayerConstants.Speed;
-
+    
+    public static int MoveSpeed = 5000;
+    public static readonly int MoveVelocityThreshold = 25;
+    
+    private bool VelocityIsAboveThreshold(float x, float y) => Math.Abs(x) > MoveVelocityThreshold || Math.Abs(y) > MoveVelocityThreshold;
+    
     private CustomSignals customSignals = new();
     
     private int attackMoveSpeed = 4000;
@@ -80,17 +83,23 @@ public partial class Luce : CharacterBody2D
         if (State != PlayerState.Attacking)
         {
             vectorForMovement = Input.GetVector(InputMapAction.Left, InputMapAction.Right, InputMapAction.Up, InputMapAction.Down);
-
-            State = vectorForMovement != Vector2.Zero ? PlayerState.Walking : PlayerState.Idle;
+            
+            State = VelocityIsAboveThreshold(vectorForMovement.X * 100, vectorForMovement.Y * 100) ? PlayerState.Walking : PlayerState.Idle;
         }
-
-        Speed = State == PlayerState.Attacking ? attackMoveSpeed : Speed;
         
-        Velocity = vectorForMovement * Speed * (float)delta;
+        MoveSpeed = State == PlayerState.Attacking ? attackMoveSpeed : MoveSpeed;
         
-        MoveAndSlide();
+        if (VelocityIsAboveThreshold(vectorForMovement.X * 100, vectorForMovement.Y * 100))
+        {
+            var calculatedVelocity = vectorForMovement * MoveSpeed * (float)delta;
+            Velocity = calculatedVelocity;
+            
+            MoveAndSlide();
+        }
+        
+        Position = Position.RoundToNearestValue(0.25);
     }
-
+    
     private void SetDirection()
     {
         var setDirection = HeldDirection();
