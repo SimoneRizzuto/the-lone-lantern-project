@@ -60,6 +60,9 @@ position = Vector2(9, 0)
 [node name="Rain" parent="." instance=ExtResource("12_kbawf")]
 z_index = 4
 position = Vector2(164, -205)
+emitting = false
+Raining = false
+Color = Color(0.317647, 0.564706, 0.831373, 1)
 
 [node name="Tripod2D" parent="." instance=ExtResource("1_0htn0")]
 
