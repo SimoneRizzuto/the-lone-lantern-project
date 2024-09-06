@@ -87,8 +87,25 @@ public partial class Luce : CharacterBody2D
         Speed = State == PlayerState.Attacking ? attackMoveSpeed : Speed;
         
         Velocity = vectorForMovement * Speed * (float)delta;
+        MoveSpeed = State == PlayerState.Attacking ? attackMoveSpeed : MoveSpeed;
+        
+        var xMovement = Math.Round(vectorForMovement.X / 0.2, MidpointRounding.ToEven) * 0.2;
+        var yMovement = Math.Round(vectorForMovement.Y / 0.2, MidpointRounding.ToEven) * 0.2;
+        
+        vectorForMovement = new Vector2((float)xMovement, (float)yMovement);
+        
+        MoveSpeed = State == PlayerState.Attacking ? attackMoveSpeed : MoveSpeed;
+        
+        var calculatedVelocity = vectorForMovement * MoveSpeed * (float)delta;
+        var xVelocity = Math.Round(calculatedVelocity.X / 2, MidpointRounding.ToEven) * 2;
+        var yVelocity = Math.Round(calculatedVelocity.Y / 2, MidpointRounding.ToEven) * 2;
+        Velocity = new Vector2((float)xVelocity, (float)yVelocity);
         
         MoveAndSlide();
+        
+        var xPosition = Math.Round(Position.X / 0.25) * 0.25;
+        var yPosition = Math.Round(Position.Y / 0.25) * 0.25;
+        Position = new Vector2((float)xPosition, (float)yPosition);
     }
 
     private void SetDirection()
