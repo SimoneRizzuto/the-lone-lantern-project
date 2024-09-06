@@ -1,19 +1,22 @@
 using Godot;
-using TheLoneLanternProject.Constants;
-using TheLoneLanternProject.Scenes.Enemies.BaseNode;
+using System;
 using Vector2 = Godot.Vector2;
-
+using TheLoneLanternProject.Constants;
+using TheLoneLanternProject.Extensions;
+using TheLoneLanternProject.Scenes.Enemies.BaseNode;
 
 namespace TheLoneLanternProject.Scenes.Player;
-
 public partial class Luce : CharacterBody2D
 {
     [Signal] public delegate void HealthChangedEventHandler(double newHealth);
     [Signal] public delegate void LastWalkDirectionEventHandler(int direction);
     [Signal] public delegate void PlayerIsMovingEventHandler(bool isMoving);
-
-    [Export] public int Speed = PlayerConstants.Speed;
-
+    
+    public static int MoveSpeed = 5000;
+    public static readonly int MoveVelocityThreshold = 25;
+    
+    private bool VelocityIsAboveThreshold(float x, float y) => Math.Abs(x) > MoveVelocityThreshold || Math.Abs(y) > MoveVelocityThreshold;
+    
     private CustomSignals customSignals = new();
     
     private int attackMoveSpeed = 4000;
@@ -84,30 +87,17 @@ public partial class Luce : CharacterBody2D
             State = vectorForMovement != Vector2.Zero ? PlayerState.Walking : PlayerState.Idle;
         }
 
-        Speed = State == PlayerState.Attacking ? attackMoveSpeed : Speed;
-        
-        Velocity = vectorForMovement * Speed * (float)delta;
-        MoveSpeed = State == PlayerState.Attacking ? attackMoveSpeed : MoveSpeed;
-        
-        var xMovement = Math.Round(vectorForMovement.X / 0.2, MidpointRounding.ToEven) * 0.2;
-        var yMovement = Math.Round(vectorForMovement.Y / 0.2, MidpointRounding.ToEven) * 0.2;
-        
-        vectorForMovement = new Vector2((float)xMovement, (float)yMovement);
         
         MoveSpeed = State == PlayerState.Attacking ? attackMoveSpeed : MoveSpeed;
         
         var calculatedVelocity = vectorForMovement * MoveSpeed * (float)delta;
-        var xVelocity = Math.Round(calculatedVelocity.X / 2, MidpointRounding.ToEven) * 2;
-        var yVelocity = Math.Round(calculatedVelocity.Y / 2, MidpointRounding.ToEven) * 2;
-        Velocity = new Vector2((float)xVelocity, (float)yVelocity);
+        Velocity = calculatedVelocity;
         
         MoveAndSlide();
         
-        var xPosition = Math.Round(Position.X / 0.25) * 0.25;
-        var yPosition = Math.Round(Position.Y / 0.25) * 0.25;
-        Position = new Vector2((float)xPosition, (float)yPosition);
+        Position = Position.RoundToNearestValue(0.25);
     }
-
+    
     private void SetDirection()
     {
         var setDirection = HeldDirection();

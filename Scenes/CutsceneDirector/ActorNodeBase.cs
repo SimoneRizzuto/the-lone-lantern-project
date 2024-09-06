@@ -194,7 +194,7 @@ public partial class ActorNodeBase : Node2D // ReSharper disable IntroduceOption
         if (!string.IsNullOrEmpty(customAnimationTag)) lastDirection += $" {customAnimationTag}";
         
         AnimatedSprite2D.Play($"walk {lastDirection}", (float)multiplier);
-        Actor.Velocity = direction * (PlayerConstants.Speed * (float)multiplier) * (float)delta;
+        Actor.Velocity = direction * (Luce.MoveSpeed * (float)multiplier) * (float)delta;
         
         Actor.MoveAndSlide();
     }
