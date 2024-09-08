@@ -558,8 +558,7 @@ shape = SubResource("RectangleShape2D_dlsv6")
 position = Vector2(0, 1)
 sprite_frames = SubResource("SpriteFrames_7yapm")
 animation = &"sit down look down"
-centered = false
-offset = Vector2(-5, -23)
+offset = Vector2(0, -12)
 
 [node name="ActorNodeBase" parent="." node_paths=PackedStringArray("AnimatedSprite2D") instance=ExtResource("7_imr5s")]
 AnimatedSprite2D = NodePath("../AnimatedSprite2D")

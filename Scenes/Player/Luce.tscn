@@ -1,4 +1,4 @@
-[gd_scene load_steps=98 format=3 uid="uid://1q0v7as1ovpm"]
+[gd_scene load_steps=97 format=3 uid="uid://1q0v7as1ovpm"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Luce.cs" id="1_nq6ir"]
 [ext_resource type="Script" path="res://Scenes/Player/PlayerCamera2D.cs" id="2_lo3wm"]
@@ -23,8 +23,6 @@
 [ext_resource type="Texture2D" uid="uid://c3o3o3aa2asqu" path="res://Scenes/Player/luce sit down poke right-Sheet.png" id="13_qcohb"]
 [ext_resource type="Texture2D" uid="uid://dmwj7i1ql1qrp" path="res://Scenes/Player/luce sit down look right lower.png" id="14_0pns1"]
 [ext_resource type="Texture2D" uid="uid://q06axos06dre" path="res://Scenes/Player/luce sit down surprised.png" id="18_2gsf8"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_aq4dr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_we0ol"]
 size = Vector2(5.00008, 12)
@@ -684,7 +682,6 @@ _data = {
 [node name="Player" type="CharacterBody2D" groups=["Persist", "player"]]
 z_as_relative = false
 y_sort_enabled = true
-material = SubResource("ShaderMaterial_aq4dr")
 motion_mode = 1
 wall_min_slide_angle = 0.0
 floor_stop_on_slope = false
@@ -727,8 +724,7 @@ one_shot = true
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_5q57h")
 animation = &"sit down"
-centered = false
-offset = Vector2(-8, -37)
+offset = Vector2(0, -18)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
