@@ -1,9 +1,11 @@
 ~ initial_dialogue
 
 do nori.PlayAnimation("sit crying down look down")
-
-
-#do director.Wait(5)
+do audioDirector.StopAllAudio()
+do director.Wait(5)
+do audioDirector.PlaySound("Intro Theme", "Music")
+do director.Wait(5)
+do director.CutScenePlaySound("enemy_hit", "SFX")
 do luce.MoveDown(2, 0.5)
 #do director.Wait(3)
 Luce readies his weapon to reap her.

@@ -1,9 +1,9 @@
 using Godot;
 using System.Threading.Tasks;
 
-public partial class AudioController: Node
+public partial class AudioDirector: Node
 {
-    public static AudioController Instance { get; private set;}
+    public static AudioDirector Instance { get; private set;}
 
     private AsyncActionToPlay asyncActionToPlay = AsyncActionToPlay.NoAction;
     private Task ActionCompleted => actionGiven.Task;
@@ -12,6 +12,7 @@ public partial class AudioController: Node
     public override void _Ready()
     {
         Instance = this;
+        //TestMusicBeforeCutscene();
     }
 
     public void PlaySound(string name, string bus)
@@ -111,5 +112,13 @@ public partial class AudioController: Node
 
         }
         return;
+    }
+
+
+
+    public void TestMusicBeforeCutscene()
+    {
+        PlaySound("Intro Theme", "Music");
+        
     }
 }
