@@ -77,7 +77,7 @@ public partial class PlayerCamera2D : Camera2D
         }
         else if (direction == Direction.Right)
         {
-            maxX = positionValue + horizontalOffset;;
+            maxX = positionValue + horizontalOffset;
             maxY = -verticalOffset;
         }
         else if (direction == Direction.Down)
