@@ -45,7 +45,7 @@ public partial class PlayerCamera2D : Camera2D
 
             if (howLongPlayerMoving.ElapsedMilliseconds > 300)
             {
-                SetPositionOnDirection();
+                SetRelativePosition(lastDirection);
             }
         }
     }
@@ -61,29 +61,34 @@ public partial class PlayerCamera2D : Camera2D
         howLongPlayerMoving.Start();
     }
     
-    public void SetPositionOnDirection()
+    public void SetRelativePosition(Direction direction)
     {
         int maxY = 0, maxX = 0;
         
-        if (lastDirection == Direction.Up)
+        if (direction == Direction.Up)
         {
             maxX = 0;
             maxY = -positionValue - verticalOffset - 8;
         }
-        else if (lastDirection == Direction.Left)
+        else if (direction == Direction.Left)
         {
             maxX = -positionValue - horizontalOffset;
             maxY = -verticalOffset;
         }
-        else if (lastDirection == Direction.Right)
+        else if (direction == Direction.Right)
         {
             maxX = positionValue + horizontalOffset;;
             maxY = -verticalOffset;
         }
-        else if (lastDirection == Direction.Down)
+        else if (direction == Direction.Down)
         {
             maxX = 0;
             maxY = positionValue;
+        }
+        else if (direction == Direction.None)
+        {
+            Position = Vector2.Zero;
+            return;
         }
         
         if (x < maxX)
