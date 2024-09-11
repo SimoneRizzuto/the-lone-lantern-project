@@ -24,6 +24,7 @@ aseprite_executable_path="E:/Team Fortress 2/Steam/steamapps/common/Aseprite/Ase
 CustomSignals="*res://Constants/CustomSignals.cs"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 MainCamera2D="*res://Scenes/Camera/MainCamera2D.tscn"
+PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
 
 [dialogue_manager]
 
@@ -45,7 +46,7 @@ project/assembly_name="The Lone Lantern Project"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/nklbdev.aseprite_importers/plugin.cfg")
+enabled=PackedStringArray("res://addons/dialogue_manager/plugin.cfg", "res://addons/nklbdev.aseprite_importers/plugin.cfg", "res://addons/phantom_camera/plugin.cfg")
 
 [gui]
 
