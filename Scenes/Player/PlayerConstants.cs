@@ -5,13 +5,14 @@ public enum PlayerState
     Idle,
     Walking,
     Attacking,
+    Dashing,
     Hurting,
-    Disabled
+    Disabled,
 }
 
 public enum StaminaHealthState
 {
     Max = 0,
     Pause = 1,
-    Regen = 2
+    Regen = 2,
 }
