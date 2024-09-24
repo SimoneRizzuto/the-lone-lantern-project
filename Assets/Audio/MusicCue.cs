@@ -13,7 +13,7 @@ public partial class MusicCue : Node2D
     public void OnBackgroundMusicBodyEntered(Node2D area)
     {
         if (area.IsInGroup(NodeGroup.Player)) {
-            audioDirector.PlaySound("Grasslands Theme", "Music"); 
+            audioDirector.PlayMusic("Grasslands Theme"); 
         }
 
             

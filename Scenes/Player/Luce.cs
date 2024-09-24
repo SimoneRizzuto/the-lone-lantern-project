@@ -140,7 +140,6 @@ public partial class Luce : CharacterBody2D
                 
                 PauseStaminaRegen();
             }
-            audioDirector.PlaySound("enemy_hit", "SFX");
             State = PlayerState.Attacking;
             
         }

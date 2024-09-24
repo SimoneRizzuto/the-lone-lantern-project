@@ -24,7 +24,7 @@ buses/default_bus_layout="res://Assets/Audio/Scratch/scratch.tres"
 CustomSignals="*res://Constants/CustomSignals.cs"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 MainCamera2D="*res://Scenes/Camera/MainCamera2D.tscn"
-AudioDirector="res://Assets/Audio/AudioDirector.cs"
+AudioDirector="*res://Assets/Audio/AudioDirector.cs"
 
 [dialogue_manager]
 

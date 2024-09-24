@@ -12,26 +12,25 @@ public partial class AudioDirector: Node
     public override void _Ready()
     {
         Instance = this;
-        //TestMusicBeforeCutscene();
     }
 
-    public void PlaySound(string name, string bus)
+    public void PlaySound(string name)
     {
-        var audioNodes = GetTree().GetNodesInGroup(bus);
+        /*var audioNodes = GetTree().GetNodesInGroup(bus);
         int arraySize = audioNodes.Count;
         if (arraySize == 0)
-        {
-            var newAudioStreamerNode = new AudioStreamPlayer2D();
-            newAudioStreamerNode.Stream = (AudioStream)ResourceLoader.Load($"res://Assets/Audio/Scratch/{name}.ogg");
-            newAudioStreamerNode.Bus = bus;
-            newAudioStreamerNode.Name = name;
-            AddChild(newAudioStreamerNode);
-            newAudioStreamerNode.AddToGroup(bus);
-            newAudioStreamerNode.AddToGroup("Audio");
-            newAudioStreamerNode.Play();
-            return;
+        {*/
+        var newAudioStreamerNode = new AudioStreamPlayer2D();
+        newAudioStreamerNode.Stream = (AudioStream)ResourceLoader.Load($"res://Assets/Audio/Sound/{name}.ogg");
+        newAudioStreamerNode.Bus = "SFX";
+        newAudioStreamerNode.Name = name;
+        AddChild(newAudioStreamerNode);
+        newAudioStreamerNode.AddToGroup("SFX");
+        newAudioStreamerNode.AddToGroup("Audio");
+        newAudioStreamerNode.Play();
+        return;
 
-        }
+        /*}
 
         foreach (var audioNode in audioNodes)
         {
@@ -42,10 +41,40 @@ public partial class AudioDirector: Node
                 return;
             }
 
-        }
+        }*/
     }
 
-    public async Task PlaySoundAsync(string name, string bus)
+    public void PlayMusic(string name)
+    {
+        /*var audioNodes = GetTree().GetNodesInGroup(bus);
+        int arraySize = audioNodes.Count;
+        if (arraySize == 0)
+        {*/
+        var newAudioStreamerNode = new AudioStreamPlayer2D();
+        newAudioStreamerNode.Stream = (AudioStream)ResourceLoader.Load($"res://Assets/Audio/Music/{name}.ogg");
+        newAudioStreamerNode.Bus = "Music";
+        newAudioStreamerNode.Name = name;
+        AddChild(newAudioStreamerNode);
+        newAudioStreamerNode.AddToGroup("Music");
+        newAudioStreamerNode.AddToGroup("Audio");
+        newAudioStreamerNode.Play();
+        return;
+
+        /*}
+
+        foreach (var audioNode in audioNodes)
+        {
+            if (audioNode.Name == name)
+            {
+                var existingAudioStreamerNode = (AudioStreamPlayer2D)audioNode;
+                existingAudioStreamerNode.Play();
+                return;
+            }
+
+        }*/
+    }
+
+    public async Task PlayAudioAsync(string name, string bus)
     {
         asyncActionToPlay = AsyncActionToPlay.NoAction;
 
@@ -55,7 +84,7 @@ public partial class AudioDirector: Node
         if (arraySize == 0)
         {
             var newAudioStreamerNode = new AudioStreamPlayer2D();
-            newAudioStreamerNode.Stream = (AudioStream)ResourceLoader.Load($"res://Assets/Audio/Scratch/{name}.ogg");
+            newAudioStreamerNode.Stream = (AudioStream)ResourceLoader.Load($"res://Assets/Audio/{bus}/{name}.ogg");
             newAudioStreamerNode.Bus = bus;
             newAudioStreamerNode.Name = name;
             AddChild(newAudioStreamerNode);
@@ -80,7 +109,7 @@ public partial class AudioDirector: Node
     }
 
 
-    public void StopSound(string name, string bus)
+    public void StopAudio(string name, string bus)
     {
         var audioNodes = GetTree().GetNodesInGroup(bus);
         foreach (var audioNode in audioNodes)
@@ -93,7 +122,6 @@ public partial class AudioDirector: Node
             }
 
         }
-        GD.Print("Could not find specified sound to stop.");
         return;
     }
 
@@ -114,11 +142,4 @@ public partial class AudioDirector: Node
         return;
     }
 
-
-
-    public void TestMusicBeforeCutscene()
-    {
-        PlaySound("Intro Theme", "Music");
-        
-    }
 }
