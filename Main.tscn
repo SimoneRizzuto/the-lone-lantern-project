@@ -1,10 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://be3yurhibr6t0"]
+[gd_scene load_steps=4 format=3 uid="uid://be3yurhibr6t0"]
 
 [ext_resource type="PackedScene" uid="uid://ci6v0ni6pk1ry" path="res://Scenes/SceneSwitcher/SceneSwitcher.tscn" id="1_20kky"]
-[ext_resource type="PackedScene" uid="uid://b0g2v7tkj7vyq" path="res://Rooms/PlaygroundPlaza.tscn" id="2_qpnam"]
+[ext_resource type="PackedScene" uid="uid://lijck4bh3uhp" path="res://Luce3.tscn" id="2_2ala0"]
+[ext_resource type="PackedScene" uid="uid://b0g2v7tkj7vyq" path="res://Rooms/PlaygroundPlaza.tscn" id="3_bkjgn"]
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node2D"]
 
 [node name="SceneSwitcher" parent="." instance=ExtResource("1_20kky")]
 
-[node name="PlaygroundPlaza" parent="SceneSwitcher" instance=ExtResource("2_qpnam")]
+[node name="Luce3" parent="SceneSwitcher" instance=ExtResource("2_2ala0")]
+position = Vector2(158, -31)
+
+[node name="PlaygroundPlaza" parent="SceneSwitcher" instance=ExtResource("3_bkjgn")]
