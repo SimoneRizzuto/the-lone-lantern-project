@@ -15,12 +15,13 @@ run/main_scene="res://Main.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
-[audio]
-
-buses/default_bus_layout="res://Assets/Audio/Scratch/scratch.tres"
 [aseprite_importers]
 
 aseprite_executable_path="E:/Team Fortress 2/Steam/steamapps/common/Aseprite/Aseprite.exe"
+
+[audio]
+
+buses/default_bus_layout="res://Assets/Audio/Scratch/scratch.tres"
 
 [autoload]
 
@@ -34,7 +35,6 @@ AudioDirector="*res://Assets/Audio/AudioDirector.cs"
 general/balloon_path="res://Scenes/CutsceneDirector/BalloonCanvas/BalloonCanvas.tscn"
 
 [display]
-
 
 window/size/viewport_width=640
 window/size/viewport_height=360

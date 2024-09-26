@@ -1,5 +1,4 @@
-
-[gd_scene load_steps=29 format=3 uid="uid://b0g2v7tkj7vyq"]
+[gd_scene load_steps=31 format=3 uid="uid://b0g2v7tkj7vyq"]
 
 [ext_resource type="PackedScene" uid="uid://b2e5gws18vd27" path="res://Scenes/Camera/Tripod2D.tscn" id="1_0htn0"]
 [ext_resource type="Texture2D" uid="uid://b2iwlbq5gt1bb" path="res://Assets/swingset.png" id="1_vn8ua"]
@@ -13,8 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://xepk7m1tits3" path="res://Assets/playground_plaza-wall-horizontal-end2.png" id="9_llm1h"]
 [ext_resource type="PackedScene" uid="uid://h0qtabwk04wy" path="res://Scenes/CutsceneDirector/CutsceneDirector.tscn" id="10_ejcvy"]
 [ext_resource type="PackedScene" uid="uid://buj8skc4edik3" path="res://Rain.tscn" id="12_kbawf"]
-[ext_resource type="Script" path="res://Assets/Audio/MusicCue.cs" id="13_alfc3"]
 [ext_resource type="Texture2D" uid="uid://cuji7jn0xmwvw" path="res://Assets/park_bench.aseprite" id="13_05pgp"]
+[ext_resource type="Script" path="res://Assets/Audio/MusicCue.cs" id="13_alfc3"]
 [ext_resource type="Texture2D" uid="uid://clbgwybv3enxd" path="res://Assets/playground_bin.aseprite" id="14_mjfbv"]
 [ext_resource type="Texture2D" uid="uid://dy7q13pujx40" path="res://Assets/playground_slide.aseprite" id="15_pycv1"]
 [ext_resource type="Texture2D" uid="uid://5mnmxf8y6737" path="res://Assets/playground_seesaw.aseprite" id="16_74ddk"]
@@ -64,8 +63,6 @@ position = Vector2(9, 0)
 [node name="Rain" parent="." instance=ExtResource("12_kbawf")]
 z_index = 4
 position = Vector2(164, -205)
-emitting = false
-Raining = false
 Color = Color(0.317647, 0.564706, 0.831373, 1)
 
 [node name="Tripod2D" parent="." instance=ExtResource("1_0htn0")]
