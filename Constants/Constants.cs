@@ -5,7 +5,8 @@ public enum Direction
     Up = 0,
     Left = 1,
     Right = 2,
-    Down = 3
+    Down = 3,
+    None = 4,
 }
 
 public static class InputMapAction
@@ -15,6 +16,7 @@ public static class InputMapAction
     public const string Left = "Move Left";
     public const string Right = "Move Right";
     public const string Attack = "Attack";
+    public const string Dash = "Dash";
     public const string Enter = "Enter";
     public const string Save = "Save";
     public const string Load = "Load";

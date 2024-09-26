@@ -4,10 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://b0g2v7tkj7vyq" path="res://Rooms/PlaygroundPlaza.tscn" id="2_qpnam"]
 [ext_resource type="PackedScene" uid="uid://briwv8dewtfr4" path="res://Assets/Audio/AudioDirector.tscn" id="3_r1wyf"]
 
-[node name="Main" type="Node"]
+[node name="Main" type="Node2D"]
 
 [node name="SceneSwitcher" parent="." instance=ExtResource("1_20kky")]
 
 [node name="PlaygroundPlaza" parent="SceneSwitcher" instance=ExtResource("2_qpnam")]
-
 [node name="AudioDirector" parent="." instance=ExtResource("3_r1wyf")]

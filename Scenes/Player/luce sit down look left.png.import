@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cytrh8oexugmf"
-path="res://.godot/imported/luce_shock.png-77e09de6b955f10204c4df6582bca5c2.ctex"
+uid="uid://dtl4jvhl33f08"
+path="res://.godot/imported/luce sit down look left.png-1d343ea25f5e3ce5b98c7010f6b45418.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/CutsceneDirector/BalloonCanvas/Portraits/Luce/luce_shock.png"
-dest_files=["res://.godot/imported/luce_shock.png-77e09de6b955f10204c4df6582bca5c2.ctex"]
+source_file="res://Scenes/Player/luce sit down look left.png"
+dest_files=["res://.godot/imported/luce sit down look left.png-1d343ea25f5e3ce5b98c7010f6b45418.ctex"]
 
 [params]
 

@@ -12,6 +12,7 @@ public partial class CutsceneDirector : Node
 {
     private CustomSignals customSignals = new();
     private Luce luce = new();
+    private ActorNodeBase luceActor = new();
     private Rain rain;
     
     private AsyncActionToPlay asyncActionToPlay = AsyncActionToPlay.NoAction;
@@ -46,8 +47,19 @@ public partial class CutsceneDirector : Node
         
         customSignals = GetNode<CustomSignals>("/root/CustomSignals");
         customSignals.ShowDialogueBalloon += ShowDialogueBalloon;
-        
-        luce = GetNodeHelper.GetLuce(GetTree());
+
+        var tree = GetTree();
+        luce = GetNodeHelper.GetLuce(tree);
+        var actorNodes = tree.GetNodesInGroup(NodeGroup.ActorNode);
+        var actorBaseNodes = actorNodes.Cast<ActorNodeBase>().ToList();
+
+        foreach (var actor in actorBaseNodes)
+        {
+            if (actor.Actor?.Name == ActorNames.Luce)
+            {
+                luceActor = actor;
+            }
+        }
     }
     private bool LoadActorsIntoCurrentScene()
     {
@@ -79,6 +91,7 @@ public partial class CutsceneDirector : Node
         luce.State = PlayerState.Disabled;
         
         DialogueManager.ShowDialogueBalloon(GD.Load($"res://Dialogue/{dialogue}.dialogue"), title);
+        DialogueManager.DialogueEnded += SetupGameplayAfterDialogueEnded;
     }
     
     private async Task SetupActionTask(AsyncActionToPlay asyncAction, double seconds, double? moveSpeedMultiplier = 1)
@@ -126,10 +139,35 @@ public partial class CutsceneDirector : Node
         rain.StopRain();
         // emit signal instead
     }
+    
+    public async Task CheckForAttackInput()
+    {
+        await SetupActionTask(AsyncActionToPlay.WaitForInput, 3);
+    }
 
-
+    private void FinishTask()
+    {
+        stopwatch.Stop();
+        asyncActionToPlay = AsyncActionToPlay.NoAction;
+        actionGiven.TrySetResult();
+    }
+    
+    // Flags
+    public bool noriReapTriggered; // used in DialogueManager for branching the dialogue
+    
     public override void _Process(double delta)
     {
+        if (asyncActionToPlay == AsyncActionToPlay.NoAction) return;
+        if (asyncActionToPlay == AsyncActionToPlay.WaitForInput)
+        {
+            // logic for wait, logic for returning when input is received
+            if (Input.IsActionJustPressed(InputMapAction.Attack))
+            {
+                noriReapTriggered = true;
+                FinishTask();
+            }
+        }
+        
         if (!stopwatch.IsRunning)
         {
             stopwatch.Restart();
@@ -137,11 +175,13 @@ public partial class CutsceneDirector : Node
         
         if (stopwatch.ElapsedMilliseconds > millisecondsToPass)
         {
-            stopwatch.Stop();
-
-            asyncActionToPlay = AsyncActionToPlay.NoAction;
-
-            actionGiven.TrySetResult();
+            FinishTask();
         }
+    }
+    
+    private void SetupGameplayAfterDialogueEnded(Resource dialogueResource)
+    {
+        luce.State = PlayerState.Idle;
+        DialogueManager.DialogueEnded -= SetupGameplayAfterDialogueEnded;
     }
 }

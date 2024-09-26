@@ -1,18 +1,110 @@
-[gd_scene load_steps=37 format=3 uid="uid://cbw71y6mqaoy2"]
+[gd_scene load_steps=81 format=3 uid="uid://cbw71y6mqaoy2"]
 
 [ext_resource type="Texture2D" uid="uid://br0pvdxe3r2c2" path="res://Scenes/Characters/Nori/nori_walk_down-Sheet.png" id="1_0rv05"]
 [ext_resource type="Texture2D" uid="uid://bgjan8hroire4" path="res://Scenes/Characters/Nori/nori_idle_down.png" id="1_ylujk"]
 [ext_resource type="Texture2D" uid="uid://b1jmhkskt8eme" path="res://Scenes/Characters/Nori/nori_idle_left.png" id="2_aq6cu"]
+[ext_resource type="Texture2D" uid="uid://cpbmbmy1kjume" path="res://Scenes/Characters/Nori/nori_idle_down_umbrella.png" id="2_gju6s"]
 [ext_resource type="Texture2D" uid="uid://5e77fkx4iqc4" path="res://Scenes/Characters/Nori/nori_idle_right.png" id="3_81rug"]
+[ext_resource type="Texture2D" uid="uid://ctpb72gwmvp8c" path="res://Scenes/Characters/Nori/nori_idle_left_umbrella.png" id="4_3lee0"]
 [ext_resource type="Texture2D" uid="uid://cfc26f027v21w" path="res://Scenes/Characters/Nori/nori_idle_up.png" id="4_17icb"]
-[ext_resource type="Texture2D" uid="uid://c7phlagjuc7y3" path="res://Scenes/Characters/Nori/nori_sit_crying_look_down.png" id="5_kiqeb"]
+[ext_resource type="Texture2D" uid="uid://dxwrlw0fnbls" path="res://Scenes/Characters/Nori/nori_idle_left_hold_out_umbrella.png" id="4_os4iw"]
+[ext_resource type="Texture2D" uid="uid://cd8iyst7y3exp" path="res://Scenes/Characters/Nori/nori_sit_crying_look_down.png" id="5_kiqeb"]
+[ext_resource type="Texture2D" uid="uid://b7ju60an33y2p" path="res://Scenes/Characters/Nori/nori_sit_crying_look_left.png" id="6_nuwde"]
+[ext_resource type="Texture2D" uid="uid://bklji6inhhscd" path="res://Scenes/Characters/Nori/nori sit down grab umbrella 1-Sheet.png" id="7_a3r5f"]
+[ext_resource type="Texture2D" uid="uid://cr1xicn4axgme" path="res://Scenes/Characters/Nori/nori sit down wipe tears-Sheet.png" id="7_flxrs"]
 [ext_resource type="PackedScene" uid="uid://chq772iw2og30" path="res://Scenes/CutsceneDirector/ActorNodeBase.tscn" id="7_imr5s"]
 [ext_resource type="Texture2D" uid="uid://c5fki2jh5c22q" path="res://Scenes/Characters/Nori/nori_walk_left-Sheet.png" id="7_ty62a"]
 [ext_resource type="Texture2D" uid="uid://dqlp0s073yc6p" path="res://Scenes/Characters/Nori/nori_walk_right-Sheet.png" id="8_28kyh"]
+[ext_resource type="Texture2D" uid="uid://dfp4jwgrbgddh" path="res://Scenes/Characters/Nori/nori sit down grab umbrella 2-Sheet.png" id="8_bmudu"]
 [ext_resource type="Texture2D" uid="uid://do2nyg65js2i0" path="res://Scenes/Characters/Nori/nori_walk_up-Sheet.png" id="9_pt5id"]
+[ext_resource type="Texture2D" uid="uid://g784tx20n6cu" path="res://Scenes/Characters/Nori/nori sit down look up crying-Sheet.png" id="10_a8635"]
+[ext_resource type="Texture2D" uid="uid://dachmne11wxsh" path="res://Scenes/Characters/Nori/nori_walk_down_umbrella-Sheet.png" id="12_crnhg"]
+[ext_resource type="Texture2D" uid="uid://dlr13jylo6ywb" path="res://Scenes/Characters/Nori/nori_walk_left_umbrella-Sheet.png" id="13_x37gn"]
+[ext_resource type="Texture2D" uid="uid://c5klkjfa4gis0" path="res://Scenes/Characters/Nori/nori sit down umbrella-Sheet.png" id="14_4qja5"]
+[ext_resource type="Texture2D" uid="uid://de7nhl5yb2fen" path="res://Scenes/Characters/Nori/nori_sit-look-left-umbrella.png" id="15_y7md5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dlsv6"]
 size = Vector2(8, 4)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nrsf2"]
+atlas = ExtResource("2_gju6s")
+region = Rect2(0, 0, 30, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iy85v"]
+atlas = ExtResource("4_os4iw")
+region = Rect2(0, 0, 35, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eh2fv"]
+atlas = ExtResource("4_3lee0")
+region = Rect2(0, 0, 31, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ucmaf"]
+atlas = ExtResource("6_nuwde")
+region = Rect2(0, 0, 10, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y4570"]
+atlas = ExtResource("7_a3r5f")
+region = Rect2(0, 0, 10, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1f50j"]
+atlas = ExtResource("7_a3r5f")
+region = Rect2(10, 0, 10, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rxej1"]
+atlas = ExtResource("8_bmudu")
+region = Rect2(0, 0, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sm8i7"]
+atlas = ExtResource("8_bmudu")
+region = Rect2(32, 0, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7a24"]
+atlas = ExtResource("14_4qja5")
+region = Rect2(0, 0, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oatty"]
+atlas = ExtResource("14_4qja5")
+region = Rect2(32, 0, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ewojp"]
+atlas = ExtResource("7_flxrs")
+region = Rect2(50, 0, 10, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n3yfs"]
+atlas = ExtResource("10_a8635")
+region = Rect2(0, 0, 10, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jkur2"]
+atlas = ExtResource("10_a8635")
+region = Rect2(10, 0, 10, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uq0ap"]
+atlas = ExtResource("7_flxrs")
+region = Rect2(0, 0, 10, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2spl3"]
+atlas = ExtResource("7_flxrs")
+region = Rect2(10, 0, 10, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k5v67"]
+atlas = ExtResource("7_flxrs")
+region = Rect2(20, 0, 10, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lfmgn"]
+atlas = ExtResource("7_flxrs")
+region = Rect2(30, 0, 10, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xhv46"]
+atlas = ExtResource("7_flxrs")
+region = Rect2(40, 0, 10, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lv407"]
+atlas = ExtResource("7_flxrs")
+region = Rect2(50, 0, 10, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cfys2"]
+atlas = ExtResource("15_y7md5")
+region = Rect2(0, 0, 32, 36)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0xmva"]
 atlas = ExtResource("1_0rv05")
@@ -38,6 +130,30 @@ region = Rect2(40, 0, 10, 23)
 atlas = ExtResource("1_0rv05")
 region = Rect2(50, 0, 10, 23)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_0bwwb"]
+atlas = ExtResource("12_crnhg")
+region = Rect2(0, 0, 30, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lxccx"]
+atlas = ExtResource("12_crnhg")
+region = Rect2(30, 0, 30, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3yqq"]
+atlas = ExtResource("12_crnhg")
+region = Rect2(60, 0, 30, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vog24"]
+atlas = ExtResource("12_crnhg")
+region = Rect2(90, 0, 30, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_viw3a"]
+atlas = ExtResource("12_crnhg")
+region = Rect2(120, 0, 30, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k7kjo"]
+atlas = ExtResource("12_crnhg")
+region = Rect2(150, 0, 30, 32)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_yefvc"]
 atlas = ExtResource("7_ty62a")
 region = Rect2(0, 0, 10, 22)
@@ -61,6 +177,30 @@ region = Rect2(40, 0, 10, 22)
 [sub_resource type="AtlasTexture" id="AtlasTexture_tq7ve"]
 atlas = ExtResource("7_ty62a")
 region = Rect2(50, 0, 10, 22)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bgphx"]
+atlas = ExtResource("13_x37gn")
+region = Rect2(0, 0, 31, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tdx5p"]
+atlas = ExtResource("13_x37gn")
+region = Rect2(31, 0, 31, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g3ntm"]
+atlas = ExtResource("13_x37gn")
+region = Rect2(62, 0, 31, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kspsq"]
+atlas = ExtResource("13_x37gn")
+region = Rect2(93, 0, 31, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ipmg4"]
+atlas = ExtResource("13_x37gn")
+region = Rect2(124, 0, 31, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_06qs4"]
+atlas = ExtResource("13_x37gn")
+region = Rect2(155, 0, 31, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_asm5c"]
 atlas = ExtResource("8_28kyh")
@@ -122,10 +262,34 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_nrsf2")
+}],
+"loop": true,
+"name": &"idle down umbrella",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("2_aq6cu")
 }],
 "loop": true,
 "name": &"idle left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iy85v")
+}],
+"loop": true,
+"name": &"idle left hold out umbrella",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eh2fv")
+}],
+"loop": true,
+"name": &"idle left umbrella",
 "speed": 5.0
 }, {
 "frames": [{
@@ -148,8 +312,99 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("5_kiqeb")
 }],
+"loop": false,
+"name": &"sit crying look down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ucmaf")
+}],
+"loop": false,
+"name": &"sit crying look left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y4570")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1f50j")
+}],
+"loop": false,
+"name": &"sit down grab umbrella 1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rxej1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sm8i7")
+}],
+"loop": false,
+"name": &"sit down grab umbrella 2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q7a24")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oatty")
+}],
+"loop": false,
+"name": &"sit down head up umbrella",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ewojp")
+}],
 "loop": true,
-"name": &"sit crying down look down",
+"name": &"sit down look down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n3yfs")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jkur2")
+}],
+"loop": false,
+"name": &"sit down look up crying",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uq0ap")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2spl3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k5v67")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lfmgn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xhv46")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lv407")
+}],
+"loop": false,
+"name": &"sit down wipe tears",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cfys2")
+}],
+"loop": true,
+"name": &"sit look left umbrella",
 "speed": 5.0
 }, {
 "frames": [{
@@ -177,6 +432,29 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_0bwwb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lxccx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3yqq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vog24")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_viw3a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k7kjo")
+}],
+"loop": true,
+"name": &"walk down umbrella",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_yefvc")
 }, {
 "duration": 1.0,
@@ -196,6 +474,29 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk left",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bgphx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tdx5p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g3ntm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kspsq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ipmg4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_06qs4")
+}],
+"loop": true,
+"name": &"walk left umbrella",
 "speed": 8.0
 }, {
 "frames": [{
@@ -256,9 +557,8 @@ shape = SubResource("RectangleShape2D_dlsv6")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 1)
 sprite_frames = SubResource("SpriteFrames_7yapm")
-animation = &"sit crying down look down"
-centered = false
-offset = Vector2(-5, -23)
+animation = &"sit down look down"
+offset = Vector2(0, -12)
 
 [node name="ActorNodeBase" parent="." node_paths=PackedStringArray("AnimatedSprite2D") instance=ExtResource("7_imr5s")]
 AnimatedSprite2D = NodePath("../AnimatedSprite2D")

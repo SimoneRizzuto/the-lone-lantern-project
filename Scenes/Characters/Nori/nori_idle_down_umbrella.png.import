@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6qvshhb2y8d3"
-path="res://.godot/imported/luce_surprise.png-8a1c55c0c9a80a03c0a1057f98afa06d.ctex"
+uid="uid://cpbmbmy1kjume"
+path="res://.godot/imported/nori_idle_down_umbrella.png-a233c5845c8e0bf503b81f20cbcdc2a3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Scenes/CutsceneDirector/BalloonCanvas/Portraits/Luce/luce_surprise.png"
-dest_files=["res://.godot/imported/luce_surprise.png-8a1c55c0c9a80a03c0a1057f98afa06d.ctex"]
+source_file="res://Scenes/Characters/Nori/nori_idle_down_umbrella.png"
+dest_files=["res://.godot/imported/nori_idle_down_umbrella.png-a233c5845c8e0bf503b81f20cbcdc2a3.ctex"]
 
 [params]
 
