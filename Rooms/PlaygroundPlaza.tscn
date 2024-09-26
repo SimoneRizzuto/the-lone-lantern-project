@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://b0g2v7tkj7vyq"]
+[gd_scene load_steps=29 format=3 uid="uid://b0g2v7tkj7vyq"]
 
 [ext_resource type="PackedScene" uid="uid://b2e5gws18vd27" path="res://Scenes/Camera/Tripod2D.tscn" id="1_0htn0"]
 [ext_resource type="Texture2D" uid="uid://b2iwlbq5gt1bb" path="res://Assets/swingset.png" id="1_vn8ua"]
@@ -13,7 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://h0qtabwk04wy" path="res://Scenes/CutsceneDirector/CutsceneDirector.tscn" id="10_ejcvy"]
 [ext_resource type="PackedScene" uid="uid://buj8skc4edik3" path="res://Rain.tscn" id="12_kbawf"]
 [ext_resource type="Texture2D" uid="uid://cuji7jn0xmwvw" path="res://Assets/park_bench.aseprite" id="13_05pgp"]
-[ext_resource type="Script" path="res://Assets/Audio/MusicCue.cs" id="13_alfc3"]
 [ext_resource type="Texture2D" uid="uid://clbgwybv3enxd" path="res://Assets/playground_bin.aseprite" id="14_mjfbv"]
 [ext_resource type="Texture2D" uid="uid://dy7q13pujx40" path="res://Assets/playground_slide.aseprite" id="15_pycv1"]
 [ext_resource type="Texture2D" uid="uid://5mnmxf8y6737" path="res://Assets/playground_seesaw.aseprite" id="16_74ddk"]
@@ -51,8 +50,6 @@ size = Vector2(71, 2)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2u82w"]
 size = Vector2(11, 7)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ggjdc"]
-
 [node name="PlaygroundPlaza" type="Node2D"]
 z_as_relative = false
 y_sort_enabled = true
@@ -74,7 +71,7 @@ position = Vector2(170, 84)
 position = Vector2(170, -11.5)
 
 [node name="Luce" parent="." instance=ExtResource("4_jhdro")]
-position = Vector2(170, -87)
+position = Vector2(170, -13)
 
 [node name="Nori" parent="." instance=ExtResource("3_hhhlb")]
 position = Vector2(184, 88)
@@ -418,16 +415,5 @@ offset = Vector2(0, -12.5)
 z_index = -1
 position = Vector2(0, -3.5)
 shape = SubResource("RectangleShape2D_2u82w")
-
-[node name="MusicCue" type="Node2D" parent="."]
-script = ExtResource("13_alfc3")
-
-[node name="BackgroundMusic" type="Area2D" parent="MusicCue"]
-position = Vector2(169, -60)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MusicCue/BackgroundMusic"]
-shape = SubResource("RectangleShape2D_ggjdc")
-
-[connection signal="body_entered" from="MusicCue/BackgroundMusic" to="MusicCue" method="OnBackgroundMusicBodyEntered"]
 
 [editable path="Tripod2D"]
