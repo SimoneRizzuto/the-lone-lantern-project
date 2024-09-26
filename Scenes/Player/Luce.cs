@@ -18,6 +18,7 @@ public partial class Luce : CharacterBody2D
     private bool VelocityIsAboveThreshold(float x, float y) => Math.Abs(x) > MoveVelocityThreshold || Math.Abs(y) > MoveVelocityThreshold;
     
     private CustomSignals customSignals = new();
+    public AudioDirector audioDirector;
     
     private int attackMoveSpeed = 4000;
 
@@ -64,6 +65,8 @@ public partial class Luce : CharacterBody2D
         attackShape = GetNode<CollisionPolygon2D>("HitBox/CollisionPolygon2D");
 
         healthRegenBuffer = GetNode<Timer>("Timers/HealthRegenBuffer");
+
+        audioDirector = AudioDirector.Instance;
     }
 
     public override void _Process(double delta)
@@ -146,8 +149,8 @@ public partial class Luce : CharacterBody2D
                 
                 PauseStaminaRegen();
             }
-            
             State = PlayerState.Attacking;
+            
         }
     }
 
@@ -201,7 +204,7 @@ public partial class Luce : CharacterBody2D
                     mainSprite.Animation = $"attack {animationDirection}";
                 }
             }
-            
+
             mainSprite.Play();
             
             if (mainSprite.Frame == 0)

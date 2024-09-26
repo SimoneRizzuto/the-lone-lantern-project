@@ -11,6 +11,7 @@ public partial class CastActors : Node
 {
     // Cast
     public CutsceneDirector director;
+    public AudioDirector audioDirector;
     public MainCamera2D camera;
     
     // Actors
@@ -20,10 +21,12 @@ public partial class CastActors : Node
     public override void _Ready()
     {
         var tree = GetTree();
-        
+
         var cutsceneDirectorNodes = tree.GetNodesInGroup(NodeGroup.CutsceneDirector);
         director = cutsceneDirectorNodes.Cast<CutsceneDirector>().FirstOrDefault();
-        
+
+        audioDirector = AudioDirector.Instance;
+
         camera = GetNodeHelper.GetMainCamera2D(tree);
         
         var actorNodes = tree.GetNodesInGroup(NodeGroup.ActorNode);

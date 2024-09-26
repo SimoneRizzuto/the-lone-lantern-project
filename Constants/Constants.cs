@@ -35,4 +35,5 @@ public static class NodeGroup
     public const string Weather = "weather";
     public const string TransitionCamera = "transition camera";
     public const string Persist = "Persist";
+    public const string AudioDirector = "audio director";
 }
