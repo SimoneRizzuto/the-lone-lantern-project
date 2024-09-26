@@ -1,13 +1,16 @@
+using System;
+
 namespace TheLoneLanternProject.Scenes.Player;
 
+[Flags]
 public enum PlayerState
 {
-    Idle,
-    Walking,
-    Attacking,
-    Dashing,
-    Hurting,
-    Disabled,
+    Idle = 0,               // 0
+    Walking = 1 << 0,       // 1
+    Attacking = 1 << 1,     // 2
+    Dashing = 1 << 2,       // 4
+    Hurting = 1 << 3,       // 8
+    Disabled = 1 << 4,      // 16
 }
 
 public enum StaminaHealthState
