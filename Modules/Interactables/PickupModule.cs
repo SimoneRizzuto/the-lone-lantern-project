@@ -10,7 +10,7 @@ public partial class PickupModule : Node
     private CustomSignals customSignals = new();
     public override void _Ready()
     {
-        customSignals = GetNode<CustomSignals>("./root/CustomSignals");
+        customSignals = GetNode<CustomSignals>("/root/CustomSignals");
         customSignals.Interaction += DoSomething;
     }
 

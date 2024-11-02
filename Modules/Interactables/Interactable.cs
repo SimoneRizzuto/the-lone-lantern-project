@@ -7,7 +7,7 @@ namespace TheLoneLanternProject.Modules;
 
 public partial class Interactable : Node
 {
-    private CustomSignals customSignals = new();
+    private CustomSignals customSignals;
 
     public override void _Ready()
     {
@@ -17,7 +17,8 @@ public partial class Interactable : Node
     {
         if (body.IsInGroup(NodeGroup.Player) && Input.IsActionJustPressed(InputMapAction.Interact))
         {
-            customSignals.EmitSignal(nameof(CustomSignals.InteractionEventHandler));
+            customSignals.EmitSignal(nameof(CustomSignals.Interaction));
+            GD.Print("Sent!");
         }
     }
 }
