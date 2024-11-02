@@ -5,7 +5,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x6bdm"]
 size = Vector2(46, 48)
 
-[node name="Interactable" type="Node"]
+[node name="Interactable" type="Node2D"]
 script = ExtResource("1_8dw1p")
 
 [node name="InteractionZone" type="Area2D" parent="."]
@@ -14,3 +14,4 @@ script = ExtResource("1_8dw1p")
 shape = SubResource("RectangleShape2D_x6bdm")
 
 [connection signal="body_entered" from="InteractionZone" to="." method="OnInteractionZoneBodyEntered"]
+[connection signal="body_exited" from="InteractionZone" to="." method="OnInteractionZoneBodyExited"]
