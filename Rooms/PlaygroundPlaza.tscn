@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://b0g2v7tkj7vyq"]
+[gd_scene load_steps=31 format=3 uid="uid://b0g2v7tkj7vyq"]
 
 [ext_resource type="PackedScene" uid="uid://b2e5gws18vd27" path="res://Scenes/Camera/Tripod2D.tscn" id="1_0htn0"]
 [ext_resource type="Texture2D" uid="uid://b2iwlbq5gt1bb" path="res://Assets/swingset.png" id="1_vn8ua"]
@@ -17,6 +17,8 @@
 [ext_resource type="Texture2D" uid="uid://dy7q13pujx40" path="res://Assets/playground_slide.aseprite" id="15_pycv1"]
 [ext_resource type="Texture2D" uid="uid://5mnmxf8y6737" path="res://Assets/playground_seesaw.aseprite" id="16_74ddk"]
 [ext_resource type="Texture2D" uid="uid://ba2f81lheflsw" path="res://Assets/playground_water_fountain.aseprite" id="17_210mj"]
+[ext_resource type="PackedScene" uid="uid://muoxkhjyx4lr" path="res://Modules/Interactables/Interactable.tscn" id="18_b6ac8"]
+[ext_resource type="Script" path="res://Modules/Interactables/PickupModule.cs" id="19_3c5xy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ssvm"]
 size = Vector2(3, 18)
@@ -415,5 +417,10 @@ offset = Vector2(0, -12.5)
 z_index = -1
 position = Vector2(0, -3.5)
 shape = SubResource("RectangleShape2D_2u82w")
+
+[node name="Interactable" parent="PlaygroundWaterFountain" instance=ExtResource("18_b6ac8")]
+
+[node name="PickupModule" type="Node" parent="PlaygroundWaterFountain/Interactable"]
+script = ExtResource("19_3c5xy")
 
 [editable path="Tripod2D"]
