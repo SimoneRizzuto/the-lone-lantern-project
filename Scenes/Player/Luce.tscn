@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=3 uid="uid://1q0v7as1ovpm"]
+[gd_scene load_steps=98 format=3 uid="uid://1q0v7as1ovpm"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Luce.cs" id="1_nq6ir"]
 [ext_resource type="Script" path="res://Scenes/Player/PlayerCamera2D.cs" id="2_lo3wm"]
@@ -679,6 +679,9 @@ _data = {
 "watch Nori walking by while on swing set": SubResource("Animation_s4357")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7q80j"]
+size = Vector2(16, 24)
+
 [node name="Player" type="CharacterBody2D" groups=["Persist", "player"]]
 z_as_relative = false
 y_sort_enabled = true
@@ -743,6 +746,12 @@ disabled = true
 script = ExtResource("12_o1tfm")
 AnimatedSprite2D = NodePath("../AnimatedSprite2D")
 AnimationPlayer = NodePath("../AnimationPlayer")
+
+[node name="InteractionZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionZone"]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_7q80j")
 
 [connection signal="LastWalkDirection" from="." to="Camera2D" method="OnLuceLastWalkDirection"]
 [connection signal="PlayerIsMoving" from="." to="Camera2D" method="OnPlayerIsMoving"]

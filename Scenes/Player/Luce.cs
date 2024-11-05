@@ -4,6 +4,7 @@ using Vector2 = Godot.Vector2;
 using TheLoneLanternProject.Constants;
 using TheLoneLanternProject.Extensions;
 using TheLoneLanternProject.Scenes.Enemies.BaseNode;
+using TheLoneLanternProject.Helpers;
 
 namespace TheLoneLanternProject.Scenes.Player;
 public partial class Luce : CharacterBody2D
@@ -55,6 +56,7 @@ public partial class Luce : CharacterBody2D
     private AnimatedSprite2D mainSprite = new();
     private CollisionShape2D mainShape = new();
     private CollisionPolygon2D attackShape = new();
+    private CollisionShape2D interactionCollisionShape = new();
 
     public override void _Ready()
     {
@@ -65,6 +67,8 @@ public partial class Luce : CharacterBody2D
         attackShape = GetNode<CollisionPolygon2D>("HitBox/CollisionPolygon2D");
 
         healthRegenBuffer = GetNode<Timer>("Timers/HealthRegenBuffer");
+
+        interactionCollisionShape = GetNode<CollisionShape2D>("InteractionZone/CollisionShape2D");
 
         audioDirector = AudioDirector.Instance;
     }
@@ -78,9 +82,12 @@ public partial class Luce : CharacterBody2D
         SetAnimation();
 
         RegenerateHealth();
+        
     }
     public override void _PhysicsProcess(double delta)
     {
+        TransformInteractionCollision();
+
         if (State == PlayerState.Disabled) return;
         
         if (State != PlayerState.Attacking)
@@ -298,6 +305,37 @@ public partial class Luce : CharacterBody2D
             enemy.TakeDamage(1);
         }
     }   
+
+
+    public void TransformInteractionCollision()
+    {
+        Direction = nextBuffer.NextDirection;
+
+        if (Direction == Direction.Right)
+        {
+            interactionCollisionShape.Rotation = 90;
+            interactionCollisionShape.Position.X = 16;
+            interactionCollisionShape.Position.Y = -8;
+        }
+        if (Direction == Direction.Left)
+        {
+            interactionCollisionShape.Rotation = 90;
+            interactionCollisionShape.Position.X = -16;
+            interactionCollisionShape.Position.Y = -8;
+        }
+        if (Direction == Direction.Up)
+        {
+            interactionCollisionShape.Rotation = 0;
+            interactionCollisionShape.Position.X = 0;
+            interactionCollisionShape.Position.Y = -32;
+        }
+        if (Direction == Direction.Down)
+        {
+            interactionCollisionShape.Rotation = 0;
+            interactionCollisionShape.Position.X = 0;
+            interactionCollisionShape.Position.Y = 6;
+        }
+    }
 }
 
 public class PlayerNextBuffer

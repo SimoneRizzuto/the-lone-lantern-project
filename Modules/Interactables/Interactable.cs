@@ -14,7 +14,6 @@ public partial class Interactable : Node2D
         customSignals = GetNode<CustomSignals>("/root/CustomSignals");
     }
 
-    
 
     public override void _Process(double delta)
     {
