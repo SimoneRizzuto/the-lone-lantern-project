@@ -194,7 +194,7 @@ do luce.PlayAnimatedSprite("sit down look right")
 Luce: [#look-right] I wonder if this is what life felt like.
 do luce.PlayAnimatedSprite("sit down look down")
 Luce: [#look-down] It is more... peaceful than I imagined.
-Luce: [#look-down] I wish I could feel this rain on my own skin.
+Luce: [#look-down] I wish I could feel the rain on my own skin.
 do luce.PlayAnimatedSprite("sit down")
 Luce: [#default] How does it feel for you?
 Little whirls are heard from the firefly.
