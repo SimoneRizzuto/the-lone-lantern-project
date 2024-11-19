@@ -14,7 +14,7 @@ public partial class PlayerStateMachine : StateMachine
     [Export] public AnimatedSprite2D MainSprite;
     [Export] public DustCloudModule DustCloudModule;
     
-    public override void _Ready()
+    public override void _EnterTree()
     {
         var owner = Owner;
         
