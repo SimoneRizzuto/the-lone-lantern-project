@@ -50,24 +50,27 @@ public partial class PlayerAttackingModule : Node
             //PauseStaminaRegen();
         }*/
 
-        var dashAttackIsBuffered = isBufferingDashAttack && State.PlayerState != PlayerState.Dashing;
-        if (dashAttackIsBuffered)
+        if (State.StaminaHealthModule.AllowAttack)
         {
-            isBufferingDashAttack = false;
-            TriggerDashAttack();
-        }
-        
-        CheckAttackInput();
-        
-        if (!StateIsAttacking) return;
-
-        if (isBufferingNormalAttack)
-        {
-            var onFinalFrame = AnimationFramesCount - 1 == State.MainSprite.Frame;
-            if (onFinalFrame)
+            var dashAttackIsBuffered = isBufferingDashAttack && State.PlayerState != PlayerState.Dashing;
+            if (dashAttackIsBuffered)
             {
-                isBufferingNormalAttack = false;
-                TriggerNormalAttack();
+                isBufferingDashAttack = false;
+                TriggerDashAttack();
+            }
+        
+            CheckAttackInput();
+        
+            if (!StateIsAttacking) return;
+
+            if (isBufferingNormalAttack)
+            {
+                var onFinalFrame = AnimationFramesCount - 1 == State.MainSprite.Frame;
+                if (onFinalFrame)
+                {
+                    isBufferingNormalAttack = false;
+                    TriggerNormalAttack();
+                }
             }
         }
 
@@ -119,6 +122,7 @@ public partial class PlayerAttackingModule : Node
         State.PlayerState = PlayerState.Attacking;
         
         attackTriggered = AttackType.Normal;
+        State.StaminaHealthModule.RemoveHealth(20);
     }
     
     public void TriggerDashAttack()
@@ -128,6 +132,8 @@ public partial class PlayerAttackingModule : Node
         // need to make a new dash attack for reaching far enemies, and/or for game feel.
 
         attackTriggered = AttackType.Dash;
+        State.StaminaHealthModule.RemoveHealth(20);
+        
         State.Player.CalculatedVelocity = attackVector * 6000f;
     }
 

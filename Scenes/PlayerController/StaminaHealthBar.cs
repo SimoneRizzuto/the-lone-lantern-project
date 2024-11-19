@@ -10,6 +10,11 @@ public partial class StaminaHealthBar : CanvasLayer
         progressBar.Value = progressBar.MaxValue;
     }
 
+    public void SetValue(double newHealth)
+    {
+        progressBar.Value = newHealth;
+    }
+
     // SIGNALS
     public void OnPlayerHealthChanged(double newHealth)
     {

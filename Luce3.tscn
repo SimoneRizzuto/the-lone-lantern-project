@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=3 uid="uid://lijck4bh3uhp"]
+[gd_scene load_steps=100 format=3 uid="uid://lijck4bh3uhp"]
 
 [ext_resource type="Script" path="res://Luce3.cs" id="1_2absu"]
 [ext_resource type="Script" path="res://Modules/PlayerStateMachine.cs" id="2_he6aw"]
@@ -28,6 +28,7 @@
 [ext_resource type="Texture2D" uid="uid://vvefpri732dh" path="res://Scenes/Player/luce_walking_right-Sheet.png" id="21_kfnqt"]
 [ext_resource type="Texture2D" uid="uid://crhnqx5rq8fj6" path="res://Scenes/Player/luce_walking_up-Sheet.png" id="22_16t4a"]
 [ext_resource type="PackedScene" uid="uid://c65srkhjbyvux" path="res://Modules/DustCloud/DustCloudModule.tscn" id="28_tcpop"]
+[ext_resource type="PackedScene" uid="uid://f6e35btgmilp" path="res://Modules/StaminaHealth/StaminaHealthModule.tscn" id="29_saycq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7w7s8"]
 atlas = ExtResource("4_d1roy")
@@ -661,28 +662,20 @@ wall_min_slide_angle = 0.0
 platform_on_leave = 2
 script = ExtResource("1_2absu")
 
-[node name="PlayerStateMachine" type="Node" parent="." node_paths=PackedStringArray("Player", "MainSprite", "DustCloudModule")]
+[node name="PlayerStateMachine" type="Node" parent="."]
 script = ExtResource("2_he6aw")
-Player = NodePath("..")
-MainSprite = NodePath("../MainSprite")
-DustCloudModule = NodePath("../DustCloudModule")
 
-[node name="PlayerIdleModule" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("State")]
+[node name="PlayerIdleModule" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("3_71eyc")
-State = NodePath("..")
 
-[node name="PlayerWalkingModule" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("State")]
+[node name="PlayerWalkingModule" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("4_1m3hb")
-State = NodePath("..")
 
-[node name="PlayerHurtingModule" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("State")]
+[node name="PlayerHurtingModule" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("5_iy26k")
-State = NodePath("..")
 
-[node name="PlayerAttackingModule" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("State", "AttackShape") groups=["player"]]
+[node name="PlayerAttackingModule" type="Node" parent="PlayerStateMachine" groups=["player"]]
 script = ExtResource("5_axho4")
-State = NodePath("..")
-AttackShape = NodePath("HitBox/CollisionPolygon2D")
 
 [node name="HitBox" type="Area2D" parent="PlayerStateMachine/PlayerAttackingModule"]
 visible = false
@@ -692,13 +685,13 @@ collision_layer = 4
 polygon = PackedVector2Array(-9, -34, 0, -34, 11, -32, 17, -30, 21, -28, 30, -19, 30, -10, 21, -1, 11, 3, 0, 5, -10, 5)
 disabled = true
 
-[node name="PlayerDashingModule" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("State")]
+[node name="PlayerDashingModule" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("6_y7xou")
-State = NodePath("..")
 
-[node name="PlayerDisabledModule" type="Node" parent="PlayerStateMachine" node_paths=PackedStringArray("State")]
+[node name="PlayerDisabledModule" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("5_2s08y")
-State = NodePath("..")
+
+[node name="StaminaHealthModule" parent="." instance=ExtResource("29_saycq")]
 
 [node name="DustCloudModule" parent="." instance=ExtResource("28_tcpop")]
 
