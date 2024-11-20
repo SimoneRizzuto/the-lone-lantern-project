@@ -1,3 +1,5 @@
+using Godot;
+using System;
 using TheLoneLanternProject.Helpers;
 using TheLoneLanternProject.Constants;
 using TheLoneLanternProject.Scenes.Player;
@@ -11,6 +13,7 @@ public partial class EnemyRepositionModule : Node
     [Export] public Vector2 MovementVector;
     [Export] public float MoveSpeed = DefaultMoveSpeed; // Set as needed
 
+    private Luce luce;
     public static readonly float DefaultMoveSpeed = 4000;
     public static readonly int MoveVelocityThreshold = 25; // might change
 
@@ -19,7 +22,7 @@ public partial class EnemyRepositionModule : Node
 
     public override void _Ready()
     {
-        State ?? GetParent<EnemyStateMachine>();
+        State ??= GetParent<EnemyStateMachine>();
     }
 
     private bool MovementVectorIsAboveThreshold(Vector2 vector) => vector.Length() > MovementVectorThreshold;
@@ -32,7 +35,7 @@ public partial class EnemyRepositionModule : Node
         luce = GetNodeHelper.GetLuce(tree);
 
 
-        var movementVector = Position.DirectionTo(luce.Position); 
+        var movementVector = State.Enemy.Position.DirectionTo(luce.Position); 
         State.Enemy.CalculatedVelocity = MovementVectorIsAboveThreshold(movementVector) ? movementVector * MoveSpeed : Vector2.Zero;
         // This also needs to be considered. Previously the framework had a parent (luce3) that had its own script that did this
         // stuff and set up CalculatedVelocity. Need to make one of these or find another solution

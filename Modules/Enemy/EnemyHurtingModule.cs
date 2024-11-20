@@ -1,3 +1,5 @@
+using Godot;
+using System;
 using TheLoneLanternProject.Scenes.Player;
 
 namespace TheLoneLanternProject.Modules;

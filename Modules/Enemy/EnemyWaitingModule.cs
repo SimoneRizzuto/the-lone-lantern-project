@@ -1,3 +1,5 @@
+using Godot;
+using System;
 using TheLoneLanternProject.Scenes.Player;
 
 namespace TheLoneLanternProject.Modules;
@@ -13,10 +15,10 @@ public partial class EnemyWaitingModule : Node
     public override void _Ready()
     {
         // Get state of the parent
-        State ?? GetParent<EnemyStateMachine>();
+        State ??= GetParent<EnemyStateMachine>();
     }
 
-    public override void _Process()
+    public override void _Process(double delta)
     {
         if (StateIsValid)
         {

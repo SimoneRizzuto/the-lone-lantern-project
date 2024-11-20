@@ -1,3 +1,5 @@
+using Godot;
+using System;
 using TheLoneLanternProject.Constants;
 using TheLoneLanternProject.Helpers;
 using TheLoneLanternProject.Modules;
@@ -10,7 +12,8 @@ public partial class EnemyOutofCombatModule : Node
 {
     [Export] public EnemyStateMachine State;
 
-    private bool StateIsOutOfCombat=> State.EnemyState is EnemyState.OutOfCombat;
+    private Luce luce;
+    private bool StateIsOutOfCombat => State.EnemyState is EnemyState.OutOfCombat;
     private static readonly float combatDistanceThreshold = 50;
 
     public override void _Ready()
@@ -19,7 +22,7 @@ public partial class EnemyOutofCombatModule : Node
 
     }
 
-    public override void _PhysicsProcess()
+    public override void _PhysicsProcess(double delta)
     {
         CheckDistanceToLuce();
 
@@ -36,16 +39,14 @@ public partial class EnemyOutofCombatModule : Node
         var tree = GetTree();
         luce = GetNodeHelper.GetLuce(tree);
 
-         var distance = Math.abs(luce.Position - Position); // just check that this works
+         var distance = State.Enemy.Position.DistanceTo(luce.Position); // just check that this works
         if (distance <= combatDistanceThreshold)
         {
-            StateIsOutOfCombat = false;
             State.EnemyState = EnemyState.Reposition;
 
         }
         else
         {
-            StateIsOutOfCombat = true;
             State.EnemyState = EnemyState.OutOfCombat;
         }
     }

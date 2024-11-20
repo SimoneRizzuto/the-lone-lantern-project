@@ -1,3 +1,5 @@
+using Godot;
+using System;
 using TheLoneLanternProject.Constants;
 using TheLoneLanternProject.Helpers;
 using TheLoneLanternProject.Modules;
@@ -10,6 +12,8 @@ public partial class EnemyAttackingModule : Node
 {
     [Export] public EnemyStateMachine State;
     [Export] public CollisionPolygon2D AttackShape;
+
+    private Luce luce;
 
     private bool isBufferingNormalAttack;
     private int attackAnimationCounter = 1;
@@ -34,7 +38,7 @@ public partial class EnemyAttackingModule : Node
         State.MainSprite.AnimationFinished += OnAnimationFinished;
     }
 
-    public override void _PhysicsProcess()
+    public override void _PhysicsProcess(double delta)
     {
         CheckAttackRecent();
 
@@ -58,7 +62,7 @@ public partial class EnemyAttackingModule : Node
         var tree = GetTree();
         luce = GetNodeHelper.GetLuce(tree);
 
-        attackVector = Position.DirectionTo(luce.Position);
+        attackVector = State.Enemy.Position.DirectionTo(luce.Position);
 
         var direction = DirectionHelper.GetSnappedDirection(attackVector);
         if (direction != Direction.None)
@@ -120,7 +124,7 @@ public partial class EnemyAttackingModule : Node
 
     private void OnAnimationFinished()
     {
-        State.EnemyState = EnemyState.Idle;
+        State.EnemyState = EnemyState.OutOfCombat;
     }
 
 

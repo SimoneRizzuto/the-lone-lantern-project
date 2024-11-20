@@ -1,3 +1,5 @@
+using Godot;
+using System;
 using TheLoneLanternProject.Constants;
 using TheLoneLanternProject.Helpers;
 using TheLoneLanternProject.Scenes.Player;
@@ -7,7 +9,7 @@ namespace TheLoneLanternProject.Modules;
 [GlobalClass]
 public partial class EnemyStateMachine : StateMachine
 {
-    // [Export] public EnemyClass Enemy; // Placeholder in case the enemy needs to be supplied like luce is supplied
+    [Export] public Enemy Enemy; // Placeholder in case the enemy needs to be supplied like luce is supplied
     // Initialise State and Direction
     [Export] public EnemyState EnemyState = EnemyState.Waiting;
     [Export] public Direction LastDirection = Direction.Down;
@@ -19,7 +21,7 @@ public partial class EnemyStateMachine : StateMachine
     {
         var owner = Owner;
 
-        //Enemy??= (EnemyClass)owner;
+        Enemy ??= (Enemy)owner;
         MainSprite ??= owner.GetNode<AnimatedSprite2D>("MainSprite");
     }
 
