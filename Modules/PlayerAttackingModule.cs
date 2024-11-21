@@ -12,6 +12,8 @@ public partial class PlayerAttackingModule : Node
 {
     [Export] public PlayerStateMachine State;
     [Export] public CollisionPolygon2D AttackShape;
+
+    private bool AllowAttack => State.StaminaHealthModule.AllowAction;
     
     private bool isBufferingNormalAttack;
     private bool isBufferingDashAttack;
@@ -56,9 +58,9 @@ public partial class PlayerAttackingModule : Node
             isBufferingDashAttack = false;
             TriggerDashAttack();
         }
-        
+    
         CheckAttackInput();
-        
+    
         if (!StateIsAttacking) return;
 
         if (isBufferingNormalAttack)
@@ -76,7 +78,7 @@ public partial class PlayerAttackingModule : Node
 
     private void CheckAttackInput()
     {
-        if (!Input.IsActionJustPressed(InputMapAction.Attack)) return;
+        if (!Input.IsActionJustPressed(InputMapAction.Attack) || !AllowAttack) return;
         
         if (State.PlayerState == PlayerState.Attacking)
         {
@@ -119,6 +121,7 @@ public partial class PlayerAttackingModule : Node
         State.PlayerState = PlayerState.Attacking;
         
         attackTriggered = AttackType.Normal;
+        State.StaminaHealthModule.RemoveStaminaHealth(20);
     }
     
     public void TriggerDashAttack()
@@ -128,6 +131,8 @@ public partial class PlayerAttackingModule : Node
         // need to make a new dash attack for reaching far enemies, and/or for game feel.
 
         attackTriggered = AttackType.Dash;
+        State.StaminaHealthModule.RemoveStaminaHealth(20);
+        
         State.Player.CalculatedVelocity = attackVector * 6000f;
     }
 
@@ -136,33 +141,33 @@ public partial class PlayerAttackingModule : Node
         switch (attackTriggered)
         {
             case AttackType.Normal:
-                if (State.MainSprite.Frame == 1)
+                switch (State.MainSprite.Frame)
                 {
-                    State.Player.CalculatedVelocity = attackVector * 1250f;
-                }
-                else if (State.MainSprite.Frame >= 2)
-                {
-                    State.Player.CalculatedVelocity = attackVector;
-                    AttackShape.Disabled = true;
+                    case 1:
+                        State.Player.CalculatedVelocity = attackVector * 1250f;
+                        break;
+                    case >= 2:
+                        State.Player.CalculatedVelocity = attackVector;
+                        AttackShape.Disabled = true;
+                        break;
                 }
                 break;
             case AttackType.Dash:
-                if (State.MainSprite.Frame == 1)
+                switch (State.MainSprite.Frame)
                 {
-                    State.Player.CalculatedVelocity = attackVector * 5000f;
-                }
-                else if (State.MainSprite.Frame == 2)
-                {
-                    State.Player.CalculatedVelocity = attackVector * 3000f;
-                    AttackShape.Disabled = true;
-                }
-                else if (State.MainSprite.Frame == 3)
-                {
-                    State.Player.CalculatedVelocity = attackVector * 2000f;
-                }
-                else if (State.MainSprite.Frame >= 4)
-                {
-                    State.Player.CalculatedVelocity = attackVector;
+                    case 1:
+                        State.Player.CalculatedVelocity = attackVector * 5000f;
+                        break;
+                    case 2:
+                        State.Player.CalculatedVelocity = attackVector * 3000f;
+                        AttackShape.Disabled = true;
+                        break;
+                    case 3:
+                        State.Player.CalculatedVelocity = attackVector * 2000f;
+                        break;
+                    case >= 4:
+                        State.Player.CalculatedVelocity = attackVector;
+                        break;
                 }
                 break;
         }
