@@ -141,33 +141,33 @@ public partial class PlayerAttackingModule : Node
         switch (attackTriggered)
         {
             case AttackType.Normal:
-                if (State.MainSprite.Frame == 1)
+                switch (State.MainSprite.Frame)
                 {
-                    State.Player.CalculatedVelocity = attackVector * 1250f;
-                }
-                else if (State.MainSprite.Frame >= 2)
-                {
-                    State.Player.CalculatedVelocity = attackVector;
-                    AttackShape.Disabled = true;
+                    case 1:
+                        State.Player.CalculatedVelocity = attackVector * 1250f;
+                        break;
+                    case >= 2:
+                        State.Player.CalculatedVelocity = attackVector;
+                        AttackShape.Disabled = true;
+                        break;
                 }
                 break;
             case AttackType.Dash:
-                if (State.MainSprite.Frame == 1)
+                switch (State.MainSprite.Frame)
                 {
-                    State.Player.CalculatedVelocity = attackVector * 5000f;
-                }
-                else if (State.MainSprite.Frame == 2)
-                {
-                    State.Player.CalculatedVelocity = attackVector * 3000f;
-                    AttackShape.Disabled = true;
-                }
-                else if (State.MainSprite.Frame == 3)
-                {
-                    State.Player.CalculatedVelocity = attackVector * 2000f;
-                }
-                else if (State.MainSprite.Frame >= 4)
-                {
-                    State.Player.CalculatedVelocity = attackVector;
+                    case 1:
+                        State.Player.CalculatedVelocity = attackVector * 5000f;
+                        break;
+                    case 2:
+                        State.Player.CalculatedVelocity = attackVector * 3000f;
+                        AttackShape.Disabled = true;
+                        break;
+                    case 3:
+                        State.Player.CalculatedVelocity = attackVector * 2000f;
+                        break;
+                    case >= 4:
+                        State.Player.CalculatedVelocity = attackVector;
+                        break;
                 }
                 break;
         }
