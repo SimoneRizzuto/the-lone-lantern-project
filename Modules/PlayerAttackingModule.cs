@@ -12,6 +12,8 @@ public partial class PlayerAttackingModule : Node
 {
     [Export] public PlayerStateMachine State;
     [Export] public CollisionPolygon2D AttackShape;
+
+    private bool AllowAttack => State.StaminaHealthModule.AllowAttack;
     
     private bool isBufferingNormalAttack;
     private bool isBufferingDashAttack;
@@ -50,27 +52,24 @@ public partial class PlayerAttackingModule : Node
             //PauseStaminaRegen();
         }*/
 
-        if (State.StaminaHealthModule.AllowAttack)
+        var dashAttackIsBuffered = isBufferingDashAttack && State.PlayerState != PlayerState.Dashing;
+        if (dashAttackIsBuffered)
         {
-            var dashAttackIsBuffered = isBufferingDashAttack && State.PlayerState != PlayerState.Dashing;
-            if (dashAttackIsBuffered)
-            {
-                isBufferingDashAttack = false;
-                TriggerDashAttack();
-            }
-        
-            CheckAttackInput();
-        
-            if (!StateIsAttacking) return;
+            isBufferingDashAttack = false;
+            TriggerDashAttack();
+        }
+    
+        CheckAttackInput();
+    
+        if (!StateIsAttacking) return;
 
-            if (isBufferingNormalAttack)
+        if (isBufferingNormalAttack)
+        {
+            var onFinalFrame = AnimationFramesCount - 1 == State.MainSprite.Frame;
+            if (onFinalFrame)
             {
-                var onFinalFrame = AnimationFramesCount - 1 == State.MainSprite.Frame;
-                if (onFinalFrame)
-                {
-                    isBufferingNormalAttack = false;
-                    TriggerNormalAttack();
-                }
+                isBufferingNormalAttack = false;
+                TriggerNormalAttack();
             }
         }
 
@@ -79,7 +78,7 @@ public partial class PlayerAttackingModule : Node
 
     private void CheckAttackInput()
     {
-        if (!Input.IsActionJustPressed(InputMapAction.Attack)) return;
+        if (!Input.IsActionJustPressed(InputMapAction.Attack) || !AllowAttack) return;
         
         if (State.PlayerState == PlayerState.Attacking)
         {
