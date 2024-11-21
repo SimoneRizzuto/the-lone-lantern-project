@@ -5,13 +5,13 @@ using TheLoneLanternProject.Scenes.PlayerController;
 
 public partial class StaminaHealthModule : Node2D
 {
-	private double h = 0;
-	private double Health
+	private double sh = 0;
+	private double StaminaHealth
 	{
-		get => h;
+		get => sh;
 		set
 		{
-			h = value;
+			sh = value;
 			
 			// variable set for visible bar
 			bar.SetValue(value);
@@ -30,7 +30,7 @@ public partial class StaminaHealthModule : Node2D
 	
 	public override void _Ready()
 	{
-		h = maxHealth;
+		sh = maxHealth;
 		bar = GetNode<StaminaHealthBar>("StaminaHealthBar");
 		bar.Visible = false;
 	}
@@ -45,8 +45,8 @@ public partial class StaminaHealthModule : Node2D
 		
 		if (isRegenerating)
 		{
-			Health++;
-			if (Health >= maxHealth)
+			StaminaHealth++;
+			if (StaminaHealth >= maxHealth)
 			{
 				visibilityTimer.Restart();
 				isRegenerating = false;
@@ -63,22 +63,22 @@ public partial class StaminaHealthModule : Node2D
 		}
 	}
 
-	public void RemoveHealth(double toRemove)
+	public void RemoveStaminaHealth(double toRemove)
 	{
-		Health -= toRemove;
+		StaminaHealth -= toRemove;
 		
-		if (Health <= 0)
+		if (StaminaHealth <= 0)
 		{
-			Health = 0;
+			StaminaHealth = 0;
 		}
 		
 		isRegenerating = false;
 		regenBufferTimer.Restart();
 	}
 
-	public void SetHealth(double newHealth)
+	public void SetStaminaHealth(double newHealth)
 	{
-		Health = newHealth;
+		StaminaHealth = newHealth;
 	}
 
 	public void TriggerRegen()
@@ -86,5 +86,5 @@ public partial class StaminaHealthModule : Node2D
 		isRegenerating = true;
 	}
 
-	public bool AllowAttack => !(h <= 1);
+	public bool AllowAction => !(sh <= 1);
 }
