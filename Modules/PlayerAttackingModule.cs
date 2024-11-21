@@ -13,7 +13,7 @@ public partial class PlayerAttackingModule : Node
     [Export] public PlayerStateMachine State;
     [Export] public CollisionPolygon2D AttackShape;
 
-    private bool AllowAttack => State.StaminaHealthModule.AllowAttack;
+    private bool AllowAttack => State.StaminaHealthModule.AllowAction;
     
     private bool isBufferingNormalAttack;
     private bool isBufferingDashAttack;
@@ -121,7 +121,7 @@ public partial class PlayerAttackingModule : Node
         State.PlayerState = PlayerState.Attacking;
         
         attackTriggered = AttackType.Normal;
-        State.StaminaHealthModule.RemoveHealth(20);
+        State.StaminaHealthModule.RemoveStaminaHealth(20);
     }
     
     public void TriggerDashAttack()
@@ -131,7 +131,7 @@ public partial class PlayerAttackingModule : Node
         // need to make a new dash attack for reaching far enemies, and/or for game feel.
 
         attackTriggered = AttackType.Dash;
-        State.StaminaHealthModule.RemoveHealth(20);
+        State.StaminaHealthModule.RemoveStaminaHealth(20);
         
         State.Player.CalculatedVelocity = attackVector * 6000f;
     }
