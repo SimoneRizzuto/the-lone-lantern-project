@@ -6,7 +6,6 @@ using TheLoneLanternProject.Scenes.PlayerController;
 public partial class StaminaHealthModule : Node2D
 {
 	public double CurrentStaminaHealth => sh;
-	
 	private double sh = 0;
 	private double StaminaHealth
 	{
@@ -20,6 +19,8 @@ public partial class StaminaHealthModule : Node2D
 			bar.Visible = true;
 		}
 	}
+	
+	public double RegenSpeedPerSecond = 35;
 	
 	private readonly double maxHealth = 100;
 
@@ -45,7 +46,7 @@ public partial class StaminaHealthModule : Node2D
 			visibilityTimer.Reset();
 		}
 		
-		if (ProcessRegeneration()) return;
+		if (ProcessRegeneration(delta)) return;
 		
 		var regenBufferFinished = regenBufferTimer.ElapsedMilliseconds >= regenBufferSeconds * 1000;
 		if (regenBufferFinished)
@@ -78,11 +79,11 @@ public partial class StaminaHealthModule : Node2D
 		isRegenerating = true;
 	}
 
-	private bool ProcessRegeneration()
+	private bool ProcessRegeneration(double delta)
 	{
 		if (isRegenerating)
 		{
-			StaminaHealth++;
+			StaminaHealth += RegenSpeedPerSecond * delta;
 			
 			if (StaminaHealth >= maxHealth)
 			{
