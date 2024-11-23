@@ -45,17 +45,7 @@ public partial class StaminaHealthModule : Node2D
 			visibilityTimer.Reset();
 		}
 		
-		if (isRegenerating)
-		{
-			StaminaHealth++;
-			if (StaminaHealth >= maxHealth)
-			{
-				visibilityTimer.Restart();
-				isRegenerating = false;
-			}
-			
-			return;
-		}
+		if (ProcessRegeneration()) return;
 		
 		var regenBufferFinished = regenBufferTimer.ElapsedMilliseconds >= regenBufferSeconds * 1000;
 		if (regenBufferFinished)
@@ -86,6 +76,22 @@ public partial class StaminaHealthModule : Node2D
 	public void TriggerRegen()
 	{
 		isRegenerating = true;
+	}
+
+	private bool ProcessRegeneration()
+	{
+		if (isRegenerating)
+		{
+			StaminaHealth++;
+			
+			if (StaminaHealth >= maxHealth)
+			{
+				visibilityTimer.Restart();
+				isRegenerating = false;
+			}
+		}
+
+		return isRegenerating;
 	}
 
 	public bool AllowAction => !(sh <= 1);
