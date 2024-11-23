@@ -12,9 +12,11 @@ public partial class PlayerDashingModule : Node
 {
     [Export] public PlayerStateMachine State;
     [Export] public float DashSpeed = PlayerWalkingModule.DefaultMoveSpeed * 5;
-    [Export] public int DashMilliseconds = 1000 / 8;
+    [Export] public int DashLengthMilliseconds = 1000 / 8;
 
     private bool AllowDash => State.StaminaHealthModule.AllowAction;
+
+    private Stopwatch nextDashDelay = new();
     
     private readonly Stopwatch sw = new();
     private bool isBufferingNextDash; // do I even want to buffer a dash?? research what other games do... most likely only buffer near the end of a dash
@@ -33,7 +35,7 @@ public partial class PlayerDashingModule : Node
             return;
         }
 
-        if (DashMilliseconds <= sw.Elapsed.Milliseconds)
+        if (DashLengthMilliseconds <= sw.Elapsed.Milliseconds)
         {
             if (isBufferingNextDash)
             {
@@ -53,36 +55,42 @@ public partial class PlayerDashingModule : Node
     {
         if (!Input.IsActionJustPressed(InputMapAction.Dash) || !AllowDash) return;
         
-        var directionVector = Input.GetVector(InputMapAction.Left, InputMapAction.Right, InputMapAction.Up, InputMapAction.Down);
-        if (directionVector != Vector2.Zero)
+        if (nextDashDelay.ElapsedMilliseconds <= 1000 && nextDashDelay.ElapsedMilliseconds != 0)
         {
-            if (State.PlayerState is PlayerState.Idle or PlayerState.Walking)
-            {
-                var dashDirection = DirectionHelper.GetSnappedDirection(directionVector);
-                State.Player.CalculatedVelocity = directionVector * DashSpeed;
-                State.LastDirection = dashDirection;
+            nextDashDelay.Reset();
+            return;
+        }
+        
+        var directionVector = Input.GetVector(InputMapAction.Left, InputMapAction.Right, InputMapAction.Up, InputMapAction.Down);
+        if (directionVector == Vector2.Zero) return;
+        
+        if (State.PlayerState is PlayerState.Idle or PlayerState.Walking)
+        {
+            var dashDirection = DirectionHelper.GetSnappedDirection(directionVector);
+            State.Player.CalculatedVelocity = directionVector * DashSpeed;
+            State.LastDirection = dashDirection;
                 
-                State.PlayerState = PlayerState.Dashing;
-                State.StaminaHealthModule.RemoveStaminaHealth(15);
+            State.PlayerState = PlayerState.Dashing;
+            State.StaminaHealthModule.RemoveStaminaHealth(15);
 
-                State.DustCloudModule.Play_DashCloud(State.Player.Position);
+            State.DustCloudModule.Play_DashCloud(State.Player.Position);
                 
-                //State.MainSprite.Play($"");
+            //State.MainSprite.Play($"");
                 
-                //start animation
+            //start animation
                 
-                sw.Start();
-            }
-            
-            
-            if (DashMilliseconds <= sw.Elapsed.Milliseconds)
-            {
-                sw.Restart();
-            }
-            else
-            {
-                //isBufferingNextDash = true;
-            }
+            sw.Start();
+        }
+        
+        nextDashDelay.Restart();
+        
+        if (DashLengthMilliseconds <= sw.Elapsed.Milliseconds)
+        {
+            sw.Restart();
+        }
+        else
+        {
+            //isBufferingNextDash = true;
         }
     }
 }

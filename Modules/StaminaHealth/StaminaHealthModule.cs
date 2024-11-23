@@ -5,6 +5,8 @@ using TheLoneLanternProject.Scenes.PlayerController;
 
 public partial class StaminaHealthModule : Node2D
 {
+	public double CurrentStaminaHealth => sh;
+	
 	private double sh = 0;
 	private double StaminaHealth
 	{

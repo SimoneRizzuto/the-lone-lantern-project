@@ -19,6 +19,7 @@ public partial class PlayerWalkingModule : Node
     public static readonly float DefaultMoveSpeed = 5000;
     public static readonly int MoveVelocityThreshold = 25;
     
+    private float CurrentMoveSpeed => State.StaminaHealthModule.CurrentStaminaHealth <= 5 ? MoveSpeed / 3 : MoveSpeed;
     private float MovementVectorThreshold => MoveVelocityThreshold / 100f;
     private bool StateIsValid => State.PlayerState is PlayerState.Attacking or PlayerState.Dashing or PlayerState.Disabled;
 
@@ -34,7 +35,7 @@ public partial class PlayerWalkingModule : Node
         if (StateIsValid) return;
         
         var movementVector = Input.GetVector(InputMapAction.Left, InputMapAction.Right, InputMapAction.Up, InputMapAction.Down);
-        State.Player.CalculatedVelocity = MovementVectorIsAboveThreshold(movementVector) ? movementVector * MoveSpeed : Vector2.Zero;
+        State.Player.CalculatedVelocity = MovementVectorIsAboveThreshold(movementVector) ? movementVector * CurrentMoveSpeed : Vector2.Zero;
         
         SetMovementAnimation(movementVector);
     }
