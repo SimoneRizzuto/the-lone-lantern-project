@@ -81,12 +81,12 @@ animations = [{
 }, {
 "frames": [],
 "loop": true,
-"name": &"attack left",
+"name": &"attack left 1",
 "speed": 5.0
 }, {
 "frames": [],
 "loop": true,
-"name": &"attack right",
+"name": &"attack right 1",
 "speed": 5.0
 }, {
 "frames": [],
@@ -187,6 +187,7 @@ animations = [{
 size = Vector2(40, 12)
 
 [node name="Enemy" type="CharacterBody2D"]
+scale = Vector2(0.25, 0.25)
 script = ExtResource("1_7p2a7")
 
 [node name="EnemyStateMachine" type="Node" parent="."]
@@ -204,6 +205,10 @@ script = ExtResource("5_s2sm0")
 [node name="HitBox" type="Area2D" parent="EnemyStateMachine/EnemyAttackingModule"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EnemyStateMachine/EnemyAttackingModule/HitBox"]
+visible = false
+position = Vector2(-2, 0)
+scale = Vector2(0.352594, 0.268519)
+polygon = PackedVector2Array(17, -1, 29, -12, 31, -25, 29, -37, 22, -47, 13, -52, 4, -52, -12, -51, -17, -44, -20, -32, -22, -16, -17, -2, -4, 2, 12, 1)
 
 [node name="EnemyHurtingModule" type="Node" parent="EnemyStateMachine"]
 script = ExtResource("6_47j40")
@@ -212,7 +217,7 @@ script = ExtResource("6_47j40")
 position = Vector2(0, -80)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_j20ov")
-animation = &"attack right"
+animation = &"attack left 1"
 
 [node name="MainShape" type="CollisionShape2D" parent="."]
 position = Vector2(0, -6)

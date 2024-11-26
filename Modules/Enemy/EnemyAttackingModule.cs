@@ -70,13 +70,13 @@ public partial class EnemyAttackingModule : Node
             State.LastDirection = direction;
         }
 
-        if (Enum.GetName(State.LastDirection)?.ToLower() == "down") attackAnimationCounter = 1; // PLACEHOLDER to not break enemy from down attack, can remove once second down attack is added
+        if (Enum.GetName(State.LastDirection)?.ToLower() == "down") attackAnimationCounter = 1; 
 
         State.MainSprite.Play($"attack {Enum.GetName(State.LastDirection)?.ToLower()} {attackAnimationCounter}");
 
         if (attackAnimationCounter == 1)
         {
-            attackAnimationCounter++;
+            attackAnimationCounter++; // change so just a single attack
         }
         else
         {
