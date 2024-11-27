@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://bihv5yjq7muuh" path="res://Scenes/Static/SicilianHouse.tscn" id="2_msofi"]
 [ext_resource type="PackedScene" uid="uid://barc3o7fkbn44" path="res://Scenes/SceneSwitcher/DoorSquare2D.tscn" id="3_stxbc"]
 [ext_resource type="PackedScene" uid="uid://ubc5cusrcpq7" path="res://Scenes/Static/Couch.tscn" id="4_shl2e"]
-[ext_resource type="PackedScene" uid="uid://bjteskckd8oqn" path="res://Scenes/Enemies/EnemyBlob.tscn" id="5_4pwfj"]
+[ext_resource type="PackedScene" uid="uid://0bfaldsm103s" path="res://Enemies/Enemy.tscn" id="6_cukbl"]
 [ext_resource type="PackedScene" uid="uid://h0qtabwk04wy" path="res://Scenes/CutsceneDirector/CutsceneDirector.tscn" id="6_rv17u"]
 
 [node name="DevRoom" type="Node2D"]
@@ -12,7 +12,7 @@ z_as_relative = false
 y_sort_enabled = true
 
 [node name="Luce" parent="." instance=ExtResource("1_7nylb")]
-position = Vector2(204, 234)
+position = Vector2(200, 272)
 
 [node name="SicilianHouse" parent="." instance=ExtResource("2_msofi")]
 position = Vector2(165, 173)
@@ -27,9 +27,7 @@ ExitDirection = 0
 [node name="Couch" parent="." instance=ExtResource("4_shl2e")]
 position = Vector2(99, 263)
 
-[node name="EnemyBlob" parent="." instance=ExtResource("5_4pwfj")]
-z_as_relative = true
-y_sort_enabled = false
-position = Vector2(363, 198)
-
 [node name="CutsceneDirector" parent="." instance=ExtResource("6_rv17u")]
+
+[node name="Enemy" parent="." instance=ExtResource("6_cukbl")]
+position = Vector2(356, 211)
