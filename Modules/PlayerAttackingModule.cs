@@ -13,7 +13,9 @@ public partial class PlayerAttackingModule : Node
     [Export] public PlayerStateMachine State;
     [Export] public CollisionPolygon2D AttackShape;
 
-    private bool AllowAttack => State.StaminaHealthModule.AllowAction;
+    private bool AllowAttack => State.StaminaHealthModule.AllowAction 
+                                && State.PlayerState is not PlayerState.Disabled 
+                                && State.PlayerState is not PlayerState.Hurting;
     
     private bool isBufferingNormalAttack;
     private bool isBufferingDashAttack;
