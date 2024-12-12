@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using TheLoneLanternProject.Constants;
 using TheLoneLanternProject.Extensions;
 using TheLoneLanternProject.Modules;
 using TheLoneLanternProject.Scenes.Player;
@@ -34,5 +35,10 @@ public partial class Luce3 : CharacterBody2D
 	public void SetState(PlayerState state)
 	{
 		playerStateMachine.PlayerState = state;
+	}
+
+	public void SetDirection(Direction direction)
+	{
+		playerStateMachine.LastDirection = direction;
 	}
 }

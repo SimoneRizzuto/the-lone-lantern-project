@@ -717,7 +717,6 @@ script = ExtResource("5_2s08y")
 
 [node name="Camera2D" type="Camera2D" parent="." groups=["player camera"]]
 position = Vector2(0, -12)
-zoom = Vector2(2, 2)
 process_callback = 0
 position_smoothing_enabled = true
 script = ExtResource("10_vy75j")
@@ -735,7 +734,7 @@ one_way_collision_margin = 0.0
 z_as_relative = false
 y_sort_enabled = true
 sprite_frames = SubResource("SpriteFrames_51ooq")
-animation = &"sit down look left"
+animation = &"idle down"
 offset = Vector2(0, -18)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
