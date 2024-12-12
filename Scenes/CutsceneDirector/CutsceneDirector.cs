@@ -11,7 +11,7 @@ using TheLoneLanternProject.Scenes.Player;
 public partial class CutsceneDirector : Node
 {
     private CustomSignals customSignals = new();
-    private Luce luce = new();
+    private Luce3 luce = new();
     private ActorNodeBase luceActor = new();
     private Rain rain;
     
@@ -49,7 +49,7 @@ public partial class CutsceneDirector : Node
         customSignals.ShowDialogueBalloon += ShowDialogueBalloon;
 
         var tree = GetTree();
-        luce = GetNodeHelper.GetLuce(tree);
+        luce = GetNodeHelper.GetLuce3(tree);
         var actorNodes = tree.GetNodesInGroup(NodeGroup.ActorNode);
         var actorBaseNodes = actorNodes.Cast<ActorNodeBase>().ToList();
 
@@ -88,7 +88,7 @@ public partial class CutsceneDirector : Node
     }
     private void ShowDialogueBalloon(string dialogue, string title)
     {
-        luce.State = PlayerState.Disabled;
+        luce.SetState(PlayerState.Disabled);
         
         DialogueManager.ShowDialogueBalloon(GD.Load($"res://Dialogue/{dialogue}.dialogue"), title);
         DialogueManager.DialogueEnded += SetupGameplayAfterDialogueEnded;
@@ -181,7 +181,7 @@ public partial class CutsceneDirector : Node
     
     private void SetupGameplayAfterDialogueEnded(Resource dialogueResource)
     {
-        luce.State = PlayerState.Idle;
+        luce.SetState(PlayerState.Idle);
         DialogueManager.DialogueEnded -= SetupGameplayAfterDialogueEnded;
     }
 }

@@ -13,7 +13,7 @@ public partial class EnemyAttackingModule : Node
     [Export] public EnemyStateMachine State;
     [Export] public CollisionPolygon2D AttackShape;
 
-    private Luce luce;
+    private Luce3 luce;
 
     private bool isBufferingNormalAttack;
     private int attackAnimationCounter = 1;
@@ -60,7 +60,7 @@ public partial class EnemyAttackingModule : Node
     public void TriggerNormalAttack()
     {
         var tree = GetTree();
-        luce = GetNodeHelper.GetLuce(tree);
+        luce = GetNodeHelper.GetLuce3(tree);
 
         attackVector = State.Enemy.Position.DirectionTo(luce.Position);
 

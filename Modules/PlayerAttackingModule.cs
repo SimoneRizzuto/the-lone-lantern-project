@@ -177,6 +177,8 @@ public partial class PlayerAttackingModule : Node
     
     private void OnAnimationFinished()
     {
+        if (State.PlayerState == PlayerState.Disabled) return;
+        
         State.PlayerState = PlayerState.Idle;
     }
 }

@@ -16,7 +16,7 @@ public partial class PlayerDashingModule : Node
 
     private bool AllowDash => State.StaminaHealthModule.AllowAction;
 
-    private Stopwatch nextDashDelay = new();
+    private readonly Stopwatch nextDashDelay = new();
     
     private readonly Stopwatch sw = new();
     private bool isBufferingNextDash; // do I even want to buffer a dash?? research what other games do... most likely only buffer near the end of a dash
@@ -55,7 +55,7 @@ public partial class PlayerDashingModule : Node
     {
         if (!Input.IsActionJustPressed(InputMapAction.Dash) || !AllowDash) return;
         
-        if (nextDashDelay.ElapsedMilliseconds <= 1000 && nextDashDelay.ElapsedMilliseconds != 0)
+        if (nextDashDelay.ElapsedMilliseconds <= 2000 && nextDashDelay.ElapsedMilliseconds != 0)
         {
             nextDashDelay.Reset();
             return;
@@ -69,16 +69,16 @@ public partial class PlayerDashingModule : Node
             var dashDirection = DirectionHelper.GetSnappedDirection(directionVector);
             State.Player.CalculatedVelocity = directionVector * DashSpeed;
             State.LastDirection = dashDirection;
-                
+            
             State.PlayerState = PlayerState.Dashing;
             State.StaminaHealthModule.RemoveStaminaHealth(15);
 
             State.DustCloudModule.Play_DashCloud(State.Player.Position);
-                
+            
             //State.MainSprite.Play($"");
-                
+            
             //start animation
-                
+            
             sw.Start();
         }
         

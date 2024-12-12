@@ -9,7 +9,7 @@ public partial class Tripod2D : Node2D
     [Export] public bool DetachOnScreenExit = true;
     [Export] public Vector2 Zoom = new(1f, 1f); // CHANGE VALUE HERE TO CHANGE ZOOM
     
-    private Luce luce;
+    private Luce3 luce;
     private PlayerCamera2D playerCamera2D;
     private MainCamera2D mainCamera2D;
     private CollisionShape2D mount;
@@ -24,7 +24,7 @@ public partial class Tripod2D : Node2D
             mount = node;
         }
         
-        luce = GetNodeHelper.GetLuce(tree);
+        luce = GetNodeHelper.GetLuce3(tree);
         playerCamera2D = GetNodeHelper.GetPlayerCamera2D(tree);
         mainCamera2D = GetNodeHelper.GetMainCamera2D(tree);
         

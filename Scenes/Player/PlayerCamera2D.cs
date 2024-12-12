@@ -15,11 +15,11 @@ public partial class PlayerCamera2D : Camera2D
 
     public bool FollowPlayer = true;
 
-    private Luce luce;
+    private Luce3 luce;
     
     private bool playerIsMoving;
-    private Stopwatch howLongPlayerMoving = new();
-    private Stopwatch howLongPlayerIdle = new();
+    private readonly Stopwatch howLongPlayerMoving = new();
+    private readonly Stopwatch howLongPlayerIdle = new();
     
     private float x;
     private float y;
@@ -33,7 +33,7 @@ public partial class PlayerCamera2D : Camera2D
     {
         var tree = GetTree();
         
-        luce = GetNodeHelper.GetLuce(tree);
+        luce = GetNodeHelper.GetLuce3(tree);
         mainCamera2D = GetNodeHelper.GetMainCamera2D(tree);
     }
 

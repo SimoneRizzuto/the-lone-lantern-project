@@ -18,6 +18,18 @@ public static class GetNodeHelper
         return luce;
     }
     
+    public static Luce3 GetLuce3(SceneTree tree)
+    {
+        var luceNodes = tree.GetNodesInGroup(NodeGroup.Player);
+        var luce = luceNodes.Cast<Luce3>().FirstOrDefault();
+        if (luce == null)
+        {
+            GD.PrintErr($"{nameof(luce)} was null.");
+        }
+        
+        return luce;
+    }
+    
     public static MainCamera2D GetMainCamera2D(SceneTree tree)
     {
         var mainCamera2DNodes = tree.GetNodesInGroup(NodeGroup.MainCamera);

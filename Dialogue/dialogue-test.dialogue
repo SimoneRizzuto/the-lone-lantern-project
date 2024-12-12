@@ -3,7 +3,7 @@
 
 do nori.PlayAnimatedSprite("sit crying look down")
 
-#do director.Wait(5
+#do director.Wait(5)
 do luce.MoveDown(2, 0.5)
 #do director.Wait(3)
 Luce readies his weapon to reap her.
