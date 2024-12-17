@@ -747,9 +747,34 @@ script = ExtResource("23_rsyqp")
 AnimatedSprite2D = NodePath("../AnimatedSprite2D")
 AnimationPlayer = NodePath("../AnimationPlayer")
 
-[node name="InteractionZone" type="Area2D" parent="."]
+[node name="InteractionZoneDown" type="Area2D" parent="." groups=["Interact"]]
+position = Vector2(0, 8)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionZone"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionZoneDown"]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_7q80j")
+
+[node name="InteractionZoneLeft" type="Area2D" parent="." groups=["Interact"]]
+position = Vector2(-8, 0)
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionZoneLeft"]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_7q80j")
+
+[node name="InteractionZoneRight" type="Area2D" parent="." groups=["Interact"]]
+position = Vector2(8, -4.76837e-07)
+rotation = -1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionZoneRight"]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_7q80j")
+
+[node name="InteractionZoneUp" type="Area2D" parent="." groups=["Interact"]]
+position = Vector2(0, -16)
+rotation = 3.14159
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionZoneUp"]
 position = Vector2(0, 6)
 shape = SubResource("RectangleShape2D_7q80j")
 

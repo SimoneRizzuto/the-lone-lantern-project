@@ -1,5 +1,7 @@
 using DialogueManagerRuntime;
 using Godot;
+using TheLoneLanternProject.Scenes.Player;
+using TheLoneLanternProject.Helpers;
 using System;
 
 [GlobalClass]

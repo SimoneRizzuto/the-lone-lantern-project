@@ -56,7 +56,10 @@ public partial class Luce : CharacterBody2D
     private AnimatedSprite2D mainSprite = new();
     private CollisionShape2D mainShape = new();
     private CollisionPolygon2D attackShape = new();
-    private CollisionShape2D interactionCollisionShape = new();
+    private Area2D interactionLeftArea = new();
+    private Area2D interactionRightArea = new();
+    private Area2D interactionUpArea = new();
+    private Area2D interactionDownArea = new();
 
     public override void _Ready()
     {
@@ -68,7 +71,10 @@ public partial class Luce : CharacterBody2D
 
         healthRegenBuffer = GetNode<Timer>("Timers/HealthRegenBuffer");
 
-        interactionCollisionShape = GetNode<CollisionShape2D>("InteractionZone/CollisionShape2D");
+        interactionLeftArea = GetNode<Area2D>("InteractionZoneLeft");
+        interactionRightArea= GetNode<Area2D>("InteractionZoneRight");
+        interactionUpArea= GetNode<Area2D>("InteractionZoneUp");
+        interactionDownArea= GetNode<Area2D>("InteractionZoneDown");
 
         audioDirector = AudioDirector.Instance;
     }
@@ -311,29 +317,26 @@ public partial class Luce : CharacterBody2D
     {
         Direction = nextBuffer.NextDirection;
 
+        interactionLeftArea.RemoveFromGroup(NodeGroup.Interact);
+        interactionRightArea.RemoveFromGroup(NodeGroup.Interact);
+        interactionUpArea.RemoveFromGroup(NodeGroup.Interact);
+        interactionDownArea.RemoveFromGroup(NodeGroup.Interact);
+
         if (Direction == Direction.Right)
         {
-            interactionCollisionShape.Rotation = 90;
-            interactionCollisionShape.Position.X = 16;
-            interactionCollisionShape.Position.Y = -8;
+            interactionLeftArea.AddToGroup(NodeGroup.Interact);
         }
         if (Direction == Direction.Left)
         {
-            interactionCollisionShape.Rotation = 90;
-            interactionCollisionShape.Position.X = -16;
-            interactionCollisionShape.Position.Y = -8;
+            interactionRightArea.AddToGroup(NodeGroup.Interact);
         }
         if (Direction == Direction.Up)
         {
-            interactionCollisionShape.Rotation = 0;
-            interactionCollisionShape.Position.X = 0;
-            interactionCollisionShape.Position.Y = -32;
+            interactionUpArea.AddToGroup(NodeGroup.Interact);
         }
         if (Direction == Direction.Down)
         {
-            interactionCollisionShape.Rotation = 0;
-            interactionCollisionShape.Position.X = 0;
-            interactionCollisionShape.Position.Y = 6;
+            interactionDownArea.AddToGroup(NodeGroup.Interact);
         }
     }
 }
