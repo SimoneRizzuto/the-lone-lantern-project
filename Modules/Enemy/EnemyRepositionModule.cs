@@ -32,7 +32,7 @@ public partial class EnemyRepositionModule : Node
         if (StateIsValid) return;
 
         var tree = GetTree();
-        luce = GetNodeHelper.GetLuce3(tree);
+        luce = GetNodeHelper.GetLuce(tree);
 
         var movementVector = State.Enemy.Position.DirectionTo(luce.Position); 
         State.Enemy.CalculatedVelocity = MovementVectorIsAboveThreshold(movementVector) ? movementVector * MoveSpeed : Vector2.Zero;

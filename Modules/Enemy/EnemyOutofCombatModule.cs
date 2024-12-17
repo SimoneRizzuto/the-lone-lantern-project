@@ -37,7 +37,7 @@ public partial class EnemyOutofCombatModule : Node
     private void CheckDistanceToLuce()
     {
         var tree = GetTree();
-        luce = GetNodeHelper.GetLuce3(tree);
+        luce = GetNodeHelper.GetLuce(tree);
 
         var distance = State.Enemy.Position.DistanceTo(luce.Position); // just check that this works
         if (distance <= combatDistanceThreshold)

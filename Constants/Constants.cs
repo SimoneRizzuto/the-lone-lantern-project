@@ -37,3 +37,8 @@ public static class NodeGroup
     public const string Persist = "Persist";
     public const string AudioDirector = "audio director";
 }
+
+public static class PlayerConstants
+{
+    public const int MoveSpeed = 5000;
+}

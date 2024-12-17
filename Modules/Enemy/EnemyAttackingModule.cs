@@ -60,7 +60,7 @@ public partial class EnemyAttackingModule : Node
     public void TriggerNormalAttack()
     {
         var tree = GetTree();
-        luce = GetNodeHelper.GetLuce3(tree);
+        luce = GetNodeHelper.GetLuce(tree);
 
         attackVector = State.Enemy.Position.DirectionTo(luce.Position);
 

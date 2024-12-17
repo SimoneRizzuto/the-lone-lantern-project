@@ -33,7 +33,7 @@ public partial class PlayerCamera2D : Camera2D
     {
         var tree = GetTree();
         
-        luce = GetNodeHelper.GetLuce3(tree);
+        luce = GetNodeHelper.GetLuce(tree);
         mainCamera2D = GetNodeHelper.GetMainCamera2D(tree);
     }
 

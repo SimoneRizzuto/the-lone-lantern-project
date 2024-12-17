@@ -24,7 +24,7 @@ public partial class Tripod2D : Node2D
             mount = node;
         }
         
-        luce = GetNodeHelper.GetLuce3(tree);
+        luce = GetNodeHelper.GetLuce(tree);
         playerCamera2D = GetNodeHelper.GetPlayerCamera2D(tree);
         mainCamera2D = GetNodeHelper.GetMainCamera2D(tree);
         

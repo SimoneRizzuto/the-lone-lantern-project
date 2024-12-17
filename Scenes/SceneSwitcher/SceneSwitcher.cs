@@ -52,7 +52,7 @@ public partial class SceneSwitcher : Node
         }
         
         // Find player by group name "player".
-        var luce = GetNodeHelper.GetLuce3(tree);
+        var luce = GetNodeHelper.GetLuce(tree);
         if (luce == null)
         {
             GD.PrintErr($"{nameof(luce)} was null. UID: {attributes.NewSceneUid} - DoorName: {attributes.DoorName}");

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using TheLoneLanternProject.Constants;
 using TheLoneLanternProject.Scenes.Player;
 
 public partial class ActorNodeBase : Node2D // ReSharper disable IntroduceOptionalParameters.Global
@@ -194,7 +195,7 @@ public partial class ActorNodeBase : Node2D // ReSharper disable IntroduceOption
         if (!string.IsNullOrEmpty(customAnimationTag)) lastDirection += $" {customAnimationTag}";
         
         AnimatedSprite2D.Play($"walk {lastDirection}", (float)multiplier);
-        Actor.Velocity = direction * (Luce.MoveSpeed * (float)multiplier) * (float)delta;
+        Actor.Velocity = direction * (PlayerConstants.MoveSpeed * (float)multiplier) * (float)delta;
         
         Actor.MoveAndSlide();
     }

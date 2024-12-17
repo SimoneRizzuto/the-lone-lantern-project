@@ -49,7 +49,7 @@ public partial class CutsceneDirector : Node
         customSignals.ShowDialogueBalloon += ShowDialogueBalloon;
 
         var tree = GetTree();
-        luce = GetNodeHelper.GetLuce3(tree);
+        luce = GetNodeHelper.GetLuce(tree);
         var actorNodes = tree.GetNodesInGroup(NodeGroup.ActorNode);
         var actorBaseNodes = actorNodes.Cast<ActorNodeBase>().ToList();
 
