@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=3 uid="uid://lijck4bh3uhp"]
+[gd_scene load_steps=104 format=3 uid="uid://lijck4bh3uhp"]
 
 [ext_resource type="Script" path="res://Luce3.cs" id="1_2absu"]
 [ext_resource type="Script" path="res://Modules/PlayerStateMachine.cs" id="2_he6aw"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://dt4llwrbk7cwb" path="res://Scenes/Player/luce attack right 2-Sheet.png" id="8_3rcum"]
 [ext_resource type="Texture2D" uid="uid://k1mh05ukxll4" path="res://Scenes/Player/luce-stand-Sheet.png" id="9_u2vhs"]
 [ext_resource type="Texture2D" uid="uid://c88mewq3kusue" path="res://Scenes/Player/luce sit down.png" id="10_bwv40"]
+[ext_resource type="Script" path="res://Scenes/Player/PlayerCamera2D.cs" id="10_vy75j"]
 [ext_resource type="Texture2D" uid="uid://bdnhhlwun0ylj" path="res://Scenes/Player/luce sit down look down.png" id="11_2jfrh"]
 [ext_resource type="Texture2D" uid="uid://dtl4jvhl33f08" path="res://Scenes/Player/luce sit down look left.png" id="12_l78hd"]
 [ext_resource type="Texture2D" uid="uid://d0kqav05k26fw" path="res://Scenes/Player/luce sit down look right.png" id="13_873di"]
@@ -29,6 +30,10 @@
 [ext_resource type="Texture2D" uid="uid://crhnqx5rq8fj6" path="res://Scenes/Player/luce_walking_up-Sheet.png" id="22_16t4a"]
 [ext_resource type="PackedScene" uid="uid://c65srkhjbyvux" path="res://Modules/DustCloud/DustCloudModule.tscn" id="28_tcpop"]
 [ext_resource type="PackedScene" uid="uid://f6e35btgmilp" path="res://Modules/StaminaHealth/StaminaHealthModule.tscn" id="29_saycq"]
+[ext_resource type="Script" path="res://Scenes/Player/LuceActorNode.cs" id="31_q7p30"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b7tdo"]
+size = Vector2(5.00004, 14)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7w7s8"]
 atlas = ExtResource("4_d1roy")
@@ -651,16 +656,35 @@ animations = [{
 "speed": 8.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_b7tdo"]
-size = Vector2(5.00004, 14)
+[sub_resource type="Animation" id="Animation_day3l"]
+resource_name = "watch Nori walking by while on swing set"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainSprite:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [&"sit down look right", &"sit down", &"sit down look left"]
+}
 
-[node name="Luce3" type="CharacterBody2D"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ekrex"]
+_data = {
+"watch Nori walking by while on swing set": SubResource("Animation_day3l")
+}
+
+[node name="Luce" type="CharacterBody2D" groups=["player"]]
 z_as_relative = false
 y_sort_enabled = true
 motion_mode = 1
 wall_min_slide_angle = 0.0
 platform_on_leave = 2
 script = ExtResource("1_2absu")
+
+[node name="StaminaHealthModule" parent="." instance=ExtResource("29_saycq")]
 
 [node name="PlayerStateMachine" type="Node" parent="."]
 script = ExtResource("2_he6aw")
@@ -691,9 +715,20 @@ script = ExtResource("6_y7xou")
 [node name="PlayerDisabledModule" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("5_2s08y")
 
-[node name="StaminaHealthModule" parent="." instance=ExtResource("29_saycq")]
+[node name="Camera2D" type="Camera2D" parent="." groups=["player camera"]]
+position = Vector2(0, -12)
+process_callback = 0
+position_smoothing_enabled = true
+script = ExtResource("10_vy75j")
 
-[node name="DustCloudModule" parent="." instance=ExtResource("28_tcpop")]
+[node name="MainShape" type="CollisionShape2D" parent="."]
+z_index = 1
+position = Vector2(-6.41828e-06, -2.49998)
+rotation = 1.57079
+shape = SubResource("RectangleShape2D_b7tdo")
+one_way_collision_margin = 0.0
+
+[node name="PlayerOnScreenNotifier" type="VisibleOnScreenNotifier2D" parent="."]
 
 [node name="MainSprite" type="AnimatedSprite2D" parent="."]
 z_as_relative = false
@@ -702,9 +737,26 @@ sprite_frames = SubResource("SpriteFrames_51ooq")
 animation = &"idle down"
 offset = Vector2(0, -18)
 
-[node name="MainShape" type="CollisionShape2D" parent="."]
-z_index = 1
-position = Vector2(-6.41828e-06, -2.49998)
-rotation = 1.57079
-shape = SubResource("RectangleShape2D_b7tdo")
-one_way_collision_margin = 0.0
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ekrex")
+}
+
+[node name="HitBox" type="Area2D" parent="."]
+visible = false
+collision_layer = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HitBox"]
+polygon = PackedVector2Array(-9, -34, 0, -34, 11, -32, 17, -30, 21, -28, 30, -19, 30, -10, 21, -1, 11, 3, 0, 5, -10, 5)
+disabled = true
+
+[node name="ActorNode" type="Node2D" parent="." node_paths=PackedStringArray("AnimatedSprite2D", "AnimationPlayer") groups=["actor node"]]
+script = ExtResource("31_q7p30")
+AnimatedSprite2D = NodePath("../MainSprite")
+AnimationPlayer = NodePath("../AnimationPlayer")
+
+[node name="DustCloudModule" parent="." instance=ExtResource("28_tcpop")]
+
+[connection signal="LastWalkDirection" from="PlayerStateMachine/PlayerWalkingModule" to="Camera2D" method="OnLuceLastWalkDirection"]
+[connection signal="PlayerIsMoving" from="PlayerStateMachine/PlayerWalkingModule" to="Camera2D" method="OnPlayerIsMoving"]
+[connection signal="screen_exited" from="PlayerOnScreenNotifier" to="Camera2D" method="PlayerOnScreenExited"]

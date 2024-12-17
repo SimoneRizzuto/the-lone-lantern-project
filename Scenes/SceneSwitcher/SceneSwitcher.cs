@@ -52,16 +52,15 @@ public partial class SceneSwitcher : Node
         }
         
         // Find player by group name "player".
-        var luceNode = tree.GetNodesInGroup(NodeGroup.Player).FirstOrDefault();
-        if (luceNode == null)
+        var luce = GetNodeHelper.GetLuce(tree);
+        if (luce == null)
         {
-            GD.PrintErr($"{nameof(luceNode)} was null. UID: {attributes.NewSceneUid} - DoorName: {attributes.DoorName}");
+            GD.PrintErr($"{nameof(luce)} was null. UID: {attributes.NewSceneUid} - DoorName: {attributes.DoorName}");
             return;
         }
         
-        var luce = (Luce)luceNode;
         luce.GlobalPosition = door.GlobalPosition;
-        luce.Direction = attributes.ExitDirection;
+        luce.SetDirection(attributes.ExitDirection);
 
         playerCamera2D = GetNodeHelper.GetPlayerCamera2D(tree);
         playerCamera2D.PlayerOnScreenExited();

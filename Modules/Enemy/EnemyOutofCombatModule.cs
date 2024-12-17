@@ -12,7 +12,7 @@ public partial class EnemyOutofCombatModule : Node
 {
     [Export] public EnemyStateMachine State;
 
-    private Luce luce;
+    private Luce3 luce;
     private bool StateIsOutOfCombat => State.EnemyState is EnemyState.OutOfCombat;
     private static readonly float combatDistanceThreshold = 50;
 
@@ -39,11 +39,10 @@ public partial class EnemyOutofCombatModule : Node
         var tree = GetTree();
         luce = GetNodeHelper.GetLuce(tree);
 
-         var distance = State.Enemy.Position.DistanceTo(luce.Position); // just check that this works
+        var distance = State.Enemy.Position.DistanceTo(luce.Position); // just check that this works
         if (distance <= combatDistanceThreshold)
         {
             State.EnemyState = EnemyState.Reposition;
-
         }
         else
         {

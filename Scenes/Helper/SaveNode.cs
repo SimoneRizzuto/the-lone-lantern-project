@@ -7,12 +7,12 @@ using TheLoneLanternProject.Scenes.Player;
 
 public partial class SaveNode : Node2D
 {
-    private Luce luce;
+    private Luce3 luce;
     public override void _Ready()
     {
         var tree = GetTree();
         var playerNodes = tree.GetNodesInGroup(NodeGroup.Player);
-        luce = playerNodes.Cast<Luce>().FirstOrDefault();
+        luce = playerNodes.Cast<Luce3>().FirstOrDefault();
 
     }
 
@@ -40,15 +40,15 @@ public partial class SaveNode : Node2D
         // Player
         if (saveNode.Name == "Player")
         {
-            var playerNode = (Luce)saveNode;
+            var playerNode = (Luce3)saveNode;
 
 
             return new Godot.Collections.Dictionary<string, Variant>()
             {
-                {"Health", playerNode.Health},
+                //{"Health", playerNode.Health},
                 {"PositionX", playerNode.Position.X},
                 {"PositionY", playerNode.Position.Y},
-                {"Direction", playerNode.Direction.ToString()},
+                //{"Direction", playerNode.Direction.ToString()},
 
             };
 
@@ -132,13 +132,13 @@ public partial class SaveNode : Node2D
             // Player
             var tree = GetTree();
             var playerNodes = tree.GetNodesInGroup(NodeGroup.Player);
-            luce = playerNodes.Cast<Luce>().FirstOrDefault();
+            luce = playerNodes.Cast<Luce3>().FirstOrDefault();
 
             var playerNodeData = new Godot.Collections.Dictionary<string, Variant>((Godot.Collections.Dictionary)nodeData["Player"]);
-            luce.Health = (float)playerNodeData["Health"];
+            //luce.Health = (float)playerNodeData["Health"];
             luce.Position = new Vector2((float)playerNodeData["PositionX"], (float)playerNodeData["PositionY"]);
             Enum.TryParse((string)playerNodeData["Direction"], out Direction direction);
-            luce.Direction = direction;
+            //luce.Direction = direction;
 
 
         }

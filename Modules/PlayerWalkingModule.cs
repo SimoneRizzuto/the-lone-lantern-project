@@ -10,6 +10,7 @@ namespace TheLoneLanternProject.Modules;
 public partial class PlayerWalkingModule : Node
 {
     [Signal] public delegate void LastWalkDirectionEventHandler(int direction);
+    [Signal] public delegate void PlayerIsMovingEventHandler(bool isMoving);
     
     [Export] public PlayerStateMachine State;
     
@@ -53,12 +54,15 @@ public partial class PlayerWalkingModule : Node
             
             State.LastDirection = walkDirection;
             State.PlayerState = PlayerState.Walking;
+            
+            EmitSignal(SignalName.LastWalkDirection, (int)walkDirection);
         }
         else
         {
             State.PlayerState = PlayerState.Idle;
         }
         
+        EmitSignal(SignalName.PlayerIsMoving, isWalking);
         State.MainSprite.Play();
     }
 }

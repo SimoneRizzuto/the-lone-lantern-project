@@ -1,18 +1,19 @@
 [gd_scene load_steps=7 format=3 uid="uid://bgpdxfsl820vp"]
 
-[ext_resource type="PackedScene" uid="uid://1q0v7as1ovpm" path="res://Scenes/Player/Luce.tscn" id="1_7nylb"]
 [ext_resource type="PackedScene" uid="uid://bihv5yjq7muuh" path="res://Scenes/Static/SicilianHouse.tscn" id="2_msofi"]
 [ext_resource type="PackedScene" uid="uid://barc3o7fkbn44" path="res://Scenes/SceneSwitcher/DoorSquare2D.tscn" id="3_stxbc"]
 [ext_resource type="PackedScene" uid="uid://ubc5cusrcpq7" path="res://Scenes/Static/Couch.tscn" id="4_shl2e"]
 [ext_resource type="PackedScene" uid="uid://0bfaldsm103s" path="res://Enemies/Enemy.tscn" id="6_cukbl"]
 [ext_resource type="PackedScene" uid="uid://h0qtabwk04wy" path="res://Scenes/CutsceneDirector/CutsceneDirector.tscn" id="6_rv17u"]
+[ext_resource type="PackedScene" uid="uid://lijck4bh3uhp" path="res://Luce3.tscn" id="6_w62s5"]
 
 [node name="DevRoom" type="Node2D"]
 z_as_relative = false
 y_sort_enabled = true
 
-[node name="Luce" parent="." instance=ExtResource("1_7nylb")]
-position = Vector2(200, 272)
+[node name="Luce3" parent="." instance=ExtResource("6_w62s5")]
+position = Vector2(175, 242)
+CalculatedVelocity = Vector2(0, 0)
 
 [node name="SicilianHouse" parent="." instance=ExtResource("2_msofi")]
 position = Vector2(165, 173)

@@ -13,7 +13,7 @@ public partial class EnemyRepositionModule : Node
     [Export] public Vector2 MovementVector;
     [Export] public float MoveSpeed = DefaultMoveSpeed; // Set as needed
 
-    private Luce luce;
+    private Luce3 luce;
     public static readonly float DefaultMoveSpeed = 4000;
     public static readonly int MoveVelocityThreshold = 25; // might change
 
@@ -33,7 +33,6 @@ public partial class EnemyRepositionModule : Node
 
         var tree = GetTree();
         luce = GetNodeHelper.GetLuce(tree);
-
 
         var movementVector = State.Enemy.Position.DirectionTo(luce.Position); 
         State.Enemy.CalculatedVelocity = MovementVectorIsAboveThreshold(movementVector) ? movementVector * MoveSpeed : Vector2.Zero;
