@@ -75,7 +75,8 @@ animations = [{
 resource_local_to_scene = true
 size = Vector2(72, 24)
 
-[node name="EnemyBlob" instance=ExtResource("1_pcwly")]
+[node name="EnemyBlob" node_paths=PackedStringArray("PathToFollow") instance=ExtResource("1_pcwly")]
+PathToFollow = NodePath("")
 
 [node name="CollisionBox" parent="." index="0"]
 position = Vector2(0, -12)

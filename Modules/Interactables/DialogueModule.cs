@@ -8,7 +8,7 @@ using System;
 public partial class DialogueModule : Node
 {
     private CustomSignals customSignals = new();
-    private Luce luce = new();
+    private Luce3 luce = new();
     public override void _Ready()
     {
         customSignals = GetNode<CustomSignals>("/root/CustomSignals");
@@ -26,7 +26,7 @@ public partial class DialogueModule : Node
 
     private void ShowDialogueBalloon(string dialogue, string title)
     {
-        luce.State = PlayerState.Disabled;
+        luce.SetState(PlayerState.Disabled);
 
         DialogueManager.ShowDialogueBalloon(GD.Load($"res://Dialogue/{dialogue}.dialogue"), title);
         DialogueManager.DialogueEnded += SetupGameplayAfterDialogueEnded;
@@ -34,7 +34,7 @@ public partial class DialogueModule : Node
 
     private void SetupGameplayAfterDialogueEnded(Resource dialogueResource)
     {
-        luce.State = PlayerState.Idle;
+        luce.SetState(PlayerState.Idle);
         DialogueManager.DialogueEnded -= SetupGameplayAfterDialogueEnded;
     }
 }
