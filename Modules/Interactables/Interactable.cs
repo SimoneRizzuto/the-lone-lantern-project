@@ -27,21 +27,20 @@ public partial class Interactable : Node2D
         }
         
     }
-    private void OnInteractionZoneBodyEntered(PhysicsBody2D body)
+    private void OnInteractionZoneAreaEntered(Area2D area)
     {
-        if (body.IsInGroup(NodeGroup.Player) )
+        if (area.IsInGroup(NodeGroup.Interact) )
         {
             bodyEntered = true;
         }
     }
 
-    private void OnInteractionZoneBodyExited(PhysicsBody2D body) 
+    private void OnInteractionZoneAreaExited(Area2D area) 
     {
-        if (body.IsInGroup(NodeGroup.Player))
+        if (area.IsInGroup(NodeGroup.Interact))
         {
             bodyEntered = false;
         }
     }
-
 
 }

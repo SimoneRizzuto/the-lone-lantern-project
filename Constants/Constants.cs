@@ -37,4 +37,5 @@ public static class NodeGroup
     public const string TransitionCamera = "transition camera";
     public const string Persist = "Persist";
     public const string AudioDirector = "audio director";
+    public const string Interact = "Interact";
 }
