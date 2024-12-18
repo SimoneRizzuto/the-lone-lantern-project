@@ -1,4 +1,4 @@
-[gd_scene load_steps=98 format=3 uid="uid://1q0v7as1ovpm"]
+[gd_scene load_steps=97 format=3 uid="uid://1q0v7as1ovpm"]
 
 [ext_resource type="Script" path="res://Scenes/Player/Luce.cs" id="1_x30pt"]
 [ext_resource type="PackedScene" uid="uid://xnsxf4vyq0vt" path="res://Scenes/PlayerController/StaminaHealthBar.tscn" id="2_wuv80"]
@@ -679,9 +679,6 @@ _data = {
 "watch Nori walking by while on swing set": SubResource("Animation_s4357")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7q80j"]
-size = Vector2(16, 24)
-
 [node name="Player" type="CharacterBody2D" groups=["Persist", "player"]]
 z_as_relative = false
 y_sort_enabled = true
@@ -746,37 +743,6 @@ disabled = true
 script = ExtResource("23_rsyqp")
 AnimatedSprite2D = NodePath("../AnimatedSprite2D")
 AnimationPlayer = NodePath("../AnimationPlayer")
-
-[node name="InteractionZoneDown" type="Area2D" parent="." groups=["Interact"]]
-position = Vector2(0, 8)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionZoneDown"]
-position = Vector2(0, 6)
-shape = SubResource("RectangleShape2D_7q80j")
-
-[node name="InteractionZoneLeft" type="Area2D" parent="." groups=["Interact"]]
-position = Vector2(-8, 0)
-rotation = 1.5708
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionZoneLeft"]
-position = Vector2(0, 6)
-shape = SubResource("RectangleShape2D_7q80j")
-
-[node name="InteractionZoneRight" type="Area2D" parent="." groups=["Interact"]]
-position = Vector2(8, -4.76837e-07)
-rotation = -1.5708
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionZoneRight"]
-position = Vector2(0, 6)
-shape = SubResource("RectangleShape2D_7q80j")
-
-[node name="InteractionZoneUp" type="Area2D" parent="." groups=["Interact"]]
-position = Vector2(0, -16)
-rotation = 3.14159
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionZoneUp"]
-position = Vector2(0, 6)
-shape = SubResource("RectangleShape2D_7q80j")
 
 [connection signal="LastWalkDirection" from="." to="Camera2D" method="OnLuceLastWalkDirection"]
 [connection signal="PlayerIsMoving" from="." to="Camera2D" method="OnPlayerIsMoving"]

@@ -56,10 +56,7 @@ public partial class Luce : CharacterBody2D
     private AnimatedSprite2D mainSprite = new();
     private CollisionShape2D mainShape = new();
     private CollisionPolygon2D attackShape = new();
-    private Area2D interactionLeftArea = new();
-    private Area2D interactionRightArea = new();
-    private Area2D interactionUpArea = new();
-    private Area2D interactionDownArea = new();
+    
 
     public override void _Ready()
     {
@@ -71,10 +68,7 @@ public partial class Luce : CharacterBody2D
 
         healthRegenBuffer = GetNode<Timer>("Timers/HealthRegenBuffer");
 
-        interactionLeftArea = GetNode<Area2D>("InteractionZoneLeft");
-        interactionRightArea= GetNode<Area2D>("InteractionZoneRight");
-        interactionUpArea= GetNode<Area2D>("InteractionZoneUp");
-        interactionDownArea= GetNode<Area2D>("InteractionZoneDown");
+        
 
         audioDirector = AudioDirector.Instance;
     }
@@ -92,7 +86,6 @@ public partial class Luce : CharacterBody2D
     }
     public override void _PhysicsProcess(double delta)
     {
-        TransformInteractionCollision();
 
         if (State == PlayerState.Disabled) return;
         
@@ -313,32 +306,7 @@ public partial class Luce : CharacterBody2D
     }   
 
 
-    public void TransformInteractionCollision()
-    {
-        Direction = nextBuffer.NextDirection;
 
-        interactionLeftArea.RemoveFromGroup(NodeGroup.Interact);
-        interactionRightArea.RemoveFromGroup(NodeGroup.Interact);
-        interactionUpArea.RemoveFromGroup(NodeGroup.Interact);
-        interactionDownArea.RemoveFromGroup(NodeGroup.Interact);
-
-        if (Direction == Direction.Right)
-        {
-            interactionLeftArea.AddToGroup(NodeGroup.Interact);
-        }
-        if (Direction == Direction.Left)
-        {
-            interactionRightArea.AddToGroup(NodeGroup.Interact);
-        }
-        if (Direction == Direction.Up)
-        {
-            interactionUpArea.AddToGroup(NodeGroup.Interact);
-        }
-        if (Direction == Direction.Down)
-        {
-            interactionDownArea.AddToGroup(NodeGroup.Interact);
-        }
-    }
 }
 
 public class PlayerNextBuffer

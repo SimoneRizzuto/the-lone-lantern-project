@@ -1,7 +1,7 @@
 using Godot;
 using TheLoneLanternProject.Constants;
 
-namespace TheLoneLanternProject.Helpers;
+namespace TheLoneLanternProject.DirectionHelpers;
 public static class DirectionHelper
 {
     public static Direction GetSnappedDirection(Vector2 input, float length = 0.0001f)
