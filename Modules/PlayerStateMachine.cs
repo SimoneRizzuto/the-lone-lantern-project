@@ -8,7 +8,7 @@ namespace TheLoneLanternProject.Modules;
 [GlobalClass]
 public partial class PlayerStateMachine : StateMachine
 {
-    [Export] public Luce3 Player;
+    [Export] public Luce Player;
     [Export] public PlayerState PlayerState = PlayerState.Idle;
     [Export] public Direction LastDirection = Direction.Down;
     [Export] public AnimatedSprite2D MainSprite;
@@ -19,7 +19,7 @@ public partial class PlayerStateMachine : StateMachine
     {
         var owner = Owner;
         
-        Player ??= (Luce3)owner;
+        Player ??= (Luce)owner;
         MainSprite ??= owner.GetNode<AnimatedSprite2D>("MainSprite");
         DustCloudModule ??= owner.GetNode<DustCloudModule>("DustCloudModule");
         StaminaHealthModule ??= owner.GetNode<StaminaHealthModule>("StaminaHealthModule");

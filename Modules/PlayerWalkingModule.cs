@@ -2,6 +2,7 @@ using Godot;
 using System;
 using TheLoneLanternProject.Helpers;
 using TheLoneLanternProject.Constants;
+using TheLoneLanternProject.DirectionHelpers;
 using TheLoneLanternProject.Scenes.Player;
 
 namespace TheLoneLanternProject.Modules;

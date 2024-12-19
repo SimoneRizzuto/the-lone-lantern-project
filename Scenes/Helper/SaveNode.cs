@@ -7,12 +7,12 @@ using TheLoneLanternProject.Scenes.Player;
 
 public partial class SaveNode : Node2D
 {
-    private Luce3 luce;
+    private Luce luce;
     public override void _Ready()
     {
         var tree = GetTree();
         var playerNodes = tree.GetNodesInGroup(NodeGroup.Player);
-        luce = playerNodes.Cast<Luce3>().FirstOrDefault();
+        luce = playerNodes.Cast<Luce>().FirstOrDefault();
 
     }
 
@@ -40,7 +40,7 @@ public partial class SaveNode : Node2D
         // Player
         if (saveNode.Name == "Player")
         {
-            var playerNode = (Luce3)saveNode;
+            var playerNode = (Luce)saveNode;
 
 
             return new Godot.Collections.Dictionary<string, Variant>()
@@ -132,7 +132,7 @@ public partial class SaveNode : Node2D
             // Player
             var tree = GetTree();
             var playerNodes = tree.GetNodesInGroup(NodeGroup.Player);
-            luce = playerNodes.Cast<Luce3>().FirstOrDefault();
+            luce = playerNodes.Cast<Luce>().FirstOrDefault();
 
             var playerNodeData = new Godot.Collections.Dictionary<string, Variant>((Godot.Collections.Dictionary)nodeData["Player"]);
             //luce.Health = (float)playerNodeData["Health"];

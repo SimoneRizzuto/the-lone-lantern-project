@@ -171,7 +171,7 @@ public partial class EnemyBase : Area2D, IEnemy
 
     public virtual void OnBodyEnteredHitBox(Node2D body)
     {
-        if (body is Luce3 player)
+        if (body is Luce player)
         {
             //player.TakeDamage(20);
         }

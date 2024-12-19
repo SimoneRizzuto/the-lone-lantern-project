@@ -6,10 +6,10 @@ using TheLoneLanternProject.Scenes.Player;
 namespace TheLoneLanternProject.Helpers;
 public static class GetNodeHelper
 {
-    public static Luce3 GetLuce(SceneTree tree)
+    public static Luce GetLuce(SceneTree tree)
     {
         var luceNodes = tree.GetNodesInGroup(NodeGroup.Player);
-        var luce = luceNodes.Cast<Luce3>().FirstOrDefault();
+        var luce = luceNodes.Cast<Luce>().FirstOrDefault();
         if (luce == null)
         {
             GD.PrintErr($"{nameof(luce)} was null.");

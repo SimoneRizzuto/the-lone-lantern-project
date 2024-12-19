@@ -8,7 +8,7 @@ using System;
 public partial class DialogueModule : Node
 {
     private CustomSignals customSignals = new();
-    private Luce3 luce = new();
+    private Luce luce = new();
     public override void _Ready()
     {
         customSignals = GetNode<CustomSignals>("/root/CustomSignals");

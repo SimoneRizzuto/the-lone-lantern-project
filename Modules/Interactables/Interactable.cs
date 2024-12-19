@@ -5,6 +5,7 @@ using TheLoneLanternProject.DirectionHelpers;
 
 namespace TheLoneLanternProject.Modules;
 
+/*
 public interface IInteractable
 {
     void Interact();
@@ -142,6 +143,7 @@ public void TransformInteractionCollision(Vector2 vector)
         interactionDownArea.AddToGroup(NodeGroup.Interact);
     }
 }
+*/
 
 
 

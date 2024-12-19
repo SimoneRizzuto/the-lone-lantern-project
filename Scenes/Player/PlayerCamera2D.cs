@@ -15,7 +15,7 @@ public partial class PlayerCamera2D : Camera2D
 
     public bool FollowPlayer = true;
 
-    private Luce3 luce;
+    private Luce luce;
     
     private bool playerIsMoving;
     private readonly Stopwatch howLongPlayerMoving = new();

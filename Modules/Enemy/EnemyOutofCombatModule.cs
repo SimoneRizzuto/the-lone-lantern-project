@@ -12,7 +12,7 @@ public partial class EnemyOutofCombatModule : Node
 {
     [Export] public EnemyStateMachine State;
 
-    private Luce3 luce;
+    private Luce luce;
     private bool StateIsOutOfCombat => State.EnemyState is EnemyState.OutOfCombat;
     private static readonly float combatDistanceThreshold = 50;
 

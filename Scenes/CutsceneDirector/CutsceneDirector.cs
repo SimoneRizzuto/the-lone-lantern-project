@@ -11,7 +11,7 @@ using TheLoneLanternProject.Scenes.Player;
 public partial class CutsceneDirector : Node
 {
     private CustomSignals customSignals = new();
-    private Luce3 luce = new();
+    private Luce luce = new();
     private ActorNodeBase luceActor = new();
     private Rain rain;
     

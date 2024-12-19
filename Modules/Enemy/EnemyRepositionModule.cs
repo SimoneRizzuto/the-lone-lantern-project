@@ -2,6 +2,7 @@ using Godot;
 using System;
 using TheLoneLanternProject.Helpers;
 using TheLoneLanternProject.Constants;
+using TheLoneLanternProject.DirectionHelpers;
 using TheLoneLanternProject.Scenes.Player;
 
 namespace TheLoneLanternProject.Modules;
@@ -13,7 +14,7 @@ public partial class EnemyRepositionModule : Node
     [Export] public Vector2 MovementVector;
     [Export] public float MoveSpeed = DefaultMoveSpeed; // Set as needed
 
-    private Luce3 luce;
+    private Luce luce;
     public static readonly float DefaultMoveSpeed = 4000;
     public static readonly int MoveVelocityThreshold = 25; // might change
 

@@ -5,7 +5,7 @@ using TheLoneLanternProject.Extensions;
 using TheLoneLanternProject.Modules;
 using TheLoneLanternProject.Scenes.Player;
 
-public partial class Luce3 : CharacterBody2D
+public partial class Luce : CharacterBody2D
 {
 	[Export] public Vector2 CalculatedVelocity;
 	

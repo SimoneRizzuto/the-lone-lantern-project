@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using Godot;
 using TheLoneLanternProject.Constants;
+using TheLoneLanternProject.DirectionHelpers;
 using TheLoneLanternProject.Helpers;
 using TheLoneLanternProject.Scenes.Player;
 
