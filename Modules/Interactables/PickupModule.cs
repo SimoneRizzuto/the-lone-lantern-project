@@ -1,8 +1,7 @@
 using Godot;
-using System;
-using TheLoneLanternProject.Helpers;
+using TheLoneLanternProject.Scripts.Constants;
 
-namespace TheLoneLanternProject.Modules; // May not be needed
+namespace TheLoneLanternProject.Modules.Interactables; // May not be needed
 
 [GlobalClass]
 public partial class PickupModule : Node

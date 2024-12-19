@@ -1,10 +1,8 @@
 using System;
 using Godot;
 using System.Diagnostics;
-using TheLoneLanternProject.Helpers;
-using TheLoneLanternProject.Constants;
-using TheLoneLanternProject.DirectionHelpers;
-using TheLoneLanternProject.Scenes.Player;
+using TheLoneLanternProject.Scripts.Constants;
+using TheLoneLanternProject.Scripts.Helpers;
 
 namespace TheLoneLanternProject.Modules;
 

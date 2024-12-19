@@ -1,8 +1,7 @@
 using Godot;
 using System.Linq;
-using TheLoneLanternProject.Helpers;
-using TheLoneLanternProject.Constants;
-using TheLoneLanternProject.Scenes.Player;
+using TheLoneLanternProject.Scripts.Constants;
+using TheLoneLanternProject.Scripts.Helpers;
 
 namespace TheLoneLanternProject.Scenes.SceneSwitcher;
 
@@ -10,8 +9,8 @@ public partial class SceneSwitcher : Node
 {
     private CustomSignals customSignals = new();
 
-    private MainCamera2D mainCamera2D;
-    private PlayerCamera2D playerCamera2D;
+    private Scripts.Camera.MainCamera2D mainCamera2D;
+    private Scripts.Camera.PlayerCamera2D playerCamera2D;
 
     public override void _Ready()
     {

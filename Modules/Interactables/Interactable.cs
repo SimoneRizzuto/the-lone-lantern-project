@@ -1,7 +1,5 @@
 using Godot;
 using System;
-using TheLoneLanternProject.Constants;
-using TheLoneLanternProject.DirectionHelpers;
 
 namespace TheLoneLanternProject.Modules;
 

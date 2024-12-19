@@ -1,8 +1,9 @@
 using DialogueManagerRuntime;
 using Godot;
-using TheLoneLanternProject.Scenes.Player;
-using TheLoneLanternProject.Helpers;
 using System;
+using TheLoneLanternProject.Scripts.Player;
+using TheLoneLanternProject.Scripts.Helpers;
+using TheLoneLanternProject.Scripts.Constants;
 
 [GlobalClass]
 public partial class DialogueModule : Node
@@ -28,7 +29,7 @@ public partial class DialogueModule : Node
     {
         luce.SetState(PlayerState.Disabled);
 
-        DialogueManager.ShowDialogueBalloon(GD.Load($"res://Dialogue/{dialogue}.dialogue"), title);
+        DialogueManager.ShowDialogueBalloon(GD.Load($"res://Assets/Dialogue/{dialogue}.dialogue"), title);
         DialogueManager.DialogueEnded += SetupGameplayAfterDialogueEnded;
     }
 

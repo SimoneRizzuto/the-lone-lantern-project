@@ -1,6 +1,6 @@
 using System;
 using Godot;
-using TheLoneLanternProject.Scenes.Player;
+using TheLoneLanternProject.Scripts.Constants;
 
 namespace TheLoneLanternProject.Modules;
 

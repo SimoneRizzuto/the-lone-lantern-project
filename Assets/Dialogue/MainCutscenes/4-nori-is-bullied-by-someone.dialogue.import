@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_12"
+type="Resource"
+uid="uid://dblyt7euhb1a2"
+path="res://.godot/imported/4-nori-is-bullied-by-someone.dialogue-74de23877ef45988d6a5ea43a9482cf8.tres"
+
+[deps]
+
+source_file="res://Assets/Dialogue/MainCutscenes/4-nori-is-bullied-by-someone.dialogue"
+dest_files=["res://.godot/imported/4-nori-is-bullied-by-someone.dialogue-74de23877ef45988d6a5ea43a9482cf8.tres"]
+
+[params]
+
+defaults=true

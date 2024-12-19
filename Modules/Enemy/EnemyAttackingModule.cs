@@ -1,10 +1,8 @@
 using Godot;
 using System;
-using TheLoneLanternProject.Constants;
-using TheLoneLanternProject.DirectionHelpers;
-using TheLoneLanternProject.Helpers;
 using TheLoneLanternProject.Modules;
-using TheLoneLanternProject.Scenes.Player;
+using TheLoneLanternProject.Scripts.Constants;
+using TheLoneLanternProject.Scripts.Helpers;
 
 namespace TheLoneLanternProject.Modules;
 
@@ -14,7 +12,7 @@ public partial class EnemyAttackingModule : Node
     [Export] public EnemyStateMachine State;
     [Export] public CollisionPolygon2D AttackShape;
 
-    private Luce luce;
+    private Scripts.Player.Luce luce;
 
     private bool isBufferingNormalAttack;
     private int attackAnimationCounter = 1;

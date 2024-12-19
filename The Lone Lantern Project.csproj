@@ -4,4 +4,7 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <RootNamespace>TheLoneLanternProject</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Scenes\Player\" />
+  </ItemGroup>
 </Project>

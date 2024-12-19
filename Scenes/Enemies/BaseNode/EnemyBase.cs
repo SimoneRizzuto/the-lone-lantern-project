@@ -1,7 +1,7 @@
 using System;
 using System.Linq;
 using Godot;
-using TheLoneLanternProject.Constants;
+using TheLoneLanternProject.Scripts.Constants;
 
 namespace TheLoneLanternProject.Scenes.Enemies.BaseNode;
 public interface IEnemy
@@ -171,7 +171,7 @@ public partial class EnemyBase : Area2D, IEnemy
 
     public virtual void OnBodyEnteredHitBox(Node2D body)
     {
-        if (body is Luce player)
+        if (body is Scripts.Player.Luce player)
         {
             //player.TakeDamage(20);
         }

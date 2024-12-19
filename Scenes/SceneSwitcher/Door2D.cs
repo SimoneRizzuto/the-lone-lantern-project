@@ -1,5 +1,5 @@
 using Godot;
-using TheLoneLanternProject.Constants;
+using TheLoneLanternProject.Scripts.Constants;
 
 namespace TheLoneLanternProject.Scenes.SceneSwitcher;
 public partial class Door2D : Area2D

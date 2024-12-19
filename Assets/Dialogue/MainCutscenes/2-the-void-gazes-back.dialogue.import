@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_12"
+type="Resource"
+uid="uid://dd5c74lt8ng8"
+path="res://.godot/imported/2-the-void-gazes-back.dialogue-7ac6cca7063c01072f678ff6a7ab597d.tres"
+
+[deps]
+
+source_file="res://Assets/Dialogue/MainCutscenes/2-the-void-gazes-back.dialogue"
+dest_files=["res://.godot/imported/2-the-void-gazes-back.dialogue-7ac6cca7063c01072f678ff6a7ab597d.tres"]
+
+[params]
+
+defaults=true

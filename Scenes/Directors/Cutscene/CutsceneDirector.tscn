@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://h0qtabwk04wy"]
+
+[ext_resource type="Script" path="res://Scripts/Directors/Cutscene/CutsceneDirector.cs" id="1_1fkwv"]
+
+[node name="CutsceneDirector" type="Node" groups=["cutscene director"]]
+script = ExtResource("1_1fkwv")

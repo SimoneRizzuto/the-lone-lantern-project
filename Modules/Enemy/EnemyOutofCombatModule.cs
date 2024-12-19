@@ -1,9 +1,8 @@
 using Godot;
 using System;
-using TheLoneLanternProject.Constants;
-using TheLoneLanternProject.Helpers;
 using TheLoneLanternProject.Modules;
-using TheLoneLanternProject.Scenes.Player;
+using TheLoneLanternProject.Scripts.Constants;
+using TheLoneLanternProject.Scripts.Helpers;
 
 namespace TheLoneLanternProject.Modules;
 
@@ -12,7 +11,7 @@ public partial class EnemyOutofCombatModule : Node
 {
     [Export] public EnemyStateMachine State;
 
-    private Luce luce;
+    private Scripts.Player.Luce luce;
     private bool StateIsOutOfCombat => State.EnemyState is EnemyState.OutOfCombat;
     private static readonly float combatDistanceThreshold = 50;
 

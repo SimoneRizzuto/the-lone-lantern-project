@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://briwv8dewtfr4"]
+
+[ext_resource type="Script" path="res://Scripts/Directors/AudioDirector.cs" id="1_lnbii"]
+
+[node name="AudioDirector" type="Node" groups=["audio director"]]
+script = ExtResource("1_lnbii")

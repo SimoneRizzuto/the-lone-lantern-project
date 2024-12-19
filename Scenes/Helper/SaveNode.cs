@@ -2,8 +2,8 @@ using Godot;
 using System;
 using System.Linq;
 using System.Text.Json;
-using TheLoneLanternProject.Constants;
-using TheLoneLanternProject.Scenes.Player;
+using TheLoneLanternProject.Scripts.Player;
+using TheLoneLanternProject.Scripts.Constants;
 
 public partial class SaveNode : Node2D
 {
@@ -41,8 +41,7 @@ public partial class SaveNode : Node2D
         if (saveNode.Name == "Player")
         {
             var playerNode = (Luce)saveNode;
-
-
+            
             return new Godot.Collections.Dictionary<string, Variant>()
             {
                 //{"Health", playerNode.Health},
@@ -67,7 +66,7 @@ public partial class SaveNode : Node2D
         if (Input.IsActionPressed(InputMapAction.Save))
         {
             // Write to savefile
-            using var saveGame = FileAccess.Open("res://SaveData//SaveData.json", FileAccess.ModeFlags.Write);
+            using var saveGame = FileAccess.Open("res://Output//SaveData//SaveData.json", FileAccess.ModeFlags.Write);
             
             var tree = GetTree();
             var saveableNodes = tree.GetNodesInGroup(NodeGroup.Persist);
@@ -89,7 +88,7 @@ public partial class SaveNode : Node2D
 
     public void LoadGame()
     {
-        if (!FileAccess.FileExists("res://SaveData//SaveData.json"))
+        if (!FileAccess.FileExists("res:/Output//SaveData//SaveData.json"))
         {
             return;
         }
@@ -97,7 +96,7 @@ public partial class SaveNode : Node2D
         if (Input.IsActionPressed(InputMapAction.Load))
         {
             // Read in savefile
-            using var saveGame = FileAccess.Open("res://SaveData//SaveData.json", FileAccess.ModeFlags.Read);
+            using var saveGame = FileAccess.Open("res://Output//SaveData//SaveData.json", FileAccess.ModeFlags.Read);
 
             var jsonString = saveGame.GetLine();
             var json = new Json();
@@ -128,7 +127,6 @@ public partial class SaveNode : Node2D
             var sceneToAdd = nextScenePackedScene.Instantiate();
             sceneSwitcher.AddChild(sceneToAdd); 
 
-
             // Player
             var tree = GetTree();
             var playerNodes = tree.GetNodesInGroup(NodeGroup.Player);
@@ -139,10 +137,6 @@ public partial class SaveNode : Node2D
             luce.Position = new Vector2((float)playerNodeData["PositionX"], (float)playerNodeData["PositionY"]);
             Enum.TryParse((string)playerNodeData["Direction"], out Direction direction);
             //luce.Direction = direction;
-
-
         }
-
-
     }
 }
