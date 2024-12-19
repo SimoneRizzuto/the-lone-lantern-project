@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmfkshecewdwe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dkrvs"]
+size = Vector2(16, 24)
+
+[node name="InteractionZones" type="Node2D"]
+
+[node name="InteractionZoneDown" type="Area2D" parent="." groups=["Interact"]]
+position = Vector2(0, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionZoneDown"]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_dkrvs")
+
+[node name="InteractionZoneLeft" type="Area2D" parent="." groups=["Interact"]]
+position = Vector2(-8, 0)
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionZoneLeft"]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_dkrvs")
+
+[node name="InteractionZoneRight" type="Area2D" parent="." groups=["Interact"]]
+position = Vector2(8, -4.76837e-07)
+rotation = -1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionZoneRight"]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_dkrvs")
+
+[node name="InteractionZoneUp" type="Area2D" parent="." groups=["Interact"]]
+position = Vector2(0, -16)
+rotation = 3.14159
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionZoneUp"]
+position = Vector2(0, 6)
+shape = SubResource("RectangleShape2D_dkrvs")

@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://muoxkhjyx4lr"]
+
+[ext_resource type="Script" path="res://Modules/Interactables/Interactable.cs" id="1_8dw1p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x6bdm"]
+size = Vector2(16, 23)
+
+[node name="Interactable" type="Node2D"]
+script = ExtResource("1_8dw1p")
+
+[node name="InteractionZone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionZone"]
+position = Vector2(0, 6.5)
+shape = SubResource("RectangleShape2D_x6bdm")
+
+[connection signal="area_entered" from="InteractionZone" to="." method="OnInteractionZoneAreaEntered"]
+[connection signal="area_exited" from="InteractionZone" to="." method="OnInteractionZoneAreaExited"]

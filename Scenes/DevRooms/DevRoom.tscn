@@ -13,7 +13,6 @@ y_sort_enabled = true
 
 [node name="Luce3" parent="." instance=ExtResource("6_w62s5")]
 position = Vector2(175, 242)
-CalculatedVelocity = Vector2(0, 0)
 
 [node name="SicilianHouse" parent="." instance=ExtResource("2_msofi")]
 position = Vector2(165, 173)

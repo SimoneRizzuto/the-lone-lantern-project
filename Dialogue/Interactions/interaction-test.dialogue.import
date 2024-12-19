@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_12"
+type="Resource"
+uid="uid://beswpiq66r86a"
+path="res://.godot/imported/interaction-test.dialogue-8ccadd9304e9aebca3cbb881a070cccc.tres"
+
+[deps]
+
+source_file="res://Dialogue/Interactions/interaction-test.dialogue"
+dest_files=["res://.godot/imported/interaction-test.dialogue-8ccadd9304e9aebca3cbb881a070cccc.tres"]
+
+[params]
+
+defaults=true

@@ -4,6 +4,7 @@ using Vector2 = Godot.Vector2;
 using TheLoneLanternProject.Constants;
 using TheLoneLanternProject.Extensions;
 using TheLoneLanternProject.Scenes.Enemies.BaseNode;
+using TheLoneLanternProject.Helpers;
 
 namespace TheLoneLanternProject.Scenes.Player;
 public partial class Luce : CharacterBody2D
@@ -55,6 +56,7 @@ public partial class Luce : CharacterBody2D
     private AnimatedSprite2D mainSprite = new();
     private CollisionShape2D mainShape = new();
     private CollisionPolygon2D attackShape = new();
+    
 
     public override void _Ready()
     {
@@ -65,6 +67,8 @@ public partial class Luce : CharacterBody2D
         attackShape = GetNode<CollisionPolygon2D>("HitBox/CollisionPolygon2D");
 
         healthRegenBuffer = GetNode<Timer>("Timers/HealthRegenBuffer");
+
+        
 
         audioDirector = AudioDirector.Instance;
     }
@@ -78,9 +82,11 @@ public partial class Luce : CharacterBody2D
         SetAnimation();
 
         RegenerateHealth();
+        
     }
     public override void _PhysicsProcess(double delta)
     {
+
         if (State == PlayerState.Disabled) return;
         
         if (State != PlayerState.Attacking)
@@ -298,6 +304,9 @@ public partial class Luce : CharacterBody2D
             enemy.TakeDamage(1);
         }
     }   
+
+
+
 }
 
 public class PlayerNextBuffer

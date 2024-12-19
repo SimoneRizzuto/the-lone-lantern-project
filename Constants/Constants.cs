@@ -20,6 +20,7 @@ public static class InputMapAction
     public const string Enter = "Enter";
     public const string Save = "Save";
     public const string Load = "Load";
+    public const string Interact = "Interact";
 }
 
 public static class NodeGroup
@@ -36,6 +37,7 @@ public static class NodeGroup
     public const string TransitionCamera = "transition camera";
     public const string Persist = "Persist";
     public const string AudioDirector = "audio director";
+    public const string Interact = "Interact";
 }
 
 public static class PlayerConstants

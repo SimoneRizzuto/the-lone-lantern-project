@@ -758,5 +758,4 @@ AnimationPlayer = NodePath("../AnimationPlayer")
 [node name="DustCloudModule" parent="." instance=ExtResource("28_tcpop")]
 
 [connection signal="LastWalkDirection" from="PlayerStateMachine/PlayerWalkingModule" to="Camera2D" method="OnLuceLastWalkDirection"]
-[connection signal="PlayerIsMoving" from="PlayerStateMachine/PlayerWalkingModule" to="Camera2D" method="OnPlayerIsMoving"]
 [connection signal="screen_exited" from="PlayerOnScreenNotifier" to="Camera2D" method="PlayerOnScreenExited"]
