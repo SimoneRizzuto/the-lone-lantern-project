@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://buj8skc4edik3"]
 
 [ext_resource type="Texture2D" uid="uid://cu8girwja4iba" path="res://Assets/Textures/rain drop.png" id="1_ysfg0"]
-[ext_resource type="Script" path="res://Scripts/Modules/WeatherModule.cs" id="2_0gohw"]
+[ext_resource type="Script" path="res://Scripts/Modules/Weather/WeatherModule.cs" id="2_x2hfn"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_fo2ar"]
 particle_flag_disable_z = true
@@ -17,6 +17,7 @@ size = Vector2(486.5, 4.5)
 position = Vector2(0, -72)
 emitting = false
 amount = 3000
+sub_emitter = NodePath(".")
 process_material = SubResource("ParticleProcessMaterial_fo2ar")
 texture = ExtResource("1_ysfg0")
 lifetime = 3.0
@@ -24,7 +25,7 @@ fixed_fps = 0
 collision_base_size = 0.0
 visibility_rect = Rect2(-500, 0, 1000, 1000)
 draw_order = 0
-script = ExtResource("2_0gohw")
+script = ExtResource("2_x2hfn")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.603922, 0.698039, 0.74902, 1)

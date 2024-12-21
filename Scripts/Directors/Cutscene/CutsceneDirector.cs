@@ -6,6 +6,7 @@ using DialogueManagerRuntime;
 using Godot;
 using TheLoneLanternProject.Scripts.Constants;
 using TheLoneLanternProject.Scripts.Helpers;
+using TheLoneLanternProject.Scripts.Modules.Weather;
 
 namespace TheLoneLanternProject.Scripts.Directors.Cutscene;
 
@@ -14,7 +15,7 @@ public partial class CutsceneDirector : Node
     private CustomSignals customSignals = new();
     private Player.Luce luce = new();
     private ActorNodeBase luceActor = new();
-    private TheLoneLanternProject.Scripts.Modules.WeatherModule weatherModule;
+    private WeatherModule weatherModule;
     
     private AsyncActionToPlay asyncActionToPlay = AsyncActionToPlay.NoAction;
     private double millisecondsToPass = 1000;

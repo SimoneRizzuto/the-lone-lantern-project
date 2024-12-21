@@ -30,7 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://vvefpri732dh" path="res://Assets/Textures/Luce/luce_walking_right-Sheet.png" id="28_5twl6"]
 [ext_resource type="Texture2D" uid="uid://crhnqx5rq8fj6" path="res://Assets/Textures/Luce/luce_walking_up-Sheet.png" id="29_daw4c"]
 [ext_resource type="Script" path="res://Scripts/Player/LuceActorNode.cs" id="30_bbmja"]
-[ext_resource type="PackedScene" uid="uid://c65srkhjbyvux" path="res://Modules/DustCloud/DustCloudModule.tscn" id="31_rwceo"]
+[ext_resource type="PackedScene" uid="uid://c65srkhjbyvux" path="res://Scenes/Modules/DustCloud/DustCloudModule.tscn" id="31_rwceo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b7tdo"]
 size = Vector2(5.00004, 14)

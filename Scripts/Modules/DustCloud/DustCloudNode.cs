@@ -1,6 +1,6 @@
 using Godot;
 
-namespace TheLoneLanternProject.Modules.DustCloud;
+namespace TheLoneLanternProject.Scripts.Modules.DustCloud;
 public partial class DustCloudNode : Node2D
 {
     private AnimatedSprite2D animatedSprite2D;

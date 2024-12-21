@@ -1,6 +1,6 @@
 using Godot;
 
-namespace TheLoneLanternProject.Modules.DustCloud;
+namespace TheLoneLanternProject.Scripts.Modules.DustCloud;
 public partial class DustCloudModule : DustCloudNode
 {
 	/* Three components are required: DustCloud, DustCloudModule, and the PlayerDashingModule.

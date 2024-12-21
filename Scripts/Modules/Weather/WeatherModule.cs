@@ -1,7 +1,7 @@
+using System;
 using Godot;
 
-namespace TheLoneLanternProject.Scripts.Modules;
-
+namespace TheLoneLanternProject.Scripts.Modules.Weather;
 public partial class WeatherModule : GpuParticles2D
 {
 	[Export] public bool Raining;
@@ -20,6 +20,8 @@ public partial class WeatherModule : GpuParticles2D
 	
 	public override void _Process(double delta)
 	{
+		Console.WriteLine(Color);
+		
 		if (Raining)
 		{
 			AmountRatio += AmountRatio < 1 ? 0.2f * (float)delta : 0;

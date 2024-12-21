@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://cxqsca8cxm68c" path="res://Assets/Textures/playground_plaza-wall-vertical.png" id="8_xpa85"]
 [ext_resource type="Texture2D" uid="uid://xepk7m1tits3" path="res://Assets/Textures/playground_plaza-wall-horizontal-end2.png" id="9_llm1h"]
 [ext_resource type="PackedScene" uid="uid://h0qtabwk04wy" path="res://Scenes/Directors/Cutscene/CutsceneDirector.tscn" id="10_ejcvy"]
-[ext_resource type="PackedScene" uid="uid://buj8skc4edik3" path="res://Scenes/Modules/WeatherModule.tscn" id="12_kbawf"]
+[ext_resource type="PackedScene" uid="uid://buj8skc4edik3" path="res://Scenes/Modules/Weather/WeatherModule.tscn" id="12_kbawf"]
 [ext_resource type="Texture2D" uid="uid://cuji7jn0xmwvw" path="res://Assets/Textures/park_bench.aseprite" id="13_05pgp"]
 [ext_resource type="Texture2D" uid="uid://clbgwybv3enxd" path="res://Assets/Textures/playground_bin.aseprite" id="14_mjfbv"]
 [ext_resource type="Texture2D" uid="uid://dy7q13pujx40" path="res://Assets/Textures/playground_slide.aseprite" id="15_pycv1"]

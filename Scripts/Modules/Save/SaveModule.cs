@@ -1,11 +1,12 @@
-using Godot;
 using System;
 using System.Linq;
 using System.Text.Json;
-using TheLoneLanternProject.Scripts.Player;
+using Godot;
 using TheLoneLanternProject.Scripts.Constants;
+using TheLoneLanternProject.Scripts.Player;
 
-public partial class SaveNode : Node2D
+namespace TheLoneLanternProject.Scripts.Modules.Save;
+public partial class SaveModule : Node2D
 {
     private Luce luce;
     public override void _Ready()
@@ -13,7 +14,6 @@ public partial class SaveNode : Node2D
         var tree = GetTree();
         var playerNodes = tree.GetNodesInGroup(NodeGroup.Player);
         luce = playerNodes.Cast<Luce>().FirstOrDefault();
-
     }
 
     public override void _Process(double delta)

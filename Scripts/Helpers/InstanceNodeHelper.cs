@@ -1,4 +1,5 @@
 using Godot;
+using TheLoneLanternProject.Scripts.Modules.Weather;
 
 namespace TheLoneLanternProject.Scripts.Helpers;
 
@@ -16,9 +17,9 @@ public static class InstanceNodeHelper
         return sceneToAdd;
     }
     
-    public static Modules.WeatherModule Rain(Node tree)
+    public static WeatherModule Rain(Node tree)
     {
         var node = InstanceNode(tree, "uid://buj8skc4edik3");
-        return (Modules.WeatherModule)node;
+        return (WeatherModule)node;
     }
 }
