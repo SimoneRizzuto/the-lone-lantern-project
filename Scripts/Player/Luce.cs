@@ -1,8 +1,7 @@
 using Godot;
-using TheLoneLanternProject.Modules;
 using TheLoneLanternProject.Scripts.Constants;
 using TheLoneLanternProject.Scripts.Extensions;
-using PlayerStateMachine = TheLoneLanternProject.Scripts.StateMachines.Player.PlayerStateMachine;
+using TheLoneLanternProject.Scripts.StateMachines.Player;
 
 namespace TheLoneLanternProject.Scripts.Player;
 public partial class Luce : CharacterBody2D

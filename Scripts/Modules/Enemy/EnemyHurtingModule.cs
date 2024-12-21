@@ -1,17 +1,17 @@
 using Godot;
-using TheLoneLanternProject.Modules;
 using TheLoneLanternProject.Scripts.Constants;
+using TheLoneLanternProject.Scripts.StateMachines.Enemy;
 
 namespace TheLoneLanternProject.Scripts.Modules.Enemy;
 
 [GlobalClass]
 public partial class EnemyHurtingModule : Node
 {
-    [Export] public StateMachines.Enemy.EnemyStateMachine State;
+    [Export] public EnemyStateMachine State;
 
     public override void _Ready()
     {
-        State ??= GetParent<StateMachines.Enemy.EnemyStateMachine>();
+        State ??= GetParent<EnemyStateMachine>();
     }
     public override void _Process(double delta)
     {

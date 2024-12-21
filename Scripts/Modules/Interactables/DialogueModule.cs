@@ -1,9 +1,10 @@
-using DialogueManagerRuntime;
 using Godot;
-using System;
+using DialogueManagerRuntime;
 using TheLoneLanternProject.Scripts.Player;
 using TheLoneLanternProject.Scripts.Helpers;
 using TheLoneLanternProject.Scripts.Constants;
+
+namespace TheLoneLanternProject.Scripts.Modules.Interactables;
 
 [GlobalClass]
 public partial class DialogueModule : Node

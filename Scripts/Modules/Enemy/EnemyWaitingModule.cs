@@ -1,13 +1,14 @@
-using System;
 using Godot;
+using System;
 using TheLoneLanternProject.Scripts.Constants;
+using TheLoneLanternProject.Scripts.StateMachines.Enemy;
 
 namespace TheLoneLanternProject.Scripts.Modules.Enemy;
 
 [GlobalClass]
 public partial class EnemyWaitingModule : Node
 {
-    [Export] public StateMachines.Enemy.EnemyStateMachine State;
+    [Export] public EnemyStateMachine State;
 
     //lambda expression which evaluates if state was waiting
     private bool StateIsValid => State.EnemyState != EnemyState.Waiting;
@@ -15,7 +16,7 @@ public partial class EnemyWaitingModule : Node
     public override void _Ready()
     {
         // Get state of the parent
-        State ??= GetParent<StateMachines.Enemy.EnemyStateMachine>();
+        State ??= GetParent<EnemyStateMachine>();
     }
 
     public override void _Process(double delta)

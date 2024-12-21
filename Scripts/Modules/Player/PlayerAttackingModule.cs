@@ -1,8 +1,8 @@
 using System;
 using Godot;
-using TheLoneLanternProject.Modules;
 using TheLoneLanternProject.Scripts.Constants;
 using TheLoneLanternProject.Scripts.Helpers;
+using TheLoneLanternProject.Scripts.StateMachines.Player;
 
 namespace TheLoneLanternProject.Scripts.Modules.Player;
 
@@ -37,7 +37,7 @@ public partial class PlayerAttackingModule : Node
     
     public override void _Ready()
     {
-        State ??= GetParent<StateMachines.Player.PlayerStateMachine>();
+        State ??= GetParent<PlayerStateMachine>();
         AttackShape ??= GetNode<CollisionPolygon2D>("HitBox/CollisionPolygon2D");
         
         State.MainSprite.AnimationFinished += OnAnimationFinished;

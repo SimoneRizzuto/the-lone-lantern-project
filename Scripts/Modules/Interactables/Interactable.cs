@@ -1,7 +1,4 @@
-using Godot;
-using System;
-
-namespace TheLoneLanternProject.Modules;
+namespace TheLoneLanternProject.Scripts.Modules.Interactables;
 
 /*
 public interface IInteractable

@@ -1,17 +1,17 @@
 using Godot;
-using TheLoneLanternProject.Modules;
 using TheLoneLanternProject.Scripts.Constants;
+using TheLoneLanternProject.Scripts.StateMachines.Player;
 
 namespace TheLoneLanternProject.Scripts.Modules.Player;
 
 [GlobalClass]
 public partial class PlayerDisabledModule : Node
 {
-    [Export] public StateMachines.Player.PlayerStateMachine State;
+    [Export] public PlayerStateMachine State;
 
     public override void _Ready()
     {
-        State ??= GetParent<StateMachines.Player.PlayerStateMachine>();
+        State ??= GetParent<PlayerStateMachine>();
     }
 
     public override void _Process(double delta)

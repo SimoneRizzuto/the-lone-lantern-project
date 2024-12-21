@@ -1,15 +1,15 @@
 using System;
 using Godot;
-using TheLoneLanternProject.Modules;
-using TheLoneLanternProject.Scripts.Constants;
 using TheLoneLanternProject.Scripts.Helpers;
+using TheLoneLanternProject.Scripts.Constants;
+using TheLoneLanternProject.Scripts.StateMachines.Enemy;
 
 namespace TheLoneLanternProject.Scripts.Modules.Enemy;
 
 [GlobalClass]
 public partial class EnemyAttackingModule : Node
 {
-    [Export] public StateMachines.Enemy.EnemyStateMachine State;
+    [Export] public EnemyStateMachine State;
     [Export] public CollisionPolygon2D AttackShape;
 
     private Scripts.Player.Luce luce;
@@ -31,7 +31,7 @@ public partial class EnemyAttackingModule : Node
 
     public override void _Ready()
     {
-        State ??= GetParent<StateMachines.Enemy.EnemyStateMachine>();
+        State ??= GetParent<EnemyStateMachine>();
         AttackShape ??= GetNode<CollisionPolygon2D>("HitBox/CollisionPolygon2D");
 
         State.MainSprite.AnimationFinished += OnAnimationFinished;
@@ -125,6 +125,4 @@ public partial class EnemyAttackingModule : Node
     {
         State.EnemyState = EnemyState.OutOfCombat;
     }
-
-
 }
