@@ -1,11 +1,11 @@
 [gd_scene load_steps=26 format=3 uid="uid://0bfaldsm103s"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/Enemy.cs" id="1_42gsv"]
-[ext_resource type="Script" path="res://Modules/Enemy/EnemyStateMachine.cs" id="2_c0maf"]
-[ext_resource type="Script" path="res://Modules/Enemy/EnemyOutofCombatModule.cs" id="3_1e3rk"]
-[ext_resource type="Script" path="res://Modules/Enemy/EnemyRepositionModule.cs" id="4_nl3lb"]
-[ext_resource type="Script" path="res://Modules/Enemy/EnemyAttackingModule.cs" id="5_s2sm0"]
-[ext_resource type="Script" path="res://Modules/Enemy/EnemyHurtingModule.cs" id="6_47j40"]
+[ext_resource type="Script" path="res://Scripts/StateMachines/Enemy/EnemyStateMachine.cs" id="2_dsfli"]
+[ext_resource type="Script" path="res://Scripts/Modules/Enemy/EnemyOutOfCombatModule.cs" id="3_6uwmo"]
+[ext_resource type="Script" path="res://Scripts/Modules/Enemy/EnemyRepositionModule.cs" id="4_05uj8"]
+[ext_resource type="Script" path="res://Scripts/Modules/Enemy/EnemyAttackingModule.cs" id="5_tge24"]
+[ext_resource type="Script" path="res://Scripts/Modules/Enemy/EnemyHurtingModule.cs" id="6_coplb"]
 [ext_resource type="Texture2D" uid="uid://d0oths756jmeh" path="res://Scenes/Enemies/enemy-blob-idle-Sheet.png" id="7_ntucf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_byd8a"]
@@ -191,16 +191,16 @@ scale = Vector2(0.25, 0.25)
 script = ExtResource("1_42gsv")
 
 [node name="EnemyStateMachine" type="Node" parent="."]
-script = ExtResource("2_c0maf")
+script = ExtResource("2_dsfli")
 
-[node name="EnemyOutofCombatModule" type="Node" parent="EnemyStateMachine"]
-script = ExtResource("3_1e3rk")
+[node name="EnemyOutOfCombatModule" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("3_6uwmo")
 
 [node name="EnemyRepositionModule" type="Node" parent="EnemyStateMachine"]
-script = ExtResource("4_nl3lb")
+script = ExtResource("4_05uj8")
 
 [node name="EnemyAttackingModule" type="Node" parent="EnemyStateMachine"]
-script = ExtResource("5_s2sm0")
+script = ExtResource("5_tge24")
 
 [node name="HitBox" type="Area2D" parent="EnemyStateMachine/EnemyAttackingModule"]
 
@@ -211,7 +211,7 @@ scale = Vector2(0.352594, 0.268519)
 polygon = PackedVector2Array(17, -1, 29, -12, 31, -25, 29, -37, 22, -47, 13, -52, 4, -52, -12, -51, -17, -44, -20, -32, -22, -16, -17, -2, -4, 2, 12, 1)
 
 [node name="EnemyHurtingModule" type="Node" parent="EnemyStateMachine"]
-script = ExtResource("6_47j40")
+script = ExtResource("6_coplb")
 
 [node name="MainSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -80)

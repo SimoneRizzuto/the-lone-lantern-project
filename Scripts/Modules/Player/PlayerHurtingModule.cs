@@ -1,16 +1,16 @@
 using Godot;
 using TheLoneLanternProject.Scripts.Constants;
 
-namespace TheLoneLanternProject.Modules;
+namespace TheLoneLanternProject.Scripts.Modules.Player;
 
 [GlobalClass]
 public partial class PlayerHurtingModule : Node
 {
-    [Export] public PlayerStateMachine State;
+    [Export] public StateMachines.Player.PlayerStateMachine State;
     
     public override void _Ready()
     {
-        State ??= GetParent<PlayerStateMachine>();
+        State ??= GetParent<StateMachines.Player.PlayerStateMachine>();
     }
 
     public override void _Process(double delta)

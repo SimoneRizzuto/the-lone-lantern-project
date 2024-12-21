@@ -1,9 +1,10 @@
-using Godot;
 using System;
-using TheLoneLanternProject.Scripts.Constants;
+using Godot;
 using TheLoneLanternProject.Scripts.Helpers;
+using TheLoneLanternProject.Scripts.Constants;
+using TheLoneLanternProject.Scripts.StateMachines.Player;
 
-namespace TheLoneLanternProject.Modules;
+namespace TheLoneLanternProject.Scripts.Modules.Player;
 
 [GlobalClass]
 public partial class PlayerWalkingModule : Node

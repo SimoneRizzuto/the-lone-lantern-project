@@ -1,14 +1,14 @@
 [gd_scene load_steps=104 format=3 uid="uid://lijck4bh3uhp"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Luce.cs" id="1_s2gut"]
-[ext_resource type="PackedScene" uid="uid://f6e35btgmilp" path="res://Modules/StaminaHealth/StaminaHealthModule.tscn" id="2_webvg"]
-[ext_resource type="Script" path="res://Modules/PlayerStateMachine.cs" id="3_qx4e3"]
-[ext_resource type="Script" path="res://Modules/PlayerIdleModule.cs" id="4_jkiih"]
-[ext_resource type="Script" path="res://Modules/PlayerWalkingModule.cs" id="5_nfq3h"]
-[ext_resource type="Script" path="res://Modules/PlayerHurtingModule.cs" id="6_ye4dx"]
-[ext_resource type="Script" path="res://Modules/PlayerAttackingModule.cs" id="7_c1oco"]
-[ext_resource type="Script" path="res://Modules/PlayerDashingModule.cs" id="8_81f85"]
-[ext_resource type="Script" path="res://Modules/PlayerDisabledModule.cs" id="9_aqner"]
+[ext_resource type="PackedScene" uid="uid://f6e35btgmilp" path="res://Scenes/Modules/StaminaHealth/StaminaHealthModule.tscn" id="2_lr60b"]
+[ext_resource type="Script" path="res://Scripts/StateMachines/Player/PlayerStateMachine.cs" id="3_0kckq"]
+[ext_resource type="Script" path="res://Scripts/Modules/Player/PlayerIdleModule.cs" id="4_tmxew"]
+[ext_resource type="Script" path="res://Scripts/Modules/Player/PlayerWalkingModule.cs" id="5_vfxqp"]
+[ext_resource type="Script" path="res://Scripts/Modules/Player/PlayerHurtingModule.cs" id="6_i4asr"]
+[ext_resource type="Script" path="res://Scripts/Modules/Player/PlayerAttackingModule.cs" id="7_vka81"]
+[ext_resource type="Script" path="res://Scripts/Modules/Player/PlayerDashingModule.cs" id="8_w2wyy"]
+[ext_resource type="Script" path="res://Scripts/Modules/Player/PlayerDisabledModule.cs" id="9_xnp3o"]
 [ext_resource type="Script" path="res://Scripts/Camera/PlayerCamera2D.cs" id="10_8bpji"]
 [ext_resource type="Texture2D" uid="uid://bfgf1fv5ereq8" path="res://Assets/Textures/Luce/luce attack bottom-Sheet.png" id="11_0t8mw"]
 [ext_resource type="Texture2D" uid="uid://wwtb3f3y563q" path="res://Assets/Textures/Luce/luce attack left 1-Sheet.png" id="12_if6gw"]
@@ -684,22 +684,22 @@ wall_min_slide_angle = 0.0
 platform_on_leave = 2
 script = ExtResource("1_s2gut")
 
-[node name="StaminaHealthModule" parent="." instance=ExtResource("2_webvg")]
+[node name="StaminaHealthModule" parent="." instance=ExtResource("2_lr60b")]
 
 [node name="PlayerStateMachine" type="Node" parent="."]
-script = ExtResource("3_qx4e3")
+script = ExtResource("3_0kckq")
 
 [node name="PlayerIdleModule" type="Node" parent="PlayerStateMachine"]
-script = ExtResource("4_jkiih")
+script = ExtResource("4_tmxew")
 
 [node name="PlayerWalkingModule" type="Node" parent="PlayerStateMachine"]
-script = ExtResource("5_nfq3h")
+script = ExtResource("5_vfxqp")
 
 [node name="PlayerHurtingModule" type="Node" parent="PlayerStateMachine"]
-script = ExtResource("6_ye4dx")
+script = ExtResource("6_i4asr")
 
 [node name="PlayerAttackingModule" type="Node" parent="PlayerStateMachine" groups=["player"]]
-script = ExtResource("7_c1oco")
+script = ExtResource("7_vka81")
 
 [node name="HitBox" type="Area2D" parent="PlayerStateMachine/PlayerAttackingModule"]
 visible = false
@@ -710,10 +710,10 @@ polygon = PackedVector2Array(-9, -34, 0, -34, 11, -32, 17, -30, 21, -28, 30, -19
 disabled = true
 
 [node name="PlayerDashingModule" type="Node" parent="PlayerStateMachine"]
-script = ExtResource("8_81f85")
+script = ExtResource("8_w2wyy")
 
 [node name="PlayerDisabledModule" type="Node" parent="PlayerStateMachine"]
-script = ExtResource("9_aqner")
+script = ExtResource("9_xnp3o")
 
 [node name="PlayerCamera2D" type="Camera2D" parent="." groups=["player camera"]]
 position = Vector2(0, -12)

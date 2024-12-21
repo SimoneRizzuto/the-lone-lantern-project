@@ -1,15 +1,15 @@
-using System;
-using Godot;
 using System.Diagnostics;
+using Godot;
+using TheLoneLanternProject.Modules;
 using TheLoneLanternProject.Scripts.Constants;
 using TheLoneLanternProject.Scripts.Helpers;
 
-namespace TheLoneLanternProject.Modules;
+namespace TheLoneLanternProject.Scripts.Modules.Player;
 
 [GlobalClass]
 public partial class PlayerDashingModule : Node
 {
-    [Export] public PlayerStateMachine State;
+    [Export] public StateMachines.Player.PlayerStateMachine State;
     [Export] public float DashSpeed = PlayerWalkingModule.DefaultMoveSpeed * 5;
     [Export] public int DashLengthMilliseconds = 1000 / 8;
 
@@ -22,7 +22,7 @@ public partial class PlayerDashingModule : Node
     
     public override void _Ready()
     {
-        State ??= GetParent<PlayerStateMachine>();
+        State ??= GetParent<StateMachines.Player.PlayerStateMachine>();
     }
 
     public override void _Process(double delta)

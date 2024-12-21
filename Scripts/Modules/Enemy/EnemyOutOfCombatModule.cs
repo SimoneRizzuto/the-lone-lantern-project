@@ -1,15 +1,15 @@
-using Godot;
 using System;
+using Godot;
 using TheLoneLanternProject.Modules;
 using TheLoneLanternProject.Scripts.Constants;
 using TheLoneLanternProject.Scripts.Helpers;
 
-namespace TheLoneLanternProject.Modules;
+namespace TheLoneLanternProject.Scripts.Modules.Enemy;
 
 [GlobalClass]
-public partial class EnemyOutofCombatModule : Node
+public partial class EnemyOutOfCombatModule : Node
 {
-    [Export] public EnemyStateMachine State;
+    [Export] public StateMachines.Enemy.EnemyStateMachine State;
 
     private Scripts.Player.Luce luce;
     private bool StateIsOutOfCombat => State.EnemyState is EnemyState.OutOfCombat;
@@ -17,7 +17,7 @@ public partial class EnemyOutofCombatModule : Node
 
     public override void _Ready()
     {
-        State ??= GetParent<EnemyStateMachine>();
+        State ??= GetParent<StateMachines.Enemy.EnemyStateMachine>();
 
     }
 

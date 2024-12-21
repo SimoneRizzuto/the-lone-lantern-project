@@ -5,7 +5,7 @@
     <RootNamespace>TheLoneLanternProject</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="Modules\DustCloud\" />
+    <Folder Include="Scenes\PlayerController\" />
     <Folder Include="Scenes\Player\" />
   </ItemGroup>
 </Project>

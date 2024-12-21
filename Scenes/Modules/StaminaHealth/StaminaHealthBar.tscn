@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://xnsxf4vyq0vt"]
 
-[ext_resource type="Script" path="res://Scenes/PlayerController/StaminaHealthBar.cs" id="1_bylq6"]
-[ext_resource type="Texture2D" uid="uid://c7hx7pewjsco1" path="res://Assets/Textures/white-sprite.png" id="1_pweax"]
+[ext_resource type="Script" path="res://Scripts/Modules/StaminaHealth/StaminaHealthBar.cs" id="1_ejb58"]
+[ext_resource type="Texture2D" uid="uid://c7hx7pewjsco1" path="res://Assets/Textures/white-sprite.png" id="2_w8vfr"]
 
 [node name="StaminaHealthBar" type="CanvasLayer"]
-script = ExtResource("1_bylq6")
+script = ExtResource("1_ejb58")
 
 [node name="Container" type="HBoxContainer" parent="."]
 anchors_preset = 5
@@ -21,4 +21,4 @@ alignment = 1
 [node name="TextureProgressBar" type="TextureProgressBar" parent="Container"]
 layout_mode = 2
 value = 100.0
-texture_progress = ExtResource("1_pweax")
+texture_progress = ExtResource("2_w8vfr")

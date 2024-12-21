@@ -1,14 +1,15 @@
-using Godot;
 using System;
+using Godot;
+using TheLoneLanternProject.Modules;
 using TheLoneLanternProject.Scripts.Constants;
 using TheLoneLanternProject.Scripts.Helpers;
 
-namespace TheLoneLanternProject.Modules;
+namespace TheLoneLanternProject.Scripts.Modules.Enemy;
 
 [GlobalClass]
 public partial class EnemyRepositionModule : Node
 {
-    [Export] public EnemyStateMachine State;
+    [Export] public StateMachines.Enemy.EnemyStateMachine State;
     [Export] public Vector2 MovementVector;
     [Export] public float MoveSpeed = DefaultMoveSpeed; // Set as needed
 
@@ -21,7 +22,7 @@ public partial class EnemyRepositionModule : Node
 
     public override void _Ready()
     {
-        State ??= GetParent<EnemyStateMachine>();
+        State ??= GetParent<StateMachines.Enemy.EnemyStateMachine>();
     }
 
     private bool MovementVectorIsAboveThreshold(Vector2 vector) => vector.Length() > MovementVectorThreshold;

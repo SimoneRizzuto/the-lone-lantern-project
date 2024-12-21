@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://bgpdxfsl820vp"]
+
+[ext_resource type="PackedScene" uid="uid://lijck4bh3uhp" path="res://Scenes/Player/Luce.tscn" id="1_stcl4"]
+[ext_resource type="PackedScene" uid="uid://bihv5yjq7muuh" path="res://Scenes/Static/SicilianHouse.tscn" id="2_ku5tm"]
+[ext_resource type="PackedScene" uid="uid://barc3o7fkbn44" path="res://Scenes/SceneSwitcher/DoorSquare2D.tscn" id="3_lfh2w"]
+[ext_resource type="PackedScene" uid="uid://ubc5cusrcpq7" path="res://Scenes/Static/Couch.tscn" id="4_sctpx"]
+[ext_resource type="PackedScene" uid="uid://h0qtabwk04wy" path="res://Scenes/Directors/Cutscene/CutsceneDirector.tscn" id="5_5y00f"]
+[ext_resource type="PackedScene" uid="uid://0bfaldsm103s" path="res://Scenes/Enemies/Enemy.tscn" id="6_28f6i"]
+
+[node name="DevRoom" type="Node2D"]
+z_as_relative = false
+y_sort_enabled = true
+
+[node name="Luce" parent="." instance=ExtResource("1_stcl4")]
+position = Vector2(247, 209)
+
+[node name="SicilianHouse" parent="." instance=ExtResource("2_ku5tm")]
+position = Vector2(165, 173)
+
+[node name="DoorSquare2D" parent="SicilianHouse" instance=ExtResource("3_lfh2w")]
+position = Vector2(35, 8)
+scale = Vector2(0.436729, 0.395595)
+SceneUID = "uid://c2g70y5vbb02x"
+DoorName = "HouseDoor"
+ExitDirection = 0
+
+[node name="Couch" parent="." instance=ExtResource("4_sctpx")]
+position = Vector2(99, 263)
+
+[node name="CutsceneDirector" parent="." instance=ExtResource("5_5y00f")]
+
+[node name="Enemy" parent="." instance=ExtResource("6_28f6i")]
+position = Vector2(356, 211)

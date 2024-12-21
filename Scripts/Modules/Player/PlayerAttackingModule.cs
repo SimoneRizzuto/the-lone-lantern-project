@@ -1,15 +1,15 @@
 using System;
-using System.Linq;
 using Godot;
+using TheLoneLanternProject.Modules;
 using TheLoneLanternProject.Scripts.Constants;
 using TheLoneLanternProject.Scripts.Helpers;
 
-namespace TheLoneLanternProject.Modules;
+namespace TheLoneLanternProject.Scripts.Modules.Player;
 
 [GlobalClass]
 public partial class PlayerAttackingModule : Node
 {
-    [Export] public PlayerStateMachine State;
+    [Export] public StateMachines.Player.PlayerStateMachine State;
     [Export] public CollisionPolygon2D AttackShape;
 
     private bool AllowAttack => State.StaminaHealthModule.AllowAction 
@@ -37,7 +37,7 @@ public partial class PlayerAttackingModule : Node
     
     public override void _Ready()
     {
-        State ??= GetParent<PlayerStateMachine>();
+        State ??= GetParent<StateMachines.Player.PlayerStateMachine>();
         AttackShape ??= GetNode<CollisionPolygon2D>("HitBox/CollisionPolygon2D");
         
         State.MainSprite.AnimationFinished += OnAnimationFinished;

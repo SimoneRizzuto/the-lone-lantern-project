@@ -1,5 +1,6 @@
 using Godot;
-using System;
+
+namespace TheLoneLanternProject.Scripts.StateMachines.Base;
 
 [GlobalClass]
 public partial class StateMachine : Node

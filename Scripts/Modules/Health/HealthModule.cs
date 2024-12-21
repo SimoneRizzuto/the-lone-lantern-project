@@ -1,6 +1,6 @@
 using Godot;
 
-namespace TheLoneLanternProject.Modules;
+namespace TheLoneLanternProject.Scripts.Modules.Health;
 
 [GlobalClass]
 public partial class HealthModule : Node

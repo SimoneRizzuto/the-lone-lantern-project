@@ -1,6 +1,7 @@
 using Godot;
+using TheLoneLanternProject.Scripts.Modules.Health;
 
-namespace TheLoneLanternProject.Modules;
+namespace TheLoneLanternProject.Scripts.Modules.HitBox;
 
 [GlobalClass]
 public partial class HitBoxModule : Area2D
