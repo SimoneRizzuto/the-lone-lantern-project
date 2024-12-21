@@ -18,7 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://5mnmxf8y6737" path="res://Assets/Textures/playground_seesaw.aseprite" id="16_74ddk"]
 [ext_resource type="Texture2D" uid="uid://ba2f81lheflsw" path="res://Assets/Textures/playground_water_fountain.aseprite" id="17_210mj"]
 [ext_resource type="PackedScene" uid="uid://muoxkhjyx4lr" path="res://Scenes/Modules/Interactables/Interactable.tscn" id="18_b6ac8"]
-[ext_resource type="Script" path="res://Scripts/Modules/Interactables/PickupModule.cs" id="19_3c5xy"]
+[ext_resource type="Script" path="res://Scripts/Modules/Interactables/PickupInteractableModule.cs" id="19_3c5xy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ssvm"]
 size = Vector2(3, 18)

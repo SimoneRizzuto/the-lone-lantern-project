@@ -7,7 +7,7 @@ using TheLoneLanternProject.Scripts.Constants;
 namespace TheLoneLanternProject.Scripts.Modules.Interactables;
 
 [GlobalClass]
-public partial class DialogueModule : Node
+public partial class DialogueInteractableModule : Node
 {
     private CustomSignals customSignals = new();
     private Luce luce = new();
