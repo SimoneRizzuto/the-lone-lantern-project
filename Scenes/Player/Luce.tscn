@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://Scripts/Modules/Player/PlayerAttackingModule.cs" id="7_vka81"]
 [ext_resource type="Script" path="res://Scripts/Modules/Player/PlayerDashingModule.cs" id="8_w2wyy"]
 [ext_resource type="Script" path="res://Scripts/Modules/Player/PlayerDisabledModule.cs" id="9_xnp3o"]
-[ext_resource type="Script" path="res://Scripts/Camera/PlayerCamera2D.cs" id="10_8bpji"]
+[ext_resource type="Script" path="res://Scripts/Modules/Camera/PlayerCamera2D.cs" id="10_ogi10"]
 [ext_resource type="Texture2D" uid="uid://bfgf1fv5ereq8" path="res://Assets/Textures/Luce/luce attack bottom-Sheet.png" id="11_0t8mw"]
 [ext_resource type="Texture2D" uid="uid://wwtb3f3y563q" path="res://Assets/Textures/Luce/luce attack left 1-Sheet.png" id="12_if6gw"]
 [ext_resource type="Texture2D" uid="uid://ov665bj6r5ch" path="res://Assets/Textures/Luce/luce attack left 2-Sheet.png" id="13_5ivyn"]
@@ -719,7 +719,7 @@ script = ExtResource("9_xnp3o")
 position = Vector2(0, -12)
 process_callback = 0
 position_smoothing_enabled = true
-script = ExtResource("10_8bpji")
+script = ExtResource("10_ogi10")
 
 [node name="MainShape" type="CollisionShape2D" parent="."]
 z_index = 1
@@ -758,4 +758,5 @@ AnimationPlayer = NodePath("../AnimationPlayer")
 [node name="DustCloudModule" parent="." instance=ExtResource("31_rwceo")]
 
 [connection signal="LastWalkDirection" from="PlayerStateMachine/PlayerWalkingModule" to="PlayerCamera2D" method="OnLuceLastWalkDirection"]
+[connection signal="PlayerIsMoving" from="PlayerStateMachine/PlayerWalkingModule" to="PlayerCamera2D" method="OnPlayerIsMoving"]
 [connection signal="screen_exited" from="PlayerOnScreenNotifier" to="PlayerCamera2D" method="PlayerOnScreenExited"]

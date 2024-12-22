@@ -1,6 +1,7 @@
 using System.Linq;
 using Godot;
 using TheLoneLanternProject.Scripts.Constants;
+using TheLoneLanternProject.Scripts.Modules.Camera;
 using TheLoneLanternProject.Scripts.Modules.Weather;
 
 namespace TheLoneLanternProject.Scripts.Helpers;
@@ -18,10 +19,10 @@ public static class GetNodeHelper
         return luce;
     }
     
-    public static Camera.MainCamera2D GetMainCamera2D(SceneTree tree)
+    public static MainCamera2D GetMainCamera2D(SceneTree tree)
     {
         var mainCamera2DNodes = tree.GetNodesInGroup(NodeGroup.MainCamera);
-        var mainCamera2D = mainCamera2DNodes.Cast<Camera.MainCamera2D>().FirstOrDefault();
+        var mainCamera2D = mainCamera2DNodes.Cast<MainCamera2D>().FirstOrDefault();
         if (mainCamera2D == null)
         {
             GD.PrintErr($"{nameof(mainCamera2D)} was null.");
@@ -30,10 +31,10 @@ public static class GetNodeHelper
         return mainCamera2D;
     }
     
-    public static Camera.PlayerCamera2D GetPlayerCamera2D(SceneTree tree)
+    public static PlayerCamera2D GetPlayerCamera2D(SceneTree tree)
     {
         var playerCamera2DNodes = tree.GetNodesInGroup(NodeGroup.PlayerCamera);
-        var playerCamera2D = playerCamera2DNodes.Cast<Camera.PlayerCamera2D>().FirstOrDefault();
+        var playerCamera2D = playerCamera2DNodes.Cast<PlayerCamera2D>().FirstOrDefault();
         if (playerCamera2D == null)
         {
             GD.PrintErr($"{nameof(playerCamera2D)} was null.");

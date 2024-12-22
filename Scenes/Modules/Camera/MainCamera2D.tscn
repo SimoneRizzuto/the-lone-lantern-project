@@ -1,9 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://bgecm7pnhu6vb"]
 
-[ext_resource type="Script" path="res://Scripts/Camera/MainCamera2D.cs" id="1_o6jbr"]
+[ext_resource type="Script" path="res://Scripts/Modules/Camera/MainCamera2D.cs" id="1_eew8y"]
 
 [node name="MainCamera2D" type="Node2D" groups=["main camera"]]
-script = ExtResource("1_o6jbr")
+script = ExtResource("1_eew8y")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -12)

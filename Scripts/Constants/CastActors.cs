@@ -2,6 +2,7 @@ using System.Linq;
 using Godot;
 using TheLoneLanternProject.Scripts.Directors;
 using TheLoneLanternProject.Scripts.Helpers;
+using TheLoneLanternProject.Scripts.Modules.Camera;
 
 namespace TheLoneLanternProject.Scripts.Constants;
 
@@ -14,7 +15,7 @@ public partial class CastActors : Node
     // Cast
     public Directors.Cutscene.CutsceneDirector director;
     public AudioDirector audioDirector;
-    public Camera.MainCamera2D camera;
+    public MainCamera2D camera;
     
     // Actors
     public Directors.Cutscene.ActorNodeBase luce;

@@ -20,8 +20,6 @@ public partial class WeatherModule : GpuParticles2D
 	
 	public override void _Process(double delta)
 	{
-		Console.WriteLine(Color);
-		
 		if (Raining)
 		{
 			AmountRatio += AmountRatio < 1 ? 0.2f * (float)delta : 0;

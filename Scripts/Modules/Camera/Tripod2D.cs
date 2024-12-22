@@ -1,14 +1,15 @@
 using Godot;
-using TheLoneLanternProject.Scripts.Constants;
+using TheLoneLanternProject.Scripts.Player;
 using TheLoneLanternProject.Scripts.Helpers;
+using TheLoneLanternProject.Scripts.Constants;
 
-namespace TheLoneLanternProject.Scripts.Camera;
+namespace TheLoneLanternProject.Scripts.Modules.Camera;
 public partial class Tripod2D : Node2D
 {
     [Export] public bool DetachOnScreenExit = true;
     [Export] public Vector2 Zoom = new(1f, 1f); // CHANGE VALUE HERE TO CHANGE ZOOM
     
-    private Player.Luce luce;
+    private Luce luce;
     private PlayerCamera2D playerCamera2D;
     private MainCamera2D mainCamera2D;
     private CollisionShape2D mount;

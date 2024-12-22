@@ -1,8 +1,8 @@
 using Godot;
 using TheLoneLanternProject.Scripts.Constants;
 
-namespace TheLoneLanternProject.Scenes.SceneSwitcher;
-public partial class Door2D : Area2D
+namespace TheLoneLanternProject.Scripts.Modules.SceneSwitcher;
+public partial class Door2DModule : Area2D
 {
     [Export] public string SceneUID;
     [Export] public string DoorName;
@@ -33,7 +33,7 @@ public partial class Door2D : Area2D
     }
     private void TriggerTransition()
     {
-        var doorSpawnAttribute = new DoorSpawnAttributes
+        var doorSpawnAttribute = new Scripts.Modules.SceneSwitcher.DoorSpawnDTO
         {
             NewSceneUid = SceneUID,
             DoorName = DoorName,

@@ -1,11 +1,11 @@
 using Godot;
-using TheLoneLanternProject.Scenes.SceneSwitcher;
+using TheLoneLanternProject.Scripts.Modules.SceneSwitcher;
 
 namespace TheLoneLanternProject.Scripts.Constants;
 
 public partial class CustomSignals : Node
 {
-    [Signal] public delegate void SceneSwitchEventHandler(DoorSpawnAttributes attributes);
+    [Signal] public delegate void SceneSwitchEventHandler(DoorSpawnDTO dto);
     
     [Signal] public delegate void ShowDialogueBalloonEventHandler(string dialogue, string title);
 

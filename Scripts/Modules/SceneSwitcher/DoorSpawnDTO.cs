@@ -1,8 +1,8 @@
 using Godot;
 using TheLoneLanternProject.Scripts.Constants;
 
-namespace TheLoneLanternProject.Scenes.SceneSwitcher;
-public partial class DoorSpawnAttributes : GodotObject
+namespace TheLoneLanternProject.Scripts.Modules.SceneSwitcher;
+public partial class DoorSpawnDTO : GodotObject
 {
     public string NewSceneUid { get; set; }
     public string DoorName { get; set; }

@@ -1,11 +1,11 @@
-using System.Diagnostics;
+using System;
 using Godot;
-using TheLoneLanternProject.Scripts.Constants;
-using TheLoneLanternProject.Scripts.Helpers;
+using System.Diagnostics;
 using TheLoneLanternProject.Scripts.Player;
+using TheLoneLanternProject.Scripts.Helpers;
+using TheLoneLanternProject.Scripts.Constants;
 
-namespace TheLoneLanternProject.Scripts.Camera;
-
+namespace TheLoneLanternProject.Scripts.Modules.Camera;
 public partial class PlayerCamera2D : Camera2D
 {
     private MainCamera2D mainCamera2D;
@@ -43,7 +43,9 @@ public partial class PlayerCamera2D : Camera2D
         if (FollowPlayer)
         {
             SetCameraToAdjust();
-
+            
+            Console.WriteLine(howLongPlayerMoving.ElapsedMilliseconds);
+            
             if (howLongPlayerMoving.ElapsedMilliseconds > 300)
             {
                 SetRelativePosition(lastDirection);

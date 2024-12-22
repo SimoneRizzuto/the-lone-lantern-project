@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b2e5gws18vd27"]
 
-[ext_resource type="Script" path="res://Scripts/Camera/Tripod2D.cs" id="1_35cdl"]
+[ext_resource type="Script" path="res://Scripts/Modules/Camera/Tripod2D.cs" id="1_jple8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_sxtbn"]
 radius = 10.0499
@@ -9,7 +9,7 @@ radius = 10.0499
 size = Vector2(88, 19)
 
 [node name="Tripod2D" type="Node2D"]
-script = ExtResource("1_35cdl")
+script = ExtResource("1_jple8")
 
 [node name="Mount" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_sxtbn")

@@ -1,9 +1,8 @@
-using System.Linq;
 using Godot;
+using System.Linq;
 using TheLoneLanternProject.Scripts.Constants;
 
-namespace TheLoneLanternProject.Scripts.Camera;
-
+namespace TheLoneLanternProject.Scripts.Modules.Camera;
 public partial class MainCamera2D : Node2D
 {
     [Export] public Vector2 Zoom = new(2, 2);

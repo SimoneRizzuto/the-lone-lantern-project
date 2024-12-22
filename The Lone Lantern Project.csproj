@@ -6,5 +6,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="Scenes\Player\" />
+    <Folder Include="Scripts\Camera\" />
   </ItemGroup>
 </Project>
