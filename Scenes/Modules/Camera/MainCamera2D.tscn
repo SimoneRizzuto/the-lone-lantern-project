@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgecm7pnhu6vb"]
+
+[ext_resource type="Script" path="res://Scripts/Modules/Camera/MainCamera2D.cs" id="1_eew8y"]
+
+[node name="MainCamera2D" type="Node2D" groups=["main camera"]]
+script = ExtResource("1_eew8y")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -12)
+zoom = Vector2(2, 2)
+process_callback = 0
+position_smoothing_enabled = true

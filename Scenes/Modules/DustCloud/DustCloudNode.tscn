@@ -1,0 +1,52 @@
+[gd_scene load_steps=8 format=3 uid="uid://bkp8402ns4ooq"]
+
+[ext_resource type="Script" path="res://Scripts/Modules/DustCloud/DustCloudNode.cs" id="1_qhmr4"]
+[ext_resource type="Texture2D" uid="uid://c1jqqhkmamn8" path="res://Assets/Textures/Effects/dodge cloud 1-Sheet.aseprite" id="2_231dq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u541v"]
+atlas = ExtResource("2_231dq")
+region = Rect2(0, 0, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15tso"]
+atlas = ExtResource("2_231dq")
+region = Rect2(32, 0, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0nq0n"]
+atlas = ExtResource("2_231dq")
+region = Rect2(64, 0, 32, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fslnn"]
+atlas = ExtResource("2_231dq")
+region = Rect2(96, 0, 32, 36)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2gsd4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u541v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_15tso")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0nq0n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fslnn")
+}],
+"loop": false,
+"name": &"dash cloud",
+"speed": 8.0
+}]
+
+[node name="DustCloudNode" type="Node2D"]
+z_as_relative = false
+y_sort_enabled = true
+script = ExtResource("1_qhmr4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_as_relative = false
+y_sort_enabled = true
+position = Vector2(0, -9)
+sprite_frames = SubResource("SpriteFrames_2gsd4")
+animation = &"dash cloud"

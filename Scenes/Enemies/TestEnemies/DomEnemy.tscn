@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://oe1ffghf4nah"]
 
-[ext_resource type="Script" path="res://Scenes/Enemies/BaseNode/EnemyBase.cs" id="1_8bofc"]
-[ext_resource type="Texture2D" uid="uid://cwto5tbv5no2g" path="res://icon.svg" id="2_toton"]
+[ext_resource type="Script" path="res://Scripts/Enemies/BaseNode/EnemyBase.cs" id="1_5bl2t"]
+[ext_resource type="Texture2D" uid="uid://cwto5tbv5no2g" path="res://Assets/Textures/UI/Icons/icon.svg" id="2_toton"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8u7jq"]
 size = Vector2(16, 14)
@@ -12,10 +12,11 @@ _data = {
 }
 point_count = 19
 
-[node name="DomEnemy" type="Area2D" node_paths=PackedStringArray("HitBox", "AnimatedSprite2D") groups=["enemy"]]
+[node name="DomEnemy" type="Area2D" node_paths=PackedStringArray("PathToFollow", "HitBox", "AnimatedSprite2D") groups=["enemy"]]
 z_as_relative = false
 y_sort_enabled = true
-script = ExtResource("1_8bofc")
+script = ExtResource("1_5bl2t")
+PathToFollow = NodePath("")
 HitBox = NodePath("")
 AnimatedSprite2D = NodePath("")
 metadata/_edit_group_ = true

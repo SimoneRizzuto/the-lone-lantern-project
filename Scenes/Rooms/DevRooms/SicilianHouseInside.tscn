@@ -1,0 +1,35 @@
+[gd_scene load_steps=6 format=3 uid="uid://c2g70y5vbb02x"]
+
+[ext_resource type="PackedScene" uid="uid://lijck4bh3uhp" path="res://Scenes/Player/Luce.tscn" id="3_7e3n5"]
+[ext_resource type="PackedScene" uid="uid://barc3o7fkbn44" path="res://Scenes/Modules/SceneSwitcher/DoorSquare2DModule.tscn" id="3_8b2tr"]
+[ext_resource type="Texture2D" uid="uid://dpqtbxftvbrc6" path="res://Assets/Textures/Ground/InsideArea.png" id="3_asfui"]
+[ext_resource type="PackedScene" uid="uid://ubc5cusrcpq7" path="res://Scenes/Static/Couch.tscn" id="5_jou2a"]
+
+[sub_resource type="CurveTexture" id="CurveTexture_2buo8"]
+width = 134
+
+[node name="TestSicilianHouse" type="Node2D"]
+z_as_relative = false
+y_sort_enabled = true
+
+[node name="PlayerController" parent="." instance=ExtResource("3_7e3n5")]
+position = Vector2(269, 210)
+
+[node name="Void" type="Sprite2D" parent="."]
+z_index = -3
+position = Vector2(305, 171)
+texture = ExtResource("3_asfui")
+
+[node name="House" type="Sprite2D" parent="Void"]
+z_index = -1000
+position = Vector2(264, 168)
+scale = Vector2(1382, 778)
+texture = SubResource("CurveTexture_2buo8")
+
+[node name="Couch" parent="." instance=ExtResource("5_jou2a")]
+position = Vector2(302, 144)
+
+[node name="DoorSquare2D" parent="." instance=ExtResource("3_8b2tr")]
+position = Vector2(301, 261)
+SceneUID = "uid://bgpdxfsl820vp"
+DoorName = "HouseDoor"

@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="The Lone Lantern Project"
-run/main_scene="res://Main.tscn"
+run/main_scene="res://Scenes/Main.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
-config/icon="res://icon.svg"
+config/icon="res://Assets/Textures/UI/Icons/icon.svg"
 
 [aseprite_importers]
 
-aseprite_executable_path="C:\\Program Files (x86)\\Steam\\steamapps\\common\\Aseprite\\Aseprite.exe"
+aseprite_executable_path="E:/Team Fortress 2/Steam/steamapps/common/Aseprite/Aseprite.exe"
 
 [audio]
 
@@ -25,22 +25,22 @@ buses/default_bus_layout="res://Assets/Audio/Scratch/scratch.tres"
 
 [autoload]
 
-CustomSignals="*res://Constants/CustomSignals.cs"
+CustomSignals="*res://Scripts/Shared/Signals/CustomSignals.cs"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
-MainCamera2D="*res://Scenes/Camera/MainCamera2D.tscn"
-AudioDirector="*res://Assets/Audio/AudioDirector.cs"
+MainCamera2d="*res://Scenes/Modules/Camera/MainCamera2D.tscn"
+AudioDirector="*res://Scenes/Directors/Audio/AudioDirector.tscn"
 
 [dialogue_manager]
 
-general/balloon_path="res://Scenes/CutsceneDirector/BalloonCanvas/BalloonCanvas.tscn"
+general/balloon_path="res://Scenes/Directors/Cutscene/BalloonCanvas.tscn"
 
 [display]
 
 window/size/viewport_width=640
 window/size/viewport_height=360
 window/size/resizable=false
-window/size/window_width_override=1280
-window/size/window_height_override=720
+window/size/window_width_override=1920
+window/size/window_height_override=1080
 window/stretch/mode="canvas_items"
 window/aseprite_executable_path="E:/Team Fortress 2/Steam/steamapps/common/Aseprite/Aseprite.exe"
 
@@ -132,7 +132,7 @@ Interact={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://Dialogue/dialogue-test.dialogue", "res://Dialogue/MainCutscenes/2-the-void-gazes-back.dialogue", "res://Dialogue/MainCutscenes/4-nori-is-bullied-by-someone.dialogue", "res://Dialogue/Interactions/interaction-test.dialogue")
+locale/translations_pot_files=PackedStringArray("res://Assets/Dialogue/Interactions/interaction-test.dialogue", "res://Assets/Dialogue/MainCutscenes/2-the-void-gazes-back.dialogue", "res://Assets/Dialogue/MainCutscenes/4-nori-is-bullied-by-someone.dialogue", "res://Assets/Dialogue/dialogue-test.dialogue")
 
 [layer_names]
 

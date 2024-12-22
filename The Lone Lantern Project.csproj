@@ -4,4 +4,7 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <RootNamespace>TheLoneLanternProject</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Scenes\Enemies\BaseNode\" />
+  </ItemGroup>
 </Project>

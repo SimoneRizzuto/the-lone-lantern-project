@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://dwdhndmeqo37"]
+
+[ext_resource type="Script" path="res://Scripts/Enemies/BaseNode/EnemyBase.cs" id="1_36ady"]
+[ext_resource type="Texture2D" uid="uid://cwto5tbv5no2g" path="res://Assets/Textures/UI/Icons/icon.svg" id="2_rk1ii"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q54yo"]
+resource_local_to_scene = true
+size = Vector2(128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2tn42"]
+resource_local_to_scene = true
+animations = [{
+"frames": [],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_rk1ii")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c1xke"]
+resource_local_to_scene = true
+size = Vector2(22.5, 22.5)
+
+[node name="EnemyBase" type="Area2D" node_paths=PackedStringArray("PathToFollow", "HitBox", "AnimatedSprite2D") groups=["enemy"]]
+z_as_relative = false
+y_sort_enabled = true
+scale = Vector2(0.25, 0.25)
+script = ExtResource("1_36ady")
+PathToFollow = NodePath("")
+HitBox = NodePath("")
+AnimatedSprite2D = NodePath("")
+
+[node name="CollisionBox" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_q54yo")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_2tn42")
+autoplay = "default"
+
+[node name="HitBox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(0, -92)
+shape = SubResource("RectangleShape2D_c1xke")
+disabled = true
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="OnAnimatedSprite2dAnimationFinished"]
+[connection signal="body_entered" from="HitBox" to="." method="OnBodyEnteredHitBox"]

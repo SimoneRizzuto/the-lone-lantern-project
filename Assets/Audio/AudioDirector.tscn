@@ -1,3 +1,0 @@
-[gd_scene format=3 uid="uid://briwv8dewtfr4"]
-
-[node name="AudioDirector" type="Node" groups=["audio director"]]

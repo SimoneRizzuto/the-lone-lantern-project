@@ -1,0 +1,148 @@
+[gd_scene load_steps=17 format=3 uid="uid://dl7o7wudkbmk8"]
+
+[ext_resource type="Texture2D" uid="uid://i11c6j0s4337" path="res://Assets/Textures/Props/white door opening-Sheet.png" id="1_psg7o"]
+[ext_resource type="PackedScene" uid="uid://barc3o7fkbn44" path="res://Scenes/Modules/SceneSwitcher/DoorSquare2DModule.tscn" id="2_qb42v"]
+[ext_resource type="PackedScene" uid="uid://lijck4bh3uhp" path="res://Scenes/Player/Luce.tscn" id="3_7bro5"]
+[ext_resource type="PackedScene" uid="uid://b2e5gws18vd27" path="res://Scenes/Modules/Camera/Tripod2D.tscn" id="4_ufy4f"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vgofx"]
+size = Vector2(1, 3.5625)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2et6s"]
+size = Vector2(1, 3.5)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n6rl2"]
+atlas = ExtResource("1_psg7o")
+region = Rect2(0, 0, 34, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w82n4"]
+atlas = ExtResource("1_psg7o")
+region = Rect2(238, 0, 34, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_80s6d"]
+atlas = ExtResource("1_psg7o")
+region = Rect2(34, 0, 34, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xhr14"]
+atlas = ExtResource("1_psg7o")
+region = Rect2(68, 0, 34, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ajfdy"]
+atlas = ExtResource("1_psg7o")
+region = Rect2(102, 0, 34, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_praxc"]
+atlas = ExtResource("1_psg7o")
+region = Rect2(136, 0, 34, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gup3d"]
+atlas = ExtResource("1_psg7o")
+region = Rect2(170, 0, 34, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hlt2f"]
+atlas = ExtResource("1_psg7o")
+region = Rect2(204, 0, 34, 51)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r0xyr"]
+atlas = ExtResource("1_psg7o")
+region = Rect2(238, 0, 34, 51)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_povyp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n6rl2")
+}],
+"loop": true,
+"name": &"closed",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w82n4")
+}],
+"loop": true,
+"name": &"open",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_80s6d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xhr14")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ajfdy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_praxc")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_gup3d")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_hlt2f")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_r0xyr")
+}],
+"loop": true,
+"name": &"opening",
+"speed": 8.0
+}]
+
+[node name="NoriInitialVoid" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -117.0
+offset_top = -211.0
+offset_right = 763.0
+offset_bottom = 406.0
+color = Color(0, 0, 0, 1)
+
+[node name="VoidDoor" type="StaticBody2D" parent="."]
+position = Vector2(162, -4)
+
+[node name="RightSide" type="CollisionShape2D" parent="VoidDoor"]
+position = Vector2(14.5, 14.2188)
+shape = SubResource("RectangleShape2D_vgofx")
+debug_color = Color(0.996078, 0, 0.215686, 0.419608)
+
+[node name="LeftSide" type="CollisionShape2D" parent="VoidDoor"]
+position = Vector2(-5.5, 14.25)
+shape = SubResource("RectangleShape2D_2et6s")
+debug_color = Color(0.996078, 0, 0.215686, 0.419608)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="VoidDoor"]
+sprite_frames = SubResource("SpriteFrames_povyp")
+animation = &"closed"
+frame_progress = 0.819748
+
+[node name="DoorSquare2D" parent="VoidDoor" instance=ExtResource("2_qb42v")]
+position = Vector2(4, 14)
+scale = Vector2(0.452, 0.375)
+SceneUID = "uid://bgpdxfsl820vp"
+DoorName = "HouseDoor"
+TriggerByInteract = false
+
+[node name="CollisionShape2D" parent="VoidDoor/DoorSquare2D" index="0"]
+position = Vector2(1.06189, 0)
+
+[node name="Luce" parent="." instance=ExtResource("3_7bro5")]
+position = Vector2(333, 35)
+
+[node name="Tripod2D" parent="." instance=ExtResource("4_ufy4f")]
+position = Vector2(93, 131)
+
+[node name="TripodIsOnScreen" parent="Tripod2D" index="0"]
+position = Vector2(-34, -64)
+
+[node name="MountCameraTrigger" parent="Tripod2D" index="1"]
+position = Vector2(-156, -132)
+
+[node name="CollisionShape2D" parent="Tripod2D/MountCameraTrigger" index="0"]
+position = Vector2(150, -4)
+
+[editable path="VoidDoor/DoorSquare2D"]
+[editable path="Tripod2D"]
