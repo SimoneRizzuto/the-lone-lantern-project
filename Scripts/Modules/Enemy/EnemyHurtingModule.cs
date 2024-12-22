@@ -1,5 +1,5 @@
 using Godot;
-using TheLoneLanternProject.Scripts.Constants;
+using TheLoneLanternProject.Scripts.Shared.Constants;
 using TheLoneLanternProject.Scripts.StateMachines.Enemy;
 
 namespace TheLoneLanternProject.Scripts.Modules.Enemy;

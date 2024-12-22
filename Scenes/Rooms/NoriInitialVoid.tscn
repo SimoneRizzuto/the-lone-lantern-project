@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://dl7o7wudkbmk8"]
 
-[ext_resource type="Texture2D" uid="uid://i11c6j0s4337" path="res://Assets/Textures/white door opening-Sheet.png" id="1_psg7o"]
+[ext_resource type="Texture2D" uid="uid://i11c6j0s4337" path="res://Assets/Textures/Props/white door opening-Sheet.png" id="1_psg7o"]
 [ext_resource type="PackedScene" uid="uid://barc3o7fkbn44" path="res://Scenes/Modules/SceneSwitcher/DoorSquare2DModule.tscn" id="2_qb42v"]
 [ext_resource type="PackedScene" uid="uid://lijck4bh3uhp" path="res://Scenes/Player/Luce.tscn" id="3_7bro5"]
 [ext_resource type="PackedScene" uid="uid://b2e5gws18vd27" path="res://Scenes/Modules/Camera/Tripod2D.tscn" id="4_ufy4f"]

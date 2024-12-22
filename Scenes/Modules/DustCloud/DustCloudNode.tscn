@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bkp8402ns4ooq"]
 
 [ext_resource type="Script" path="res://Scripts/Modules/DustCloud/DustCloudNode.cs" id="1_qhmr4"]
-[ext_resource type="Texture2D" uid="uid://c1jqqhkmamn8" path="res://Assets/Textures/dodge cloud 1-Sheet.aseprite" id="2_231dq"]
+[ext_resource type="Texture2D" uid="uid://c1jqqhkmamn8" path="res://Assets/Textures/Effects/dodge cloud 1-Sheet.aseprite" id="2_231dq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u541v"]
 atlas = ExtResource("2_231dq")

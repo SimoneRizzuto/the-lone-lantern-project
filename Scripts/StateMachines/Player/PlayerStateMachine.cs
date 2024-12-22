@@ -1,8 +1,8 @@
 using Godot;
-using TheLoneLanternProject.Scripts.Constants;
+using TheLoneLanternProject.Scripts.Player;
 using TheLoneLanternProject.Scripts.Modules.DustCloud;
 using TheLoneLanternProject.Scripts.Modules.StaminaHealth;
-using TheLoneLanternProject.Scripts.Player;
+using TheLoneLanternProject.Scripts.Shared.Constants;
 
 namespace TheLoneLanternProject.Scripts.StateMachines.Player;
 

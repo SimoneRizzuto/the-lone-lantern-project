@@ -1,6 +1,6 @@
 using Godot;
 using System.Linq;
-using TheLoneLanternProject.Scripts.Constants;
+using TheLoneLanternProject.Scripts.Shared.Constants;
 
 namespace TheLoneLanternProject.Scripts.Modules.Camera;
 public partial class MainCamera2D : Node2D

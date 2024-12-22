@@ -13,7 +13,7 @@ config_version=5
 config/name="The Lone Lantern Project"
 run/main_scene="res://Scenes/Main.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
-config/icon="res://Assets/Textures/icon.svg"
+config/icon="res://Assets/Textures/UI/Icons/icon.svg"
 
 [aseprite_importers]
 
@@ -25,14 +25,14 @@ buses/default_bus_layout="res://Assets/Audio/Scratch/scratch.tres"
 
 [autoload]
 
-CustomSignals="*res://Scripts/Constants/CustomSignals.cs"
+CustomSignals="*res://Scripts/Shared/Signals/CustomSignals.cs"
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
 MainCamera2d="*res://Scenes/Modules/Camera/MainCamera2D.tscn"
-AudioDirector="*res://Scenes/Directors/AudioDirector.tscn"
+AudioDirector="*res://Scenes/Directors/Audio/AudioDirector.tscn"
 
 [dialogue_manager]
 
-general/balloon_path="res://Scenes/CutsceneDirector/BalloonCanvas/BalloonCanvas.tscn"
+general/balloon_path="res://Scenes/Directors/Cutscene/BalloonCanvas.tscn"
 
 [display]
 

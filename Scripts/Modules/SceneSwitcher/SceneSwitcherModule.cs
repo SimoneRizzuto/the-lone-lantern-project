@@ -1,11 +1,11 @@
-using System.Linq;
 using Godot;
-using TheLoneLanternProject.Scripts.Helpers;
-using TheLoneLanternProject.Scripts.Constants;
+using System.Linq;
 using TheLoneLanternProject.Scripts.Modules.Camera;
+using TheLoneLanternProject.Scripts.Shared.Constants;
+using TheLoneLanternProject.Scripts.Shared.Helpers;
+using TheLoneLanternProject.Scripts.Utils.Signals;
 
 namespace TheLoneLanternProject.Scripts.Modules.SceneSwitcher;
-
 public partial class SceneSwitcherModule : Node
 {
     private CustomSignals customSignals = new();

@@ -1,5 +1,6 @@
 using Godot;
-using TheLoneLanternProject.Scripts.Constants;
+
+using TheLoneLanternProject.Scripts.Utils.Signals;
 
 namespace TheLoneLanternProject.Scripts.Modules.Interactables; // May not be needed
 

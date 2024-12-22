@@ -1,9 +1,9 @@
+using Godot;
 using System;
 using System.Linq;
 using System.Text.Json;
-using Godot;
-using TheLoneLanternProject.Scripts.Constants;
 using TheLoneLanternProject.Scripts.Player;
+using TheLoneLanternProject.Scripts.Shared.Constants;
 
 namespace TheLoneLanternProject.Scripts.Modules.Save;
 public partial class SaveModule : Node2D

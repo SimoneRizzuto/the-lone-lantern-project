@@ -1,8 +1,9 @@
 using Godot;
 using DialogueManagerRuntime;
 using TheLoneLanternProject.Scripts.Player;
-using TheLoneLanternProject.Scripts.Helpers;
-using TheLoneLanternProject.Scripts.Constants;
+using TheLoneLanternProject.Scripts.Shared.Constants;
+using TheLoneLanternProject.Scripts.Shared.Helpers;
+using TheLoneLanternProject.Scripts.Utils.Signals;
 
 namespace TheLoneLanternProject.Scripts.Modules.Interactables;
 

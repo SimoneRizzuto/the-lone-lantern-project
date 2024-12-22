@@ -4,12 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using DialogueManagerRuntime;
 using Godot;
-using TheLoneLanternProject.Scripts.Constants;
-using TheLoneLanternProject.Scripts.Helpers;
 using TheLoneLanternProject.Scripts.Modules.Weather;
+using TheLoneLanternProject.Scripts.Shared.Constants;
+using TheLoneLanternProject.Scripts.Shared.Helpers;
+using CastActors = TheLoneLanternProject.Scripts.Shared.Constants.CastActors;
+using CustomSignals = TheLoneLanternProject.Scripts.Utils.Signals.CustomSignals;
 
 namespace TheLoneLanternProject.Scripts.Directors.Cutscene;
-
 public partial class CutsceneDirector : Node
 {
     private CustomSignals customSignals = new();
@@ -65,7 +66,7 @@ public partial class CutsceneDirector : Node
     }
     private bool LoadActorsIntoCurrentScene()
     {
-        var scriptPath = $"res://Scripts/Constants/{nameof(TheLoneLanternProject.Scripts.Constants.CastActors)}.cs";
+        var scriptPath = $"res://Scripts/Shared/Constants/{nameof(CastActors)}.cs";
         try
         {
             var scriptLoaded = ResourceLoader.Load(scriptPath);

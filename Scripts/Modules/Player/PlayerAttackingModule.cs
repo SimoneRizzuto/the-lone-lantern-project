@@ -1,7 +1,7 @@
-using System;
 using Godot;
-using TheLoneLanternProject.Scripts.Constants;
-using TheLoneLanternProject.Scripts.Helpers;
+using System;
+using TheLoneLanternProject.Scripts.Shared.Constants;
+using TheLoneLanternProject.Scripts.Shared.Helpers;
 using TheLoneLanternProject.Scripts.StateMachines.Player;
 
 namespace TheLoneLanternProject.Scripts.Modules.Player;
@@ -9,7 +9,7 @@ namespace TheLoneLanternProject.Scripts.Modules.Player;
 [GlobalClass]
 public partial class PlayerAttackingModule : Node
 {
-    [Export] public StateMachines.Player.PlayerStateMachine State;
+    [Export] public PlayerStateMachine State;
     [Export] public CollisionPolygon2D AttackShape;
 
     private bool AllowAttack => State.StaminaHealthModule.AllowAction 

@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://Scripts/Modules/Enemy/EnemyRepositionModule.cs" id="4_05uj8"]
 [ext_resource type="Script" path="res://Scripts/Modules/Enemy/EnemyAttackingModule.cs" id="5_tge24"]
 [ext_resource type="Script" path="res://Scripts/Modules/Enemy/EnemyHurtingModule.cs" id="6_coplb"]
-[ext_resource type="Texture2D" uid="uid://d0oths756jmeh" path="res://Scenes/Enemies/enemy-blob-idle-Sheet.png" id="7_ntucf"]
+[ext_resource type="Texture2D" uid="uid://d0oths756jmeh" path="res://Assets/Textures/CharacterAnimations/Enemies/enemy-blob-idle-Sheet.png" id="7_ntucf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_byd8a"]
 atlas = ExtResource("7_ntucf")

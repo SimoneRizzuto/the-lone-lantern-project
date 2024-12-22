@@ -1,6 +1,0 @@
-[gd_resource type="StyleBoxTexture" load_steps=2 format=3 uid="uid://dg27pk700f34b"]
-
-[ext_resource type="Texture2D" uid="uid://caji48d22igaw" path="res://Scenes/CutsceneDirector/BalloonCanvas/TextBoxes/textbox-Luce.png" id="1_qfs56"]
-
-[resource]
-texture = ExtResource("1_qfs56")

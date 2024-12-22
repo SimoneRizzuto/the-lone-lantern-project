@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://ci6v0ni6pk1ry" path="res://Scenes/Modules/SceneSwitcher/SceneSwitcherModule.tscn" id="1_20kky"]
 [ext_resource type="PackedScene" uid="uid://b0g2v7tkj7vyq" path="res://Scenes/Rooms/PlaygroundPlaza.tscn" id="2_yp0km"]
-[ext_resource type="PackedScene" uid="uid://briwv8dewtfr4" path="res://Scenes/Directors/AudioDirector.tscn" id="3_r1wyf"]
+[ext_resource type="PackedScene" uid="uid://briwv8dewtfr4" path="res://Scenes/Directors/Audio/AudioDirector.tscn" id="3_r1wyf"]
 
 [node name="Main" type="Node2D"]
 

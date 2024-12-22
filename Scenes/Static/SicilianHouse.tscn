@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bihv5yjq7muuh"]
 
-[ext_resource type="Texture2D" uid="uid://dr1ltarda45jq" path="res://Assets/Textures/italian-house-1.png" id="1_gbhtw"]
+[ext_resource type="Texture2D" uid="uid://dr1ltarda45jq" path="res://Assets/Textures/Buildings/italian-house-1.png" id="1_gbhtw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rt44d"]
 size = Vector2(160, 53)

@@ -1,6 +1,7 @@
 using Godot;
-using TheLoneLanternProject.Scripts.Constants;
-using TheLoneLanternProject.Scripts.Extensions;
+using TheLoneLanternProject.Scripts.Utils.Signals;
+using TheLoneLanternProject.Scripts.Shared.Constants;
+using TheLoneLanternProject.Scripts.Shared.Extensions;
 using TheLoneLanternProject.Scripts.StateMachines.Player;
 
 namespace TheLoneLanternProject.Scripts.Player;

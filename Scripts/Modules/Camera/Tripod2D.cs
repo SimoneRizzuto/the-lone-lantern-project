@@ -1,7 +1,7 @@
 using Godot;
 using TheLoneLanternProject.Scripts.Player;
-using TheLoneLanternProject.Scripts.Helpers;
-using TheLoneLanternProject.Scripts.Constants;
+using TheLoneLanternProject.Scripts.Shared.Constants;
+using TheLoneLanternProject.Scripts.Shared.Helpers;
 
 namespace TheLoneLanternProject.Scripts.Modules.Camera;
 public partial class Tripod2D : Node2D

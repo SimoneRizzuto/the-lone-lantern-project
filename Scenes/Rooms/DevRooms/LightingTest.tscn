@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://fm4e8bjbh2fq"]
 
-[ext_resource type="Texture2D" uid="uid://b2iwlbq5gt1bb" path="res://Assets/Textures/swingset.png" id="1_0tofw"]
-[ext_resource type="PackedScene" path="res://Scenes/Player/Luce.tscn" id="1_um5i0"]
-[ext_resource type="Texture2D" uid="uid://t7165rtwfb6x" path="res://Assets/Textures/2d_lights_and_shadows_neutral_point_light.webp" id="2_xgesw"]
+[ext_resource type="Texture2D" uid="uid://b2iwlbq5gt1bb" path="res://Assets/Textures/Props/swingset.png" id="1_0tofw"]
+[ext_resource type="PackedScene" uid="uid://lijck4bh3uhp" path="res://Scenes/Player/Luce.tscn" id="1_um5i0"]
+[ext_resource type="Texture2D" uid="uid://t7165rtwfb6x" path="res://Assets/Textures/Effects/2d_lights_and_shadows_neutral_point_light.webp" id="2_xgesw"]
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_qe2ay"]
 polygon = PackedVector2Array(-45, 23, -45, -17, -41, -23, 43, -23, 46, -19, 45, 23, 41, 23, 42, -20, -41, -20, -42, -16, -42, 22)

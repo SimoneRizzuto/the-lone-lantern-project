@@ -1,10 +1,9 @@
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Godot;
-using TheLoneLanternProject.Scripts.Constants;
+using TheLoneLanternProject.Scripts.Shared.Constants;
 
 namespace TheLoneLanternProject.Scripts.Directors.Cutscene;
-
 public partial class ActorNodeBase : Node2D // ReSharper disable IntroduceOptionalParameters.Global
 {
     [Export] public AnimatedSprite2D AnimatedSprite2D;

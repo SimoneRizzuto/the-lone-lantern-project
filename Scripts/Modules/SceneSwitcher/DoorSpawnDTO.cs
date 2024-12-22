@@ -1,5 +1,5 @@
 using Godot;
-using TheLoneLanternProject.Scripts.Constants;
+using TheLoneLanternProject.Scripts.Shared.Constants;
 
 namespace TheLoneLanternProject.Scripts.Modules.SceneSwitcher;
 public partial class DoorSpawnDTO : GodotObject

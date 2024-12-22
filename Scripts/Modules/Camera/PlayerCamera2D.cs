@@ -2,8 +2,8 @@ using System;
 using Godot;
 using System.Diagnostics;
 using TheLoneLanternProject.Scripts.Player;
-using TheLoneLanternProject.Scripts.Helpers;
-using TheLoneLanternProject.Scripts.Constants;
+using TheLoneLanternProject.Scripts.Shared.Constants;
+using TheLoneLanternProject.Scripts.Shared.Helpers;
 
 namespace TheLoneLanternProject.Scripts.Modules.Camera;
 public partial class PlayerCamera2D : Camera2D

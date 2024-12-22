@@ -1,5 +1,5 @@
 using Godot;
-using TheLoneLanternProject.Scripts.Extensions;
+using TheLoneLanternProject.Scripts.Shared.Extensions;
 
 namespace TheLoneLanternProject.Scripts.Enemies;
 public partial class Enemy : CharacterBody2D
