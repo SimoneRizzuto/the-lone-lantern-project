@@ -1,4 +1,4 @@
-[gd_scene load_steps=104 format=3 uid="uid://lijck4bh3uhp"]
+[gd_scene load_steps=105 format=3 uid="uid://lijck4bh3uhp"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Luce.cs" id="1_s2gut"]
 [ext_resource type="PackedScene" uid="uid://f6e35btgmilp" path="res://Scenes/Modules/StaminaHealth/StaminaHealthModule.tscn" id="2_lr60b"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Scripts/Modules/Player/PlayerAttackingModule.cs" id="7_vka81"]
 [ext_resource type="Script" path="res://Scripts/Modules/Player/PlayerDashingModule.cs" id="8_w2wyy"]
 [ext_resource type="Script" path="res://Scripts/Modules/Player/PlayerDisabledModule.cs" id="9_xnp3o"]
+[ext_resource type="Script" path="res://Scripts/Modules/Interactables/PlayerInteractorModule.cs" id="10_2e6m6"]
 [ext_resource type="Script" path="res://Scripts/Modules/Camera/PlayerCamera2D.cs" id="10_ogi10"]
 [ext_resource type="Texture2D" uid="uid://bfgf1fv5ereq8" path="res://Assets/Textures/CharacterAnimations/Luce/luce attack bottom-Sheet.png" id="11_0t8mw"]
 [ext_resource type="Texture2D" uid="uid://wwtb3f3y563q" path="res://Assets/Textures/CharacterAnimations/Luce/luce attack left 1-Sheet.png" id="12_if6gw"]
@@ -715,6 +716,15 @@ script = ExtResource("8_w2wyy")
 [node name="PlayerDisabledModule" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("9_xnp3o")
 
+[node name="PlayerInteractorModule" type="Node" parent="PlayerStateMachine"]
+script = ExtResource("10_2e6m6")
+
+[node name="Marker2D" type="Marker2D" parent="PlayerStateMachine/PlayerInteractorModule"]
+
+[node name="Area2D" type="Area2D" parent="PlayerStateMachine/PlayerInteractorModule/Marker2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerStateMachine/PlayerInteractorModule/Marker2D/Area2D"]
+
 [node name="PlayerCamera2D" type="Camera2D" parent="." groups=["player camera"]]
 position = Vector2(0, -12)
 process_callback = 0
@@ -750,13 +760,9 @@ collision_layer = 4
 polygon = PackedVector2Array(-9, -34, 0, -34, 11, -32, 17, -30, 21, -28, 30, -19, 30, -10, 21, -1, 11, 3, 0, 5, -10, 5)
 disabled = true
 
-[node name="ActorNode" type="Node2D" parent="." node_paths=PackedStringArray("AnimatedSprite2D", "AnimationPlayer") groups=["actor node"]]
+[node name="ActorNode" type="Node2D" parent="." groups=["actor node"]]
 script = ExtResource("30_bbmja")
-AnimatedSprite2D = NodePath("../MainSprite")
-AnimationPlayer = NodePath("../AnimationPlayer")
 
 [node name="DustCloudModule" parent="." instance=ExtResource("31_rwceo")]
 
-[connection signal="LastWalkDirection" from="PlayerStateMachine/PlayerWalkingModule" to="PlayerCamera2D" method="OnLuceLastWalkDirection"]
-[connection signal="PlayerIsMoving" from="PlayerStateMachine/PlayerWalkingModule" to="PlayerCamera2D" method="OnPlayerIsMoving"]
 [connection signal="screen_exited" from="PlayerOnScreenNotifier" to="PlayerCamera2D" method="PlayerOnScreenExited"]

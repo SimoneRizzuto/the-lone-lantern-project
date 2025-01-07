@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://kag2tdyi2b2w"]
+
+[ext_resource type="Script" path="res://Scripts/Modules/Interactables/ItemInteractable.cs" id="1_7icmi"]
+
+[node name="ItemInteractable" type="Area2D"]
+collision_layer = 8
+collision_mask = 8
+script = ExtResource("1_7icmi")
