@@ -1,4 +1,4 @@
-[gd_scene load_steps=105 format=3 uid="uid://lijck4bh3uhp"]
+[gd_scene load_steps=106 format=3 uid="uid://lijck4bh3uhp"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Luce.cs" id="1_s2gut"]
 [ext_resource type="PackedScene" uid="uid://f6e35btgmilp" path="res://Scenes/Modules/StaminaHealth/StaminaHealthModule.tscn" id="2_lr60b"]
@@ -32,6 +32,9 @@
 [ext_resource type="Texture2D" uid="uid://crhnqx5rq8fj6" path="res://Assets/Textures/CharacterAnimations/Luce/luce_walking_up-Sheet.png" id="29_daw4c"]
 [ext_resource type="Script" path="res://Scripts/Player/LuceActorNode.cs" id="30_bbmja"]
 [ext_resource type="PackedScene" uid="uid://c65srkhjbyvux" path="res://Scenes/Modules/DustCloud/DustCloudModule.tscn" id="31_rwceo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n8p7o"]
+size = Vector2(16, 24)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b7tdo"]
 size = Vector2(5.00004, 14)
@@ -720,10 +723,15 @@ script = ExtResource("9_xnp3o")
 script = ExtResource("10_2e6m6")
 
 [node name="Marker2D" type="Marker2D" parent="PlayerStateMachine/PlayerInteractorModule"]
+position = Vector2(0, -8)
 
-[node name="Area2D" type="Area2D" parent="PlayerStateMachine/PlayerInteractorModule/Marker2D"]
+[node name="InteractableDetector" type="Area2D" parent="PlayerStateMachine/PlayerInteractorModule/Marker2D"]
+collision_layer = 0
+collision_mask = 8
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerStateMachine/PlayerInteractorModule/Marker2D/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerStateMachine/PlayerInteractorModule/Marker2D/InteractableDetector"]
+position = Vector2(0, 12)
+shape = SubResource("RectangleShape2D_n8p7o")
 
 [node name="PlayerCamera2D" type="Camera2D" parent="." groups=["player camera"]]
 position = Vector2(0, -12)
@@ -744,7 +752,7 @@ one_way_collision_margin = 0.0
 z_as_relative = false
 y_sort_enabled = true
 sprite_frames = SubResource("SpriteFrames_51ooq")
-animation = &"idle down"
+animation = &"sit down look right"
 offset = Vector2(0, -18)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

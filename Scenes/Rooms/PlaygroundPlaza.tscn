@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://b0g2v7tkj7vyq"]
+[gd_scene load_steps=32 format=3 uid="uid://b0g2v7tkj7vyq"]
 
 [ext_resource type="PackedScene" uid="uid://b2e5gws18vd27" path="res://Scenes/Modules/Camera/Tripod2D.tscn" id="1_0htn0"]
 [ext_resource type="PackedScene" uid="uid://lijck4bh3uhp" path="res://Scenes/Player/Luce.tscn" id="1_jwntg"]
@@ -17,6 +17,8 @@
 [ext_resource type="Texture2D" uid="uid://dy7q13pujx40" path="res://Assets/Textures/Props/playground_slide.aseprite" id="15_pycv1"]
 [ext_resource type="Texture2D" uid="uid://5mnmxf8y6737" path="res://Assets/Textures/Props/playground_seesaw.aseprite" id="16_74ddk"]
 [ext_resource type="Texture2D" uid="uid://ba2f81lheflsw" path="res://Assets/Textures/Props/playground_water_fountain.aseprite" id="17_210mj"]
+[ext_resource type="PackedScene" uid="uid://ouc1bluwl020" path="res://Scenes/Modules/Interactables/DialogueInteractable.tscn" id="18_tlvcj"]
+[ext_resource type="Resource" uid="uid://beswpiq66r86a" path="res://Assets/Dialogue/Interactions/interaction-test.dialogue" id="19_dftcu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ssvm"]
 size = Vector2(3, 18)
@@ -49,6 +51,9 @@ size = Vector2(71, 2)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2u82w"]
 size = Vector2(11, 7)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4wcej"]
+radius = 14.8661
 
 [node name="PlaygroundPlaza" type="Node2D"]
 z_as_relative = false
@@ -414,5 +419,13 @@ offset = Vector2(0, -12.5)
 z_index = -1
 position = Vector2(0, -3.5)
 shape = SubResource("RectangleShape2D_2u82w")
+
+[node name="DialogueInteractable" parent="." instance=ExtResource("18_tlvcj")]
+position = Vector2(-22, 15)
+dialogueScript = ExtResource("19_dftcu")
+dialogueStartString = "this_is_a_node_title"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DialogueInteractable"]
+shape = SubResource("CircleShape2D_4wcej")
 
 [editable path="Tripod2D"]
