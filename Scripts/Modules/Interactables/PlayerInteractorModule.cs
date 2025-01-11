@@ -17,8 +17,8 @@ public partial class PlayerInteractorModule: Node
 
     public override void _Ready()
     {
-        directionMarker = GetNode<Marker2D>("Marker2D");
-        interactableDetector = GetNode<Area2D>("Marker2D/InteractableDetector");
+        directionMarker = GetNode<Marker2D>(GetParent().GetParent().GetPath() + "/InteractorDirection");
+        interactableDetector = GetNode<Area2D>(GetParent().GetParent().GetPath() + "/InteractorDirection/InteractableDetector");
         State ??= GetParent<PlayerStateMachine>();
 
         var tree = GetTree();
@@ -40,15 +40,15 @@ public partial class PlayerInteractorModule: Node
 
         if (direction == Direction.Left)
         {
-            directionMarker.Rotation = 90;
+            directionMarker.Rotation = Mathf.DegToRad(90);
         }
         else if (direction == Direction.Right)
         {
-            directionMarker.Rotation = 270;
+            directionMarker.Rotation = Mathf.DegToRad(270);
         }
         else if (direction == Direction.Up)
         {
-            directionMarker.Rotation = 180;
+            directionMarker.Rotation = Mathf.DegToRad(180);
         }
         else if (direction == Direction.Down)
         {
@@ -66,12 +66,18 @@ public partial class PlayerInteractorModule: Node
 
             if (interactable.Count > 0)
             {
-                var topInteractable = interactable[0];
-                GD.Print(topInteractable);
-                /*var classTopInteractable = topInteractable;
-                topInteractable = (classTopInteractable)topInteractable;
-                topInteractable.Interact();
-                return;*/
+                var topInteractableDialogue = (DialogueInteractable)interactable[0];
+                if (topInteractableDialogue.dialogueScript != null)
+                {
+                    topInteractableDialogue.Interact();
+                }
+                else
+                {
+                    var topInteractableItem = (ItemInteractable)interactable[0];
+                    topInteractableItem.Interact();
+                }
+
+                
             }
 
 

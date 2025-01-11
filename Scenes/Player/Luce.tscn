@@ -33,9 +33,6 @@
 [ext_resource type="Script" path="res://Scripts/Player/LuceActorNode.cs" id="30_bbmja"]
 [ext_resource type="PackedScene" uid="uid://c65srkhjbyvux" path="res://Scenes/Modules/DustCloud/DustCloudModule.tscn" id="31_rwceo"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_n8p7o"]
-size = Vector2(16, 24)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b7tdo"]
 size = Vector2(5.00004, 14)
 
@@ -680,6 +677,9 @@ _data = {
 "watch Nori walking by while on swing set": SubResource("Animation_day3l")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eo4r3"]
+size = Vector2(16, 26)
+
 [node name="Luce" type="CharacterBody2D" groups=["player"]]
 z_as_relative = false
 y_sort_enabled = true
@@ -706,7 +706,6 @@ script = ExtResource("6_i4asr")
 script = ExtResource("7_vka81")
 
 [node name="HitBox" type="Area2D" parent="PlayerStateMachine/PlayerAttackingModule"]
-visible = false
 collision_layer = 4
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerStateMachine/PlayerAttackingModule/HitBox"]
@@ -721,17 +720,6 @@ script = ExtResource("9_xnp3o")
 
 [node name="PlayerInteractorModule" type="Node" parent="PlayerStateMachine"]
 script = ExtResource("10_2e6m6")
-
-[node name="Marker2D" type="Marker2D" parent="PlayerStateMachine/PlayerInteractorModule"]
-position = Vector2(0, -8)
-
-[node name="InteractableDetector" type="Area2D" parent="PlayerStateMachine/PlayerInteractorModule/Marker2D"]
-collision_layer = 0
-collision_mask = 8
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerStateMachine/PlayerInteractorModule/Marker2D/InteractableDetector"]
-position = Vector2(0, 12)
-shape = SubResource("RectangleShape2D_n8p7o")
 
 [node name="PlayerCamera2D" type="Camera2D" parent="." groups=["player camera"]]
 position = Vector2(0, -12)
@@ -772,5 +760,16 @@ disabled = true
 script = ExtResource("30_bbmja")
 
 [node name="DustCloudModule" parent="." instance=ExtResource("31_rwceo")]
+
+[node name="InteractorDirection" type="Marker2D" parent="."]
+position = Vector2(0, -8)
+
+[node name="InteractableDetector" type="Area2D" parent="InteractorDirection"]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractorDirection/InteractableDetector"]
+position = Vector2(0, 19)
+shape = SubResource("RectangleShape2D_eo4r3")
 
 [connection signal="screen_exited" from="PlayerOnScreenNotifier" to="PlayerCamera2D" method="PlayerOnScreenExited"]

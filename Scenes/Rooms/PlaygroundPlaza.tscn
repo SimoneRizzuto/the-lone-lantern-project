@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://b0g2v7tkj7vyq"]
+[gd_scene load_steps=37 format=3 uid="uid://b0g2v7tkj7vyq"]
 
 [ext_resource type="PackedScene" uid="uid://b2e5gws18vd27" path="res://Scenes/Modules/Camera/Tripod2D.tscn" id="1_0htn0"]
 [ext_resource type="PackedScene" uid="uid://lijck4bh3uhp" path="res://Scenes/Player/Luce.tscn" id="1_jwntg"]
@@ -19,6 +19,9 @@
 [ext_resource type="Texture2D" uid="uid://ba2f81lheflsw" path="res://Assets/Textures/Props/playground_water_fountain.aseprite" id="17_210mj"]
 [ext_resource type="PackedScene" uid="uid://ouc1bluwl020" path="res://Scenes/Modules/Interactables/DialogueInteractable.tscn" id="18_tlvcj"]
 [ext_resource type="Resource" uid="uid://beswpiq66r86a" path="res://Assets/Dialogue/Interactions/interaction-test.dialogue" id="19_dftcu"]
+[ext_resource type="Resource" uid="uid://dtxq1k1iqmupf" path="res://Assets/Dialogue/Interactions/interaction-test-2.dialogue" id="19_hku7i"]
+[ext_resource type="Resource" uid="uid://drkhyd6xvfslb" path="res://Assets/Dialogue/Interactions/interaction-test-4.dialogue" id="20_1aaea"]
+[ext_resource type="Resource" uid="uid://c67x38e01qpub" path="res://Assets/Dialogue/Interactions/interaction-test-3.dialogue" id="20_7io6u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4ssvm"]
 size = Vector2(3, 18)
@@ -51,6 +54,13 @@ size = Vector2(71, 2)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2u82w"]
 size = Vector2(11, 7)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lvvec"]
+size = Vector2(57, 29)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jaca8"]
+radius = 16.75
+height = 72.87
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4wcej"]
 radius = 14.8661
@@ -420,12 +430,42 @@ z_index = -1
 position = Vector2(0, -3.5)
 shape = SubResource("RectangleShape2D_2u82w")
 
-[node name="DialogueInteractable" parent="." instance=ExtResource("18_tlvcj")]
+[node name="DialogueInteractableBench" parent="." instance=ExtResource("18_tlvcj")]
+position = Vector2(210, 19)
+dialogueScript = ExtResource("19_hku7i")
+dialogueStartString = "this_is_a_node_title"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DialogueInteractableBench"]
+position = Vector2(-119.5, -19.5)
+shape = SubResource("RectangleShape2D_lvvec")
+
+[node name="DialogueInteractableSlide" parent="." instance=ExtResource("18_tlvcj")]
+position = Vector2(-88, 60)
+dialogueScript = ExtResource("20_1aaea")
+dialogueStartString = "this_is_a_node_title"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DialogueInteractableSlide"]
+position = Vector2(192, 80)
+rotation = 1.58716
+shape = SubResource("CapsuleShape2D_jaca8")
+
+[node name="DialogueInteractableSeeSaw" parent="." instance=ExtResource("18_tlvcj")]
+position = Vector2(-44, 30)
+dialogueScript = ExtResource("20_7io6u")
+dialogueStartString = "this_is_a_node_title"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DialogueInteractableSeeSaw"]
+position = Vector2(283, 109)
+rotation = 1.58716
+shape = SubResource("CapsuleShape2D_jaca8")
+
+[node name="DialogueInteractableWaterFountain" parent="." instance=ExtResource("18_tlvcj")]
 position = Vector2(-22, 15)
 dialogueScript = ExtResource("19_dftcu")
 dialogueStartString = "this_is_a_node_title"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DialogueInteractable"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DialogueInteractableWaterFountain"]
+position = Vector2(254, -11)
 shape = SubResource("CircleShape2D_4wcej")
 
 [editable path="Tripod2D"]
