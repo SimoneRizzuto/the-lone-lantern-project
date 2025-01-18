@@ -1,15 +1,13 @@
-using Godot;
 using System;
+using Godot;
 using TheLoneLanternProject.Scripts.Player;
-using TheLoneLanternProject.Scripts.Shared.Constants;
 using TheLoneLanternProject.Scripts.Shared.Helpers;
-using TheLoneLanternProject.Scripts.Utils.Signals;
 
+namespace TheLoneLanternProject.Scripts.Modules.Interactables;
 public partial class ItemInteractable : Area2D, IInteractable
 {
-
-    [Export] public Resource dialogueScript;
-    [Export] public string dialogueStartString;
+    [Export] public Resource DialogueScript;
+    [Export] public string DialogueStartString;
 
     private Luce luce = new();
 
