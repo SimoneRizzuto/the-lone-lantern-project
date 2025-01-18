@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://b0g2v7tkj7vyq"]
+[gd_scene load_steps=38 format=3 uid="uid://b0g2v7tkj7vyq"]
 
 [ext_resource type="PackedScene" uid="uid://b2e5gws18vd27" path="res://Scenes/Modules/Camera/Tripod2D.tscn" id="1_0htn0"]
 [ext_resource type="PackedScene" uid="uid://lijck4bh3uhp" path="res://Scenes/Player/Luce.tscn" id="1_jwntg"]
@@ -56,14 +56,16 @@ size = Vector2(71, 2)
 size = Vector2(11, 7)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lvvec"]
-size = Vector2(57, 29)
+size = Vector2(48, 12)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jaca8"]
-radius = 16.75
-height = 72.87
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sfbq8"]
+size = Vector2(76, 5)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_4wcej"]
-radius = 14.8661
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rpe3t"]
+size = Vector2(71, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_55qpw"]
+size = Vector2(12, 8)
 
 [node name="PlaygroundPlaza" type="Node2D"]
 z_as_relative = false
@@ -432,40 +434,38 @@ shape = SubResource("RectangleShape2D_2u82w")
 
 [node name="DialogueInteractableBench" parent="." instance=ExtResource("18_tlvcj")]
 position = Vector2(210, 19)
-dialogueScript = ExtResource("19_hku7i")
-dialogueStartString = "this_is_a_node_title"
+DialogueScript = ExtResource("19_hku7i")
+DialogueStartString = "this_is_a_node_title"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DialogueInteractableBench"]
-position = Vector2(-119.5, -19.5)
+position = Vector2(-122, -16)
 shape = SubResource("RectangleShape2D_lvvec")
 
 [node name="DialogueInteractableSlide" parent="." instance=ExtResource("18_tlvcj")]
 position = Vector2(-88, 60)
-dialogueScript = ExtResource("20_1aaea")
-dialogueStartString = "this_is_a_node_title"
+DialogueScript = ExtResource("20_1aaea")
+DialogueStartString = "this_is_a_node_title"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DialogueInteractableSlide"]
-position = Vector2(192, 80)
-rotation = 1.58716
-shape = SubResource("CapsuleShape2D_jaca8")
+position = Vector2(191, 83.5)
+shape = SubResource("RectangleShape2D_sfbq8")
 
 [node name="DialogueInteractableSeeSaw" parent="." instance=ExtResource("18_tlvcj")]
 position = Vector2(-44, 30)
-dialogueScript = ExtResource("20_7io6u")
-dialogueStartString = "this_is_a_node_title"
+DialogueScript = ExtResource("20_7io6u")
+DialogueStartString = "this_is_a_node_title"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DialogueInteractableSeeSaw"]
-position = Vector2(283, 109)
-rotation = 1.58716
-shape = SubResource("CapsuleShape2D_jaca8")
+position = Vector2(283.5, 114)
+shape = SubResource("RectangleShape2D_rpe3t")
 
 [node name="DialogueInteractableWaterFountain" parent="." instance=ExtResource("18_tlvcj")]
 position = Vector2(-22, 15)
-dialogueScript = ExtResource("19_dftcu")
-dialogueStartString = "this_is_a_node_title"
+DialogueScript = ExtResource("19_dftcu")
+DialogueStartString = "this_is_a_node_title"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DialogueInteractableWaterFountain"]
-position = Vector2(254, -11)
-shape = SubResource("CircleShape2D_4wcej")
+position = Vector2(255, -9)
+shape = SubResource("RectangleShape2D_55qpw")
 
 [editable path="Tripod2D"]

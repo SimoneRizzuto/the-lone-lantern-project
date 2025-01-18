@@ -20,6 +20,7 @@ public partial class PlayerIdleModule : Node
     public override void _Process(double delta)
     {
         if (StateIsValid) return;
+        
         State.MainSprite.Animation = $"idle {Enum.GetName(State.LastDirection)?.ToLower()}";
     }
 }

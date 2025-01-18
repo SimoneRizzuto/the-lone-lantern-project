@@ -15,6 +15,8 @@ public partial class PlayerStateMachine : Base.StateMachine
     [Export] public AnimatedSprite2D MainSprite;
     [Export] public DustCloudModule DustCloudModule;
     [Export] public StaminaHealthModule StaminaHealthModule;
+
+    public bool IsInteracting;
     
     public override void _EnterTree()
     {

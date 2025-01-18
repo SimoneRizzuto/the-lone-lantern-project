@@ -91,7 +91,7 @@ public partial class CutsceneDirector : Node
     }
     private void ShowDialogueBalloon(string dialogue, string title)
     {
-        luce.SetState(PlayerState.Disabled);
+        luce.SetPlayerState(PlayerState.Disabled);
         
         DialogueManager.ShowDialogueBalloon(GD.Load($"res://Assets/Dialogue/{dialogue}.dialogue"), title);
         DialogueManager.DialogueEnded += SetupGameplayAfterDialogueEnded;
@@ -184,7 +184,7 @@ public partial class CutsceneDirector : Node
     
     private void SetupGameplayAfterDialogueEnded(Resource dialogueResource)
     {
-        luce.SetState(PlayerState.Idle);
+        luce.SetPlayerState(PlayerState.Idle);
         DialogueManager.DialogueEnded -= SetupGameplayAfterDialogueEnded;
     }
 }

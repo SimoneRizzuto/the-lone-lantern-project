@@ -678,7 +678,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eo4r3"]
-size = Vector2(16, 26)
+size = Vector2(6, 26)
 
 [node name="Luce" type="CharacterBody2D" groups=["player"]]
 z_as_relative = false
@@ -762,14 +762,14 @@ script = ExtResource("30_bbmja")
 [node name="DustCloudModule" parent="." instance=ExtResource("31_rwceo")]
 
 [node name="InteractorDirection" type="Marker2D" parent="."]
-position = Vector2(0, -8)
+position = Vector2(0, -2)
 
 [node name="InteractableDetector" type="Area2D" parent="InteractorDirection"]
 collision_layer = 0
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="InteractorDirection/InteractableDetector"]
-position = Vector2(0, 19)
+position = Vector2(0, 13)
 shape = SubResource("RectangleShape2D_eo4r3")
 
 [connection signal="screen_exited" from="PlayerOnScreenNotifier" to="PlayerCamera2D" method="PlayerOnScreenExited"]
