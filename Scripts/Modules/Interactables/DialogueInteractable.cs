@@ -5,33 +5,27 @@ using TheLoneLanternProject.Scripts.Shared.Constants;
 using TheLoneLanternProject.Scripts.Shared.Helpers;
 using TheLoneLanternProject.Scripts.Utils.Signals;
 
-namespace TheLoneLanternProject.Scripts.Modules.Interactables;
 
-[GlobalClass]
-public partial class DialogueInteractableModule : Node
+
+public partial class DialogueInteractable : Area2D, IInteractable
 {
+    [Export] public Resource dialogueScript; 
+    [Export] public string dialogueStartString;
+
     private CustomSignals customSignals = new();
     private Luce luce = new();
+    
     public override void _Ready()
-    {
-        customSignals = GetNode<CustomSignals>("/root/CustomSignals");
-        customSignals.Interaction += DoSomething;
-        customSignals.ShowDialogueBalloon += ShowDialogueBalloon;
-
+    { 
         var tree = GetTree();
         luce = GetNodeHelper.GetLuce(tree);
     }
 
-    private void DoSomething()
+    public void Interact()
     {
-        GD.Print("Picked Up!");
-    }
+        luce.SetState(PlayerState.Disabled); 
 
-    private void ShowDialogueBalloon(string dialogue, string title)
-    {
-        luce.SetState(PlayerState.Disabled);
-
-        DialogueManager.ShowDialogueBalloon(GD.Load($"res://Assets/Dialogue/{dialogue}.dialogue"), title);
+        DialogueManager.ShowDialogueBalloon(dialogueScript, dialogueStartString);
         DialogueManager.DialogueEnded += SetupGameplayAfterDialogueEnded;
     }
 

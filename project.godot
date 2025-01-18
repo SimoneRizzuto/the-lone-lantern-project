@@ -132,13 +132,14 @@ Interact={
 
 [internationalization]
 
-locale/translations_pot_files=PackedStringArray("res://Assets/Dialogue/Interactions/interaction-test.dialogue", "res://Assets/Dialogue/MainCutscenes/2-the-void-gazes-back.dialogue", "res://Assets/Dialogue/MainCutscenes/4-nori-is-bullied-by-someone.dialogue", "res://Assets/Dialogue/dialogue-test.dialogue")
+locale/translations_pot_files=PackedStringArray("res://Assets/Dialogue/Interactions/interaction-test.dialogue", "res://Assets/Dialogue/MainCutscenes/2-the-void-gazes-back.dialogue", "res://Assets/Dialogue/MainCutscenes/4-nori-is-bullied-by-someone.dialogue", "res://Assets/Dialogue/dialogue-test.dialogue", "res://Assets/Dialogue/Interactions/interaction-test-2.dialogue", "res://Assets/Dialogue/Interactions/interaction-test-3.dialogue", "res://Assets/Dialogue/Interactions/interaction-test-4.dialogue")
 
 [layer_names]
 
 2d_physics/layer_1="walls"
 2d_physics/layer_2="player"
 2d_physics/layer_3="enemies"
+2d_physics/layer_4="interactables"
 
 [rendering]
 

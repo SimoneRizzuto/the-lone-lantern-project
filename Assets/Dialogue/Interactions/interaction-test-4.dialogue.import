@@ -1,0 +1,15 @@
+[remap]
+
+importer="dialogue_manager_compiler_12"
+type="Resource"
+uid="uid://drkhyd6xvfslb"
+path="res://.godot/imported/interaction-test-4.dialogue-d3ff0fe4f642b4c6daef804a793054a1.tres"
+
+[deps]
+
+source_file="res://Assets/Dialogue/Interactions/interaction-test-4.dialogue"
+dest_files=["res://.godot/imported/interaction-test-4.dialogue-d3ff0fe4f642b4c6daef804a793054a1.tres"]
+
+[params]
+
+defaults=true
