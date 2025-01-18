@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Linq;
 using TheLoneLanternProject.Scripts.Player;
 using TheLoneLanternProject.Scripts.Shared.Constants;
 using TheLoneLanternProject.Scripts.Shared.Helpers;
@@ -62,25 +63,23 @@ public partial class PlayerInteractorModule: Node
     private void checkInteractionButton()
     {
         if (Input.IsActionJustPressed(InputMapAction.Interact)) {
-            var interactable = interactableDetector.GetOverlappingAreas();
+            var interactableOverlappingAreas = interactableDetector.GetOverlappingAreas().ToList();
+            var interactablesVerified = interactableOverlappingAreas.FindAll(x => x is IInteractable);
 
-            if (interactable.Count > 0)
+            if (interactablesVerified.Count() < interactableOverlappingAreas.Count()) {
+                GD.PrintErr("Detected non IInteractable while processing interaction. Please don't put Area2D's that aren't IInteractables to Collision Layer 4.");
+            }
+
+            if (interactablesVerified.Count > 0)
             {
-                var topInteractableDialogue = (DialogueInteractable)interactable[0];
-                if (topInteractableDialogue.dialogueScript != null)
-                {
-                    topInteractableDialogue.Interact();
-                }
-                else
-                {
-                    var topInteractableItem = (ItemInteractable)interactable[0];
-                    topInteractableItem.Interact();
-                }
+                var topInteractableDialogue = (IInteractable)interactablesVerified[0];
+                topInteractableDialogue.Interact();
 
-                
             }
 
 
         }
     }
+
+
 }

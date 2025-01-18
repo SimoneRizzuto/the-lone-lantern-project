@@ -14,6 +14,7 @@ public partial class DialogueInteractable : Area2D, IInteractable
 
     private CustomSignals customSignals = new();
     private Luce luce = new();
+    
     public override void _Ready()
     { 
         var tree = GetTree();

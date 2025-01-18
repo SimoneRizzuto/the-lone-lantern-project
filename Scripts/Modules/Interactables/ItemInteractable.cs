@@ -1,4 +1,5 @@
 using Godot;
+using System;
 using TheLoneLanternProject.Scripts.Player;
 using TheLoneLanternProject.Scripts.Shared.Constants;
 using TheLoneLanternProject.Scripts.Shared.Helpers;
@@ -20,8 +21,6 @@ public partial class ItemInteractable : Area2D, IInteractable
 
     public void Interact()
     {
-        // Will need these two when figure out how items are going to be handled
-        /*luce.SetState(PlayerState.Disabled);
-        luce.SetState(PlayerState.Idle);*/
+        throw new NotImplementedException();
     }
 }
