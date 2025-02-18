@@ -740,7 +740,7 @@ one_way_collision_margin = 0.0
 z_as_relative = false
 y_sort_enabled = true
 sprite_frames = SubResource("SpriteFrames_51ooq")
-animation = &"sit down look right"
+animation = &"attack down 1"
 offset = Vector2(0, -18)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

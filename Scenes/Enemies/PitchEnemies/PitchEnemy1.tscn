@@ -1,0 +1,32 @@
+[gd_scene load_steps=7 format=3 uid="uid://cbblovd6b2ne5"]
+
+[ext_resource type="Script" path="res://Scripts/StateMachines/Enemy/EnemyStateMachine.cs" id="1_yxlm8"]
+[ext_resource type="Script" path="res://Scripts/Modules/Enemy/EnemyHurtingModule.cs" id="2_rg7j8"]
+[ext_resource type="Script" path="res://Scripts/Modules/Enemy/EnemyAttackingModule.cs" id="3_oad27"]
+[ext_resource type="Script" path="res://Scripts/Modules/Enemy/EnemyRepositionModule.cs" id="4_05gft"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_psa72"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pax8b"]
+size = Vector2(48, 15)
+
+[node name="PitchEnemy1" type="CharacterBody2D"]
+
+[node name="EnemyStateMachine" type="Node" parent="."]
+script = ExtResource("1_yxlm8")
+
+[node name="EnemyHurtingModule" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("2_rg7j8")
+
+[node name="EnemyAttackingModule" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("3_oad27")
+
+[node name="EnemyRepositionModule" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("4_05gft")
+
+[node name="MainSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_psa72")
+
+[node name="MainShape" type="CollisionShape2D" parent="."]
+position = Vector2(0, -7.5)
+shape = SubResource("RectangleShape2D_pax8b")

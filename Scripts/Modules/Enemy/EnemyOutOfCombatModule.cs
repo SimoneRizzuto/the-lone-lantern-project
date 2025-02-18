@@ -13,7 +13,7 @@ public partial class EnemyOutOfCombatModule : Node
 
     private Scripts.Player.Luce luce;
     private bool StateIsOutOfCombat => State.EnemyState is EnemyState.OutOfCombat;
-    private static readonly float combatDistanceThreshold = 50;
+    private static readonly float combatDistanceThreshold = 200;
 
     public override void _Ready()
     {

@@ -5,6 +5,7 @@ namespace TheLoneLanternProject.Scripts.Enemies;
 public partial class Enemy : CharacterBody2D
 {
     [Export] public Vector2 CalculatedVelocity;
+    [Export] public int Health;
     public override void _PhysicsProcess(double delta)
     {
         Velocity = CalculatedVelocity * (float)delta;

@@ -3,6 +3,7 @@ using Godot;
 using TheLoneLanternProject.Scripts.Shared.Constants;
 using TheLoneLanternProject.Scripts.Shared.Helpers;
 using TheLoneLanternProject.Scripts.StateMachines.Enemy;
+using static Godot.WebSocketPeer;
 
 namespace TheLoneLanternProject.Scripts.Modules.Enemy;
 
@@ -16,8 +17,9 @@ public partial class EnemyRepositionModule : Node
     private Scripts.Player.Luce luce;
     public static readonly float DefaultMoveSpeed = 4000;
     public static readonly int MoveVelocityThreshold = 25; // might change
+    public static readonly int PauseDistanceThreshold = 100;
 
-    private float MovementVectorThreshold => MoveVelocityThreshold / 100f;
+    private float MovementVectorThreshold => MoveVelocityThreshold; // / 100f;
     private bool StateIsValid => State.EnemyState is EnemyState.Attacking;
 
     public override void _Ready()
@@ -31,11 +33,27 @@ public partial class EnemyRepositionModule : Node
     {
         if (StateIsValid) return;
 
+        
         var tree = GetTree();
         luce = GetNodeHelper.GetLuce(tree);
 
-        var movementVector = State.Enemy.Position.DirectionTo(luce.Position); 
-        State.Enemy.CalculatedVelocity = MovementVectorIsAboveThreshold(movementVector) ? movementVector * MoveSpeed : Vector2.Zero;
+        var movementVector = State.Enemy.Position.DirectionTo(luce.Position);
+        var distance = State.Enemy.Position.DistanceTo(luce.Position);
+
+        if (State.EnemyState is EnemyState.OutOfCombat){
+            return;
+        }
+            
+        else if (distance >= PauseDistanceThreshold)
+        {
+            State.Enemy.CalculatedVelocity = movementVector * MoveSpeed;
+
+        }
+        else if (distance <= PauseDistanceThreshold)
+        {
+            State.Enemy.CalculatedVelocity = movementVector.Orthogonal() * MoveSpeed;            
+        }
+        
         // This also needs to be considered. Previously the framework had a parent (luce3) that had its own script that did this
         // stuff and set up CalculatedVelocity. Need to make one of these or find another solution
         // Check with Sim about moving some stuff into luce3

@@ -12,7 +12,7 @@ z_as_relative = false
 y_sort_enabled = true
 
 [node name="Luce" parent="." instance=ExtResource("1_stcl4")]
-position = Vector2(247, 209)
+position = Vector2(197, 241)
 
 [node name="SicilianHouse" parent="." instance=ExtResource("2_ku5tm")]
 position = Vector2(165, 173)
@@ -29,5 +29,12 @@ position = Vector2(99, 263)
 
 [node name="CutsceneDirector" parent="." instance=ExtResource("5_5y00f")]
 
-[node name="Enemy" parent="." instance=ExtResource("6_28f6i")]
+[node name="Enemy1" parent="." instance=ExtResource("6_28f6i")]
 position = Vector2(356, 211)
+scale = Vector2(0.248855, 0.25)
+
+[node name="Enemy" parent="." instance=ExtResource("6_28f6i")]
+position = Vector2(109, 349)
+
+[node name="Enemy2" parent="." instance=ExtResource("6_28f6i")]
+position = Vector2(305, 352)

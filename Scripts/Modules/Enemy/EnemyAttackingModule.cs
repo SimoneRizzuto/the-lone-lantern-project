@@ -32,16 +32,18 @@ public partial class EnemyAttackingModule : Node
     public override void _Ready()
     {
         State ??= GetParent<EnemyStateMachine>();
-        AttackShape ??= GetNode<CollisionPolygon2D>("HitBox/CollisionPolygon2D");
+        AttackShape ??= GetNode<CollisionPolygon2D>(GetParent().GetParent().GetPath() + "/HitBox/CollisionPolygon2D");
 
         State.MainSprite.AnimationFinished += OnAnimationFinished;
     }
 
     public override void _PhysicsProcess(double delta)
     {
-        CheckAttackRecent();
+        
 
         if (!StateIsAttacking) return;
+
+        CheckAttackRecent();
 
         if (isBufferingNormalAttack)
         {
@@ -72,15 +74,6 @@ public partial class EnemyAttackingModule : Node
         if (Enum.GetName(State.LastDirection)?.ToLower() == "down") attackAnimationCounter = 1; 
 
         State.MainSprite.Play($"attack {Enum.GetName(State.LastDirection)?.ToLower()} {attackAnimationCounter}");
-
-        if (attackAnimationCounter == 1)
-        {
-            attackAnimationCounter++; // change so just a single attack
-        }
-        else
-        {
-            attackAnimationCounter--;
-        }
 
         State.Enemy.CalculatedVelocity = attackVector * 4000f;
         State.EnemyState = EnemyState.Attacking;

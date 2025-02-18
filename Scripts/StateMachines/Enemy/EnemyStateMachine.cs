@@ -20,6 +20,7 @@ public partial class EnemyStateMachine : Base.StateMachine
 
         Enemy ??= (Enemies.Enemy)owner;
         MainSprite ??= owner.GetNode<AnimatedSprite2D>("MainSprite");
+        
     }
 
 }
