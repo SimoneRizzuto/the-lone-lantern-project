@@ -2,7 +2,7 @@ using Godot;
 using System.Linq;
 using TheLoneLanternProject.Scripts.Modules.Interactables;
 using TheLoneLanternProject.Scripts.Shared.Constants;
-using TheLoneLanternProject.Scripts.StateMachines.Enemy;
+//using TheLoneLanternProject.Scripts.StateMachines.Enemy;
 
 namespace TheLoneLanternProject.Scripts.Modules.Enemy;
 
@@ -19,6 +19,7 @@ public partial class EnemyHurtingModule : Node
     }
     public override void _Process(double delta)
     {
+        GD.Print(State.EnemyState);
         CheckIfHurt();
         if (State.EnemyState != EnemyState.Hurting) return;
         QueueFree();
@@ -29,7 +30,7 @@ public partial class EnemyHurtingModule : Node
     public void CheckIfHurt()
     {
         var overlappingAreas = collisionShape.GetOverlappingAreas().ToList();
-        GD.Print(overlappingAreas);
+        
         if (overlappingAreas.Count > 0)
         {
             State.EnemyState = EnemyState.Hurting; // in future will need a better health and damage system then one hit then dead

@@ -2,7 +2,7 @@ using System;
 using Godot;
 using TheLoneLanternProject.Scripts.Shared.Constants;
 using TheLoneLanternProject.Scripts.Shared.Helpers;
-using TheLoneLanternProject.Scripts.StateMachines.Enemy;
+//using TheLoneLanternProject.Scripts.StateMachines.Enemy;
 
 namespace TheLoneLanternProject.Scripts.Modules.Enemy;
 
@@ -23,6 +23,7 @@ public partial class EnemyOutOfCombatModule : Node
 
     public override void _PhysicsProcess(double delta)
     {
+        GD.Print(State.EnemyState);
         CheckDistanceToLuce();
 
         if (!StateIsOutOfCombat) return;

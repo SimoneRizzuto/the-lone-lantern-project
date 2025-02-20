@@ -1,7 +1,7 @@
 using Godot;
 using TheLoneLanternProject.Scripts.Shared.Extensions;
 
-namespace TheLoneLanternProject.Scripts.Enemies;
+//namespace TheLoneLanternProject.Scripts.Enemies;
 public partial class Enemy : CharacterBody2D
 {
     [Export] public Vector2 CalculatedVelocity;

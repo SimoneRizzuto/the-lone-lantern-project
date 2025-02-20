@@ -1,7 +1,7 @@
 using Godot;
 using System;
 using TheLoneLanternProject.Scripts.Shared.Constants;
-using TheLoneLanternProject.Scripts.StateMachines.Enemy;
+//using TheLoneLanternProject.Scripts.StateMachines.Enemy;
 
 namespace TheLoneLanternProject.Scripts.Modules.Enemy;
 
@@ -21,6 +21,7 @@ public partial class EnemyWaitingModule : Node
 
     public override void _Process(double delta)
     {
+        GD.Print(State.EnemyState);
         if (StateIsValid)
         {
             return;
