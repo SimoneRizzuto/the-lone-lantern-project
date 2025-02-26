@@ -6,8 +6,10 @@ public static class DirectionHelper
 {
     public static Direction GetSnappedDirection(Vector2 input, float length = 0.0001f)
     {
+        var inputLength = input.Length();
+        
         // Normalize the input to ensure consistent direction (ignore magnitude)
-        if (input.Length() < length) return Direction.None; // No direction if input is zero
+        if (inputLength < length) return Direction.None; // No direction if input is zero
 
         input = input.Normalized();
 

@@ -2,11 +2,12 @@ using Godot;
 using TheLoneLanternProject.Scripts.Shared.Extensions;
 using TheLoneLanternProject.Scripts.StateMachines.Player;
 
-//namespace TheLoneLanternProject.Scripts.Enemies;
+namespace TheLoneLanternProject.Scripts.Enemies;
 public partial class Enemy : CharacterBody2D
 {
     [Export] public Vector2 CalculatedVelocity;
     [Export] public int Health;
+    
     private EnemyStateMachine enemyStateMachine;
 
     public override void _Ready()

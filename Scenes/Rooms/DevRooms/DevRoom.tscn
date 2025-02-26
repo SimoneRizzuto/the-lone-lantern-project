@@ -31,3 +31,5 @@ position = Vector2(99, 263)
 
 [node name="Enemy" parent="." instance=ExtResource("6_28f6i")]
 position = Vector2(109, 349)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]

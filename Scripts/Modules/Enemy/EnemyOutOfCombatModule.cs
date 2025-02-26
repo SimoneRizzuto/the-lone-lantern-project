@@ -12,7 +12,7 @@ public partial class EnemyOutOfCombatModule : Node
     [Export] public EnemyStateMachine State;
 
     private Scripts.Player.Luce luce;
-    private bool StateIsOutOfCombat => State.EnemyState is EnemyState.OutOfCombat;
+    private bool OutOfCombat => State.EnemyState is EnemyState.OutOfCombat;
     private static readonly float combatDistanceThreshold = 200;
 
     public override void _Ready()
@@ -24,14 +24,12 @@ public partial class EnemyOutOfCombatModule : Node
     public override void _PhysicsProcess(double delta)
     {
         //GD.Print(State.EnemyState);
-        CheckDistanceToLuce();
 
-        if ((!StateIsOutOfCombat) | (State.EnemyState is not EnemyState.OutOfCombat)) return;
-
+        if (!OutOfCombat) return;
+        
         // Just make out of combat animation the same as waiting for now
         State.MainSprite.Animation = $"waiting {Enum.GetName(State.LastDirection)?.ToLower()}";
-
-
+        CheckDistanceToLuce();
     }
 
     private void CheckDistanceToLuce()

@@ -1,12 +1,12 @@
 using Godot;
+using TheLoneLanternProject.Scripts.Enemies;
 using TheLoneLanternProject.Scripts.Shared.Constants;
 using TheLoneLanternProject.Scripts.StateMachines.Base;
-
 
 [GlobalClass]
 public partial class EnemyStateMachine : StateMachine
 {
-    [Export] public Enemy Enemy; 
+    [Export] public Enemy Enemy;
     [Export] public EnemyState EnemyState = EnemyState.OutOfCombat;
     [Export] public Direction LastDirection = Direction.Down;
 

@@ -17,7 +17,7 @@ public partial class EnemyAttackingModule : Node
     private bool isBufferingNormalAttack;
     private int attackAnimationCounter = 1;
     private int AnimationFramesCount => State.MainSprite.SpriteFrames.GetFrameCount(State.MainSprite.Animation);
-    private bool StateIsAttacking => State.EnemyState is EnemyState.Attacking;
+    private bool IsAttacking => State.EnemyState is EnemyState.Attacking;
 
     private AttackType attackTriggered = AttackType.None;
 
@@ -39,9 +39,7 @@ public partial class EnemyAttackingModule : Node
 
     public override void _PhysicsProcess(double delta)
     {
-        
-
-        if (!StateIsAttacking) return;
+        if (!IsAttacking) return;
 
         CheckAttackRecent();
 
@@ -56,6 +54,8 @@ public partial class EnemyAttackingModule : Node
         }
 
         ProcessAttack();
+        
+        //CheckDistanceToLuce();
     }
 
     public void TriggerNormalAttack()
@@ -86,14 +86,14 @@ public partial class EnemyAttackingModule : Node
         // Need something here to mitigate the number of attacks otherwise will continue to attack (might be ok for now)
         //if () return;
 
-        if (State.EnemyState == EnemyState.Attacking)
-        {
+        /*if (State.EnemyState == EnemyState.Attacking)
+        {*/
             isBufferingNormalAttack = true;
-        }
+        /*}
         else
         {
             TriggerNormalAttack();
-        }
+        }*/
     }
 
     private void ProcessAttack()
@@ -101,16 +101,44 @@ public partial class EnemyAttackingModule : Node
         switch (attackTriggered)
         {
             case AttackType.Normal:
+            {
                 if (State.MainSprite.Frame == 1)
+                {
+                    State.Enemy.CalculatedVelocity = attackVector * 5250f;
+                }
+                else if (State.MainSprite.Frame == 2)
+                {
+                    State.Enemy.CalculatedVelocity = attackVector * 2250f;
+                }
+                else if (State.MainSprite.Frame == 3)
                 {
                     State.Enemy.CalculatedVelocity = attackVector * 1250f;
                 }
-                else if (State.MainSprite.Frame >= 2)
+                else if (State.MainSprite.Frame >= 4)
                 {
                     State.Enemy.CalculatedVelocity = attackVector;
                     AttackShape.Disabled = true;
                 }
-                break;
+            }
+            break;
+        }
+    }
+    
+    private static readonly float combatDistanceThreshold = 200;
+    
+    private void CheckDistanceToLuce()
+    {
+        var tree = GetTree();
+        luce = GetNodeHelper.GetLuce(tree);
+
+        var distance = State.Enemy.Position.DistanceTo(luce.Position); // just check that this works
+        if (distance <= combatDistanceThreshold)
+        {
+            State.EnemyState = EnemyState.Reposition;
+        }
+        else
+        {
+            State.EnemyState = EnemyState.OutOfCombat;
         }
     }
 
