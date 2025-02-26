@@ -16,13 +16,15 @@ public partial class EnemyHurtingModule : Node
     {
         State ??= GetParent<EnemyStateMachine>();
         collisionShape = GetNode<Area2D>(GetParent().GetParent().GetPath() + "/HitBox");
+        
     }
     public override void _Process(double delta)
     {
-        GD.Print(State.EnemyState);
+       
+        //GD.Print(State.EnemyState);
         CheckIfHurt();
-        if (State.EnemyState != EnemyState.Hurting) return;
-        QueueFree();
+        //if (State.EnemyState != EnemyState.Hurting) return;
+        //QueueFree();
         
         
     }
@@ -30,6 +32,11 @@ public partial class EnemyHurtingModule : Node
     public void CheckIfHurt()
     {
         var overlappingAreas = collisionShape.GetOverlappingAreas().ToList();
+        GD.Print(overlappingAreas.Count);
+        foreach (var area in overlappingAreas)
+        {
+            GD.Print(area);
+        }
         
         if (overlappingAreas.Count > 0)
         {

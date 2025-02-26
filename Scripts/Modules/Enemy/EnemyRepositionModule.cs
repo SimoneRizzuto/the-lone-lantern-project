@@ -20,6 +20,7 @@ public partial class EnemyRepositionModule : Node
 
     private float MovementVectorThreshold => MoveVelocityThreshold; // / 100f;
     private bool StateIsValid => State.EnemyState is EnemyState.Attacking;
+    private bool PausedOnce = false;
 
     public override void _Ready()
     {
@@ -30,7 +31,7 @@ public partial class EnemyRepositionModule : Node
 
     public override void _PhysicsProcess(double delta)
     {
-        GD.Print(State.EnemyState);
+        //GD.Print(State.EnemyState);
         if (StateIsValid) return;
 
         
@@ -40,7 +41,7 @@ public partial class EnemyRepositionModule : Node
         var movementVector = State.Enemy.Position.DirectionTo(luce.Position);
         var distance = State.Enemy.Position.DistanceTo(luce.Position);
 
-        if (State.EnemyState is EnemyState.OutOfCombat){
+        if ((State.EnemyState is EnemyState.OutOfCombat) | (State.EnemyState is EnemyState.Attacking)){
             return;
         }
             
@@ -49,8 +50,13 @@ public partial class EnemyRepositionModule : Node
             State.Enemy.CalculatedVelocity = movementVector * MoveSpeed;
 
         }
-        else if (distance <= PauseDistanceThreshold)
+        else if ((distance <= PauseDistanceThreshold) & (PausedOnce is true))
         {
+            TransitionToAttack();
+        }
+        else if (distance <= PauseDistanceThreshold)
+        { 
+            if (PausedOnce is true) return;
             State.Enemy.CalculatedVelocity = movementVector.Orthogonal() * MoveSpeed;
             TransitionToAttack();
             
@@ -61,7 +67,6 @@ public partial class EnemyRepositionModule : Node
         // Check with Sim about moving some stuff into luce3
         SetMovementAnimation(movementVector);
 
-        
     }
 
     private void SetMovementAnimation(Vector2 movementVector)
@@ -77,22 +82,27 @@ public partial class EnemyRepositionModule : Node
             State.MainSprite.Play(animation, speed);
 
             State.LastDirection = walkDirection;
-            State.EnemyState = EnemyState.Reposition;
         }
-        else
-        {
-            State.EnemyState = EnemyState.Waiting;
-        }
+        
 
         State.MainSprite.Play();
     }
 
     public async void TransitionToAttack()
     {
-        await ToSignal(GetTree().CreateTimer(2.0), SceneTreeTimer.SignalName.Timeout);
-        State.Enemy.CalculatedVelocity = Vector2.Zero;
-        await ToSignal(GetTree().CreateTimer(2.0), SceneTreeTimer.SignalName.Timeout);
-        State.EnemyState = EnemyState.Attacking;
+        if (PausedOnce is false)
+        {
+            await ToSignal(GetTree().CreateTimer(2.0), SceneTreeTimer.SignalName.Timeout);
+            State.Enemy.CalculatedVelocity = Vector2.Zero;
+            //await ToSignal(GetTree().CreateTimer(2.0), SceneTreeTimer.SignalName.Timeout);
+            PausedOnce = true;
+        }
+        else
+        {
+            State.EnemyState = EnemyState.Attacking;
+        }
+        
+        
         
     }
 }

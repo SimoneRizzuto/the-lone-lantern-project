@@ -23,10 +23,10 @@ public partial class EnemyOutOfCombatModule : Node
 
     public override void _PhysicsProcess(double delta)
     {
-        GD.Print(State.EnemyState);
+        //GD.Print(State.EnemyState);
         CheckDistanceToLuce();
 
-        if (!StateIsOutOfCombat) return;
+        if ((!StateIsOutOfCombat) | (State.EnemyState is not EnemyState.OutOfCombat)) return;
 
         // Just make out of combat animation the same as waiting for now
         State.MainSprite.Animation = $"waiting {Enum.GetName(State.LastDirection)?.ToLower()}";

@@ -2,12 +2,12 @@ using Godot;
 using TheLoneLanternProject.Scripts.Shared.Constants;
 using TheLoneLanternProject.Scripts.StateMachines.Base;
 
+
 [GlobalClass]
 public partial class EnemyStateMachine : StateMachine
 {
-    [Export] public Enemy Enemy; // Placeholder in case the enemy needs to be supplied like luce is supplied
-    // Initialise State and Direction
-    [Export] public EnemyState EnemyState = EnemyState.Waiting;
+    [Export] public Enemy Enemy; 
+    [Export] public EnemyState EnemyState = EnemyState.OutOfCombat;
     [Export] public Direction LastDirection = Direction.Down;
 
     // Make it so the enemy sprite can be passed

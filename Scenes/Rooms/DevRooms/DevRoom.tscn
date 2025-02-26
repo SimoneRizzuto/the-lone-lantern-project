@@ -12,7 +12,7 @@ z_as_relative = false
 y_sort_enabled = true
 
 [node name="Luce" parent="." instance=ExtResource("1_stcl4")]
-position = Vector2(235, 270)
+position = Vector2(237, 272)
 
 [node name="SicilianHouse" parent="." instance=ExtResource("2_ku5tm")]
 position = Vector2(165, 173)

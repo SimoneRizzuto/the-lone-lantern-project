@@ -21,7 +21,7 @@ public partial class EnemyWaitingModule : Node
 
     public override void _Process(double delta)
     {
-        GD.Print(State.EnemyState);
+        //GD.Print(State.EnemyState);
         if (StateIsValid)
         {
             return;
