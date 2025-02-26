@@ -756,8 +756,10 @@ collision_layer = 4
 polygon = PackedVector2Array(-9, -34, 0, -34, 11, -32, 17, -30, 21, -28, 30, -19, 30, -10, 21, -1, 11, 3, 0, 5, -10, 5)
 disabled = true
 
-[node name="ActorNode" type="Node2D" parent="." groups=["actor node"]]
+[node name="ActorNode" type="Node2D" parent="." node_paths=PackedStringArray("AnimatedSprite2D", "AnimationPlayer") groups=["actor node"]]
 script = ExtResource("30_bbmja")
+AnimatedSprite2D = NodePath("../MainSprite")
+AnimationPlayer = NodePath("../AnimationPlayer")
 
 [node name="DustCloudModule" parent="." instance=ExtResource("31_rwceo")]
 
