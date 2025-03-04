@@ -22,6 +22,8 @@ public partial class PlayerAttackingModule : Node
     private int AnimationFramesCount => State.MainSprite.SpriteFrames.GetFrameCount(State.MainSprite.Animation);
     private bool StateIsAttacking => State.PlayerState is PlayerState.Attacking;
 
+    private Area2D Hitbox;
+
     private AttackType attackTriggered = AttackType.None;
     
     public enum AttackType
@@ -37,12 +39,13 @@ public partial class PlayerAttackingModule : Node
     
     public override void _Ready()
     {
+        Hitbox ??= GetChild<Area2D>(0);
+        
         State ??= GetParent<PlayerStateMachine>();
         AttackShape ??= GetNode<CollisionPolygon2D>("HitBox/CollisionPolygon2D");
-        
         State.MainSprite.AnimationFinished += OnAnimationFinished;
     }
-    
+
     public override void _PhysicsProcess(double delta)
     {
         /*if (State != PlayerState.Attacking)

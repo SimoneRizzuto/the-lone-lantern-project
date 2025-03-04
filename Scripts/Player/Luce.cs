@@ -1,6 +1,7 @@
 using System;
 using System.Numerics;
 using Godot;
+using TheLoneLanternProject.Scripts.Enemies;
 using TheLoneLanternProject.Scripts.Utils.Signals;
 using TheLoneLanternProject.Scripts.Shared.Constants;
 using TheLoneLanternProject.Scripts.Shared.Extensions;
@@ -11,6 +12,9 @@ namespace TheLoneLanternProject.Scripts.Player;
 public partial class Luce : CharacterBody2D
 {
 	[Export] public Vector2 CalculatedVelocity;
+	[Export] public Enemy Enemy1;
+	[Export] public Enemy Enemy2;
+	
 	
 	private CustomSignals customSignals = new();
 	private PlayerStateMachine playerStateMachine;
@@ -20,9 +24,26 @@ public partial class Luce : CharacterBody2D
 		customSignals = GetNode<CustomSignals>("/root/CustomSignals");
 		playerStateMachine ??= GetNode<PlayerStateMachine>(nameof(PlayerStateMachine));
 	}
+
+	private bool enemy1deleto = false;
+	private bool enemy2deleto = false;
 	
 	public override void _PhysicsProcess(double delta)
 	{
+		
+		
+		if (Input.IsActionJustPressed("Delete Enemy 1") && !enemy1deleto)
+		{
+			Enemy1?.QueueFree();
+			enemy1deleto = true;
+		}
+		if (Input.IsActionJustPressed("Delete Enemy 2") && !enemy2deleto)
+		{
+			Enemy2?.QueueFree();
+			enemy2deleto = true;
+		}
+		
+		
 		Velocity = CalculatedVelocity * (float)delta;
 		MoveAndSlide();
 		

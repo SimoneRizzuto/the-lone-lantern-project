@@ -1,3 +1,4 @@
+using System;
 using Godot;
 using System.Linq;
 using TheLoneLanternProject.Scripts.Shared.Constants;
@@ -14,8 +15,27 @@ public partial class EnemyHurtingModule : Node
     {
         State ??= GetParent<EnemyStateMachine>();
         collisionShape = GetNode<Area2D>(GetParent().GetParent().GetPath() + "/HitBox");
-        
+
+        collisionShape.BodyShapeEntered += MethodWoo;
+        collisionShape.BodyEntered += MethodWoo2;
     }
+
+    private void MethodWoo2(Node2D body)
+    {
+        if (body.Name == "Hitbox")
+        {
+            Console.WriteLine("Hi :)");
+        }
+    }
+    
+    private void MethodWoo(Rid bodyrid, Node2D body, long bodyshapeindex, long localshapeindex)
+    {
+        if (body.Name == "Hitbox")
+        {
+            Console.WriteLine("Hi :)");
+        }
+    }
+
     public override void _Process(double delta)
     {
         if (State.EnemyState != EnemyState.Hurting) return;

@@ -358,11 +358,10 @@ shape = SubResource("RectangleShape2D_u0j3g")
 
 [node name="HitBox" type="Area2D" parent="."]
 scale = Vector2(4, 4)
-collision_layer = 4
-collision_mask = 4
+collision_layer = 5
+collision_mask = 5
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="HitBox"]
-visible = false
 position = Vector2(-2, 0)
 scale = Vector2(0.352594, 0.268519)
 polygon = PackedVector2Array(17, -1, 29, -12, 31, -25, 29, -37, 22, -47, 13, -52, 4, -52, -12, -51, -17, -44, -20, -32, -22, -16, -17, -2, -4, 2, 12, 1)
