@@ -6,7 +6,7 @@ namespace TheLoneLanternProject.Scripts.StateMachines.Enemy;
 [GlobalClass]
 public partial class EnemyStateMachine : Base.StateMachine
 {
-    [Export] public Enemies.Enemy Enemy; // Placeholder in case the enemy needs to be supplied like luce is supplied
+    [Export] public Enemies.EnemyTemplate EnemyTemplate; // Placeholder in case the enemy needs to be supplied like luce is supplied
     // Initialise State and Direction
     [Export] public EnemyState EnemyState = EnemyState.Waiting;
     [Export] public Direction LastDirection = Direction.Down;
@@ -18,7 +18,7 @@ public partial class EnemyStateMachine : Base.StateMachine
     {
         var owner = Owner;
 
-        Enemy ??= (Enemies.Enemy)owner;
+        EnemyTemplate ??= (Enemies.EnemyTemplate)owner;
         MainSprite ??= owner.GetNode<AnimatedSprite2D>("MainSprite");
     }
 

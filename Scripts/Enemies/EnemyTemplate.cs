@@ -2,7 +2,7 @@ using Godot;
 using TheLoneLanternProject.Scripts.Shared.Extensions;
 
 namespace TheLoneLanternProject.Scripts.Enemies;
-public partial class Enemy : CharacterBody2D
+public partial class EnemyTemplate : CharacterBody2D
 {
     [Export] public Vector2 CalculatedVelocity;
     public override void _PhysicsProcess(double delta)

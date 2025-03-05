@@ -61,7 +61,7 @@ public partial class EnemyAttackingModule : Node
         var tree = GetTree();
         luce = GetNodeHelper.GetLuce(tree);
 
-        attackVector = State.Enemy.Position.DirectionTo(luce.Position);
+        attackVector = State.EnemyTemplate.Position.DirectionTo(luce.Position);
 
         var direction = DirectionHelper.GetSnappedDirection(attackVector);
         if (direction != Direction.None)
@@ -82,7 +82,7 @@ public partial class EnemyAttackingModule : Node
             attackAnimationCounter--;
         }
 
-        State.Enemy.CalculatedVelocity = attackVector * 4000f;
+        State.EnemyTemplate.CalculatedVelocity = attackVector * 4000f;
         State.EnemyState = EnemyState.Attacking;
 
         attackTriggered = AttackType.Normal;
@@ -110,11 +110,11 @@ public partial class EnemyAttackingModule : Node
             case AttackType.Normal:
                 if (State.MainSprite.Frame == 1)
                 {
-                    State.Enemy.CalculatedVelocity = attackVector * 1250f;
+                    State.EnemyTemplate.CalculatedVelocity = attackVector * 1250f;
                 }
                 else if (State.MainSprite.Frame >= 2)
                 {
-                    State.Enemy.CalculatedVelocity = attackVector;
+                    State.EnemyTemplate.CalculatedVelocity = attackVector;
                     AttackShape.Disabled = true;
                 }
                 break;

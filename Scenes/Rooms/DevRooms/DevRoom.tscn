@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://barc3o7fkbn44" path="res://Scenes/Modules/SceneSwitcher/DoorSquare2DModule.tscn" id="3_lfh2w"]
 [ext_resource type="PackedScene" uid="uid://ubc5cusrcpq7" path="res://Scenes/Static/Couch.tscn" id="4_sctpx"]
 [ext_resource type="PackedScene" uid="uid://h0qtabwk04wy" path="res://Scenes/Directors/Cutscene/CutsceneDirector.tscn" id="5_5y00f"]
-[ext_resource type="PackedScene" uid="uid://0bfaldsm103s" path="res://Scenes/Enemies/Enemy.tscn" id="6_28f6i"]
+[ext_resource type="PackedScene" uid="uid://0bfaldsm103s" path="res://Scenes/Enemies/EnemyTemplate.tscn" id="6_28f6i"]
 
 [node name="DevRoom" type="Node2D"]
 z_as_relative = false
@@ -29,5 +29,5 @@ position = Vector2(99, 263)
 
 [node name="CutsceneDirector" parent="." instance=ExtResource("5_5y00f")]
 
-[node name="Enemy" parent="." instance=ExtResource("6_28f6i")]
+[node name="EnemyTemplate" parent="." instance=ExtResource("6_28f6i")]
 position = Vector2(356, 211)

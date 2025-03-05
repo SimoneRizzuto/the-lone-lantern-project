@@ -1,75 +1,71 @@
-[gd_scene load_steps=26 format=3 uid="uid://0bfaldsm103s"]
+[gd_scene load_steps=22 format=3 uid="uid://0bfaldsm103s"]
 
-[ext_resource type="Script" path="res://Scripts/Enemies/Enemy.cs" id="1_42gsv"]
-[ext_resource type="Script" path="res://Scripts/StateMachines/Enemy/EnemyStateMachine.cs" id="2_dsfli"]
-[ext_resource type="Script" path="res://Scripts/Modules/Enemy/EnemyOutOfCombatModule.cs" id="3_6uwmo"]
-[ext_resource type="Script" path="res://Scripts/Modules/Enemy/EnemyRepositionModule.cs" id="4_05uj8"]
-[ext_resource type="Script" path="res://Scripts/Modules/Enemy/EnemyAttackingModule.cs" id="5_tge24"]
-[ext_resource type="Script" path="res://Scripts/Modules/Enemy/EnemyHurtingModule.cs" id="6_coplb"]
-[ext_resource type="Texture2D" uid="uid://d0oths756jmeh" path="res://Assets/Textures/CharacterAnimations/Enemies/enemy-blob-idle-Sheet.png" id="7_ntucf"]
+[ext_resource type="Script" path="res://Scripts/Enemies/EnemyTemplate.cs" id="1_cp6un"]
+[ext_resource type="Script" path="res://Scripts/StateMachines/Enemy/EnemyStateMachine.cs" id="1_dk78e"]
+[ext_resource type="Texture2D" uid="uid://d0oths756jmeh" path="res://Assets/Textures/CharacterAnimations/Enemies/enemy-blob-idle-Sheet.png" id="2_wn3sl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_byd8a"]
-atlas = ExtResource("7_ntucf")
+atlas = ExtResource("2_wn3sl")
 region = Rect2(0, 0, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t51uf"]
-atlas = ExtResource("7_ntucf")
+atlas = ExtResource("2_wn3sl")
 region = Rect2(40, 0, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1ep66"]
-atlas = ExtResource("7_ntucf")
+atlas = ExtResource("2_wn3sl")
 region = Rect2(0, 0, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u6n6d"]
-atlas = ExtResource("7_ntucf")
+atlas = ExtResource("2_wn3sl")
 region = Rect2(40, 0, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2blk2"]
-atlas = ExtResource("7_ntucf")
+atlas = ExtResource("2_wn3sl")
 region = Rect2(0, 0, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gk3v1"]
-atlas = ExtResource("7_ntucf")
+atlas = ExtResource("2_wn3sl")
 region = Rect2(40, 0, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3oxx6"]
-atlas = ExtResource("7_ntucf")
+atlas = ExtResource("2_wn3sl")
 region = Rect2(0, 0, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h7p45"]
-atlas = ExtResource("7_ntucf")
+atlas = ExtResource("2_wn3sl")
 region = Rect2(40, 0, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qp8a1"]
-atlas = ExtResource("7_ntucf")
+atlas = ExtResource("2_wn3sl")
 region = Rect2(0, 0, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_japem"]
-atlas = ExtResource("7_ntucf")
+atlas = ExtResource("2_wn3sl")
 region = Rect2(40, 0, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hyi0n"]
-atlas = ExtResource("7_ntucf")
+atlas = ExtResource("2_wn3sl")
 region = Rect2(0, 0, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hou4a"]
-atlas = ExtResource("7_ntucf")
+atlas = ExtResource("2_wn3sl")
 region = Rect2(40, 0, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jcf42"]
-atlas = ExtResource("7_ntucf")
+atlas = ExtResource("2_wn3sl")
 region = Rect2(0, 0, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_of0q8"]
-atlas = ExtResource("7_ntucf")
+atlas = ExtResource("2_wn3sl")
 region = Rect2(40, 0, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qtqbi"]
-atlas = ExtResource("7_ntucf")
+atlas = ExtResource("2_wn3sl")
 region = Rect2(0, 0, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fqr5f"]
-atlas = ExtResource("7_ntucf")
+atlas = ExtResource("2_wn3sl")
 region = Rect2(40, 0, 40, 40)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_j20ov"]
@@ -186,32 +182,12 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u0j3g"]
 size = Vector2(40, 12)
 
-[node name="Enemy" type="CharacterBody2D"]
+[node name="EnemyTemplate" type="CharacterBody2D"]
 scale = Vector2(0.25, 0.25)
-script = ExtResource("1_42gsv")
+script = ExtResource("1_cp6un")
 
 [node name="EnemyStateMachine" type="Node" parent="."]
-script = ExtResource("2_dsfli")
-
-[node name="EnemyOutOfCombatModule" type="Node" parent="EnemyStateMachine"]
-script = ExtResource("3_6uwmo")
-
-[node name="EnemyRepositionModule" type="Node" parent="EnemyStateMachine"]
-script = ExtResource("4_05uj8")
-
-[node name="EnemyAttackingModule" type="Node" parent="EnemyStateMachine"]
-script = ExtResource("5_tge24")
-
-[node name="HitBox" type="Area2D" parent="EnemyStateMachine/EnemyAttackingModule"]
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="EnemyStateMachine/EnemyAttackingModule/HitBox"]
-visible = false
-position = Vector2(-2, 0)
-scale = Vector2(0.352594, 0.268519)
-polygon = PackedVector2Array(17, -1, 29, -12, 31, -25, 29, -37, 22, -47, 13, -52, 4, -52, -12, -51, -17, -44, -20, -32, -22, -16, -17, -2, -4, 2, 12, 1)
-
-[node name="EnemyHurtingModule" type="Node" parent="EnemyStateMachine"]
-script = ExtResource("6_coplb")
+script = ExtResource("1_dk78e")
 
 [node name="MainSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -80)
