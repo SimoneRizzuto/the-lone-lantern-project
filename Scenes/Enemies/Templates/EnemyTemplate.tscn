@@ -1,71 +1,71 @@
 [gd_scene load_steps=22 format=3 uid="uid://0bfaldsm103s"]
 
-[ext_resource type="Script" path="res://Scripts/Enemies/EnemyTemplate.cs" id="1_cp6un"]
-[ext_resource type="Script" path="res://Scripts/StateMachines/Enemy/EnemyStateMachine.cs" id="1_dk78e"]
-[ext_resource type="Texture2D" uid="uid://d0oths756jmeh" path="res://Assets/Textures/CharacterAnimations/Enemies/enemy-blob-idle-Sheet.png" id="2_wn3sl"]
+[ext_resource type="Script" path="res://Scripts/Enemies/EnemyTemplate.cs" id="1_issur"]
+[ext_resource type="Script" path="res://Scripts/StateMachines/Enemy/EnemyStateMachine.cs" id="2_3lebn"]
+[ext_resource type="Texture2D" uid="uid://d0oths756jmeh" path="res://Assets/Textures/CharacterAnimations/Enemies/enemy-blob-idle-Sheet.png" id="3_ki4mq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_byd8a"]
-atlas = ExtResource("2_wn3sl")
+atlas = ExtResource("3_ki4mq")
 region = Rect2(0, 0, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t51uf"]
-atlas = ExtResource("2_wn3sl")
+atlas = ExtResource("3_ki4mq")
 region = Rect2(40, 0, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1ep66"]
-atlas = ExtResource("2_wn3sl")
+atlas = ExtResource("3_ki4mq")
 region = Rect2(0, 0, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_u6n6d"]
-atlas = ExtResource("2_wn3sl")
+atlas = ExtResource("3_ki4mq")
 region = Rect2(40, 0, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2blk2"]
-atlas = ExtResource("2_wn3sl")
+atlas = ExtResource("3_ki4mq")
 region = Rect2(0, 0, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gk3v1"]
-atlas = ExtResource("2_wn3sl")
+atlas = ExtResource("3_ki4mq")
 region = Rect2(40, 0, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3oxx6"]
-atlas = ExtResource("2_wn3sl")
+atlas = ExtResource("3_ki4mq")
 region = Rect2(0, 0, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h7p45"]
-atlas = ExtResource("2_wn3sl")
+atlas = ExtResource("3_ki4mq")
 region = Rect2(40, 0, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qp8a1"]
-atlas = ExtResource("2_wn3sl")
+atlas = ExtResource("3_ki4mq")
 region = Rect2(0, 0, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_japem"]
-atlas = ExtResource("2_wn3sl")
+atlas = ExtResource("3_ki4mq")
 region = Rect2(40, 0, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hyi0n"]
-atlas = ExtResource("2_wn3sl")
+atlas = ExtResource("3_ki4mq")
 region = Rect2(0, 0, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hou4a"]
-atlas = ExtResource("2_wn3sl")
+atlas = ExtResource("3_ki4mq")
 region = Rect2(40, 0, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jcf42"]
-atlas = ExtResource("2_wn3sl")
+atlas = ExtResource("3_ki4mq")
 region = Rect2(0, 0, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_of0q8"]
-atlas = ExtResource("2_wn3sl")
+atlas = ExtResource("3_ki4mq")
 region = Rect2(40, 0, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qtqbi"]
-atlas = ExtResource("2_wn3sl")
+atlas = ExtResource("3_ki4mq")
 region = Rect2(0, 0, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_fqr5f"]
-atlas = ExtResource("2_wn3sl")
+atlas = ExtResource("3_ki4mq")
 region = Rect2(40, 0, 40, 40)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_j20ov"]
@@ -184,10 +184,10 @@ size = Vector2(40, 12)
 
 [node name="EnemyTemplate" type="CharacterBody2D"]
 scale = Vector2(0.25, 0.25)
-script = ExtResource("1_cp6un")
+script = ExtResource("1_issur")
 
 [node name="EnemyStateMachine" type="Node" parent="."]
-script = ExtResource("1_dk78e")
+script = ExtResource("2_3lebn")
 
 [node name="MainSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -80)
