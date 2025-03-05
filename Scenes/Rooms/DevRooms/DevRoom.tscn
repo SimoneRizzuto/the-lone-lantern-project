@@ -31,3 +31,4 @@ position = Vector2(99, 263)
 
 [node name="EnemyTemplate" parent="." instance=ExtResource("6_a0s3x")]
 position = Vector2(356, 211)
+CalculatedVelocity = null

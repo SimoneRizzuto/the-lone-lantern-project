@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=3 uid="uid://0bfaldsm103s"]
 
-[ext_resource type="Script" path="res://Scripts/Enemies/EnemyTemplate.cs" id="1_issur"]
+[ext_resource type="Script" path="res://Scripts/Enemies/Templates/EnemyTemplate.cs" id="1_ht0nc"]
 [ext_resource type="Script" path="res://Scripts/StateMachines/Enemy/EnemyStateMachine.cs" id="2_3lebn"]
 [ext_resource type="Texture2D" uid="uid://d0oths756jmeh" path="res://Assets/Textures/CharacterAnimations/Enemies/enemy-blob-idle-Sheet.png" id="3_ki4mq"]
 
@@ -184,7 +184,7 @@ size = Vector2(40, 12)
 
 [node name="EnemyTemplate" type="CharacterBody2D"]
 scale = Vector2(0.25, 0.25)
-script = ExtResource("1_issur")
+script = ExtResource("1_ht0nc")
 
 [node name="EnemyStateMachine" type="Node" parent="."]
 script = ExtResource("2_3lebn")
