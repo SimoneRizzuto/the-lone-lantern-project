@@ -1,8 +1,8 @@
 using Godot;
 using TheLoneLanternProject.Scripts.Shared.Extensions;
 
-namespace TheLoneLanternProject.Scripts.Enemies;
-public partial class Enemy : CharacterBody2D
+namespace TheLoneLanternProject.Scripts.Enemies.Templates;
+public partial class EnemyTemplate : CharacterBody2D
 {
     [Export] public Vector2 CalculatedVelocity;
     public override void _PhysicsProcess(double delta)

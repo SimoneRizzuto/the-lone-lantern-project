@@ -34,8 +34,8 @@ public partial class EnemyRepositionModule : Node
         var tree = GetTree();
         luce = GetNodeHelper.GetLuce(tree);
 
-        var movementVector = State.Enemy.Position.DirectionTo(luce.Position); 
-        State.Enemy.CalculatedVelocity = MovementVectorIsAboveThreshold(movementVector) ? movementVector * MoveSpeed : Vector2.Zero;
+        var movementVector = State.EnemyTemplate.Position.DirectionTo(luce.Position); 
+        State.EnemyTemplate.CalculatedVelocity = MovementVectorIsAboveThreshold(movementVector) ? movementVector * MoveSpeed : Vector2.Zero;
         // This also needs to be considered. Previously the framework had a parent (luce3) that had its own script that did this
         // stuff and set up CalculatedVelocity. Need to make one of these or find another solution
         // Check with Sim about moving some stuff into luce3
