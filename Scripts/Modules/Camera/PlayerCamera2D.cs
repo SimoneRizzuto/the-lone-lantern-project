@@ -44,8 +44,6 @@ public partial class PlayerCamera2D : Camera2D
         {
             SetCameraToAdjust();
             
-            Console.WriteLine(howLongPlayerMoving.ElapsedMilliseconds);
-            
             if (howLongPlayerMoving.ElapsedMilliseconds > 300)
             {
                 SetRelativePosition(lastDirection);
