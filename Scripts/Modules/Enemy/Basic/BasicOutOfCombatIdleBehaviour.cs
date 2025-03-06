@@ -6,7 +6,7 @@ using TheLoneLanternProject.Scripts.Shared.Constants;
 namespace TheLoneLanternProject.Scripts.Modules.Enemy.Basic;
 
 [GlobalClass]
-public partial class BasicOutOfCombatIdleBehaviour : BaseBasicEnemyBehaviour
+public partial class BasicOutOfCombatIdleBehaviour : BaseEnemyBehaviour
 {
     private Stopwatch stopwatch = new();
     
