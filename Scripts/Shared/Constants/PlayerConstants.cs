@@ -13,15 +13,6 @@ public enum PlayerState
     Disabled = 1 << 4,      // 16
 }
 
-public enum EnemyState
-{
-    OutOfCombat = 0,
-    Waiting = 1,
-    Reposition = 2,
-    Attacking = 3,
-    Hurting = 4,
-}
-
 public enum StaminaHealthState
 {
     Max = 0,

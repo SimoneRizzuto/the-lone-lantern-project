@@ -123,6 +123,6 @@ public partial class EnemyAttackingModule : Node
 
     private void OnAnimationFinished()
     {
-        State.EnemyState = EnemyState.OutOfCombat;
+        State.EnemyState = EnemyState.OutOfCombatIdle;
     }
 }
