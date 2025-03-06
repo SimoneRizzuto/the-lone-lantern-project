@@ -16,4 +16,18 @@ public static class VectorExtensions
         var yPosition = Math.Round(vector2.Y / nearestValue, mode) * nearestValue;
         return new Vector2((float)xPosition, (float)yPosition);
     }
+    
+    public static Vector2 GetRandomDirection(double min, double max)
+    {
+        var x = GetRandomNumber(min, max);
+        var y = GetRandomNumber(min, max);
+        return new Vector2(x, y);
+    }
+    
+    private static float GetRandomNumber(double minimum, double maximum)
+    { 
+        var random = new Random();
+        var value = random.NextDouble() * (maximum - minimum) + minimum;
+        return (float)value;
+    }
 }
