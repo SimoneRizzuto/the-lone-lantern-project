@@ -10,6 +10,8 @@ public partial class BasicOutOfCombatIdleBehaviour : BaseEnemyBehaviour
 {
     private Stopwatch stopwatch = new();
     
+    private int secondsToMove;
+    
     public override void _PhysicsProcess(double delta)
     {
         //CheckDistanceToLuce();
@@ -17,13 +19,16 @@ public partial class BasicOutOfCombatIdleBehaviour : BaseEnemyBehaviour
         
         if (!stopwatch.IsRunning)
         {
+            var random = new Random();
+            
+            secondsToMove = random.Next(1, 3);
             stopwatch.Restart();
         }
         
-        var seconds = 3; // make random number
-        if (stopwatch.Elapsed == TimeSpan.FromSeconds(seconds))
+        if (stopwatch.Elapsed > TimeSpan.FromSeconds(secondsToMove))
         {
             StateMachine.EnemyState = EnemyState.OutOfCombatMove;
+            stopwatch.Reset();
         }
 
         // implement new logic

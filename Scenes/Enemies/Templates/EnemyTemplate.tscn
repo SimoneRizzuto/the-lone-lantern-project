@@ -1,9 +1,10 @@
-[gd_scene load_steps=23 format=3 uid="uid://0bfaldsm103s"]
+[gd_scene load_steps=24 format=3 uid="uid://0bfaldsm103s"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/Templates/EnemyTemplate.cs" id="1_ht0nc"]
 [ext_resource type="Script" path="res://Scripts/StateMachines/Enemy/EnemyStateMachine.cs" id="2_3lebn"]
 [ext_resource type="Script" path="res://Scripts/Modules/Enemy/Basic/BasicOutOfCombatIdleBehaviour.cs" id="3_4iqcg"]
 [ext_resource type="Texture2D" uid="uid://d0oths756jmeh" path="res://Assets/Textures/CharacterAnimations/Enemies/enemy-blob-idle-Sheet.png" id="3_ki4mq"]
+[ext_resource type="Script" path="res://Scripts/Modules/Enemy/Basic/BasicOutOfCombatMoveBehaviour.cs" id="4_7aux2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_byd8a"]
 atlas = ExtResource("3_ki4mq")
@@ -192,6 +193,9 @@ script = ExtResource("2_3lebn")
 
 [node name="BasicOutOfCombatIdleBehaviour" type="Node" parent="EnemyStateMachine"]
 script = ExtResource("3_4iqcg")
+
+[node name="BasicOutOfCombatMoveBehaviour" type="Node" parent="EnemyStateMachine"]
+script = ExtResource("4_7aux2")
 
 [node name="MainSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -80)
