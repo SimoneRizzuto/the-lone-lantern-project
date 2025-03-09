@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d0oths756jmeh"
-path="res://.godot/imported/enemy-blob-idle-Sheet.png-83f202a67ab72adf09cff31500ccb98e.ctex"
+path="res://.godot/imported/enemy-blob-idle-right-Sheet.png-fc322198c60b7ae11d754d3202be8dc2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Textures/CharacterAnimations/Enemies/enemy-blob-idle-Sheet.png"
-dest_files=["res://.godot/imported/enemy-blob-idle-Sheet.png-83f202a67ab72adf09cff31500ccb98e.ctex"]
+source_file="res://Assets/Textures/CharacterAnimations/Enemies/enemy-blob-idle-right-Sheet.png"
+dest_files=["res://.godot/imported/enemy-blob-idle-right-Sheet.png-fc322198c60b7ae11d754d3202be8dc2.ctex"]
 
 [params]
 

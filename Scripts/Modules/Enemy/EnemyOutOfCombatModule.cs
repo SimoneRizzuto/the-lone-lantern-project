@@ -12,7 +12,7 @@ public partial class EnemyOutOfCombatModule : Node
     [Export] public EnemyStateMachine State;
 
     private Scripts.Player.Luce luce;
-    private bool StateIsOutOfCombat => State.EnemyState is EnemyState.OutOfCombat;
+    private bool StateIsOutOfCombat => State.EnemyState is EnemyState.OutOfCombatIdle;
     private static readonly float combatDistanceThreshold = 50;
 
     public override void _Ready()
@@ -28,7 +28,7 @@ public partial class EnemyOutOfCombatModule : Node
         if (!StateIsOutOfCombat) return;
 
         // Just make out of combat animation the same as waiting for now
-        State.MainSprite.Animation = $"waiting {Enum.GetName(State.LastDirection)?.ToLower()}";
+        //State.MainSprite.Animation = $"waiting {Enum.GetName(State.LastDirection)?.ToLower()}";
 
 
     }
@@ -45,7 +45,7 @@ public partial class EnemyOutOfCombatModule : Node
         }
         else
         {
-            State.EnemyState = EnemyState.OutOfCombat;
+            State.EnemyState = EnemyState.OutOfCombatIdle;
         }
     }
 }
