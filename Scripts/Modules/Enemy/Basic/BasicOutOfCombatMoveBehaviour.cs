@@ -10,7 +10,7 @@ namespace TheLoneLanternProject.Scripts.Modules.Enemy.Basic;
 [GlobalClass]
 public partial class BasicOutOfCombatMoveBehaviour : BaseEnemyBehaviour
 {
-    private Vector2 direction;
+    private Vector2 directionVector;
     private int secondsToMove;
     
     public override void _PhysicsProcess(double delta)
@@ -21,14 +21,14 @@ public partial class BasicOutOfCombatMoveBehaviour : BaseEnemyBehaviour
         {
             var random = new Random();
             
-            direction = VectorExtensions.GetRandomDirection(-1, 1);
+            directionVector = VectorExtensions.GetRandomDirection(-1, 1);
             secondsToMove = random.Next(1, 3);
             Timer.Restart();
         }
         
-        StateMachine.EnemyTemplate.CalculatedVelocity = direction * 2000f;
+        StateMachine.EnemyTemplate.CalculatedVelocity = directionVector * 2000f;
         
-        var walkingDirection = DirectionHelper.GetSnappedDirection(direction);
+        var walkingDirection = DirectionHelper.GetSnappedDirection(directionVector);
         StateMachine.LastDirection = walkingDirection;
         
         var lastDirectionString = Enum.GetName(walkingDirection)?.ToLower();

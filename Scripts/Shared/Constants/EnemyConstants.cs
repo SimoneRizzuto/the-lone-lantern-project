@@ -4,13 +4,16 @@ public enum EnemyState
 {
     OutOfCombatIdle,
     OutOfCombatMove,
-    Waiting,
-    Reposition,
-    Attacking,
-    Hurting,
+    CombatWait,
+    CombatReposition,
+    CombatAttack,
+    CombatHurt,
 }
 
 public static class EnemyConstants
 {
-    public const float CombatDistanceThreshold = 125;
+    public const float MoveSpeed = 4000;
+    
+    public const float InitiateCombatDistance = 75;
+    public const float AttackDistance = 50;
 }
