@@ -10,5 +10,5 @@ public partial class BaseEnemyBehaviour : Node
     protected Stopwatch Timer = new();
     protected EnemyStateMachine StateMachine => GetParent<EnemyStateMachine>();
     protected Luce Luce => GetNodeHelper.GetLuce(GetTree());
-    protected AnimatedSprite2D MainSprite => GetParent().GetParent().GetNode<AnimatedSprite2D>("./MainSprite");
+    protected AnimatedSprite2D MainSprite => Owner.Owner.GetNode<AnimatedSprite2D>("MainSprite");
 }

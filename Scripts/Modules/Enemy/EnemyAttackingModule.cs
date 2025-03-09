@@ -16,7 +16,7 @@ public partial class EnemyAttackingModule : Node
 
     private bool isBufferingNormalAttack;
     private int attackAnimationCounter = 1;
-    private int AnimationFramesCount => State.MainSprite.SpriteFrames.GetFrameCount(State.MainSprite.Animation);
+    //private int AnimationFramesCount => State.MainSprite.SpriteFrames.GetFrameCount(State.MainSprite.Animation);
     private bool StateIsAttacking => State.EnemyState is EnemyState.Attacking;
 
     private AttackType attackTriggered = AttackType.None;
@@ -34,7 +34,7 @@ public partial class EnemyAttackingModule : Node
         State ??= GetParent<EnemyStateMachine>();
         AttackShape ??= GetNode<CollisionPolygon2D>("HitBox/CollisionPolygon2D");
 
-        State.MainSprite.AnimationFinished += OnAnimationFinished;
+        //State.MainSprite.AnimationFinished += OnAnimationFinished;
     }
 
     public override void _PhysicsProcess(double delta)
@@ -45,12 +45,12 @@ public partial class EnemyAttackingModule : Node
 
         if (isBufferingNormalAttack)
         {
-            var onFinalFrame = AnimationFramesCount - 1 == State.MainSprite.Frame;
+            /*var onFinalFrame = AnimationFramesCount - 1 == State.MainSprite.Frame;
             if (onFinalFrame)
             {
                 isBufferingNormalAttack = false;
                 TriggerNormalAttack();
-            }
+            }*/
         }
 
         ProcessAttack();
@@ -71,7 +71,7 @@ public partial class EnemyAttackingModule : Node
 
         if (Enum.GetName(State.LastDirection)?.ToLower() == "down") attackAnimationCounter = 1; 
 
-        State.MainSprite.Play($"attack {Enum.GetName(State.LastDirection)?.ToLower()} {attackAnimationCounter}");
+        //State.MainSprite.Play($"attack {Enum.GetName(State.LastDirection)?.ToLower()} {attackAnimationCounter}");
 
         if (attackAnimationCounter == 1)
         {
@@ -108,7 +108,7 @@ public partial class EnemyAttackingModule : Node
         switch (attackTriggered)
         {
             case AttackType.Normal:
-                if (State.MainSprite.Frame == 1)
+                /*if (State.MainSprite.Frame == 1)
                 {
                     State.EnemyTemplate.CalculatedVelocity = attackVector * 1250f;
                 }
@@ -116,7 +116,7 @@ public partial class EnemyAttackingModule : Node
                 {
                     State.EnemyTemplate.CalculatedVelocity = attackVector;
                     AttackShape.Disabled = true;
-                }
+                }*/
                 break;
         }
     }

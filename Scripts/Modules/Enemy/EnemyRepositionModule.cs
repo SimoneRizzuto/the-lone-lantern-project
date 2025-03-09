@@ -52,7 +52,7 @@ public partial class EnemyRepositionModule : Node
             // Will need to make it so that future enemies that get added follow this structure for naming.
             var animation = $"walk {Enum.GetName(walkDirection)?.ToLower()}";
             var speed = Mathf.Snapped(movementVector.Length(), MovementVectorThreshold * 2);
-            State.MainSprite.Play(animation, speed);
+            //State.MainSprite.Play(animation, speed);
 
             State.LastDirection = walkDirection;
             State.EnemyState = EnemyState.Reposition;
@@ -62,6 +62,6 @@ public partial class EnemyRepositionModule : Node
             State.EnemyState = EnemyState.Waiting;
         }
 
-        State.MainSprite.Play();
+        //State.MainSprite.Play();
     }
 }

@@ -26,6 +26,6 @@ public partial class EnemyWaitingModule : Node
             return;
         }
         // set the animation to waiting in the last direction if the state is waiting
-        State.MainSprite.Animation = $"waiting {Enum.GetName(State.LastDirection)?.ToLower()}";
+        //State.MainSprite.Animation = $"waiting {Enum.GetName(State.LastDirection)?.ToLower()}";
     }
 }

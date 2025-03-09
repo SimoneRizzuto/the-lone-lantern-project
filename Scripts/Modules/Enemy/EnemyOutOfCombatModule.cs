@@ -28,7 +28,7 @@ public partial class EnemyOutOfCombatModule : Node
         if (!StateIsOutOfCombat) return;
 
         // Just make out of combat animation the same as waiting for now
-        State.MainSprite.Animation = $"waiting {Enum.GetName(State.LastDirection)?.ToLower()}";
+        //State.MainSprite.Animation = $"waiting {Enum.GetName(State.LastDirection)?.ToLower()}";
 
 
     }
