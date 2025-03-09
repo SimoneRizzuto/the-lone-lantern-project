@@ -32,7 +32,8 @@ public partial class BasicOutOfCombatMoveBehaviour : BaseEnemyBehaviour
         StateMachine.LastDirection = walkingDirection;
         
         var lastDirectionString = Enum.GetName(walkingDirection)?.ToLower();
-        MainSprite.Play($"walk {lastDirectionString}");
+        var animationToPlay = $"walk {lastDirectionString}";
+        MainSprite.Play(animationToPlay);
         
         if (Timer.Elapsed > TimeSpan.FromSeconds(secondsToMove))
         {
