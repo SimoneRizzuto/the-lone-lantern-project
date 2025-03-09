@@ -37,7 +37,7 @@ public partial class BasicOutOfCombatIdleBehaviour : BaseEnemyBehaviour
     
     private void CheckDistanceToLuce()
     {
-        var distance = StateMachine.EnemyTemplate.Position.DistanceTo(Luce.Position); // just check that this works
+        var distance = StateMachine.EnemyTemplate.Position.DistanceTo(Luce.Position);
         if (distance <= EnemyConstants.CombatDistanceThreshold)
         {
             StateMachine.EnemyState = EnemyState.Reposition;
