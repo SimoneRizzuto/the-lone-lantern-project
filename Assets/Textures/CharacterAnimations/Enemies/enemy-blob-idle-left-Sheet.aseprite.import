@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://e0eq1h13m5ha"
-path="res://.godot/imported/enemy-blob-attack-Sheet.png-4fd2d87b321c25e5f174dae60aa3c8be.ctex"
+uid="uid://bjjjkhl8qfuuy"
+path="res://.godot/imported/enemy-blob-idle-left-Sheet.aseprite-02ee051688487a525f0d9692d0bc8617.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Textures/CharacterAnimations/Enemies/enemy-blob-attack-Sheet.png"
-dest_files=["res://.godot/imported/enemy-blob-attack-Sheet.png-4fd2d87b321c25e5f174dae60aa3c8be.ctex"]
+source_file="res://Assets/Textures/CharacterAnimations/Enemies/enemy-blob-idle-left-Sheet.aseprite"
+dest_files=["res://.godot/imported/enemy-blob-idle-left-Sheet.aseprite-02ee051688487a525f0d9692d0bc8617.ctex"]
 
 [params]
 
