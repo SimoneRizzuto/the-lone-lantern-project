@@ -12,35 +12,37 @@ public partial class BasicCombatRepositionBehaviour : BaseEnemyBehaviour
     {
         if (StateMachine.EnemyState is not EnemyState.CombatReposition) return;
         
-        var movementVector = StateMachine.EnemyTemplate.Position.DirectionTo(Luce.Position); 
-        StateMachine.EnemyTemplate.CalculatedVelocity = movementVector * EnemyConstants.MoveSpeed;
-        SetMovementAnimation(movementVector);
+        var directionVector = SetDirectionVector();
+        var walkingDirection = SetWalkingDirection(directionVector);
         
-        // This also needs to be considered. Previously the framework had a parent (luce3) that had its own script that did this
-        // stuff and set up CalculatedVelocity. Need to make one of these or find another solution
-        // Check with Sim about moving some stuff into luce3
-    }
-    
-    private void SetMovementAnimation(Vector2 movementVector)
-    {
-        var walkDirection = DirectionHelper.GetSnappedDirection(movementVector);
+        SetWalkingAnimation(walkingDirection, directionVector);
         
-        var isWalking = walkDirection != Direction.None;
-        if (isWalking)
+        var distance = StateMachine.EnemyTemplate.Position.DistanceTo(Luce.Position);
+        if (distance <= EnemyConstants.AttackDistance)
         {
-            // Will need to make it so that future enemies that get added follow this structure for naming.
-            var animation = $"walk {Enum.GetName(walkDirection)?.ToLower()}";
-            var speed = Mathf.Snapped(movementVector.Length(), 2);
-            MainSprite.Play(animation, speed);
-
-            StateMachine.LastDirection = walkDirection;
             StateMachine.EnemyState = EnemyState.CombatAttack;
         }
-        else
-        {
-            StateMachine.EnemyState = EnemyState.CombatWait;
-        }
-
-        MainSprite.Play();
+    }
+    
+    private Vector2 SetDirectionVector()
+    {
+        var direction = StateMachine.EnemyTemplate.Position.DirectionTo(Luce.Position);
+        StateMachine.EnemyTemplate.CalculatedVelocity = direction * EnemyConstants.MoveSpeed;
+        return direction;
+    }
+    
+    private Direction SetWalkingDirection(Vector2 directionVector)
+    {
+        var walkingDirection = DirectionHelper.GetSnappedDirection(directionVector);
+        StateMachine.LastDirection = walkingDirection;
+        return walkingDirection;
+    }
+    
+    private void SetWalkingAnimation(Direction walkingDirection, Vector2 directionVector)
+    {
+        var lastDirectionString = Enum.GetName(walkingDirection)?.ToLower();
+        var animationToPlay = $"walk {lastDirectionString}";
+        var speed = Mathf.Snapped(directionVector.Length(), 2);
+        MainSprite.Play(animationToPlay, speed);
     }
 }
