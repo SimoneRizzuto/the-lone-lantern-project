@@ -18,7 +18,7 @@ public partial class EnemyRepositionModule : Node
     public static readonly int MoveVelocityThreshold = 25; // might change
 
     private float MovementVectorThreshold => MoveVelocityThreshold / 100f;
-    private bool StateIsValid => State.EnemyState is EnemyState.Attacking;
+    private bool StateIsValid => State.EnemyState is EnemyState.CombatAttack;
 
     public override void _Ready()
     {
@@ -55,11 +55,11 @@ public partial class EnemyRepositionModule : Node
             //State.MainSprite.Play(animation, speed);
 
             State.LastDirection = walkDirection;
-            State.EnemyState = EnemyState.Reposition;
+            State.EnemyState = EnemyState.CombatAttack;
         }
         else
         {
-            State.EnemyState = EnemyState.Waiting;
+            State.EnemyState = EnemyState.CombatWait;
         }
 
         //State.MainSprite.Play();

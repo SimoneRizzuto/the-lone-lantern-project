@@ -40,7 +40,7 @@ public partial class BasicOutOfCombatIdleBehaviour : BaseEnemyBehaviour
         var distance = StateMachine.EnemyTemplate.Position.DistanceTo(Luce.Position);
         if (distance <= EnemyConstants.CombatDistanceThreshold)
         {
-            StateMachine.EnemyState = EnemyState.Reposition;
+            StateMachine.EnemyState = EnemyState.CombatReposition;
         }
         else
         {

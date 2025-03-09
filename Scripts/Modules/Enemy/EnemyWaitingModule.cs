@@ -11,7 +11,7 @@ public partial class EnemyWaitingModule : Node
     [Export] public EnemyStateMachine State;
 
     //lambda expression which evaluates if state was waiting
-    private bool StateIsValid => State.EnemyState != EnemyState.Waiting;
+    private bool StateIsValid => State.EnemyState != EnemyState.CombatWait;
     
     public override void _Ready()
     {

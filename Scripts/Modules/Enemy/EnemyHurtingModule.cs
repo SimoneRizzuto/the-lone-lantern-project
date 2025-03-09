@@ -15,7 +15,7 @@ public partial class EnemyHurtingModule : Node
     }
     public override void _Process(double delta)
     {
-        if (State.EnemyState != EnemyState.Hurting) return;
+        if (State.EnemyState != EnemyState.CombatHurt) return;
         
         
     }

@@ -17,7 +17,7 @@ public partial class EnemyAttackingModule : Node
     private bool isBufferingNormalAttack;
     private int attackAnimationCounter = 1;
     //private int AnimationFramesCount => State.MainSprite.SpriteFrames.GetFrameCount(State.MainSprite.Animation);
-    private bool StateIsAttacking => State.EnemyState is EnemyState.Attacking;
+    private bool StateIsAttacking => State.EnemyState is EnemyState.CombatAttack;
 
     private AttackType attackTriggered = AttackType.None;
 
@@ -83,7 +83,7 @@ public partial class EnemyAttackingModule : Node
         }
 
         State.EnemyTemplate.CalculatedVelocity = attackVector * 4000f;
-        State.EnemyState = EnemyState.Attacking;
+        State.EnemyState = EnemyState.CombatAttack;
 
         attackTriggered = AttackType.Normal;
     }
@@ -93,7 +93,7 @@ public partial class EnemyAttackingModule : Node
         // Need something here to mitigate the number of attacks otherwise will continue to attack (might be ok for now)
         //if () return;
 
-        if (State.EnemyState == EnemyState.Attacking)
+        if (State.EnemyState == EnemyState.CombatAttack)
         {
             isBufferingNormalAttack = true;
         }

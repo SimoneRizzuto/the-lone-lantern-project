@@ -4,10 +4,10 @@ public enum EnemyState
 {
     OutOfCombatIdle,
     OutOfCombatMove,
-    Waiting,
-    Reposition,
-    Attacking,
-    Hurting,
+    CombatWait,
+    CombatReposition,
+    CombatAttack,
+    CombatHurt,
 }
 
 public static class EnemyConstants
