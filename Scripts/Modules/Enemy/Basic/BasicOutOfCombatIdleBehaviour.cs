@@ -1,6 +1,5 @@
 using Godot;
 using System;
-using System.Diagnostics;
 using TheLoneLanternProject.Scripts.Shared.Constants;
 
 namespace TheLoneLanternProject.Scripts.Modules.Enemy.Basic;
@@ -12,9 +11,9 @@ public partial class BasicOutOfCombatIdleBehaviour : BaseEnemyBehaviour
     
     public override void _PhysicsProcess(double delta)
     {
-        CheckDistanceToLuce();
-        
         if (StateMachine.EnemyState is not EnemyState.OutOfCombatIdle) return;
+        
+        CheckDistanceToLuce();
         
         if (!Timer.IsRunning)
         {
@@ -33,18 +32,5 @@ public partial class BasicOutOfCombatIdleBehaviour : BaseEnemyBehaviour
         var lastDirectionString = Enum.GetName(StateMachine.LastDirection)?.ToLower();
         var animationToPlay = $"idle {lastDirectionString}";
         MainSprite.Play(animationToPlay);
-    }
-    
-    private void CheckDistanceToLuce()
-    {
-        var distance = StateMachine.EnemyTemplate.Position.DistanceTo(Luce.Position);
-        if (distance <= EnemyConstants.InitiateCombatDistance)
-        {
-            StateMachine.EnemyState = EnemyState.CombatReposition;
-        }
-        else
-        {
-            StateMachine.EnemyState = EnemyState.OutOfCombatIdle;
-        }
     }
 }

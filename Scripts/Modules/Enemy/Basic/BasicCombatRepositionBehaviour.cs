@@ -12,6 +12,8 @@ public partial class BasicCombatRepositionBehaviour : BaseEnemyBehaviour
     {
         if (StateMachine.EnemyState is not EnemyState.CombatReposition) return;
         
+        CheckDistanceToLuce();
+        
         var directionVector = SetDirectionVector();
         var walkingDirection = SetWalkingDirection(directionVector);
         
@@ -20,7 +22,7 @@ public partial class BasicCombatRepositionBehaviour : BaseEnemyBehaviour
         var distance = StateMachine.EnemyTemplate.Position.DistanceTo(Luce.Position);
         if (distance <= EnemyConstants.AttackDistance)
         {
-            StateMachine.EnemyState = EnemyState.CombatAttack;
+            StateMachine.EnemyState = EnemyState.CombatWait;
         }
     }
     

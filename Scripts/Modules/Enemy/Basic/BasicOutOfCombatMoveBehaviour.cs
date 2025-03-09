@@ -17,6 +17,8 @@ public partial class BasicOutOfCombatMoveBehaviour : BaseEnemyBehaviour
     {
         if (StateMachine.EnemyState is not EnemyState.OutOfCombatMove) return;
         
+        CheckDistanceToLuce();
+        
         if (!Timer.IsRunning)
         {
             var random = new Random();
