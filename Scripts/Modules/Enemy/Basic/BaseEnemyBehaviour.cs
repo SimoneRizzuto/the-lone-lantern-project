@@ -1,4 +1,5 @@
 using Godot;
+using System.Diagnostics;
 using TheLoneLanternProject.Scripts.Player;
 using TheLoneLanternProject.Scripts.Shared.Helpers;
 using TheLoneLanternProject.Scripts.StateMachines.Enemy;
@@ -8,4 +9,5 @@ public partial class BaseEnemyBehaviour : Node
 {
     public EnemyStateMachine StateMachine => GetParent<EnemyStateMachine>();
     public Luce Luce => GetNodeHelper.GetLuce(GetTree());
+    public Stopwatch Timer = new();
 }
