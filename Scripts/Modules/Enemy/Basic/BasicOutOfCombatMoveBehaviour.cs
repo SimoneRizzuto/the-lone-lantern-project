@@ -3,6 +3,7 @@ using System;
 using Vector2 = Godot.Vector2;
 using TheLoneLanternProject.Scripts.Shared.Constants;
 using TheLoneLanternProject.Scripts.Shared.Extensions;
+using TheLoneLanternProject.Scripts.Shared.Helpers;
 
 namespace TheLoneLanternProject.Scripts.Modules.Enemy.Basic;
 
@@ -26,6 +27,12 @@ public partial class BasicOutOfCombatMoveBehaviour : BaseEnemyBehaviour
         }
         
         StateMachine.EnemyTemplate.CalculatedVelocity = direction * 2000f;
+        
+        var walkingDirection = DirectionHelper.GetSnappedDirection(direction);
+        StateMachine.LastDirection = walkingDirection;
+        
+        var lastDirectionString = Enum.GetName(walkingDirection)?.ToLower();
+        MainSprite.Play($"walk {lastDirectionString}");
         
         if (Timer.Elapsed > TimeSpan.FromSeconds(secondsToMove))
         {

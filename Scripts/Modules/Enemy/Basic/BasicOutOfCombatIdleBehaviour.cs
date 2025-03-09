@@ -28,11 +28,14 @@ public partial class BasicOutOfCombatIdleBehaviour : BaseEnemyBehaviour
             StateMachine.EnemyState = EnemyState.OutOfCombatMove;
             Timer.Reset();
         }
-
+        
+        var lastDirectionString = Enum.GetName(StateMachine.LastDirection)?.ToLower();
+        MainSprite.Play($"idle {lastDirectionString}");
+        
         // implement new logic
         // do movement here? or somewhere else?
         // probably here. there doesn't always need to be one place where everything's done, but think about it some more before going with it
-        
+
         // changed my mind, i want to make every bit of state something different. OutOfCombat isn't one state, it is OutOfCombatIdle, OutOfCombatMove
 
         // worry about animation after
