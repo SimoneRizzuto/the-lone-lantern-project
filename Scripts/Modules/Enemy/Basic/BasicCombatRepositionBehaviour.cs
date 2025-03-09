@@ -22,7 +22,7 @@ public partial class BasicCombatRepositionBehaviour : BaseEnemyBehaviour
         var distance = StateMachine.EnemyTemplate.Position.DistanceTo(Luce.Position);
         if (distance <= EnemyConstants.AttackDistance)
         {
-            StateMachine.EnemyState = EnemyState.CombatAttack;
+            StateMachine.EnemyState = EnemyState.CombatWait;
         }
     }
     
