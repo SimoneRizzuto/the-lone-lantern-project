@@ -12,7 +12,8 @@ public partial class BasicOutOfCombatIdleBehaviour : BaseEnemyBehaviour
     
     public override void _PhysicsProcess(double delta)
     {
-        //CheckDistanceToLuce();
+        CheckDistanceToLuce();
+        
         if (StateMachine.EnemyState is not EnemyState.OutOfCombatIdle) return;
         
         if (!Timer.IsRunning)

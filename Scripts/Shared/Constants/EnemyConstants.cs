@@ -12,5 +12,5 @@ public enum EnemyState
 
 public static class EnemyConstants
 {
-    public const float CombatDistanceThreshold = 50;
+    public const float CombatDistanceThreshold = 125;
 }
