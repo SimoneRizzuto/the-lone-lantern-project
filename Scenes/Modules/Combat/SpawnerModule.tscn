@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://v568dqpebswq"]
+
+[ext_resource type="Script" path="res://Scenes/Modules/Combat/SpawnerModule.cs" id="1_fubob"]
+
+[node name="SpawnerModule" type="Marker2D"]
+script = ExtResource("1_fubob")

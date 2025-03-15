@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://qdty6baoiaao"]
+
+[ext_resource type="Script" path="res://Scenes/Modules/Combat/CombatModule.cs" id="1_76t22"]
+
+[node name="CombatModule" type="Area2D"]
+script = ExtResource("1_76t22")
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]
+[connection signal="body_exited" from="." to="." method="OnBodyExited"]
