@@ -1,5 +1,6 @@
-using System;
 using Godot;
+using System;
+using System.Linq;
 using TheLoneLanternProject.Scripts.Shared.Constants;
 
 namespace TheLoneLanternProject.Scripts.Modules.Enemy.Basic;
@@ -7,34 +8,18 @@ namespace TheLoneLanternProject.Scripts.Modules.Enemy.Basic;
 [GlobalClass]
 public partial class BasicCombatAttackBehaviour : BaseEnemyBehaviour
 {
-    private int attackSpeed = 10;
-    private bool applyingVelocity;
-    private Vector2 DirectionToPlayer => StateMachine.EnemyTemplate.Position.DirectionTo(Luce.Position);
-    
     public override void _PhysicsProcess(double delta)
     {
         if (StateMachine.EnemyState is not EnemyState.CombatAttack)
         {
-            applyingVelocity = false;
             return;
         }
 
-        if (!Timer.IsRunning)
-        {
-            Timer.Restart();
-        }
+        var attack = Attacks.FirstOrDefault();
+        Console.WriteLine(attack?.AttackName);
+        Console.WriteLine(attack?.AnimationName);
+        Attacks.FirstOrDefault()?.TriggerAttack();
         
-        if (!applyingVelocity)
-        {
-            StateMachine.EnemyTemplate.CalculatedVelocity = DirectionToPlayer * EnemyConstants.AttackSpeed;
-            applyingVelocity = true;
-        }
-
-        if (Timer.Elapsed > TimeSpan.FromSeconds(0.25))
-        {
-            Timer.Reset();
-            StateMachine.EnemyState = EnemyState.CombatWait;
-        }
     }
     
     // attack objects can probably be static in here.
