@@ -1,6 +1,7 @@
 using System;
 using Godot;
 using TheLoneLanternProject.Scripts.Shared.Constants;
+using TheLoneLanternProject.Scripts.Shared.Helpers;
 
 namespace TheLoneLanternProject.Scripts.Modules.Enemy.Attacks;
 
@@ -36,6 +37,10 @@ public partial class BasicEnemyAttack1 : BaseEnemyAttack
         if (!applyingVelocity)
         {
             StateMachine.EnemyTemplate.CalculatedVelocity = DirectionToPlayer * AttackSpeed;
+            
+            var direction = SetAttackingDirection(DirectionToPlayer);
+            SetAttackingAnimation(direction, DirectionToPlayer);
+            
             applyingVelocity = true;
         }
         
@@ -44,5 +49,20 @@ public partial class BasicEnemyAttack1 : BaseEnemyAttack
             Timer.Reset();
             StateMachine.EnemyState = EnemyState.CombatWait;
         }
+    }
+    
+    private Direction SetAttackingDirection(Vector2 directionVector)
+    {
+        var walkingDirection = DirectionHelper.GetSnappedDirection(directionVector);
+        StateMachine.LastDirection = walkingDirection;
+        return walkingDirection;
+    }
+    
+    private void SetAttackingAnimation(Direction attackingDirection, Vector2 directionVector)
+    {
+        var lastDirectionString = Enum.GetName(attackingDirection)?.ToLower();
+        var animationToPlay = $"attack {lastDirectionString} 1";
+        var speed = Mathf.Snapped(directionVector.Length(), 2);
+        MainSprite.Play(animationToPlay, speed);
     }
 }
