@@ -8,6 +8,9 @@ public enum EnemyState
     CombatReposition,
     CombatAttack,
     CombatHurt,
+    CombatKnockBack,
+    CombatDodge,
+    CombatParry,
 }
 
 public static class EnemyConstants
