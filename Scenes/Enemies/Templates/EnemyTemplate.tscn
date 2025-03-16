@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://0bfaldsm103s"]
+[gd_scene load_steps=29 format=3 uid="uid://0bfaldsm103s"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/Templates/EnemyTemplate.cs" id="1_ht0nc"]
 [ext_resource type="Script" path="res://Scripts/StateMachines/Enemy/EnemyStateMachine.cs" id="2_3lebn"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Scripts/Modules/Enemy/Basic/BasicCombatWaitBehaviour.cs" id="6_ofkip"]
 [ext_resource type="Texture2D" uid="uid://bjjjkhl8qfuuy" path="res://Assets/Textures/CharacterAnimations/Enemies/enemy-blob-idle-left-Sheet.aseprite" id="6_r7ivc"]
 [ext_resource type="Script" path="res://Scripts/Modules/Enemy/Basic/BasicCombatAttackBehaviour.cs" id="7_e8i73"]
+[ext_resource type="Script" path="res://Scripts/Modules/Enemy/Attacks/BasicEnemyAttack1.cs" id="8_mdelr"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_byd8a"]
 atlas = ExtResource("3_ki4mq")
@@ -209,6 +210,11 @@ script = ExtResource("6_ofkip")
 
 [node name="BasicCombatAttackBehaviour" type="Node" parent="EnemyStateMachine"]
 script = ExtResource("7_e8i73")
+
+[node name="Node2D" type="Node2D" parent="EnemyStateMachine/BasicCombatAttackBehaviour"]
+
+[node name="BasicEnemyAttack1" type="Node" parent="EnemyStateMachine/BasicCombatAttackBehaviour"]
+script = ExtResource("8_mdelr")
 
 [node name="MainSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -80)
