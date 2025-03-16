@@ -11,8 +11,6 @@ public partial class BasicEnemyAttack1 : BaseEnemyAttack, IDisposable
     private string LastDirectionString => Enum.GetName(StateMachine.LastDirection)?.ToLower();
     
     private bool applyingVelocity;
-    private bool windingUp;
-
     private Vector2 aimedPositionToAttack;
     
     public override void _Ready()
@@ -41,10 +39,10 @@ public partial class BasicEnemyAttack1 : BaseEnemyAttack, IDisposable
         if (!Timer.IsRunning)
         {
             Timer.Restart();
-            windingUp = true;
+            WindingUp = true;
         }
         
-        if (!applyingVelocity || !windingUp)
+        if (!applyingVelocity || !WindingUp)
         {
             ProcessAttack();
         }
@@ -52,7 +50,7 @@ public partial class BasicEnemyAttack1 : BaseEnemyAttack, IDisposable
     
     private void ProcessAttack()
     {
-        if (windingUp)
+        if (WindingUp)
         {
             var attackingDirection = DirectionHelper.GetSnappedDirection(DirectionToPlayer);
             if (attackingDirection == Direction.Up || attackingDirection == Direction.Down)
@@ -75,7 +73,7 @@ public partial class BasicEnemyAttack1 : BaseEnemyAttack, IDisposable
 
             aimedPositionToAttack = DirectionToPlayer;
         }
-        else if (!windingUp)
+        else if (!WindingUp)
         {
             var animationToPlay = $"attack {LastDirectionString} 1";
             MainSprite.Play(animationToPlay);
@@ -91,7 +89,7 @@ public partial class BasicEnemyAttack1 : BaseEnemyAttack, IDisposable
     {
         if (MainSprite.Animation.ToString().Contains("windup"))
         {
-            windingUp = false;
+            WindingUp = false;
         }
     }
     private void StopAttacking()

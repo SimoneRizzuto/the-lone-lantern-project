@@ -19,8 +19,8 @@ public partial class BaseEnemyAttack : Node
     [Export] public int AttackAnimationHitBoxBeginFrame = -1;
     [Export] public int AttackAnimationHitBoxFinishFrame = -1;
     
-    
     protected bool Triggered;
+    protected bool WindingUp;
     
     public virtual void TriggerAttack()
     {
