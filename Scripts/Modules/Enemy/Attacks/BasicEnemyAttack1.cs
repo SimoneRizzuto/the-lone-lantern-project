@@ -64,14 +64,16 @@ public partial class BasicEnemyAttack1 : BaseEnemyAttack, IDisposable
                         attackingDirection = Direction.Right;
                         break;
                 }
-            
+                
                 StateMachine.LastDirection = attackingDirection;
             }
             
             var animationToPlay = $"windup {LastDirectionString} 1";
             MainSprite.Play(animationToPlay);
-
+            
             aimedPositionToAttack = DirectionToPlayer;
+            
+            AdjustHitboxPosition();
         }
         else if (!WindingUp)
         {
@@ -81,6 +83,24 @@ public partial class BasicEnemyAttack1 : BaseEnemyAttack, IDisposable
             StateMachine.EnemyTemplate.CalculatedVelocity = aimedPositionToAttack * AttackSpeed;
             Hitbox.Monitoring = true;
             applyingVelocity = true;
+        }
+    }
+    
+    private void AdjustHitboxPosition()
+    {
+        if (StateMachine.LastDirection == Direction.Left)
+        {
+            var x = Math.Abs(HitboxCollisionShape.Position.X) * -1;
+            var y = HitboxCollisionShape.Position.Y;
+            
+            HitboxCollisionShape.Position = new Vector2(x, y);
+        }
+        else if (StateMachine.LastDirection == Direction.Right)
+        {
+            var x = Math.Abs(HitboxCollisionShape.Position.X);
+            var y = HitboxCollisionShape.Position.Y;
+            
+            HitboxCollisionShape.Position = new Vector2(x, y);
         }
     }
     

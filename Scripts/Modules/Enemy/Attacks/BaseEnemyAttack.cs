@@ -33,4 +33,5 @@ public partial class BaseEnemyAttack : Node
     protected AnimatedSprite2D MainSprite => GetParent().GetParent().GetParent().GetNode<AnimatedSprite2D>("MainSprite");
     protected Vector2 DirectionToPlayer => StateMachine.EnemyTemplate.Position.DirectionTo(Luce.Position);
     protected Area2D Hitbox => GetChild<Area2D>(0);
+    protected CollisionShape2D HitboxCollisionShape => Hitbox.GetChild<CollisionShape2D>(0);
 }
