@@ -1,5 +1,4 @@
 using Godot;
-using System;
 using System.Linq;
 using TheLoneLanternProject.Scripts.Shared.Constants;
 
@@ -14,20 +13,7 @@ public partial class BasicCombatAttackBehaviour : BaseEnemyBehaviour
         {
             return;
         }
-
-        var attack = Attacks.FirstOrDefault();
-        Console.WriteLine(attack?.AttackName);
-        Console.WriteLine(attack?.AnimationName);
-        Attacks.FirstOrDefault()?.TriggerAttack();
         
+        Attacks.FirstOrDefault()?.TriggerAttack();
     }
-    
-    // attack objects can probably be static in here.
-    // each attack needs to be assignable for this Behavior to find it.
-    
-    // Because each Behaviour is custom, instancing the attacks statically is probably fine?
-    // experiment with two attacks in here
-    // consider: animations, hitboxes, length of attack, what state the enemy will go into
-    // all of this makes me think each shouldn't be a static object, but instead a PackedScene???
-    // and each packed scene gets added as a child or some other way??????
 }
