@@ -6,63 +6,110 @@ using TheLoneLanternProject.Scripts.Shared.Helpers;
 namespace TheLoneLanternProject.Scripts.Modules.Enemy.Attacks;
 
 [GlobalClass]
-public partial class BasicEnemyAttack1 : BaseEnemyAttack
+public partial class BasicEnemyAttack1 : BaseEnemyAttack, IDisposable
 {
+    private string LastDirectionString => Enum.GetName(StateMachine.LastDirection)?.ToLower();
+    
     private bool applyingVelocity;
+    private bool windingUp;
+
+    private Vector2 aimedPositionToAttack;
     
     public override void _Ready()
     {
         if (string.IsNullOrWhiteSpace(AttackName)) AttackName = "Test";
         if (AttackSpeed < 0) AttackSpeed = EnemyConstants.AttackSpeed;
         if (AttackLength < 0) AttackLength = 0.25f;
-        if (string.IsNullOrWhiteSpace(AnimationName)) AnimationName = "Enemy Name";
+        if (string.IsNullOrWhiteSpace(AttackAnimationName)) AttackAnimationName = "Enemy Name";
         if (AttackAnimationHitBoxBeginFrame < 0) AttackAnimationHitBoxBeginFrame = 0;
         if (AttackAnimationHitBoxFinishFrame < 0) AttackAnimationHitBoxFinishFrame = 1;
+        
+        MainSprite.AnimationLooped += StopWindingUp;
+        MainSprite.AnimationLooped += StopAttacking;
     }
-    
+
     public override void _PhysicsProcess(double delta)
     {
         if (StateMachine.EnemyState is not EnemyState.CombatAttack || !Triggered)
         {
             Triggered = false;
             applyingVelocity = false;
+            Hitbox.Monitoring = false;
             return;
         }
         
         if (!Timer.IsRunning)
         {
             Timer.Restart();
+            windingUp = true;
         }
         
-        if (!applyingVelocity)
+        if (!applyingVelocity || !windingUp)
         {
-            StateMachine.EnemyTemplate.CalculatedVelocity = DirectionToPlayer * AttackSpeed;
+            ProcessAttack();
+        }
+    }
+    
+    private void ProcessAttack()
+    {
+        if (windingUp)
+        {
+            var attackingDirection = DirectionHelper.GetSnappedDirection(DirectionToPlayer);
+            if (attackingDirection == Direction.Up || attackingDirection == Direction.Down)
+            {
+                switch (DirectionToPlayer.X)
+                {
+                    case < 0:
+                        attackingDirection = Direction.Left;
+                        break;
+                    case >= 0:
+                        attackingDirection = Direction.Right;
+                        break;
+                }
             
-            var direction = SetAttackingDirection(DirectionToPlayer);
-            SetAttackingAnimation(direction, DirectionToPlayer);
+                StateMachine.LastDirection = attackingDirection;
+            }
             
+            var animationToPlay = $"windup {LastDirectionString} 1";
+            MainSprite.Play(animationToPlay);
+
+            aimedPositionToAttack = DirectionToPlayer;
+        }
+        else if (!windingUp)
+        {
+            var animationToPlay = $"attack {LastDirectionString} 1";
+            MainSprite.Play(animationToPlay);
+            
+            StateMachine.EnemyTemplate.CalculatedVelocity = aimedPositionToAttack * AttackSpeed;
+            Hitbox.Monitoring = true;
             applyingVelocity = true;
         }
-        
-        if (Timer.Elapsed > TimeSpan.FromSeconds(0.25))
+    }
+    
+    // signals
+    private void StopWindingUp()
+    {
+        if (MainSprite.Animation.ToString().Contains("windup"))
         {
+            windingUp = false;
+        }
+    }
+    private void StopAttacking()
+    {
+        if (MainSprite.Animation.ToString().Contains("attack"))
+        {
+            var animationToPlay = $"idle {LastDirectionString}";
+            MainSprite.Play(animationToPlay);
+            
             Timer.Reset();
             StateMachine.EnemyState = EnemyState.CombatWait;
         }
     }
-    
-    private Direction SetAttackingDirection(Vector2 directionVector)
+
+    // disposable subscribed methods
+    public void Dispose()
     {
-        var walkingDirection = DirectionHelper.GetSnappedDirection(directionVector);
-        StateMachine.LastDirection = walkingDirection;
-        return walkingDirection;
-    }
-    
-    private void SetAttackingAnimation(Direction attackingDirection, Vector2 directionVector)
-    {
-        var lastDirectionString = Enum.GetName(attackingDirection)?.ToLower();
-        var animationToPlay = $"attack {lastDirectionString} 1";
-        var speed = Mathf.Snapped(directionVector.Length(), 2);
-        MainSprite.Play(animationToPlay, speed);
+        MainSprite.AnimationLooped -= StopWindingUp;
+        MainSprite.AnimationLooped -= StopAttacking;
     }
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://0bfaldsm103s"]
+[gd_scene load_steps=42 format=3 uid="uid://0bfaldsm103s"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/Templates/EnemyTemplate.cs" id="1_ht0nc"]
 [ext_resource type="Script" path="res://Scripts/StateMachines/Enemy/EnemyStateMachine.cs" id="2_3lebn"]
@@ -13,13 +13,8 @@
 [ext_resource type="Texture2D" uid="uid://e0eq1h13m5ha" path="res://Assets/Textures/CharacterAnimations/Enemies/enemy-blob-attack-right-Sheet.png" id="9_2d7do"]
 [ext_resource type="Texture2D" uid="uid://cecc4m7g0k1pa" path="res://Assets/Textures/CharacterAnimations/Enemies/enemy-blob-attack-left-Sheet.png" id="9_je5o1"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0xxsb"]
-atlas = ExtResource("9_je5o1")
-region = Rect2(160, 0, 40, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ypd84"]
-atlas = ExtResource("9_je5o1")
-region = Rect2(120, 0, 40, 40)
+[sub_resource type="CircleShape2D" id="CircleShape2D_niqvy"]
+radius = 8.06226
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5ejv8"]
 atlas = ExtResource("9_je5o1")
@@ -32,14 +27,6 @@ region = Rect2(40, 0, 40, 40)
 [sub_resource type="AtlasTexture" id="AtlasTexture_c87o1"]
 atlas = ExtResource("9_je5o1")
 region = Rect2(0, 0, 40, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_ne45h"]
-atlas = ExtResource("9_2d7do")
-region = Rect2(0, 0, 40, 40)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_laiv8"]
-atlas = ExtResource("9_2d7do")
-region = Rect2(40, 0, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_md53l"]
 atlas = ExtResource("9_2d7do")
@@ -117,6 +104,22 @@ region = Rect2(0, 0, 40, 40)
 atlas = ExtResource("3_ki4mq")
 region = Rect2(40, 0, 40, 40)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_amxfm"]
+atlas = ExtResource("9_je5o1")
+region = Rect2(160, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d5yf3"]
+atlas = ExtResource("9_je5o1")
+region = Rect2(120, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4n5vv"]
+atlas = ExtResource("9_2d7do")
+region = Rect2(0, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w1ud3"]
+atlas = ExtResource("9_2d7do")
+region = Rect2(40, 0, 40, 40)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_j20ov"]
 animations = [{
 "frames": [],
@@ -125,12 +128,6 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0xxsb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ypd84")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5ejv8")
 }, {
@@ -145,12 +142,6 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ne45h")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_laiv8")
-}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_md53l")
 }, {
@@ -256,6 +247,28 @@ animations = [{
 "loop": true,
 "name": &"walk up",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_amxfm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d5yf3")
+}],
+"loop": true,
+"name": &"windup left 1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4n5vv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w1ud3")
+}],
+"loop": true,
+"name": &"windup right 1",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_u0j3g"]
@@ -286,11 +299,19 @@ script = ExtResource("7_e8i73")
 [node name="BasicEnemyAttack1" type="Node" parent="EnemyStateMachine/BasicCombatAttackBehaviour"]
 script = ExtResource("8_mdelr")
 
+[node name="Hitbox" type="Area2D" parent="EnemyStateMachine/BasicCombatAttackBehaviour/BasicEnemyAttack1"]
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyStateMachine/BasicCombatAttackBehaviour/BasicEnemyAttack1/Hitbox"]
+position = Vector2(5, -10)
+shape = SubResource("CircleShape2D_niqvy")
+debug_color = Color(0.701961, 0.145098, 0, 0.419608)
+
 [node name="MainSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -80)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_j20ov")
-animation = &"idle down"
+animation = &"attack right 1"
 
 [node name="MainShape" type="CollisionShape2D" parent="."]
 position = Vector2(0, -6)
