@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://0bfaldsm103s"]
+[gd_scene load_steps=41 format=3 uid="uid://0bfaldsm103s"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/Templates/EnemyTemplate.cs" id="1_ht0nc"]
 [ext_resource type="Script" path="res://Scripts/StateMachines/Enemy/EnemyStateMachine.cs" id="2_3lebn"]
@@ -10,6 +10,48 @@
 [ext_resource type="Texture2D" uid="uid://bjjjkhl8qfuuy" path="res://Assets/Textures/CharacterAnimations/Enemies/enemy-blob-idle-left-Sheet.aseprite" id="6_r7ivc"]
 [ext_resource type="Script" path="res://Scripts/Modules/Enemy/Basic/BasicCombatAttackBehaviour.cs" id="7_e8i73"]
 [ext_resource type="Script" path="res://Scripts/Modules/Enemy/Attacks/BasicEnemyAttack1.cs" id="8_mdelr"]
+[ext_resource type="Texture2D" uid="uid://e0eq1h13m5ha" path="res://Assets/Textures/CharacterAnimations/Enemies/enemy-blob-attack-right-Sheet.png" id="9_2d7do"]
+[ext_resource type="Texture2D" uid="uid://cecc4m7g0k1pa" path="res://Assets/Textures/CharacterAnimations/Enemies/enemy-blob-attack-left-Sheet.png" id="9_je5o1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0xxsb"]
+atlas = ExtResource("9_je5o1")
+region = Rect2(160, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ypd84"]
+atlas = ExtResource("9_je5o1")
+region = Rect2(120, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5ejv8"]
+atlas = ExtResource("9_je5o1")
+region = Rect2(80, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pxo86"]
+atlas = ExtResource("9_je5o1")
+region = Rect2(40, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c87o1"]
+atlas = ExtResource("9_je5o1")
+region = Rect2(0, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ne45h"]
+atlas = ExtResource("9_2d7do")
+region = Rect2(0, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_laiv8"]
+atlas = ExtResource("9_2d7do")
+region = Rect2(40, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_md53l"]
+atlas = ExtResource("9_2d7do")
+region = Rect2(80, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f37jj"]
+atlas = ExtResource("9_2d7do")
+region = Rect2(120, 0, 40, 40)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g5v5a"]
+atlas = ExtResource("9_2d7do")
+region = Rect2(160, 0, 40, 40)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_byd8a"]
 atlas = ExtResource("3_ki4mq")
@@ -82,12 +124,42 @@ animations = [{
 "name": &"attack down",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0xxsb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ypd84")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5ejv8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pxo86")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c87o1")
+}],
 "loop": true,
 "name": &"attack left 1",
 "speed": 5.0
 }, {
-"frames": [],
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ne45h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_laiv8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_md53l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f37jj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g5v5a")
+}],
 "loop": true,
 "name": &"attack right 1",
 "speed": 5.0
@@ -211,8 +283,6 @@ script = ExtResource("6_ofkip")
 [node name="BasicCombatAttackBehaviour" type="Node" parent="EnemyStateMachine"]
 script = ExtResource("7_e8i73")
 
-[node name="Node2D" type="Node2D" parent="EnemyStateMachine/BasicCombatAttackBehaviour"]
-
 [node name="BasicEnemyAttack1" type="Node" parent="EnemyStateMachine/BasicCombatAttackBehaviour"]
 script = ExtResource("8_mdelr")
 
@@ -220,7 +290,7 @@ script = ExtResource("8_mdelr")
 position = Vector2(0, -80)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_j20ov")
-animation = &"idle left"
+animation = &"idle down"
 
 [node name="MainShape" type="CollisionShape2D" parent="."]
 position = Vector2(0, -6)
