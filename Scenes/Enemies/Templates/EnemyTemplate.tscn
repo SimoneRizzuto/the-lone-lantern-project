@@ -311,7 +311,7 @@ debug_color = Color(0.701961, 0.145098, 0, 0.419608)
 position = Vector2(0, -80)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_j20ov")
-animation = &"attack right 1"
+animation = &"idle down"
 
 [node name="MainShape" type="CollisionShape2D" parent="."]
 position = Vector2(0, -6)
