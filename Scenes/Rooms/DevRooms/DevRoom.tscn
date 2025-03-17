@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bgpdxfsl820vp"]
+[gd_scene load_steps=10 format=3 uid="uid://bgpdxfsl820vp"]
 
 [ext_resource type="PackedScene" uid="uid://lijck4bh3uhp" path="res://Scenes/Player/Luce.tscn" id="1_stcl4"]
 [ext_resource type="PackedScene" uid="uid://bihv5yjq7muuh" path="res://Scenes/Static/SicilianHouse.tscn" id="2_ku5tm"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://h0qtabwk04wy" path="res://Scenes/Directors/Cutscene/CutsceneDirector.tscn" id="5_5y00f"]
 [ext_resource type="PackedScene" uid="uid://qdty6baoiaao" path="res://Scenes/Modules/Combat/CombatModule.tscn" id="6_4cbok"]
 [ext_resource type="PackedScene" uid="uid://v568dqpebswq" path="res://Scenes/Modules/Combat/SpawnerModule.tscn" id="7_thtdb"]
+[ext_resource type="PackedScene" uid="uid://0bfaldsm103s" path="res://Scenes/Enemies/Templates/EnemyTemplate.tscn" id="8_wnttn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sm5pi"]
 size = Vector2(35, 89)
@@ -41,3 +42,6 @@ position = Vector2(0.5, -0.5)
 shape = SubResource("RectangleShape2D_sm5pi")
 
 [node name="SpawnerModule" parent="CombatModule" instance=ExtResource("7_thtdb")]
+position = Vector2(84, -37)
+EnemyUid = ExtResource("8_wnttn")
+Id = "simple_enemy"

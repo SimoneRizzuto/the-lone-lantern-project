@@ -1,10 +1,13 @@
 using Godot;
-using System;
-using System.Text.RegularExpressions;
 using TheLoneLanternProject.Scripts.Utils.Signals;
+
+namespace TheLoneLanternProject.Scenes.Modules.Combat;
 
 public partial class SpawnerModule : Marker2D
 {
+    [Export] public PackedScene EnemyUid { get; set; }
+    [Export] public string Id;
+    
     private CustomSignals customSignals;
 
     public override void _Ready()
@@ -13,8 +16,24 @@ public partial class SpawnerModule : Marker2D
         customSignals.Spawn += Spawn;
     }
 
-    private void Spawn()
+    private void Spawn() //PackedScene? enemy, string? id
     {
-        //This works when spawnodule attached to combat module
+        /*if (enemy == null)
+        {
+            var enemyScene = enemy.Instantiate();
+            enemyScene.Name = id;
+            AddChild(enemyScene);
+            
+        }*/
+        //else
+        //{
+        
+        var enemyScene = EnemyUid.Instantiate();
+        enemyScene.Name = Id;
+        AddChild(enemyScene);
+        //}
+        
+        
+
     }
 }

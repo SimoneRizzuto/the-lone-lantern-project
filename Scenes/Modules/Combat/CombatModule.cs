@@ -16,16 +16,14 @@ public partial class CombatModule : Area2D
         luce = GetNodeHelper.GetLuce(tree);
 
         customSignals = GetNode<CustomSignals>("/root/CustomSignals");
+        
     }
 
     public override void _PhysicsProcess(double delta)
     {
-        if (bodyEntered)
-        {
-            
-            customSignals.EmitSignal(nameof(CustomSignals.Spawn)); // No payload at this point, just testing.
-            
-        }
+        if (!bodyEntered) return;
+        customSignals.EmitSignal(nameof(CustomSignals.Spawn)); // No payload at this point, just testing.
+        GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
 
     }
 
