@@ -1,4 +1,4 @@
-[gd_scene load_steps=42 format=3 uid="uid://0bfaldsm103s"]
+[gd_scene load_steps=43 format=3 uid="uid://0bfaldsm103s"]
 
 [ext_resource type="Script" path="res://Scripts/Enemies/Templates/EnemyTemplate.cs" id="1_ht0nc"]
 [ext_resource type="Script" path="res://Scripts/StateMachines/Enemy/EnemyStateMachine.cs" id="2_3lebn"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://Scripts/Modules/Enemy/Attacks/BasicEnemyAttack1.cs" id="8_mdelr"]
 [ext_resource type="Texture2D" uid="uid://e0eq1h13m5ha" path="res://Assets/Textures/CharacterAnimations/Enemies/enemy-blob-attack-right-Sheet.png" id="9_2d7do"]
 [ext_resource type="Texture2D" uid="uid://cecc4m7g0k1pa" path="res://Assets/Textures/CharacterAnimations/Enemies/enemy-blob-attack-left-Sheet.png" id="9_je5o1"]
+[ext_resource type="PackedScene" uid="uid://dx1jjb3ypfl63" path="res://Scenes/Modules/Bars/Health/HealthModule.tscn" id="13_wnb8y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_niqvy"]
 radius = 8.06226
@@ -312,6 +313,9 @@ position = Vector2(0, -80)
 scale = Vector2(4, 4)
 sprite_frames = SubResource("SpriteFrames_j20ov")
 animation = &"idle down"
+
+[node name="HealthModule" parent="." instance=ExtResource("13_wnb8y")]
+position = Vector2(0, -6)
 
 [node name="MainShape" type="CollisionShape2D" parent="."]
 position = Vector2(0, -6)

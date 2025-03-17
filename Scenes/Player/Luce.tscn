@@ -1,7 +1,7 @@
 [gd_scene load_steps=106 format=3 uid="uid://lijck4bh3uhp"]
 
 [ext_resource type="Script" path="res://Scripts/Player/Luce.cs" id="1_s2gut"]
-[ext_resource type="PackedScene" uid="uid://f6e35btgmilp" path="res://Scenes/Modules/StaminaHealth/StaminaHealthModule.tscn" id="2_lr60b"]
+[ext_resource type="PackedScene" uid="uid://f6e35btgmilp" path="res://Scenes/Modules/Bars/StaminaHealth/StaminaHealthModule.tscn" id="2_lr60b"]
 [ext_resource type="Script" path="res://Scripts/StateMachines/Player/PlayerStateMachine.cs" id="3_0kckq"]
 [ext_resource type="Script" path="res://Scripts/Modules/Player/PlayerIdleModule.cs" id="4_tmxew"]
 [ext_resource type="Script" path="res://Scripts/Modules/Player/PlayerWalkingModule.cs" id="5_vfxqp"]

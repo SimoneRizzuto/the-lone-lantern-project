@@ -1,5 +1,5 @@
 using Godot;
-using TheLoneLanternProject.Scripts.Modules.Health;
+using TheLoneLanternProject.Scripts.Modules.Bars.Health;
 
 namespace TheLoneLanternProject.Scripts.Modules.HitBox;
 
@@ -9,6 +9,6 @@ public partial class HitBoxModule : Area2D
 	[Export] public HealthModule HealthModule;
 	public void Damage(double value)
 	{
-		HealthModule.Damage(value);
+		HealthModule.DealDamage(value);
 	}
 }

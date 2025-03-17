@@ -1,17 +1,19 @@
 using Godot;
 
-namespace TheLoneLanternProject.Scripts.Modules.Health;
+namespace TheLoneLanternProject.Scripts.Modules.Bars.Health;
 
 [GlobalClass]
 public partial class HealthModule : Node
 {
-	[Export] public double MaxHealth = 10.0;
+	[Export] private double maxHealth = 1D;
+	public bool IsDead => health <= 0;
+	
 	private double health;
 	public override void _Ready()
 	{
-		health = MaxHealth;
+		health = maxHealth;
 	}
-	public void Damage(double value)
+	public void DealDamage(double value = 1D)
 	{
 		health -= value;
 		if (health <= 0)

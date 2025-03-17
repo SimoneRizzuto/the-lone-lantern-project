@@ -1,7 +1,7 @@
-using Godot;
 using System.Diagnostics;
+using Godot;
 
-namespace TheLoneLanternProject.Scripts.Modules.StaminaHealth;
+namespace TheLoneLanternProject.Scripts.Modules.Bars.StaminaHealth;
 public partial class StaminaHealthModule : Node2D
 {
 	public double CurrentStaminaHealth => sh;

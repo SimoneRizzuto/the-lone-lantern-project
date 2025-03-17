@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://f6e35btgmilp"]
+
+[ext_resource type="Script" path="res://Scripts/Modules/Bars/StaminaHealth/StaminaHealthModule.cs" id="1_2j543"]
+[ext_resource type="PackedScene" uid="uid://xnsxf4vyq0vt" path="res://Scenes/Modules/Bars/StaminaHealth/StaminaHealthBar.tscn" id="2_oawfl"]
+
+[node name="StaminaHealthModule" type="Node2D"]
+script = ExtResource("1_2j543")
+
+[node name="StaminaHealthBar" parent="." instance=ExtResource("2_oawfl")]
