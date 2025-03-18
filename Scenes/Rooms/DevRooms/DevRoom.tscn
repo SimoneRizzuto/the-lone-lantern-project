@@ -43,5 +43,5 @@ shape = SubResource("RectangleShape2D_sm5pi")
 
 [node name="SpawnerModule" parent="CombatModule" instance=ExtResource("7_thtdb")]
 position = Vector2(84, -37)
-EnemyUid = ExtResource("8_wnttn")
+EnemyPackedScene = ExtResource("8_wnttn")
 Id = "simple_enemy"

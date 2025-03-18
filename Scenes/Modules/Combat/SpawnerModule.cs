@@ -5,7 +5,7 @@ namespace TheLoneLanternProject.Scenes.Modules.Combat;
 
 public partial class SpawnerModule : Marker2D
 {
-    [Export] public PackedScene EnemyUid { get; set; }
+    [Export] public PackedScene EnemyPackedScene { get; set; }
     [Export] public string Id;
     
     private CustomSignals customSignals;
@@ -29,7 +29,7 @@ public partial class SpawnerModule : Marker2D
         }
         else
         {
-            var enemyScene = EnemyUid.Instantiate();
+            var enemyScene = EnemyPackedScene.Instantiate();
             enemyScene.Name = Id;
             AddChild(enemyScene);
         }
