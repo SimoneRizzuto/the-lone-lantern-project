@@ -4,12 +4,13 @@ using TheLoneLanternProject.Scripts.Player;
 using TheLoneLanternProject.Scripts.Shared.Constants;
 using TheLoneLanternProject.Scripts.Shared.Helpers;
 using TheLoneLanternProject.Scripts.Utils.Signals;
-
+namespace TheLoneLanternProject.Scenes.Modules.Combat;
 public partial class CombatModule : Area2D
 {
     private CustomSignals customSignals = new();
     private Luce luce = new();
     private bool bodyEntered = false;
+    
     public override void _Ready()
     {
         var tree = GetTree();
@@ -22,7 +23,12 @@ public partial class CombatModule : Area2D
     public override void _PhysicsProcess(double delta)
     {
         if (!bodyEntered) return;
-        customSignals.EmitSignal(nameof(CustomSignals.Spawn)); // No payload at this point, just testing.
+        var enemySpawnAttributes = new EnemySpawnDTO()
+        {
+            EnemyScene = null,
+            EnemySceneName = null
+        };
+        customSignals.EmitSignal(nameof(CustomSignals.Spawn),enemySpawnAttributes);
         GetNode<CollisionShape2D>("CollisionShape2D").SetDeferred(CollisionShape2D.PropertyName.Disabled, true);
 
     }

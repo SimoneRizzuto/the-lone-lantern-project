@@ -16,22 +16,23 @@ public partial class SpawnerModule : Marker2D
         customSignals.Spawn += Spawn;
     }
 
-    private void Spawn() //PackedScene? enemy, string? id
+    private void Spawn(EnemySpawnDTO dto)
     {
-        /*if (enemy == null)
+        var enemy = dto.EnemyScene;
+        var id = dto.EnemySceneName;
+        if ((enemy != null) || (id != null))
         {
             var enemyScene = enemy.Instantiate();
             enemyScene.Name = id;
             AddChild(enemyScene);
             
-        }*/
-        //else
-        //{
-        
-        var enemyScene = EnemyUid.Instantiate();
-        enemyScene.Name = Id;
-        AddChild(enemyScene);
-        //}
+        }
+        else
+        {
+            var enemyScene = EnemyUid.Instantiate();
+            enemyScene.Name = Id;
+            AddChild(enemyScene);
+        }
         
         
 

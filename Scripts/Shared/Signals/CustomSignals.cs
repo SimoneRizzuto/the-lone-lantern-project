@@ -1,4 +1,5 @@
 using Godot;
+using TheLoneLanternProject.Scenes.Modules.Combat;
 using TheLoneLanternProject.Scripts.Modules.SceneSwitcher;
 
 namespace TheLoneLanternProject.Scripts.Utils.Signals;
@@ -10,5 +11,5 @@ public partial class CustomSignals : Node
 
     [Signal] public delegate void InteractionEventHandler(); // This will probably need to have a payload that gives some information to the modules
 
-    [Signal] public delegate void SpawnEventHandler(); //PackedScene scene, string id
+    [Signal] public delegate void SpawnEventHandler(EnemySpawnDTO dto); 
 }
